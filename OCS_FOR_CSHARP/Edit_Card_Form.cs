@@ -222,5 +222,10 @@ namespace OCS_FOR_CSHARP
             newEditForm.Show();
             this.Dispose(false);
         }
+
+        private void Card_Description_TextBox_TextChanged(object sender, EventArgs e)
+        {
+            //push test
+        }
     }
 }
