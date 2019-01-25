@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows;
+using Npgsql;
 using Tesseract;
 using MtgApiManager.Lib.Service;
 using MtgApiManager.Lib.Model;

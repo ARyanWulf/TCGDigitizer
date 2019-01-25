@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 using MtgApiManager.Lib.Service;
 using MtgApiManager.Lib.Model;
 using MtgApiManager.Lib.Core;
@@ -42,7 +43,10 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
+            NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432; User Id=postgres; Password=tcgdigitizer; Database=postgres");
+            connection.Open();
 
+            connection.Close();
         }
 
         // Visual Studio recommended to use "=> Close();" over the traditional brackets.
