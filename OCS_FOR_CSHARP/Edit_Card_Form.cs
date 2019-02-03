@@ -20,7 +20,7 @@ namespace OCS_FOR_CSHARP
     {
         public cardWrapper currentCard = new cardWrapper();
         List<cardWrapper> cards = new List<cardWrapper>();
-        Form1 newForm;
+        Form1 getImageForm;
         CardService service = new CardService();
         string cardData;
         List<Card> middleMan;
@@ -34,11 +34,11 @@ namespace OCS_FOR_CSHARP
         {
             // Will have to change the name for "Form1" here if we change the name of it elsewhere
             
-            newForm = new Form1();
+            getImageForm = new Form1();
 
-            newForm.Show();
-            newForm.callingForm = this;
-            //newForm = new Form1();
+            getImageForm.Show();
+            getImageForm.callingForm = this;
+            //getImageForm = new Form1();
         }
 
         // The save button is also binded to the enter key for the user
