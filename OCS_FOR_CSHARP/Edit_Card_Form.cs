@@ -47,8 +47,21 @@ namespace OCS_FOR_CSHARP
 
             NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=postgres");
             connection.Open();
+            Card newCard = currentCard.card;
 
-            using (var cmd = new NpgsqlCommand("INSERT INTO Card (card_id, card_name, card_type, card_subtype, mana_cost, expansion_pack, power, toughness, expansion_card_number, foil, prerelease_foil, physical_location, uniue_mtg_card_num) VALUES ("))
+            using (var cmd = new NpgsqlCommand("newCard", connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("in_time", DateTime.Now);
+                cmd.Parameters.AddWithValue("in name", newCard.Name);
+                cmd.Parameters.AddWithValue("in_type", newCard.Type);
+                cmd.Parameters.AddWithValue("in_subtype", newCard.SubTypes);
+            }
+            /*
+             * INSERT INTO "Card"(card_id, created_at, card_name, card_type, card_subtype, mana_cost, expansion, card_power, card_toughness, set_num, foil, prerelease, physical_location, multiverse_id)
+	            VALUES
+		            (1, in_time, in_name, in_type, in_subtype, in_mana, in_expansion, in_power, in_toughness, in_set_num, in_foil, in_prerelease, in_location, in_multi);
+             */
             //NpgsqlCommand npgsqlCommand = new NpgsqlCommand("ALTER TABLE public." + '"' + "Card" + '"' + "ADD COLUMN " + '"' + "Name" + '"' + " character(32)[];");
             //npgsqlCommand.Connection = connection;
             //NpgsqlCommandBuilder npgsqlCommandBuilder = new NpgsqlCommandBuilder();
