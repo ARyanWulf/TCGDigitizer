@@ -16,8 +16,7 @@ namespace OCS_FOR_CSHARP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Edit_Card_Form());  // changed from Form1.cs to Edit_Card_Form
-
+            Application.Run(new Inventory_Table());  // changed from Form1.cs to Edit_Card_Form
             
         }
     }
