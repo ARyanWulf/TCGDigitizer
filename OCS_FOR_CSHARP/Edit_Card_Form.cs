@@ -22,6 +22,7 @@ namespace OCS_FOR_CSHARP
         List<cardWrapper> cards = new List<cardWrapper>();
         Form1 getImageForm;
         CardService service = new CardService();
+        string cardData;
         List<Card> middleMan;
 
         public Edit_Card_Form()
@@ -43,8 +44,11 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
+
             NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=postgres");
             connection.Open();
+
+            using (var cmd = new NpgsqlCommand("INSERT INTO Card (card_id, card_name, card_type, card_subtype, mana_cost, expansion_pack, power, toughness, expansion_card_number, foil, prerelease_foil, physical_location, uniue_mtg_card_num) VALUES ("))
             //NpgsqlCommand npgsqlCommand = new NpgsqlCommand("ALTER TABLE public." + '"' + "Card" + '"' + "ADD COLUMN " + '"' + "Name" + '"' + " character(32)[];");
             //npgsqlCommand.Connection = connection;
             //NpgsqlCommandBuilder npgsqlCommandBuilder = new NpgsqlCommandBuilder();

@@ -16,7 +16,8 @@ namespace OCS_FOR_CSHARP
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main_Menu());  // changed from Form1.cs to Edit_Card_Form to Main_Menu()
+            Application.Run(new Main_Menu());  // changed from Form1.cs to Edit_Card_Form to Main_Menu
+
             
         }
     }
