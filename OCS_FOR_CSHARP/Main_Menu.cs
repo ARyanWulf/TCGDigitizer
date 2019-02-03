@@ -25,7 +25,7 @@ namespace OCS_FOR_CSHARP
 
         private void InventoryButton_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Edit_Card_Form();//Change to the Inventory viewer form
+            var getImageForm = new Inventory_Menu();//Change to the Inventory viewer form
             getImageForm.ShowDialog();
         }
 
