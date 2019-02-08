@@ -54,8 +54,30 @@ namespace OCS_FOR_CSHARP
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("in_time", DateTime.Now);
                 cmd.Parameters.AddWithValue("in name", newCard.Name);
+                cmd.Parameters.AddWithValue("in_mana", newCard.ManaCost);
+                cmd.Parameters.AddWithValue("in_cmc", newCard.Cmc);
+                cmd.Parameters.AddWithValue("in_colors", newCard.Colors);
+                cmd.Parameters.AddWithValue("in_identity", newCard.ColorIdentity);
+                cmd.Parameters.AddWithValue("in_set", newCard.Set);
+                cmd.Parameters.AddWithValue("in_num", newCard.Number);
+                cmd.Parameters.AddWithValue("in_rarity", newCard.Rarity);
+                cmd.Parameters.AddWithValue("in_border", newCard.Border);
+                cmd.Parameters.AddWithValue("in_multi", newCard.MultiverseId);
                 cmd.Parameters.AddWithValue("in_type", newCard.Type);
-                cmd.Parameters.AddWithValue("in_subtype", newCard.SubTypes);
+                cmd.Parameters.AddWithValue("in_types", newCard.Types);
+                cmd.Parameters.AddWithValue("in_subtypes", newCard.SubTypes);
+                cmd.Parameters.AddWithValue("in_supertypes", newCard.SuperTypes);
+                cmd.Parameters.AddWithValue("in_text", newCard.Text);
+                cmd.Parameters.AddWithValue("in_flavor", newCard.Flavor);
+                cmd.Parameters.AddWithValue("in_power", newCard.Power);
+                cmd.Parameters.AddWithValue("in_tough", newCard.Toughness);
+                cmd.Parameters.AddWithValue("in_loyalty", newCard.Loyalty);
+                cmd.Parameters.AddWithValue("in_artist", newCard.Artist);
+                cmd.Parameters.AddWithValue("in_foil", currentCard.foil);
+                cmd.Parameters.AddWithValue("in_prerelease", currentCard.prerelease);
+                cmd.Parameters.AddWithValue("in_location", "n/a");
+
+                cmd.ExecuteScalar();
             }
             /*
              * INSERT INTO "Card"(card_id, created_at, card_name, card_type, card_subtype, mana_cost, expansion, card_power, card_toughness, set_num, foil, prerelease, physical_location, multiverse_id)

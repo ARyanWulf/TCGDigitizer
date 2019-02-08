@@ -345,10 +345,13 @@ namespace OCS_FOR_CSHARP
     {
         public Card card;
         public List<string> printing;
+        public char foil, prerelease;
 
         public cardWrapper()
         {
             printing = new List<string>();
+            foil = 'n';
+            prerelease = 'n';
         }
 
         ~cardWrapper()
