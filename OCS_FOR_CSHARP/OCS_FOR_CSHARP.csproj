@@ -86,6 +86,12 @@
     <Compile Include="Edit_Card_Form.Designer.cs">
       <DependentUpon>Edit_Card_Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="Review.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Review.Designer.cs">
+      <DependentUpon>Review.cs</DependentUpon>
+    </Compile>
     <Compile Include="Inventory_Menu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Get_Image.resx">
       <DependentUpon>Get_Image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Review.resx">
+      <DependentUpon>Review.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory_Menu.resx">
       <DependentUpon>Inventory_Menu.cs</DependentUpon>
