@@ -143,7 +143,7 @@
             this.Controls.Add(this.InventoryButton);
             this.Controls.Add(this.ScanButton);
             this.Name = "Main_Menu";
-            this.Text = "Main_Menu";
+            this.Text = "TCG Digitizer";
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

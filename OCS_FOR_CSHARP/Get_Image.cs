@@ -29,8 +29,9 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Form1 : Form
     {
-        public Edit_Card_Form callingForm;
-        VideoCaptureDevice frame;
+        public Review callingForm;
+        public Edit_Card_Form sendingForm;
+        VideoCaptureDevice frame = null;
         FilterInfoCollection Devices;
         String Photo_Filepath = "C:\\Users\\milee\\OneDrive\\Pictures";
         
@@ -56,9 +57,13 @@ namespace OCS_FOR_CSHARP
             Devices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
             for(int i = 0; i < Devices.Count; i++)
             {
-                if(Devices[i].Name == "HD USB Camera")
+                if (Devices[i].Name == "HD USB Camera")
                 {
                     frame = new VideoCaptureDevice(Devices[i].MonikerString);//may handle lack of camera error handle
+                }
+                else
+                {
+                    frame = null;
                 }
             }
                      
@@ -331,19 +336,23 @@ namespace OCS_FOR_CSHARP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            callingForm.populate(currentCard);
+            if (currentCard.card != null)
+            {
+                sendingForm.populate(currentCard);
+                callingForm.addToList(currentCard);
+                var getImageForm = new Edit_Card_Form();
+                getImageForm.Show();
+            }
             if (frame != null)//if webcam is never opened before closing
             {
                 frame.Stop(); //I shutdown the webcam if application is closed
             }
-
-            Close();
         }
     }
 
     public class cardWrapper
     {
-        public Card card;
+        public Card card = null;
         public List<string> printing;
         public char foil, prerelease;
 
