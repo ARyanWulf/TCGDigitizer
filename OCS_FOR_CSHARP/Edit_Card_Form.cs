@@ -37,7 +37,7 @@ namespace OCS_FOR_CSHARP
             getImageForm = new Form1();
 
             getImageForm.Show();
-            getImageForm.callingForm = this;
+            //getImageForm.callingForm = this;
             //getImageForm = new Form1();
         }
 
