@@ -37,7 +37,9 @@
             // 
             // UserTextBox
             // 
+            this.UserTextBox.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.UserTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.UserTextBox.Cursor = System.Windows.Forms.Cursors.Default;
             this.UserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.UserTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
             this.UserTextBox.Location = new System.Drawing.Point(45, 12);

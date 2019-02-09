@@ -35,7 +35,6 @@ namespace OCS_FOR_CSHARP
         private void DeleteAllButton_Click(object sender, EventArgs e)
         {
             //Delete all data
-
             Close();
         }
 
