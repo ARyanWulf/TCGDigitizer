@@ -15,6 +15,11 @@ namespace OCS_FOR_CSHARP
         public Settings()
         {
             InitializeComponent();
+            var position = this.PointToScreen(user_text_box.Location);
+            position = user_settings_backpanel.PointToClient(position);
+            user_text_box.Parent = user_settings_backpanel;
+            user_text_box.Location = position;
+            user_text_box.Visible = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -49,6 +54,21 @@ namespace OCS_FOR_CSHARP
             {
                 DeleteAllButton.Enabled = false;
             }
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
