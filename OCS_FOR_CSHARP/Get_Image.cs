@@ -63,12 +63,21 @@ namespace OCS_FOR_CSHARP
                 }
                 else
                 {
+                    textBox1.Text = "TCG Digitizer camera not found!";
                     frame = null;
+                    return;
                 }
             }
-                     
-            frame.NewFrame += new AForge.Video.NewFrameEventHandler(NewFrame_event);
-            frame.Start();
+            if (Devices.Count == 0)
+            {
+                textBox1.Text = "TCG Digitizer camera not found!";
+                frame = null;
+            }
+            else
+            {
+                frame.NewFrame += new AForge.Video.NewFrameEventHandler(NewFrame_event);
+                frame.Start();
+            }
         }
 
         void NewFrame_event(object send,NewFrameEventArgs e)
@@ -163,6 +172,9 @@ namespace OCS_FOR_CSHARP
 
                     textBoxString = page.GetText();
                     textBoxString = textBoxString.Trim(' ', '\n');
+                    //
+                    textBox1.Text = textBoxString;
+                    //
                     var result = service.Where(x => x.Name, textBoxString);
                     middleMan = result.All().Value;
                     if (middleMan.Count < 1)
@@ -343,16 +355,16 @@ namespace OCS_FOR_CSHARP
                 var getImageForm = new Edit_Card_Form();
                 getImageForm.Show();
             }
-            if (frame != null)//if webcam is never opened before closing
+            /*if (frame != null)//if webcam is never opened before closing
             {
                 frame.Stop(); //I shutdown the webcam if application is closed
-            }
+            }*/
         }
     }
 
     public class cardWrapper
     {
-        public Card card = null;
+        public Card card;
         public List<string> printing;
         public char foil, prerelease;
 
