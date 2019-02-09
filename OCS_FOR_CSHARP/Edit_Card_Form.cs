@@ -44,18 +44,19 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
-
+            middleMan = service.All().Value;
             NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=postgres");
             connection.Open();
             Card newCard = currentCard.card;
-            using(var tran = connection.BeginTransaction())
+
+            //using(var tran = connection.BeginTransaction())
             using (var cmd = new NpgsqlCommand("newCard", connection))
             {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("in_id", 3);
 
-                cmd.Parameters.AddWithValue("in_time", TimeSpan.Zero);
+                cmd.Parameters.AddWithValue("in_time", DateTime.Now);
 
                 cmd.Parameters.AddWithValue("in_name", newCard.Name);
 
