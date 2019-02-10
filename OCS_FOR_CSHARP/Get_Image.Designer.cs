@@ -186,6 +186,7 @@
             // 
             // Search_Card_Button
             // 
+            this.Search_Card_Button.Enabled = false;
             this.Search_Card_Button.Location = new System.Drawing.Point(757, 389);
             this.Search_Card_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Search_Card_Button.Name = "Search_Card_Button";

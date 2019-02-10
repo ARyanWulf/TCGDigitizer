@@ -208,6 +208,14 @@ namespace OCS_FOR_CSHARP
 
         private void Tess_TextBox(object sender, EventArgs e)
         {
+            if (textBox1.Text.Length < 1)
+            {
+                Search_Card_Button.Enabled = false;
+            }
+            else
+            {
+                Search_Card_Button.Enabled = true;
+            }
         }
 
  
@@ -350,10 +358,11 @@ namespace OCS_FOR_CSHARP
         {
             if (currentCard.card != null)
             {
-                //sendingForm.populate(currentCard);
                 callingForm.addToList(currentCard);
-                //var getImageForm = new Edit_Card_Form();
-                //getImageForm.Show();
+                /*var getImageForm = new Edit_Card_Form();
+                sendingForm = getImageForm;
+                sendingForm.populate(currentCard);
+                getImageForm.Show();*/
                 Close();
             }
             if (frame != null)//if webcam is never opened before closing
@@ -374,7 +383,7 @@ namespace OCS_FOR_CSHARP
             string searchString = textBox1.Text;
             Manual_Entry_Toggle.Checked = false;
             textBox1.Text = "Searching...";
-            if (textBox1.Text.Length < 3 || textBox1.Text.Length > 141)
+            if (textBox1.Text.Length > 141)
             {
                 textBox1.Text = "Card not found. Check for typos and try again.";
             }
@@ -382,7 +391,7 @@ namespace OCS_FOR_CSHARP
             {
                 service.Where(x => x.Name, searchString);
                 middleMan = service.All().Value;
-                if (middleMan.Count < 1)
+                if (middleMan == null)
                 {
                     textBox1.Text = "Card not found. Check for typos and try again.";
                 }
