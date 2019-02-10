@@ -28,29 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.UserTextBox = new System.Windows.Forms.TextBox();
             this.QuitButton = new System.Windows.Forms.Button();
             this.DefualtButton = new System.Windows.Forms.Button();
             this.DeleteAllButton = new System.Windows.Forms.Button();
             this.DeleteCheckbox = new System.Windows.Forms.CheckBox();
+            this.Menu_Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
-            // 
-            // UserTextBox
-            // 
-            this.UserTextBox.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
-            this.UserTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UserTextBox.Cursor = System.Windows.Forms.Cursors.Default;
-            this.UserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.UserTextBox.Location = new System.Drawing.Point(45, 12);
-            this.UserTextBox.Name = "UserTextBox";
-            this.UserTextBox.ReadOnly = true;
-            this.UserTextBox.Size = new System.Drawing.Size(305, 46);
-            this.UserTextBox.TabIndex = 0;
-            this.UserTextBox.Text = "User Settings";
-            this.UserTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.UserTextBox.WordWrap = false;
-            this.UserTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // QuitButton
             // 
@@ -97,16 +80,27 @@
             this.DeleteCheckbox.UseVisualStyleBackColor = true;
             this.DeleteCheckbox.CheckedChanged += new System.EventHandler(this.DeleteCheckbox_CheckedChanged);
             // 
+            // Menu_Label
+            // 
+            this.Menu_Label.AutoSize = true;
+            this.Menu_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Menu_Label.Location = new System.Drawing.Point(37, 24);
+            this.Menu_Label.Name = "Menu_Label";
+            this.Menu_Label.Size = new System.Drawing.Size(259, 46);
+            this.Menu_Label.TabIndex = 9;
+            this.Menu_Label.Text = "User Settings";
+            this.Menu_Label.Click += new System.EventHandler(this.Menu_Label_Click);
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 611);
+            this.Controls.Add(this.Menu_Label);
             this.Controls.Add(this.DeleteCheckbox);
             this.Controls.Add(this.DeleteAllButton);
             this.Controls.Add(this.DefualtButton);
             this.Controls.Add(this.QuitButton);
-            this.Controls.Add(this.UserTextBox);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Name = "Settings";
             this.Text = "Settings";
@@ -116,11 +110,10 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox UserTextBox;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button DefualtButton;
         private System.Windows.Forms.Button DeleteAllButton;
         private System.Windows.Forms.CheckBox DeleteCheckbox;
+        private System.Windows.Forms.Label Menu_Label;
     }
 }

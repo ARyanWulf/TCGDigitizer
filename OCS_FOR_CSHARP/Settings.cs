@@ -49,5 +49,10 @@ namespace OCS_FOR_CSHARP
                 DeleteAllButton.Enabled = false;
             }
         }
+
+        private void Menu_Label_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

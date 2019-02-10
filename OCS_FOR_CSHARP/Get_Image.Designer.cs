@@ -39,7 +39,9 @@
             this.Card_Boarder = new System.Windows.Forms.PictureBox();
             this.Name_Header_Pic_Box = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
-            this.Manual_Entry = new System.Windows.Forms.Button();
+            this.Output_Label = new System.Windows.Forms.Label();
+            this.Search_Card_Button = new System.Windows.Forms.Button();
+            this.Manual_Entry_Toggle = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Display_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Boarder)).BeginInit();
@@ -48,7 +50,7 @@
             // 
             // button
             // 
-            this.button.Location = new System.Drawing.Point(724, 14);
+            this.button.Location = new System.Drawing.Point(513, 14);
             this.button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button.Name = "button";
             this.button.Size = new System.Drawing.Size(144, 54);
@@ -60,7 +62,7 @@
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
-            this.textBox1.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox1.Location = new System.Drawing.Point(724, 92);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Multiline = true;
@@ -158,6 +160,7 @@
             this.Name_Header_Pic_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Name_Header_Pic_Box.TabIndex = 9;
             this.Name_Header_Pic_Box.TabStop = false;
+            this.Name_Header_Pic_Box.Visible = false;
             this.Name_Header_Pic_Box.Click += new System.EventHandler(this.Name_Header_Pic_Box_Click);
             // 
             // button2
@@ -171,23 +174,47 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // Manual_Entry
+            // Output_Label
             // 
-            this.Manual_Entry.Location = new System.Drawing.Point(886, 14);
-            this.Manual_Entry.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Manual_Entry.Name = "Manual_Entry";
-            this.Manual_Entry.Size = new System.Drawing.Size(144, 54);
-            this.Manual_Entry.TabIndex = 11;
-            this.Manual_Entry.Text = "Manual Entry";
-            this.Manual_Entry.UseVisualStyleBackColor = true;
-            this.Manual_Entry.Click += new System.EventHandler(this.Manual_Entry_Click);
+            this.Output_Label.AutoSize = true;
+            this.Output_Label.Location = new System.Drawing.Point(720, 67);
+            this.Output_Label.Name = "Output_Label";
+            this.Output_Label.Size = new System.Drawing.Size(58, 20);
+            this.Output_Label.TabIndex = 12;
+            this.Output_Label.Text = "Output";
+            this.Output_Label.Click += new System.EventHandler(this.Output_Label_Click);
+            // 
+            // Search_Card_Button
+            // 
+            this.Search_Card_Button.Location = new System.Drawing.Point(757, 389);
+            this.Search_Card_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Search_Card_Button.Name = "Search_Card_Button";
+            this.Search_Card_Button.Size = new System.Drawing.Size(150, 55);
+            this.Search_Card_Button.TabIndex = 13;
+            this.Search_Card_Button.Text = "Search for card";
+            this.Search_Card_Button.UseVisualStyleBackColor = true;
+            this.Search_Card_Button.Visible = false;
+            this.Search_Card_Button.Click += new System.EventHandler(this.Search_Card_Button_Click);
+            // 
+            // Manual_Entry_Toggle
+            // 
+            this.Manual_Entry_Toggle.AutoSize = true;
+            this.Manual_Entry_Toggle.Location = new System.Drawing.Point(1068, 60);
+            this.Manual_Entry_Toggle.Name = "Manual_Entry_Toggle";
+            this.Manual_Entry_Toggle.Size = new System.Drawing.Size(128, 24);
+            this.Manual_Entry_Toggle.TabIndex = 14;
+            this.Manual_Entry_Toggle.Text = "Manual Entry";
+            this.Manual_Entry_Toggle.UseVisualStyleBackColor = true;
+            this.Manual_Entry_Toggle.CheckedChanged += new System.EventHandler(this.Manual_Entry_Toggle_CheckedChanged);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1226, 463);
-            this.Controls.Add(this.Manual_Entry);
+            this.Controls.Add(this.Manual_Entry_Toggle);
+            this.Controls.Add(this.Search_Card_Button);
+            this.Controls.Add(this.Output_Label);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Name_Header_Pic_Box);
             this.Controls.Add(this.Card_Boarder);
@@ -226,7 +253,9 @@
         private System.Windows.Forms.PictureBox Name_Header_Pic_Box;
         private System.Windows.Forms.Button button2;
         public System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button Manual_Entry;
+        private System.Windows.Forms.Label Output_Label;
+        private System.Windows.Forms.Button Search_Card_Button;
+        private System.Windows.Forms.CheckBox Manual_Entry_Toggle;
     }
 }
 

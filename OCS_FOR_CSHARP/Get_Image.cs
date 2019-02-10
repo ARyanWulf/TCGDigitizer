@@ -264,7 +264,7 @@ namespace OCS_FOR_CSHARP
                     middleMan = service.All().Value;
                     if (middleMan.Count < 1)
                     {
-                        textBoxString += "\nCard not valid, try manual entry.";
+                        textBox1.Text += "\nCard not valid, try manual entry.";
                     }
                     else if (middleMan.Count > 1)
                     {
@@ -350,20 +350,87 @@ namespace OCS_FOR_CSHARP
         {
             if (currentCard.card != null)
             {
-                sendingForm.populate(currentCard);
+                //sendingForm.populate(currentCard);
                 callingForm.addToList(currentCard);
-                var getImageForm = new Edit_Card_Form();
-                getImageForm.Show();
+                //var getImageForm = new Edit_Card_Form();
+                //getImageForm.Show();
+                Close();
             }
-            /*if (frame != null)//if webcam is never opened before closing
+            if (frame != null)//if webcam is never opened before closing
             {
                 frame.Stop(); //I shutdown the webcam if application is closed
-            }*/
+            }
         }
 
-        private void Manual_Entry_Click(object sender, EventArgs e)
+        
+
+        private void Output_Label_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Search_Card_Button_Click(object sender, EventArgs e)
+        {
+            string searchString = textBox1.Text;
+            Manual_Entry_Toggle.Checked = false;
+            textBox1.Text = "Searching...";
+            if (textBox1.Text.Length < 3 || textBox1.Text.Length > 141)
+            {
+                textBox1.Text = "Card not found. Check for typos and try again.";
+            }
+            else
+            {
+                service.Where(x => x.Name, searchString);
+                middleMan = service.All().Value;
+                if (middleMan.Count < 1)
+                {
+                    textBox1.Text = "Card not found. Check for typos and try again.";
+                }
+                else if (middleMan.Count > 1)
+                {
+                    textBox1.Text = "Multiple cards found!";
+                    for (int i = 0; i < middleMan.Count; i++)
+                    {
+                        if (middleMan[i].Name == textBox1.Text)
+                        {
+                            if (currentCard.card == null || currentCard.card.Name != middleMan[i].Name)
+                            {
+                                currentCard.card = middleMan[i];
+                                textBox1.Text += "\r\n" + currentCard.card.Name;
+                            }
+                            else
+                            {
+                                currentCard.printing.Add(middleMan[i].Set);
+                            }
+                        }
+                    }
+                    cards.Add(currentCard);
+                }
+                else
+                {
+                    currentCard.card = middleMan[0];
+                    cards.Add(currentCard);
+                    textBox1.Text = "Card found!\r\n" + currentCard.card.Name;
+                    Display_Picture_Box.ImageLocation = currentCard.card.ImageUrl.OriginalString;
+                }
+            }
+        }
+
+        private void Manual_Entry_Toggle_CheckedChanged(object sender, EventArgs e)
+        {
+            if (Manual_Entry_Toggle.Checked)
+            {
+                textBox1.Text = "";
+                textBox1.Multiline = false;
+                textBox1.ReadOnly = false;
+                Search_Card_Button.Visible = true;
+            }
+            else
+            {
+                textBox1.ReadOnly = true;
+                Search_Card_Button.Visible = false;
+                textBox1.Multiline = true;
+            }
         }
     }
 

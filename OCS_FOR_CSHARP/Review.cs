@@ -18,7 +18,7 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Review : Form
     {
-        public List<cardWrapper> reviewCards;
+        public List<cardWrapper> reviewCards = new List<cardWrapper>();
 
         public Review()
         {
@@ -38,10 +38,7 @@ namespace OCS_FOR_CSHARP
 
         public void addToList(cardWrapper sentCard)
         {
-
             reviewCards.Add(sentCard);
-            
-            
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
