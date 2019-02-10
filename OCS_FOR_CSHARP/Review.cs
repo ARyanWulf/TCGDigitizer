@@ -28,6 +28,7 @@ namespace OCS_FOR_CSHARP
         private void Scan_Card_Button_Click(object sender, EventArgs e)
         {
             var getImageForm = new Form1();//Change to the Inventory viewer form
+            getImageForm.callingForm = this;
             getImageForm.Show();
         }
 
