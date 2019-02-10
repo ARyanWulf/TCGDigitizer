@@ -39,6 +39,7 @@
             this.Card_Boarder = new System.Windows.Forms.PictureBox();
             this.Name_Header_Pic_Box = new System.Windows.Forms.PictureBox();
             this.button2 = new System.Windows.Forms.Button();
+            this.Manual_Entry = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Display_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Boarder)).BeginInit();
@@ -170,11 +171,23 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // Manual_Entry
+            // 
+            this.Manual_Entry.Location = new System.Drawing.Point(886, 14);
+            this.Manual_Entry.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Manual_Entry.Name = "Manual_Entry";
+            this.Manual_Entry.Size = new System.Drawing.Size(144, 54);
+            this.Manual_Entry.TabIndex = 11;
+            this.Manual_Entry.Text = "Manual Entry";
+            this.Manual_Entry.UseVisualStyleBackColor = true;
+            this.Manual_Entry.Click += new System.EventHandler(this.Manual_Entry_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1226, 463);
+            this.Controls.Add(this.Manual_Entry);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.Name_Header_Pic_Box);
             this.Controls.Add(this.Card_Boarder);
@@ -188,7 +201,7 @@
             this.Controls.Add(this.button);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
-            this.Text = "TCG Digitizer - Get Image (alphaV1.0)";
+            this.Text = "TCG Digitizer - Get Image";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).EndInit();
@@ -213,6 +226,7 @@
         private System.Windows.Forms.PictureBox Name_Header_Pic_Box;
         private System.Windows.Forms.Button button2;
         public System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button Manual_Entry;
     }
 }
 

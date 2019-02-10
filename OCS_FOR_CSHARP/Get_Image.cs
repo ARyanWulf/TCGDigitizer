@@ -360,6 +360,11 @@ namespace OCS_FOR_CSHARP
                 frame.Stop(); //I shutdown the webcam if application is closed
             }*/
         }
+
+        private void Manual_Entry_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class cardWrapper
