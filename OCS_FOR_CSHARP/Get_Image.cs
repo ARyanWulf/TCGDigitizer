@@ -410,6 +410,7 @@ namespace OCS_FOR_CSHARP
                             else
                             {
                                 currentCard.printing.Add(middleMan[i].Set);
+                                textBox1.Text += "\r\n" + middleMan[i].Name + " - " + middleMan[i].Number.ToString();
                             }
                         }
                     }
@@ -429,6 +430,7 @@ namespace OCS_FOR_CSHARP
         {
             if (Manual_Entry_Toggle.Checked)
             {
+                Output_Label.Text = "Card Name";
                 textBox1.Text = "";
                 textBox1.Multiline = false;
                 textBox1.ReadOnly = false;
@@ -436,6 +438,7 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
+                Output_Label.Text = "Output";
                 textBox1.ReadOnly = true;
                 Search_Card_Button.Visible = false;
                 textBox1.Multiline = true;
