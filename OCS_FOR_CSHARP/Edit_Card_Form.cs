@@ -222,7 +222,7 @@ namespace OCS_FOR_CSHARP
 
             Card_Name_TextBox.Text = currentCard.card.Name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.ManaCost;
-            Card_Type_TextBox.Text = currentCard.card.Type;
+            Card_Type_TextBox.Text = currentCard.card.Types[0];
             Card_Expansion_TextBox.Text = currentCard.card.SetName;
             textBox2.Text = currentCard.card.Number;
 
@@ -231,7 +231,8 @@ namespace OCS_FOR_CSHARP
                 Card_Additional_Label.Visible = true;
                 Card_Additional_TextBox.Visible = true;
                 for (int i = 0; i < currentCard.card.SubTypes.Length; i++)
-                    Card_Additional_TextBox.Text = currentCard.card.SubTypes[i];
+                    Card_Additional_TextBox.Text += currentCard.card.SubTypes[i]+" ";
+                    
             }
             else
             {
@@ -286,12 +287,12 @@ namespace OCS_FOR_CSHARP
                 Card_Flavor_Text_Label.Visible = false;
                 Card_Flavor_Text_TextBox.Visible = false;
             }
-
+            /*
             if(currentCard.card.SuperTypes != null)
             {
-                Card_Type_TextBox.Text = currentCard.card.SuperTypes + " " + Card_Type_TextBox.Text;
-            }
-
+               // Card_Type_TextBox.Text = currentCard.card.SuperTypes + " " + Card_Type_TextBox.Text;
+            }CUT OUT
+            */
             //pictureBox1.Image = newForm.Display_Picture_Box.Image;
             /*if (currentCard.card.ImageUrl.OriginalString != null)
             {
@@ -355,6 +356,11 @@ namespace OCS_FOR_CSHARP
         private void Card_Description_TextBox_TextChanged(object sender, EventArgs e)
         {
             //push test
+        }
+
+        private void Card_Additional_TextBox_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

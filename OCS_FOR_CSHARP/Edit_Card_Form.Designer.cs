@@ -67,7 +67,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(67, 694);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(126, 43);
             this.button1.TabIndex = 0;
@@ -78,7 +78,7 @@
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(635, 694);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(126, 43);
             this.button2.TabIndex = 1;
@@ -89,7 +89,7 @@
             // button3
             // 
             this.button3.Location = new System.Drawing.Point(770, 694);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(126, 43);
             this.button3.TabIndex = 2;
@@ -114,7 +114,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(67, 30);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(239, 326);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -126,7 +126,7 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Location = new System.Drawing.Point(162, 373);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(52, 21);
             this.checkBox1.TabIndex = 5;
@@ -137,7 +137,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(67, 539);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(239, 98);
@@ -260,7 +260,7 @@
             this.Edit_Card_PictureBox.BackColor = System.Drawing.Color.Transparent;
             this.Edit_Card_PictureBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Edit_Card_PictureBox.Location = new System.Drawing.Point(453, 74);
-            this.Edit_Card_PictureBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Edit_Card_PictureBox.Margin = new System.Windows.Forms.Padding(4);
             this.Edit_Card_PictureBox.Name = "Edit_Card_PictureBox";
             this.Edit_Card_PictureBox.Size = new System.Drawing.Size(439, 612);
             this.Edit_Card_PictureBox.TabIndex = 18;
@@ -271,7 +271,7 @@
             // 
             this.Card_Name_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Name_TextBox.Location = new System.Drawing.Point(600, 86);
-            this.Card_Name_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Name_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Name_TextBox.Name = "Card_Name_TextBox";
             this.Card_Name_TextBox.Size = new System.Drawing.Size(265, 30);
             this.Card_Name_TextBox.TabIndex = 19;
@@ -280,17 +280,18 @@
             // Card_Additional_TextBox
             // 
             this.Card_Additional_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Card_Additional_TextBox.Location = new System.Drawing.Point(600, 123);
-            this.Card_Additional_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Additional_TextBox.Location = new System.Drawing.Point(600, 160);
+            this.Card_Additional_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Additional_TextBox.Name = "Card_Additional_TextBox";
             this.Card_Additional_TextBox.Size = new System.Drawing.Size(265, 30);
             this.Card_Additional_TextBox.TabIndex = 20;
+            this.Card_Additional_TextBox.TextChanged += new System.EventHandler(this.Card_Additional_TextBox_TextChanged);
             // 
             // Card_Type_TextBox
             // 
             this.Card_Type_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Card_Type_TextBox.Location = new System.Drawing.Point(600, 160);
-            this.Card_Type_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Type_TextBox.Location = new System.Drawing.Point(600, 123);
+            this.Card_Type_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Type_TextBox.Name = "Card_Type_TextBox";
             this.Card_Type_TextBox.Size = new System.Drawing.Size(265, 30);
             this.Card_Type_TextBox.TabIndex = 21;
@@ -299,7 +300,7 @@
             // 
             this.Card_Toughness_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Toughness_TextBox.Location = new System.Drawing.Point(600, 554);
-            this.Card_Toughness_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Toughness_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Toughness_TextBox.Name = "Card_Toughness_TextBox";
             this.Card_Toughness_TextBox.Size = new System.Drawing.Size(52, 30);
             this.Card_Toughness_TextBox.TabIndex = 22;
@@ -308,7 +309,7 @@
             // 
             this.Card_Power_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Power_TextBox.Location = new System.Drawing.Point(600, 517);
-            this.Card_Power_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Power_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Power_TextBox.Name = "Card_Power_TextBox";
             this.Card_Power_TextBox.Size = new System.Drawing.Size(52, 30);
             this.Card_Power_TextBox.TabIndex = 24;
@@ -317,7 +318,7 @@
             // 
             this.Card_Flavor_Text_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Flavor_Text_TextBox.Location = new System.Drawing.Point(600, 418);
-            this.Card_Flavor_Text_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Flavor_Text_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Flavor_Text_TextBox.Multiline = true;
             this.Card_Flavor_Text_TextBox.Name = "Card_Flavor_Text_TextBox";
             this.Card_Flavor_Text_TextBox.Size = new System.Drawing.Size(265, 90);
@@ -327,7 +328,7 @@
             // 
             this.Card_Description_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Description_TextBox.Location = new System.Drawing.Point(600, 270);
-            this.Card_Description_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Description_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Description_TextBox.Multiline = true;
             this.Card_Description_TextBox.Name = "Card_Description_TextBox";
             this.Card_Description_TextBox.Size = new System.Drawing.Size(265, 139);
@@ -338,7 +339,7 @@
             // 
             this.Card_Expansion_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Expansion_TextBox.Location = new System.Drawing.Point(600, 234);
-            this.Card_Expansion_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Expansion_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Expansion_TextBox.Name = "Card_Expansion_TextBox";
             this.Card_Expansion_TextBox.Size = new System.Drawing.Size(265, 30);
             this.Card_Expansion_TextBox.TabIndex = 27;
@@ -347,7 +348,7 @@
             // 
             this.Card_Mana_Cost_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Mana_Cost_TextBox.Location = new System.Drawing.Point(600, 197);
-            this.Card_Mana_Cost_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Mana_Cost_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Mana_Cost_TextBox.Name = "Card_Mana_Cost_TextBox";
             this.Card_Mana_Cost_TextBox.Size = new System.Drawing.Size(265, 30);
             this.Card_Mana_Cost_TextBox.TabIndex = 28;
@@ -367,7 +368,7 @@
             // 
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.textBox2.Location = new System.Drawing.Point(600, 590);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(52, 30);
             this.textBox2.TabIndex = 30;
@@ -375,7 +376,7 @@
             // button4
             // 
             this.button4.Location = new System.Drawing.Point(748, 554);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(119, 46);
             this.button4.TabIndex = 31;
@@ -386,7 +387,7 @@
             // button5
             // 
             this.button5.Location = new System.Drawing.Point(748, 608);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(119, 46);
             this.button5.TabIndex = 32;
@@ -431,7 +432,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.Edit_Card_PictureBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Edit_Card_Form";
             this.Text = "Edit Card";
             this.Load += new System.EventHandler(this.Edit_Card_Form_Load);
