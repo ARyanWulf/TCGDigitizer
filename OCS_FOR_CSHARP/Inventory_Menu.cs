@@ -23,9 +23,25 @@ namespace OCS_FOR_CSHARP
             getImageForm.ShowDialog();
         }
 
-        // will need to change functionality of the OK button later
+        private void Add_Card_Button_Click(object sender, EventArgs e)
+        {
+            var getEditCardForm = new Edit_Card_Form();
+            getEditCardForm.ShowDialog();
+        }
+
+        // TODO:
+        // When OK button is pressed, if current changes are not saved
+        // prompt user to save changes
+        // else, close
         private void OK_Button_Click(object sender, EventArgs e) => Close();
 
         private void Cancel_Button_Click(object sender, EventArgs e) => Close();
+
+        private void Card_Table_Panel_Paint(object sender, PaintEventArgs e)
+        {
+           
+        }
+
+        
     }
 }

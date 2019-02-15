@@ -37,25 +37,127 @@ namespace OCS_FOR_CSHARP
             getImageForm = new Form1();
 
             getImageForm.Show();
-            getImageForm.callingForm = this;
+            //getImageForm.callingForm = this;
             //getImageForm = new Form1();
         }
 
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
-
+            middleMan = service.All().Value;
             NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=postgres");
             connection.Open();
             Card newCard = currentCard.card;
 
+            //using(var tran = connection.BeginTransaction())
             using (var cmd = new NpgsqlCommand("newCard", connection))
             {
-                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("in_id", 3);
+
                 cmd.Parameters.AddWithValue("in_time", DateTime.Now);
-                cmd.Parameters.AddWithValue("in name", newCard.Name);
+
+                cmd.Parameters.AddWithValue("in_name", newCard.Name);
+
+                cmd.Parameters.AddWithValue("in_mana", (string)newCard.ManaCost);
+
+                cmd.Parameters.AddWithValue("in_cmc", newCard.Cmc);
+
+                cmd.Parameters.AddWithValue("in_colors", newCard.Colors);
+
+                cmd.Parameters.AddWithValue("in_identity", newCard.ColorIdentity);
+
+                cmd.Parameters.AddWithValue("in_set", newCard.Set);
+
+                cmd.Parameters.AddWithValue("in_num", newCard.Number);
+
+                cmd.Parameters.AddWithValue("in_rarity", newCard.Rarity);
+
+                if(newCard.Border != null)
+                {
+                    cmd.Parameters.AddWithValue("in_border", newCard.Border);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_border", "Black");
+                }
+
+                cmd.Parameters.AddWithValue("in_multi", newCard.MultiverseId);
+                
                 cmd.Parameters.AddWithValue("in_type", newCard.Type);
-                cmd.Parameters.AddWithValue("in_subtype", newCard.SubTypes);
+                if(newCard.Types != null)
+                {
+                    cmd.Parameters.AddWithValue("in_types", newCard.Types);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_types", new string[0]);
+                }
+
+                if(newCard.SubTypes != null)
+                {
+                    cmd.Parameters.AddWithValue("in_subtypes", newCard.SubTypes);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
+                }
+
+                if(newCard.SuperTypes != null)
+                {
+                    cmd.Parameters.AddWithValue("in_supertypes", newCard.SuperTypes);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
+                }
+
+
+                if (newCard.Text != null)
+                {
+                    cmd.Parameters.AddWithValue("in_text", newCard.Text);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_text", "n/a");
+                }
+
+
+                if(newCard.Flavor != null)
+                {
+                    cmd.Parameters.AddWithValue("in_flavor", newCard.Flavor);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_flavor", "n/a");
+                }
+
+                if (newCard.Power != null && newCard.Toughness != null)
+                {
+                    cmd.Parameters.AddWithValue("in_power", newCard.Power);
+                    cmd.Parameters.AddWithValue("in_tough", newCard.Toughness);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_power", "n/a");
+                    cmd.Parameters.AddWithValue("in_tough", "n/a");
+                }
+
+                if(newCard.Loyalty != null)
+                {
+                    cmd.Parameters.AddWithValue("in_loyalty", newCard.Loyalty);
+                }
+                else
+                {
+                    cmd.Parameters.AddWithValue("in_loyalty", "n/a");
+                }
+                cmd.Parameters.AddWithValue("in_artist", newCard.Artist);
+                cmd.Parameters.AddWithValue("in_foil", currentCard.foil);
+                cmd.Parameters.AddWithValue("in_prerelease", currentCard.prerelease);
+                cmd.Parameters.AddWithValue("in_location", "n/a");
+
+                cmd.ExecuteScalar();
             }
             /*
              * INSERT INTO "Card"(card_id, created_at, card_name, card_type, card_subtype, mana_cost, expansion, card_power, card_toughness, set_num, foil, prerelease, physical_location, multiverse_id)
@@ -191,7 +293,10 @@ namespace OCS_FOR_CSHARP
             }
 
             //pictureBox1.Image = newForm.Display_Picture_Box.Image;
-            pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
+            /*if (currentCard.card.ImageUrl.OriginalString != null)
+            {
+                pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
+            }*/
         }
 
         private void Enter()
