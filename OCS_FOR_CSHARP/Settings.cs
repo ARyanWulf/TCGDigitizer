@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
 
 namespace OCS_FOR_CSHARP
 {
@@ -68,6 +69,19 @@ namespace OCS_FOR_CSHARP
 
         private void Settings_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void Load_Card_Button_Click(object sender, EventArgs e)
+        {
+            //New plan download https://mtgjson.com/json/SetList.json, parce set codes
+            //Use set codes to download individual sets via https://mtgjson.com/json/USE_SET_CODE_HERE.json
+            //Parce indiviual set json files for all required information. "A lot"
+
+            //using (WebClient webc = new WebClient())
+            //{
+            //    var mtgjson = webc.DownloadString("https://mtgjson.com/json/AllCards.json");
+            //}
 
         }
     }
