@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 
+
 namespace OCS_FOR_CSHARP
 {
     public partial class Settings : Form
@@ -74,6 +75,9 @@ namespace OCS_FOR_CSHARP
 
         private void Load_Card_Button_Click(object sender, EventArgs e)
         {
+            SetObject allSets = new SetObject();
+            
+
             //New plan download https://mtgjson.com/json/SetList.json, parce set codes
             //Use set codes to download individual sets via https://mtgjson.com/json/USE_SET_CODE_HERE.json
             //Parce indiviual set json files for all required information. "A lot"

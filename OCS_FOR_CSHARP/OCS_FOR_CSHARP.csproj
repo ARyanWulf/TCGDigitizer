@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CardHolder.cs" />
     <Compile Include="Edit_Card_Form.cs">
       <SubType>Form</SubType>
     </Compile>
