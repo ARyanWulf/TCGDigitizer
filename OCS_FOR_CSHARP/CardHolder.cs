@@ -24,42 +24,44 @@ namespace OCS_FOR_CSHARP
 
     public class CardObject
     {
-        public string artist { get; set; }
-        public string borderColor { get; set; }
-        public List<object> colorIdentity { get; set; }
-        public List<object> colors { get; set; }
-        public double convertedManaCost { get; set; }
-        public List<object> foreignData { get; set; }
-        public string frameVersion { get; set; }
-        public bool hasFoil { get; set; }
-        public bool hasNonFoil { get; set; }
-        public string layout { get; set; }
-        public CardLegalities legalities { get; set; }
-        public string manaCost { get; set; }
-        public int multiverseId { get; set; }
-        public string name { get; set; }
-        public string number { get; set; }
-        public string originalText { get; set; }
-        public string originalType { get; set; }
-        public string power { get; set; }
-        public List<string> printings { get; set; }
-        public string rarity { get; set; }
-        public List<object> rulings { get; set; }
-        public string scryfallId { get; set; }
-        public List<object> subtypes { get; set; }
-        public List<object> supertypes { get; set; }
-        public int tcgplayerProductId { get; set; }
-        public string tcgplayerPurchaseUrl { get; set; }
-        public string text { get; set; }
-        public string toughness { get; set; }
-        public string type { get; set; }
-        public List<string> types { get; set; }
-        public string uuid { get; set; }
-        public List<string> variations { get; set; }
-        public string flavorText { get; set; }
-        public bool? isAlternative { get; set; }
-        public List<object> names { get; set; }
-        public bool? starter { get; set; }
+        public string artist { get; set; }//
+        public string borderColor { get; set; }//
+        public List<object> colorIdentity { get; set; }//
+        public List<object> colors { get; set; }//
+        public double convertedManaCost { get; set; }//
+        public List<object> foreignData { get; set; }//maybe later with language support
+        public string frameVersion { get; set; }//not currently being used
+        public bool hasFoil { get; set; }//not currently being used
+        public bool hasNonFoil { get; set; }//not currently being used
+        public string layout { get; set; }//not currently being used
+        public CardLegalities legalities { get; set; }//don't see a reason to keep
+        public string manaCost { get; set; }//
+        public int multiverseId { get; set; }//
+        public string name { get; set; }//
+        public string number { get; set; }//
+        public string originalText { get; set; }//not currently being used
+        public string originalType { get; set; }//not currently being used
+        public string power { get; set; }//
+        public List<string> printings { get; set; }//not currently being used
+        public string rarity { get; set; }//
+        public List<object> rulings { get; set; }//don't see a reason to keep
+        public string scryfallId { get; set; }//not currently being used
+        public List<object> subtypes { get; set; }//
+        public List<object> supertypes { get; set; }//
+        public int tcgplayerProductId { get; set; }//not currently being used
+        public string tcgplayerPurchaseUrl { get; set; }//not currently being used
+        public string text { get; set; }//
+        public string toughness { get; set; }//
+        public string type { get; set; }//
+        public List<string> types { get; set; }//
+        public string uuid { get; set; }//not currently being used
+        public List<string> variations { get; set; }//not currently being used
+        public string flavorText { get; set; }//
+        public bool? isAlternative { get; set; }//not currently being used
+        public List<object> names { get; set; }//not currently being used
+        public string watermark { get; set; }//not currently being used
+        public string loyalty { get; set; }//
+        public bool? starter { get; set; }//not currently being used
     }
 
     public class CardMeta
@@ -85,10 +87,12 @@ namespace OCS_FOR_CSHARP
         public string text { get; set; }
     }
 
+    // not currently being used
     public class CardRootObject
     {
         public int baseSetSize { get; set; }
-        public List<string> boosterV3 { get; set; }
+        public string block { get; set; }
+        public List<object> boosterV3 { get; set; }
         public List<CardObject> cards { get; set; }
         public string code { get; set; }
         public CardMeta meta { get; set; }
@@ -108,4 +112,8 @@ namespace OCS_FOR_CSHARP
         public string name { get; set; }
         public string releaseDate { get; set; }
     }
+
+
+
+
 }

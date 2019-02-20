@@ -73,27 +73,58 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        //Creates database by downloading JSON files, parcing them and inserting them into POSTGRES DATABASE.
         private void Load_Card_Button_Click(object sender, EventArgs e)
         {
-            using (WebClient webc = new WebClient())
+            using (var webc = new WebClient())
             {
+                //string containing set list json from URL
                 var mtgjson = webc.DownloadString("https://mtgjson.com/json/SetList.json");
-                SetObject allSets = JsonConvert.DeserializeObject<SetObject>(mtgjson);//do you need to make a SetObject list class????
+
+                //parced set list. will contain an array of every set's: name, code, and release date
+                List<SetObject> setList = (List<SetObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgjson, typeof(List<SetObject>));
                 
-            }
+                //will hold the card list json 
+                string mtgCardjson;
+
+                //for every set
+                for (int i = 0; i < setList.Count; i++)
+                {
+                    using (var wc = new WebClient())
+                    {
+                        //will hold card json from ("URL" + setCode + ".json")
+                        mtgCardjson = wc.DownloadString("https://mtgjson.com/json/"+setList[i].code+".json");
+                        if (i%(20) == 0 )
+                        {
+                            //stop here I'm here to stop the program during testing to make sure it isn't hanging
+                        }
+                        //parced card list. will contain an array of every card contained in the set setList[i].name
+                        CardRootObject currentCardList = (CardRootObject)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(CardRootObject));
+
+                        //List<CardRootObject> currentCardList = (List<CardRootObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(List<CardRootObject>));
+
+
+                        //for every card in the set
+                        for (int j = 0; j < currentCardList.cards.Count; j++)
+                        {
+                            /*/////////////////////////////////////////////////////////////////////////////////////////////////////
+                            //                           INSERT POSTGRES/PGADMIN CALLS IN HERE!!                                 //
+                            // WILL CYCLE FOR EVERY CARD IN A SET, SWITCH SETS, AND RE-ENTER                                     //
+                            // SetObject and CardObject classes can be viewed in file CardHolder.cs                              //
+                            // additional notes on unused data and commented out data can be reviewed there                      //
+                            // make sure the database calls are removed from save button on edit card forms as well.             //
+                            // info not retrieved from currentCardList[j] CardObject                                             //
+                            // DateTime, setName (get set name from setList[i].name)                                             //
+                            // also I don't know what mtg Loyalties are and their does not seem to be a data type in CardObject. //
+                            //   it may need to be removed from database if parced json files do not contain it.                 //
+                            //                                                                                                   //
+                            //  - Chris                                                                                          //
+                            /////////////////////////////////////////////////////////////////////////////////////////////////////*/
+                        }
+                    }
+                }
+            }   
             
-
-            if (3 != 2)
-            {
-
-            }            
-
-            //New plan download https://mtgjson.com/json/SetList.json, parce set codes
-            //Use set codes to download individual sets via https://mtgjson.com/json/USE_SET_CODE_HERE.json
-            //Parce indiviual set json files for all required information. "A lot"
-
-
-
         }
     }
 }
