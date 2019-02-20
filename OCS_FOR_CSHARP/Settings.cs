@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
-
+using Newtonsoft.Json;
 
 namespace OCS_FOR_CSHARP
 {
@@ -75,17 +75,24 @@ namespace OCS_FOR_CSHARP
 
         private void Load_Card_Button_Click(object sender, EventArgs e)
         {
-            SetObject allSets = new SetObject();
+            using (WebClient webc = new WebClient())
+            {
+                var mtgjson = webc.DownloadString("https://mtgjson.com/json/SetList.json");
+                SetObject allSets = JsonConvert.DeserializeObject<SetObject>(mtgjson);//do you need to make a SetObject list class????
+                
+            }
             
+
+            if (3 != 2)
+            {
+
+            }            
 
             //New plan download https://mtgjson.com/json/SetList.json, parce set codes
             //Use set codes to download individual sets via https://mtgjson.com/json/USE_SET_CODE_HERE.json
             //Parce indiviual set json files for all required information. "A lot"
 
-            //using (WebClient webc = new WebClient())
-            //{
-            //    var mtgjson = webc.DownloadString("https://mtgjson.com/json/AllCards.json");
-            //}
+
 
         }
     }
