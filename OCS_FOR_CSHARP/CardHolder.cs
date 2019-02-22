@@ -26,9 +26,9 @@ namespace OCS_FOR_CSHARP
     {
         public string artist { get; set; }//
         public string borderColor { get; set; }//
-        public List<object> colorIdentity { get; set; }//
-        public List<object> colors { get; set; }//
-        public double convertedManaCost { get; set; }//
+        public List<string> colorIdentity { get; set; }//
+        public List<string> colors { get; set; }//
+        public float convertedManaCost { get; set; }//
         public List<object> foreignData { get; set; }//maybe later with language support
         public string frameVersion { get; set; }//not currently being used
         public bool hasFoil { get; set; }//not currently being used
@@ -46,8 +46,8 @@ namespace OCS_FOR_CSHARP
         public string rarity { get; set; }//
         public List<object> rulings { get; set; }//don't see a reason to keep
         public string scryfallId { get; set; }//not currently being used
-        public List<object> subtypes { get; set; }//
-        public List<object> supertypes { get; set; }//
+        public List<string> subtypes { get; set; }//
+        public List<string> supertypes { get; set; }//
         public int tcgplayerProductId { get; set; }//not currently being used
         public string tcgplayerPurchaseUrl { get; set; }//not currently being used
         public string text { get; set; }//
@@ -58,7 +58,7 @@ namespace OCS_FOR_CSHARP
         public List<string> variations { get; set; }//not currently being used
         public string flavorText { get; set; }//
         public bool? isAlternative { get; set; }//not currently being used
-        public List<object> names { get; set; }//not currently being used
+        public List<string> names { get; set; }//not currently being used
         public string watermark { get; set; }//not currently being used
         public string loyalty { get; set; }//
         public bool? starter { get; set; }//not currently being used
@@ -74,8 +74,8 @@ namespace OCS_FOR_CSHARP
     {
         public string artist { get; set; }
         public string borderColor { get; set; }
-        public List<object> colorIdentity { get; set; }
-        public List<object> colors { get; set; }
+        public List<string> colorIdentity { get; set; }
+        public List<string> colors { get; set; }
         public string name { get; set; }
         public string number { get; set; }
         public string power { get; set; }
