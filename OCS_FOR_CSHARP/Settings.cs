@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using Newtonsoft.Json;
+using Npgsql;
 
 namespace OCS_FOR_CSHARP
 {
@@ -73,49 +74,39 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        private void Update_Progress_TextBox(string tStr)
-        {
-            progress_textbox.Text = tStr;
-        }
-
         //Creates database by downloading JSON files, parcing them and inserting them into POSTGRES DATABASE.
         private void Load_Card_Button_Click(object sender, EventArgs e)
         {
-            progress_textbox.Visible = true;
-            progressBar1.Visible = true;
-
             using (var webc = new WebClient())
             {
-                string setListURL = "https://mtgjson.com/json/SetList.json";
                 //string containing set list json from URL
-                var mtgjson = webc.DownloadString(setListURL);
+                var mtgjson = webc.DownloadString("https://mtgjson.com/json/SetList.json");
 
                 //parced set list. will contain an array of every set's: name, code, and release date
                 List<SetObject> setList = (List<SetObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgjson, typeof(List<SetObject>));
-
-                Update_Progress_TextBox("Parcing JSON SetList: /n" + setListURL);
+                
                 //will hold the card list json 
                 string mtgCardjson;
-                string curSetJSONurl;
+
                 //for every set
                 for (int i = 0; i < setList.Count; i++)
                 {
-
                     using (var wc = new WebClient())
                     {
-                        curSetJSONurl = "https://mtgjson.com/json/" + setList[i].code + ".json";
                         //will hold card json from ("URL" + setCode + ".json")
-                        Update_Progress_TextBox("Downloading set " + setList[i].name + "/n" + curSetJSONurl);
-                        mtgCardjson = wc.DownloadString(curSetJSONurl);
+                        mtgCardjson = wc.DownloadString("https://mtgjson.com/json/"+setList[i].code+".json");
                         if (i%(20) == 0 )
                         {
                             //stop here I'm here to stop the program during testing to make sure it isn't hanging
                         }
-
-                        
-                        Update_Progress_TextBox("Parcing set " + setList[i].name + "/n" + curSetJSONurl);
                         //parced card list. will contain an array of every card contained in the set setList[i].name
                         CardRootObject currentCardList = (CardRootObject)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(CardRootObject));
+
+                        //List<CardRootObject> currentCardList = (List<CardRootObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(List<CardRootObject>));
+
+                        //Open connection to local database
+                        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=postgres");
+                        connection.Open();
 
                         //for every card in the set
                         for (int j = 0; j < currentCardList.cards.Count; j++)
@@ -133,21 +124,133 @@ namespace OCS_FOR_CSHARP
                             //                                                                                                   //
                             //  - Chris                                                                                          //
                             /////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+                            
+                            using (var cmd = new NpgsqlCommand("newCard", connection))
+                            {
+                                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                                cmd.Parameters.AddWithValue("in_id", 3);
+
+                                cmd.Parameters.AddWithValue("in_time", DateTime.Now);
+
+                                cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name);
+
+                                if (currentCardList.cards[j].manaCost != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_mana", currentCardList.cards[j].manaCost);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_mana", "land");
+                                }
+
+                                cmd.Parameters.AddWithValue("in_cmc", currentCardList.cards[j].convertedManaCost);
+
+                                cmd.Parameters.AddWithValue("in_colors", currentCardList.cards[j].colors);
+
+                                cmd.Parameters.AddWithValue("in_identity", currentCardList.cards[j].colorIdentity);
+
+                                cmd.Parameters.AddWithValue("in_set", setList[i].code);
+
+                                cmd.Parameters.AddWithValue("in_num", currentCardList.cards[j].number);
+
+                                cmd.Parameters.AddWithValue("in_rarity", currentCardList.cards[j].rarity);
+
+                                if (currentCardList.cards[j].borderColor != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_border", currentCardList.cards[j].borderColor);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_border", "Black");
+                                }
+
+                                cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
+
+                                currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
+                                cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
+                                if (currentCardList.cards[j].types != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_types", currentCardList.cards[j].types);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_types", new string[0]);
+                                }
+
+                                if (currentCardList.cards[j].subtypes != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_subtypes", currentCardList.cards[j].subtypes);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
+                                }
+
+                                if (currentCardList.cards[j].supertypes != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_supertypes", currentCardList.cards[j].supertypes);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
+                                }
+
+
+                                if (currentCardList.cards[j].text != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_text", "n/a");
+                                }
+
+
+                                if (currentCardList.cards[j].flavorText != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_flavor", "n/a");
+                                }
+
+                                if (currentCardList.cards[j].power != null && currentCardList.cards[j].toughness != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_power", currentCardList.cards[j].power);
+                                    cmd.Parameters.AddWithValue("in_tough", currentCardList.cards[j].toughness);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_power", "n/a");
+                                    cmd.Parameters.AddWithValue("in_tough", "n/a");
+                                }
+
+                                if (currentCardList.cards[j].loyalty != null)
+                                {
+                                    cmd.Parameters.AddWithValue("in_loyalty", currentCardList.cards[j].loyalty);
+                                }
+                                else
+                                {
+                                    cmd.Parameters.AddWithValue("in_loyalty", "n/a");
+                                }
+                                cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                cmd.Parameters.AddWithValue("in_foil", 'n');
+                                cmd.Parameters.AddWithValue("in_prerelease", 'n');
+                                cmd.Parameters.AddWithValue("in_location", "n/a");
+
+                                cmd.ExecuteScalar();
+                            }
                         }
+
+                        //close conection to database between sets
+                        connection.Close();
                     }
                 }
             }   
             
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void userCheckBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
