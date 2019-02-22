@@ -70,5 +70,10 @@ namespace OCS_FOR_CSHARP
         {
 
         }
+
+        private void SettingsLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
