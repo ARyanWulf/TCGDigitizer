@@ -73,36 +73,49 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        private void Update_Progress_TextBox(string tStr)
+        {
+            progress_textbox.Text = tStr;
+        }
+
         //Creates database by downloading JSON files, parcing them and inserting them into POSTGRES DATABASE.
         private void Load_Card_Button_Click(object sender, EventArgs e)
         {
+            progress_textbox.Visible = true;
+            progressBar1.Visible = true;
+
             using (var webc = new WebClient())
             {
+                string setListURL = "https://mtgjson.com/json/SetList.json";
                 //string containing set list json from URL
-                var mtgjson = webc.DownloadString("https://mtgjson.com/json/SetList.json");
+                var mtgjson = webc.DownloadString(setListURL);
 
                 //parced set list. will contain an array of every set's: name, code, and release date
                 List<SetObject> setList = (List<SetObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgjson, typeof(List<SetObject>));
-                
+
+                Update_Progress_TextBox("Parcing JSON SetList: /n" + setListURL);
                 //will hold the card list json 
                 string mtgCardjson;
-
+                string curSetJSONurl;
                 //for every set
                 for (int i = 0; i < setList.Count; i++)
                 {
+
                     using (var wc = new WebClient())
                     {
+                        curSetJSONurl = "https://mtgjson.com/json/" + setList[i].code + ".json";
                         //will hold card json from ("URL" + setCode + ".json")
-                        mtgCardjson = wc.DownloadString("https://mtgjson.com/json/"+setList[i].code+".json");
+                        Update_Progress_TextBox("Downloading set " + setList[i].name + "/n" + curSetJSONurl);
+                        mtgCardjson = wc.DownloadString(curSetJSONurl);
                         if (i%(20) == 0 )
                         {
                             //stop here I'm here to stop the program during testing to make sure it isn't hanging
                         }
+
+                        
+                        Update_Progress_TextBox("Parcing set " + setList[i].name + "/n" + curSetJSONurl);
                         //parced card list. will contain an array of every card contained in the set setList[i].name
                         CardRootObject currentCardList = (CardRootObject)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(CardRootObject));
-
-                        //List<CardRootObject> currentCardList = (List<CardRootObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(List<CardRootObject>));
-
 
                         //for every card in the set
                         for (int j = 0; j < currentCardList.cards.Count; j++)
@@ -125,6 +138,16 @@ namespace OCS_FOR_CSHARP
                 }
             }   
             
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void userCheckBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace OCS_FOR_CSHARP
 {
+    //not currently being used
     public class CardLegalities
     {
         public string __invalid_name__1v1 { get; set; }
@@ -64,12 +65,14 @@ namespace OCS_FOR_CSHARP
         public bool? starter { get; set; }//not currently being used
     }
 
+    //not currently being used
     public class CardMeta
     {
         public string date { get; set; }
         public string version { get; set; }
     }
 
+    //not currently being used
     public class CardToken
     {
         public string artist { get; set; }
@@ -87,7 +90,7 @@ namespace OCS_FOR_CSHARP
         public string text { get; set; }
     }
 
-    // not currently being used
+    // only using cards list
     public class CardRootObject
     {
         public int baseSetSize { get; set; }
