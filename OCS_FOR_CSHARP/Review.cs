@@ -39,10 +39,47 @@ namespace OCS_FOR_CSHARP
 
         public void addToList(cardWrapper sentCard)
         {
-            reviewCards.Add(sentCard);
+            Card_Table_Panel.RowCount++;
+
+            // begin popluating rows with cards
+            // populate each row with a checkbox
+            //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
+            string tempString = sentCard.card.Name;
+            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
+            tempString = sentCard.card.Type;
+
+            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
+            //tempString = sentCard.card.expansion;
+
+            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
+            // tempString = database card expansion
+
+            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
+            // tempString = database card number
+
+            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
+            // tempString = database card mana
+
+            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
+            // tempString = database card date added
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Inventory_Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Card_Table_Panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Review_Load(object sender, EventArgs e)
         {
 
         }

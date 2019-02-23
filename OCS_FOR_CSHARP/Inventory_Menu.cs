@@ -37,11 +37,58 @@ namespace OCS_FOR_CSHARP
 
         private void Cancel_Button_Click(object sender, EventArgs e) => Close();
 
-        private void Card_Table_Panel_Paint(object sender, PaintEventArgs e)
+        private void Inventory_Menu_Load(object sender, EventArgs e)
         {
-           
+            // initialize table to zero rows to be empty
+            Card_Table_Panel.RowCount = 1;
+
+            int cardCount = 20;
+            string tempString = "Existence is suffering for a Meseeks.";
+
+            // begin populating table, start at second row so the first
+            // row containing buttons is not overwritten
+            for (int i = 1; i < cardCount; i++)
+            {
+                // create a new row for each card
+                Card_Table_Panel.RowCount++;
+
+                // begin popluating rows with cards
+                // populate each row with a checkbox
+                //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
+
+                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
+                // tempString = database card name
+
+                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
+                // tempString = database card type
+
+                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
+                // tempString = database card expansion
+
+                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
+                // tempString = database card number
+
+                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
+                // tempString = database card mana
+
+                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
+                // tempString = database card date added
+
+            }
+            AutoScroll = true;
+
+
         }
 
-        
+        private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
+
+
+/*
+
+     
+*/
