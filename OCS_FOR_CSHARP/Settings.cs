@@ -26,6 +26,8 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
+
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
@@ -94,7 +96,6 @@ namespace OCS_FOR_CSHARP
                         //List<CardRootObject> currentCardList = (List<CardRootObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(List<CardRootObject>));
 
                         //Open connection to local database
-                        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
                         connection.Open();
 
                         //for every card in the set
@@ -114,125 +115,495 @@ namespace OCS_FOR_CSHARP
                             //  - Chris                                                                                          //
                             /////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-                            
-                            using (var cmd = new NpgsqlCommand("newCard", connection))
+
+                            if(currentCardList.type == "promo")
                             {
-                                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                                cmd.Parameters.AddWithValue("in_id", 3);
-
-                                cmd.Parameters.AddWithValue("in_time", DateTime.Now);
-
-                                cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name);
-
-                                if (currentCardList.cards[j].manaCost != null)
+                                using (var cmd = new NpgsqlCommand("newCard", connection))
                                 {
-                                    cmd.Parameters.AddWithValue("in_mana", currentCardList.cards[j].manaCost);
+                                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                                    cmd.Parameters.AddWithValue("in_id", 3);
+
+                                    cmd.Parameters.AddWithValue("in_time", DateTime.Now);
+
+                                    cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name + " - " + currentCardList.name);
+
+                                    if (currentCardList.cards[j].manaCost != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", currentCardList.cards[j].manaCost);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", "land");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_cmc", currentCardList.cards[j].convertedManaCost);
+
+                                    cmd.Parameters.AddWithValue("in_colors", currentCardList.cards[j].colors);
+
+                                    cmd.Parameters.AddWithValue("in_identity", currentCardList.cards[j].colorIdentity);
+
+                                    cmd.Parameters.AddWithValue("in_set", setList[i].code);
+
+                                    cmd.Parameters.AddWithValue("in_num", currentCardList.cards[j].number);
+
+                                    cmd.Parameters.AddWithValue("in_rarity", currentCardList.cards[j].rarity);
+
+                                    if (currentCardList.cards[j].borderColor != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", currentCardList.cards[j].borderColor);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", "Black");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
+
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
+                                    cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
+                                    if (currentCardList.cards[j].types != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", currentCardList.cards[j].types);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].subtypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", currentCardList.cards[j].subtypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].supertypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", currentCardList.cards[j].supertypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
+                                    }
+
+
+                                    if (currentCardList.cards[j].text != null)
+                                    {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_text", "n/a");
+                                    }
+
+
+                                    if (currentCardList.cards[j].flavorText != null)
+                                    {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_flavor", "n/a");
+                                    }
+
+                                    if (currentCardList.cards[j].power != null && currentCardList.cards[j].toughness != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", currentCardList.cards[j].power);
+                                        cmd.Parameters.AddWithValue("in_tough", currentCardList.cards[j].toughness);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", "n/a");
+                                        cmd.Parameters.AddWithValue("in_tough", "n/a");
+                                    }
+
+                                    if (currentCardList.cards[j].loyalty != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", currentCardList.cards[j].loyalty);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", "n/a");
+                                    }
+                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    cmd.Parameters.AddWithValue("in_foil", 'y');
+                                    cmd.Parameters.AddWithValue("in_prerelease", 'n');
+                                    cmd.Parameters.AddWithValue("in_location", "n/a");
+
+                                    cmd.ExecuteScalar();
                                 }
-                                else
+                            }
+                            else if(currentCardList.type == "masterpiece")
+                            {
+                                using (var cmd = new NpgsqlCommand("newCard", connection))
                                 {
-                                    cmd.Parameters.AddWithValue("in_mana", "land");
+                                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                                    cmd.Parameters.AddWithValue("in_id", 3);
+
+                                    cmd.Parameters.AddWithValue("in_time", DateTime.Now);
+
+                                    cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name + " - MASTERPIECE");
+
+                                    if (currentCardList.cards[j].manaCost != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", currentCardList.cards[j].manaCost);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", "land");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_cmc", currentCardList.cards[j].convertedManaCost);
+
+                                    cmd.Parameters.AddWithValue("in_colors", currentCardList.cards[j].colors);
+
+                                    cmd.Parameters.AddWithValue("in_identity", currentCardList.cards[j].colorIdentity);
+
+                                    cmd.Parameters.AddWithValue("in_set", setList[i].code);
+
+                                    cmd.Parameters.AddWithValue("in_num", currentCardList.cards[j].number);
+
+                                    cmd.Parameters.AddWithValue("in_rarity", currentCardList.cards[j].rarity);
+
+                                    if (currentCardList.cards[j].borderColor != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", currentCardList.cards[j].borderColor);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", "Black");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
+
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
+                                    cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
+                                    if (currentCardList.cards[j].types != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", currentCardList.cards[j].types);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].subtypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", currentCardList.cards[j].subtypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].supertypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", currentCardList.cards[j].supertypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
+                                    }
+
+
+                                    if (currentCardList.cards[j].text != null)
+                                    {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_text", "n/a");
+                                    }
+
+
+                                    if (currentCardList.cards[j].flavorText != null)
+                                    {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_flavor", "n/a");
+                                    }
+
+                                    if (currentCardList.cards[j].power != null && currentCardList.cards[j].toughness != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", currentCardList.cards[j].power);
+                                        cmd.Parameters.AddWithValue("in_tough", currentCardList.cards[j].toughness);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", "n/a");
+                                        cmd.Parameters.AddWithValue("in_tough", "n/a");
+                                    }
+
+                                    if (currentCardList.cards[j].loyalty != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", currentCardList.cards[j].loyalty);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", "n/a");
+                                    }
+                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    cmd.Parameters.AddWithValue("in_foil", 'y');
+                                    cmd.Parameters.AddWithValue("in_prerelease", 'n');
+                                    cmd.Parameters.AddWithValue("in_location", "n/a");
+
+                                    cmd.ExecuteScalar();
                                 }
-
-                                cmd.Parameters.AddWithValue("in_cmc", currentCardList.cards[j].convertedManaCost);
-
-                                cmd.Parameters.AddWithValue("in_colors", currentCardList.cards[j].colors);
-
-                                cmd.Parameters.AddWithValue("in_identity", currentCardList.cards[j].colorIdentity);
-
-                                cmd.Parameters.AddWithValue("in_set", setList[i].code);
-
-                                cmd.Parameters.AddWithValue("in_num", currentCardList.cards[j].number);
-
-                                cmd.Parameters.AddWithValue("in_rarity", currentCardList.cards[j].rarity);
-
-                                if (currentCardList.cards[j].borderColor != null)
+                            }
+                            else if(currentCardList.cards[j].hasFoil)
+                            {
+                                using (var cmd = new NpgsqlCommand("newCard", connection))
                                 {
-                                    cmd.Parameters.AddWithValue("in_border", currentCardList.cards[j].borderColor);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_border", "Black");
-                                }
+                                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                                cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
+                                    cmd.Parameters.AddWithValue("in_id", 3);
 
-                                currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
-                                cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
-                                if (currentCardList.cards[j].types != null)
-                                {
-                                    cmd.Parameters.AddWithValue("in_types", currentCardList.cards[j].types);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_types", new string[0]);
-                                }
+                                    cmd.Parameters.AddWithValue("in_time", DateTime.Now);
 
-                                if (currentCardList.cards[j].subtypes != null)
-                                {
-                                    cmd.Parameters.AddWithValue("in_subtypes", currentCardList.cards[j].subtypes);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
-                                }
+                                    cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name + " - FOIL");
 
-                                if (currentCardList.cards[j].supertypes != null)
-                                {
-                                    cmd.Parameters.AddWithValue("in_supertypes", currentCardList.cards[j].supertypes);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
-                                }
+                                    if (currentCardList.cards[j].manaCost != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", currentCardList.cards[j].manaCost);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", "land");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_cmc", currentCardList.cards[j].convertedManaCost);
+
+                                    cmd.Parameters.AddWithValue("in_colors", currentCardList.cards[j].colors);
+
+                                    cmd.Parameters.AddWithValue("in_identity", currentCardList.cards[j].colorIdentity);
+
+                                    cmd.Parameters.AddWithValue("in_set", setList[i].code);
+
+                                    cmd.Parameters.AddWithValue("in_num", currentCardList.cards[j].number);
+
+                                    cmd.Parameters.AddWithValue("in_rarity", currentCardList.cards[j].rarity);
+
+                                    if (currentCardList.cards[j].borderColor != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", currentCardList.cards[j].borderColor);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", "Black");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
+
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
+                                    cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
+                                    if (currentCardList.cards[j].types != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", currentCardList.cards[j].types);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].subtypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", currentCardList.cards[j].subtypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].supertypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", currentCardList.cards[j].supertypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
+                                    }
 
 
-                                if (currentCardList.cards[j].text != null)
-                                {
-                                    currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
-                                    cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_text", "n/a");
-                                }
+                                    if (currentCardList.cards[j].text != null)
+                                    {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_text", "n/a");
+                                    }
 
 
-                                if (currentCardList.cards[j].flavorText != null)
-                                {
-                                    currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
-                                    cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_flavor", "n/a");
-                                }
+                                    if (currentCardList.cards[j].flavorText != null)
+                                    {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_flavor", "n/a");
+                                    }
 
-                                if (currentCardList.cards[j].power != null && currentCardList.cards[j].toughness != null)
-                                {
-                                    cmd.Parameters.AddWithValue("in_power", currentCardList.cards[j].power);
-                                    cmd.Parameters.AddWithValue("in_tough", currentCardList.cards[j].toughness);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_power", "n/a");
-                                    cmd.Parameters.AddWithValue("in_tough", "n/a");
-                                }
+                                    if (currentCardList.cards[j].power != null && currentCardList.cards[j].toughness != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", currentCardList.cards[j].power);
+                                        cmd.Parameters.AddWithValue("in_tough", currentCardList.cards[j].toughness);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", "n/a");
+                                        cmd.Parameters.AddWithValue("in_tough", "n/a");
+                                    }
 
-                                if (currentCardList.cards[j].loyalty != null)
-                                {
-                                    cmd.Parameters.AddWithValue("in_loyalty", currentCardList.cards[j].loyalty);
-                                }
-                                else
-                                {
-                                    cmd.Parameters.AddWithValue("in_loyalty", "n/a");
-                                }
-                                cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
-                                cmd.Parameters.AddWithValue("in_foil", 'n');
-                                cmd.Parameters.AddWithValue("in_prerelease", 'n');
-                                cmd.Parameters.AddWithValue("in_location", "n/a");
+                                    if (currentCardList.cards[j].loyalty != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", currentCardList.cards[j].loyalty);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", "n/a");
+                                    }
+                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    cmd.Parameters.AddWithValue("in_foil", 'y');
+                                    cmd.Parameters.AddWithValue("in_prerelease", 'n');
+                                    cmd.Parameters.AddWithValue("in_location", "n/a");
 
-                                cmd.ExecuteScalar();
+                                    cmd.ExecuteScalar();
+                                }
+                            }
+
+                            if(currentCardList.cards[j].hasNonFoil)
+                            {
+                                using (var cmd = new NpgsqlCommand("newCard", connection))
+                                {
+                                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                                    cmd.Parameters.AddWithValue("in_id", 3);
+
+                                    cmd.Parameters.AddWithValue("in_time", DateTime.Now);
+
+                                    cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name);
+
+                                    if (currentCardList.cards[j].manaCost != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", currentCardList.cards[j].manaCost);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_mana", "land");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_cmc", currentCardList.cards[j].convertedManaCost);
+
+                                    cmd.Parameters.AddWithValue("in_colors", currentCardList.cards[j].colors);
+
+                                    cmd.Parameters.AddWithValue("in_identity", currentCardList.cards[j].colorIdentity);
+
+                                    cmd.Parameters.AddWithValue("in_set", setList[i].code);
+
+                                    cmd.Parameters.AddWithValue("in_num", currentCardList.cards[j].number);
+
+                                    cmd.Parameters.AddWithValue("in_rarity", currentCardList.cards[j].rarity);
+
+                                    if (currentCardList.cards[j].borderColor != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", currentCardList.cards[j].borderColor);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_border", "Black");
+                                    }
+
+                                    cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
+
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
+                                    cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
+                                    if (currentCardList.cards[j].types != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", currentCardList.cards[j].types);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_types", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].subtypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", currentCardList.cards[j].subtypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
+                                    }
+
+                                    if (currentCardList.cards[j].supertypes != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", currentCardList.cards[j].supertypes);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
+                                    }
+
+
+                                    if (currentCardList.cards[j].text != null)
+                                    {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_text", "n/a");
+                                    }
+
+
+                                    if (currentCardList.cards[j].flavorText != null)
+                                    {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
+                                        cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_flavor", "n/a");
+                                    }
+
+                                    if (currentCardList.cards[j].power != null && currentCardList.cards[j].toughness != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", currentCardList.cards[j].power);
+                                        cmd.Parameters.AddWithValue("in_tough", currentCardList.cards[j].toughness);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_power", "n/a");
+                                        cmd.Parameters.AddWithValue("in_tough", "n/a");
+                                    }
+
+                                    if (currentCardList.cards[j].loyalty != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", currentCardList.cards[j].loyalty);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_loyalty", "n/a");
+                                    }
+                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    cmd.Parameters.AddWithValue("in_foil", 'n');
+                                    cmd.Parameters.AddWithValue("in_prerelease", 'n');
+                                    cmd.Parameters.AddWithValue("in_location", "n/a");
+
+                                    cmd.ExecuteScalar();
+                                }
                             }
                         }
 

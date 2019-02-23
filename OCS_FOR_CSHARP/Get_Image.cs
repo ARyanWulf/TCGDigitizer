@@ -154,7 +154,7 @@ namespace OCS_FOR_CSHARP
 
         private void Open_Button(object sender, EventArgs e)
         {
-            OpenFileDialog openfile = new OpenFileDialog();
+            /*OpenFileDialog openfile = new OpenFileDialog();
 
             if (openfile.ShowDialog() == DialogResult.OK)
             {
@@ -203,7 +203,7 @@ namespace OCS_FOR_CSHARP
                     textBox1.Text = textBoxString;
                 }
                 catch (Exception ex) { }
-            }
+            }*/
         }
 
         private void Tess_TextBox(object sender, EventArgs e)
@@ -222,7 +222,7 @@ namespace OCS_FOR_CSHARP
 
         private void Take_Picture_Button_Click(object sender, EventArgs e)
         {
-            if (Photo_Filepath != null && Cam_Picture_Box.Image != null)
+            /*if (Photo_Filepath != null && Cam_Picture_Box.Image != null)
             {
                 try
                 {
@@ -241,8 +241,8 @@ namespace OCS_FOR_CSHARP
 
                     //Establishing size of crop area based off original image (x,y,width,height)
                     //All percents are measured/calulated ratios based off card dimensions
-                    Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.055/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.06/*0.05037037*/));
-
+                    //Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*///) + xStart), Convert.ToInt32((yHeight * 0.055/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.06/*0.05037037*/));
+                    /*
                     //Bitmap that will store altered image (width,height)
                     Bitmap nameHeaderBitmap = new Bitmap(nameHeaderCropRect.Width, nameHeaderCropRect.Height);
                     
@@ -297,7 +297,7 @@ namespace OCS_FOR_CSHARP
                     textBox1.Text = textBoxString;
                 }
                 catch (Exception ex) { }//need to add exception functionality
-            }
+            }*/
         }
 
         private void Stop_Video_Button_Click(object sender, EventArgs e)
@@ -380,7 +380,7 @@ namespace OCS_FOR_CSHARP
 
         private void Search_Card_Button_Click(object sender, EventArgs e)
         {
-            string searchString = textBox1.Text;
+            /*string searchString = textBox1.Text;
             Manual_Entry_Toggle.Checked = false;
             textBox1.Text = "Searching...";
             if (textBox1.Text.Length > 141)
@@ -423,7 +423,7 @@ namespace OCS_FOR_CSHARP
                     textBox1.Text = "Card found!\r\n" + currentCard.card.Name;
                     Display_Picture_Box.ImageLocation = currentCard.card.ImageUrl.OriginalString;
                 }
-            }
+            }*/
         }
 
         private void Manual_Entry_Toggle_CheckedChanged(object sender, EventArgs e)
@@ -448,20 +448,18 @@ namespace OCS_FOR_CSHARP
 
     public class cardWrapper
     {
-        public Card card;
-        public List<string> printing;
+        public CardObject card;
+        public string set;
         public char foil, prerelease;
 
         public cardWrapper()
         {
-            printing = new List<string>();
             foil = 'n';
             prerelease = 'n';
         }
 
         ~cardWrapper()
         {
-            printing = null;
             card = null;
         }
     }
