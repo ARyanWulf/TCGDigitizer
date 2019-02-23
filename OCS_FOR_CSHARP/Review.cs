@@ -44,9 +44,9 @@ namespace OCS_FOR_CSHARP
             // begin popluating rows with cards
             // populate each row with a checkbox
             //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
-            string tempString = sentCard.card.Name;
+            string tempString = sentCard.card.name;
             Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
-            tempString = sentCard.card.Type;
+            tempString = sentCard.card.type;
 
             Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
             //tempString = sentCard.card.expansion;
