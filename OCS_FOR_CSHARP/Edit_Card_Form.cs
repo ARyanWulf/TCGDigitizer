@@ -96,20 +96,20 @@ namespace OCS_FOR_CSHARP
 
         public void populate(cardWrapper input)
         {
-           /* currentCard.card = input.card;
+            currentCard.card = input.card;
 
-            Card_Name_TextBox.Text = currentCard.card.Name;
-            Card_Mana_Cost_TextBox.Text = currentCard.card.ManaCost;
-            Card_Type_TextBox.Text = currentCard.card.Types[0];
-            Card_Expansion_TextBox.Text = currentCard.card.SetName;
-            textBox2.Text = currentCard.card.Number;
+            Card_Name_TextBox.Text = currentCard.card.name;
+            Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
+            Card_Type_TextBox.Text = currentCard.card.type;
+            Card_Expansion_TextBox.Text = currentCard.set;
+            textBox2.Text = currentCard.card.number;
 
-            if (currentCard.card.SubTypes != null)
+            if (currentCard.card.subtypes != null)
             {
                 Card_Additional_Label.Visible = true;
                 Card_Additional_TextBox.Visible = true;
-                for (int i = 0; i < currentCard.card.SubTypes.Length; i++)
-                    Card_Additional_TextBox.Text += currentCard.card.SubTypes[i]+" ";
+                for (int i = 0; i < currentCard.card.subtypes.Count; i++)
+                    Card_Additional_TextBox.Text += currentCard.card.subtypes[i]+" ";
                     
             }
             else
@@ -118,11 +118,11 @@ namespace OCS_FOR_CSHARP
                 Card_Additional_TextBox.Visible = false;
             }
 
-            if (currentCard.card.Power != null)
+            if (currentCard.card.power != null)
             {
                 Card_Power_Label.Visible = true;
                 Card_Power_TextBox.Visible = true;
-                Card_Power_TextBox.Text = currentCard.card.Power;
+                Card_Power_TextBox.Text = currentCard.card.power;
             }
             else
             {
@@ -130,11 +130,11 @@ namespace OCS_FOR_CSHARP
                 Card_Power_TextBox.Visible = false;
             }
 
-            if (currentCard.card.Toughness != null)
+            if (currentCard.card.toughness != null)
             {
                 Card_Toughness_Label.Visible = true;
                 Card_Toughness_TextBox.Visible = true;
-                Card_Toughness_TextBox.Text = currentCard.card.Toughness;
+                Card_Toughness_TextBox.Text = currentCard.card.toughness;
             }
             else
             {
@@ -142,11 +142,11 @@ namespace OCS_FOR_CSHARP
                 Card_Toughness_TextBox.Visible = false;
             }
 
-            if (currentCard.card.Text != null)
+            if (currentCard.card.text != null)
             {
                 Card_Description_Label.Visible = true;
                 Card_Description_TextBox.Visible = true;
-                Card_Description_TextBox.Text = currentCard.card.Text;
+                Card_Description_TextBox.Text = currentCard.card.text;
             }
             else
             {
@@ -154,23 +154,18 @@ namespace OCS_FOR_CSHARP
                 Card_Description_TextBox.Visible = false;
             }
 
-            if(currentCard.card.Flavor != null)
+            if(currentCard.card.flavorText != null)
             {
                 Card_Flavor_Text_Label.Visible = true;
                 Card_Flavor_Text_TextBox.Visible = true;
-                Card_Flavor_Text_TextBox.Text = currentCard.card.Flavor;
+                Card_Flavor_Text_TextBox.Text = currentCard.card.flavorText;
             }
             else
             {
                 Card_Flavor_Text_Label.Visible = false;
                 Card_Flavor_Text_TextBox.Visible = false;
             }
-            /*
-            if(currentCard.card.SuperTypes != null)
-            {
-               // Card_Type_TextBox.Text = currentCard.card.SuperTypes + " " + Card_Type_TextBox.Text;
-            }CUT OUT
-            */
+
             //pictureBox1.Image = newForm.Display_Picture_Box.Image;
             /*if (currentCard.card.ImageUrl.OriginalString != null)
             {
@@ -187,12 +182,12 @@ namespace OCS_FOR_CSHARP
 
                 var str = "SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'";
 
-                if(Card_Type_TextBox.Text != null)
+                /*if(Card_Type_TextBox.Text != null)
                 {
                     str += "AND card_type ILIKE '%" + Card_Type_TextBox.Text + "%'";
-                }
+                }*/
                 
-                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'", connection))
+                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'", connection);
                 
                 NpgsqlDataReader reader = cmd.ExecuteReader();
 
@@ -239,6 +234,11 @@ namespace OCS_FOR_CSHARP
             else
             {
                 textBox1.Text = "Card not valid";
+            }
+
+            if(databaseList[0] != null)
+            {
+                populate(databaseList[0]);
             }
         }
 
