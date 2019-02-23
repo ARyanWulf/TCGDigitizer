@@ -47,18 +47,6 @@ namespace OCS_FOR_CSHARP
             Close();
         }
 
-        private void DeleteCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            if(DeleteCheckbox.Checked)
-            {
-                DeleteAllButton.Enabled = true;
-            }
-            else
-            {
-                DeleteAllButton.Enabled = false;
-            }
-        }
-
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
@@ -253,6 +241,12 @@ namespace OCS_FOR_CSHARP
                 }
             }   
             
+        }
+
+        private void newUserButton_Click(object sender, EventArgs e)
+        {
+            var newForm = new Create_User();
+            newForm.ShowDialog();
         }
     }
 }
