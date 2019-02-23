@@ -251,7 +251,7 @@
             this.userCheckBox1.Size = new System.Drawing.Size(17, 21);
             this.userCheckBox1.TabIndex = 16;
             this.userCheckBox1.UseVisualStyleBackColor = true;
-            this.userCheckBox1.CheckedChanged += new System.EventHandler(this.userCheckBox1_CheckedChanged);
+            //this.userCheckBox1.CheckedChanged += new System.EventHandler(this.userCheckBox1_CheckedChanged);
             // 
             // progressBar1
             // 
@@ -269,7 +269,7 @@
             this.progress_textbox.Size = new System.Drawing.Size(271, 74);
             this.progress_textbox.TabIndex = 14;
             this.progress_textbox.Visible = false;
-            this.progress_textbox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            //this.progress_textbox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // DeleteCheckbox
             // 

@@ -105,7 +105,7 @@ namespace OCS_FOR_CSHARP
                         //List<CardRootObject> currentCardList = (List<CardRootObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(List<CardRootObject>));
 
                         //Open connection to local database
-                        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=postgres");
+                        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
                         connection.Open();
 
                         //for every card in the set
@@ -200,6 +200,7 @@ namespace OCS_FOR_CSHARP
 
                                 if (currentCardList.cards[j].text != null)
                                 {
+                                    currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
                                 }
                                 else
@@ -210,6 +211,7 @@ namespace OCS_FOR_CSHARP
 
                                 if (currentCardList.cards[j].flavorText != null)
                                 {
+                                    currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
                                 }
                                 else
