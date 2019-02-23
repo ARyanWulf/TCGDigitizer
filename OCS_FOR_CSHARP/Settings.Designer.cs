@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.UserTextBox = new System.Windows.Forms.TextBox();
             this.QuitButton = new System.Windows.Forms.Button();
             this.DefualtButton = new System.Windows.Forms.Button();
             this.DeleteAllButton = new System.Windows.Forms.Button();
@@ -49,25 +48,10 @@
             this.newUserButton = new System.Windows.Forms.Button();
             this.dropUser = new System.Windows.Forms.Button();
             this.editUserButton = new System.Windows.Forms.Button();
+            this.Header = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.user_settings_backpanel)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // UserTextBox
-            // 
-            this.UserTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.UserTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.UserTextBox.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.UserTextBox.Location = new System.Drawing.Point(59, 9);
-            this.UserTextBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.UserTextBox.Name = "UserTextBox";
-            this.UserTextBox.ReadOnly = true;
-            this.UserTextBox.Size = new System.Drawing.Size(136, 30);
-            this.UserTextBox.TabIndex = 0;
-            this.UserTextBox.Text = "Settings";
-            this.UserTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.UserTextBox.WordWrap = false;
-            this.UserTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // QuitButton
             // 
@@ -312,11 +296,22 @@
             this.editUserButton.Text = "Edit User";
             this.editUserButton.UseVisualStyleBackColor = true;
             // 
+            // Header
+            // 
+            this.Header.AutoSize = true;
+            this.Header.Font = new System.Drawing.Font("Ink Free", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Header.Location = new System.Drawing.Point(26, 6);
+            this.Header.Name = "Header";
+            this.Header.Size = new System.Drawing.Size(154, 46);
+            this.Header.TabIndex = 20;
+            this.Header.Text = "Settings";
+            // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(534, 397);
+            this.Controls.Add(this.Header);
             this.Controls.Add(this.editUserButton);
             this.Controls.Add(this.dropUser);
             this.Controls.Add(this.newUserButton);
@@ -328,12 +323,11 @@
             this.Controls.Add(this.DeleteAllButton);
             this.Controls.Add(this.DefualtButton);
             this.Controls.Add(this.QuitButton);
-            this.Controls.Add(this.UserTextBox);
             this.Controls.Add(this.user_settings_backpanel);
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "Settings";
-            this.Text = "Settings";
+            this.Text = "TCGDigitizer - Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
             ((System.ComponentModel.ISupportInitialize)(this.user_settings_backpanel)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -344,8 +338,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox UserTextBox;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button DefualtButton;
         private System.Windows.Forms.Button DeleteAllButton;
@@ -366,5 +358,6 @@
         private System.Windows.Forms.Button newUserButton;
         private System.Windows.Forms.Button dropUser;
         private System.Windows.Forms.Button editUserButton;
+        private System.Windows.Forms.Label Header;
     }
 }
