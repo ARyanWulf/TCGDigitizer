@@ -23,6 +23,7 @@ namespace OCS_FOR_CSHARP
             user_text_box.Parent = user_settings_backpanel;
             user_text_box.Location = position;
             user_text_box.Visible = true;
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -248,5 +249,15 @@ namespace OCS_FOR_CSHARP
             var newForm = new Create_User();
             newForm.ShowDialog();
         }
+
+        private void editUserButton_Click(object sender, EventArgs e)
+        {
+
+
+            
+
+        }
+
+    
     }
 }
