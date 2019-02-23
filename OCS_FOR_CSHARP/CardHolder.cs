@@ -32,8 +32,8 @@ namespace OCS_FOR_CSHARP
         public float convertedManaCost { get; set; }//
         public List<object> foreignData { get; set; }//maybe later with language support
         public string frameVersion { get; set; }//not currently being used
-        public bool hasFoil { get; set; }//not currently being used
-        public bool hasNonFoil { get; set; }//not currently being used
+        public bool hasFoil { get; set; }//
+        public bool hasNonFoil { get; set; }//
         public string layout { get; set; }//not currently being used
         public CardLegalities legalities { get; set; }//don't see a reason to keep
         public string manaCost { get; set; }//
@@ -63,6 +63,7 @@ namespace OCS_FOR_CSHARP
         public string watermark { get; set; }//not currently being used
         public string loyalty { get; set; }//
         public bool? starter { get; set; }//not currently being used
+        public int cardID;
     }
 
     //not currently being used

@@ -24,6 +24,8 @@ namespace OCS_FOR_CSHARP
         CardService service = new CardService();
         string cardData;
         List<Card> middleMan;
+        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
+        List<cardWrapper> databaseList = new List<cardWrapper>();
 
         public Edit_Card_Form()
         {
@@ -44,131 +46,7 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
-            middleMan = service.All().Value;
-            NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=postgres");
-            connection.Open();
-            Card newCard = currentCard.card;
-
-            //using(var tran = connection.BeginTransaction())
-            using (var cmd = new NpgsqlCommand("newCard", connection))
-            {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("in_id", 3);
-
-                cmd.Parameters.AddWithValue("in_time", DateTime.Now);
-
-                cmd.Parameters.AddWithValue("in_name", newCard.Name);
-
-                cmd.Parameters.AddWithValue("in_mana", (string)newCard.ManaCost);
-
-                cmd.Parameters.AddWithValue("in_cmc", newCard.Cmc);
-
-                cmd.Parameters.AddWithValue("in_colors", newCard.Colors);
-
-                cmd.Parameters.AddWithValue("in_identity", newCard.ColorIdentity);
-
-                cmd.Parameters.AddWithValue("in_set", newCard.Set);
-
-                cmd.Parameters.AddWithValue("in_num", newCard.Number);
-
-                cmd.Parameters.AddWithValue("in_rarity", newCard.Rarity);
-
-                if(newCard.Border != null)
-                {
-                    cmd.Parameters.AddWithValue("in_border", newCard.Border);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_border", "Black");
-                }
-
-                cmd.Parameters.AddWithValue("in_multi", newCard.MultiverseId);
-                
-                cmd.Parameters.AddWithValue("in_type", newCard.Type);
-                if(newCard.Types != null)
-                {
-                    cmd.Parameters.AddWithValue("in_types", newCard.Types);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_types", new string[0]);
-                }
-
-                if(newCard.SubTypes != null)
-                {
-                    cmd.Parameters.AddWithValue("in_subtypes", newCard.SubTypes);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_subtypes", new string[0]);
-                }
-
-                if(newCard.SuperTypes != null)
-                {
-                    cmd.Parameters.AddWithValue("in_supertypes", newCard.SuperTypes);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_supertypes", new string[0]);
-                }
-
-
-                if (newCard.Text != null)
-                {
-                    cmd.Parameters.AddWithValue("in_text", newCard.Text);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_text", "n/a");
-                }
-
-
-                if(newCard.Flavor != null)
-                {
-                    cmd.Parameters.AddWithValue("in_flavor", newCard.Flavor);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_flavor", "n/a");
-                }
-
-                if (newCard.Power != null && newCard.Toughness != null)
-                {
-                    cmd.Parameters.AddWithValue("in_power", newCard.Power);
-                    cmd.Parameters.AddWithValue("in_tough", newCard.Toughness);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_power", "n/a");
-                    cmd.Parameters.AddWithValue("in_tough", "n/a");
-                }
-
-                if(newCard.Loyalty != null)
-                {
-                    cmd.Parameters.AddWithValue("in_loyalty", newCard.Loyalty);
-                }
-                else
-                {
-                    cmd.Parameters.AddWithValue("in_loyalty", "n/a");
-                }
-                cmd.Parameters.AddWithValue("in_artist", newCard.Artist);
-                cmd.Parameters.AddWithValue("in_foil", currentCard.foil);
-                cmd.Parameters.AddWithValue("in_prerelease", currentCard.prerelease);
-                cmd.Parameters.AddWithValue("in_location", "n/a");
-
-                cmd.ExecuteScalar();
-            }
-            /*
-             * INSERT INTO "Card"(card_id, created_at, card_name, card_type, card_subtype, mana_cost, expansion, card_power, card_toughness, set_num, foil, prerelease, physical_location, multiverse_id)
-	            VALUES
-		            (1, in_time, in_name, in_type, in_subtype, in_mana, in_expansion, in_power, in_toughness, in_set_num, in_foil, in_prerelease, in_location, in_multi);
-             */
-            //NpgsqlCommand npgsqlCommand = new NpgsqlCommand("ALTER TABLE public." + '"' + "Card" + '"' + "ADD COLUMN " + '"' + "Name" + '"' + " character(32)[];");
-            //npgsqlCommand.Connection = connection;
-            //NpgsqlCommandBuilder npgsqlCommandBuilder = new NpgsqlCommandBuilder();
-            //npgsqlCommand.ExecuteNonQuery();
-            connection.Close();
+             
         }
 
         // Visual Studio recommended to use "=> Close();" over the traditional brackets.
@@ -218,7 +96,7 @@ namespace OCS_FOR_CSHARP
 
         public void populate(cardWrapper input)
         {
-            currentCard.card = input.card;
+           /* currentCard.card = input.card;
 
             Card_Name_TextBox.Text = currentCard.card.Name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.ManaCost;
@@ -302,42 +180,65 @@ namespace OCS_FOR_CSHARP
 
         private void Enter()
         {
+
             if (Card_Name_TextBox.Text != null)
             {
-                var result = service.Where(x => x.Name, Card_Name_TextBox.Text);
-                middleMan = result.All().Value;
-                if (middleMan.Count < 1)
+                connection.Open();
+
+                var str = "SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'";
+
+                if(Card_Type_TextBox.Text != null)
                 {
-                    Card_Name_TextBox.Text = "Card not valid";
+                    str += "AND card_type ILIKE '%" + Card_Type_TextBox.Text + "%'";
                 }
-                else if (middleMan.Count > 1)
+                
+                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'", connection))
+                
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                for (int i = 0; reader.Read(); i++)
                 {
-                    for (int i = 0; i < middleMan.Count; i++)
-                    {
-                        if (middleMan[i].Name == Card_Name_TextBox.Text)
-                        {
-                            if (currentCard.card == null || currentCard.card.Name != middleMan[i].Name)
-                                currentCard.card = middleMan[i];
-                            else
-                                currentCard.printing.Add(middleMan[i].Set);
-                        }
-                    }
-                    cards.Add(currentCard);
+                    string temp;
+                    cardWrapper tempWrapper = new cardWrapper();
+                    CardObject tempCard = new CardObject();
+                    tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                    tempCard.name = reader[2].ToString();
+                    tempCard.type = reader[3].ToString();
+                    tempCard.manaCost = reader[4].ToString();
+                    tempWrapper.set = reader[5].ToString();
+                    tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
+                    tempCard.power = reader[10].ToString();
+                    tempCard.toughness = reader[11].ToString();
+
+                    temp = reader[13].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colors = temp.Split(',').ToList<string>();
+
+                    temp = reader[14].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colorIdentity = temp.Split(',').ToList<string>();
+
+                    tempCard.text = reader[15].ToString();
+                    tempCard.convertedManaCost = float.Parse(reader[16].ToString());
+
+                    tempCard.flavorText = reader[17].ToString();
+                    tempCard.rarity = reader[18].ToString();
+                    tempCard.borderColor = reader[19].ToString();
+                    tempCard.loyalty = reader[20].ToString();
+                    tempCard.artist = reader[21].ToString();
+                    tempCard.number = reader[24].ToString();
+
+                    tempWrapper.card = tempCard;
+
+                    databaseList.Add(tempWrapper);
                 }
-                else
-                {
-                    currentCard.card = middleMan[0];
-                    cards.Add(currentCard);
-                }
+
+                
+                connection.Close();
             }
             else
             {
                 textBox1.Text = "Card not valid";
-            }
-
-            if(currentCard.card != null)
-            {
-                populate(currentCard);
             }
         }
 
