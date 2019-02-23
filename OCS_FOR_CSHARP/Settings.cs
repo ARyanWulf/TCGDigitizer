@@ -23,6 +23,7 @@ namespace OCS_FOR_CSHARP
             user_text_box.Parent = user_settings_backpanel;
             user_text_box.Location = position;
             user_text_box.Visible = true;
+
         }
 
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
@@ -619,5 +620,15 @@ namespace OCS_FOR_CSHARP
             var newForm = new Create_User();
             newForm.ShowDialog();
         }
+
+        private void editUserButton_Click(object sender, EventArgs e)
+        {
+
+
+            
+
+        }
+
+    
     }
 }
