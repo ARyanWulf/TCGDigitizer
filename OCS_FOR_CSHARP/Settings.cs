@@ -188,6 +188,7 @@ namespace OCS_FOR_CSHARP
 
                                 if (currentCardList.cards[j].text != null)
                                 {
+                                    currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
                                 }
                                 else
@@ -198,6 +199,7 @@ namespace OCS_FOR_CSHARP
 
                                 if (currentCardList.cards[j].flavorText != null)
                                 {
+                                    currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
                                 }
                                 else
