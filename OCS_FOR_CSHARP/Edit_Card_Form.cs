@@ -46,7 +46,19 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
-             
+
+            if(CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            {
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                {
+
+                }
+
+                connection.Close();
+            }
+
         }
 
         // Visual Studio recommended to use "=> Close();" over the traditional brackets.
