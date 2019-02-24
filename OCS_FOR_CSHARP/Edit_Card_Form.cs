@@ -49,15 +49,25 @@ namespace OCS_FOR_CSHARP
 
             if(CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
             {
+                cardWrapper card = databaseList[0];
+
                 connection.Open();
 
                 using (var cmd = new NpgsqlCommand("new_inv_event", connection))
                 {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("in_trans_type", 1);
+
+                    cmd.ExecuteScalar();
                 }
 
                 connection.Close();
             }
+
 
         }
 
@@ -108,7 +118,7 @@ namespace OCS_FOR_CSHARP
 
         public void populate(cardWrapper input)
         {
-            currentCard.card = input.card;
+            currentCard = input;
 
             Card_Name_TextBox.Text = currentCard.card.name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
@@ -203,7 +213,7 @@ namespace OCS_FOR_CSHARP
                 
                 NpgsqlDataReader reader = cmd.ExecuteReader();
 
-                for (int i = 0; reader.Read(); i++)
+                while (reader.Read())
                 {
                     string temp;
                     cardWrapper tempWrapper = new cardWrapper();

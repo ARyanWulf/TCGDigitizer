@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Npgsql;
 
 namespace OCS_FOR_CSHARP
 {
     public partial class Inventory_Menu : Form
     {
+        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
+
         public Inventory_Menu()
         {
             InitializeComponent();
@@ -39,6 +42,8 @@ namespace OCS_FOR_CSHARP
 
         private void Inventory_Menu_Load(object sender, EventArgs e)
         {
+            List<cardWrapper> cards = Get_Inventory();
+
             // initialize table to zero rows to be empty
             Card_Table_Panel.RowCount = 1;
 
@@ -83,6 +88,108 @@ namespace OCS_FOR_CSHARP
         private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private List<cardWrapper> Get_Inventory()
+        {
+            List<cardWrapper> cards = new List<cardWrapper>();
+
+            connection.Open();
+
+            using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
+            {
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cardWrapper card = new cardWrapper();
+                    card.card_ID = System.Convert.ToInt32(reader[1].ToString());
+                    card.count = System.Convert.ToInt32(reader[4].ToString());
+
+                    if (cards.Contains(card))
+                    {
+                        cards[cards.IndexOf(card)].count += card.count;
+                    }
+                    else
+                    {
+                        cards.Add(card);
+                    }
+                }
+            }
+            connection.Close();
+
+            string cmdhold = "";
+            for (int i = 0; i < cards.Count; i++)
+            {
+                if(cards[i].count <= 0)
+                {
+                    cards.RemoveAt(i);
+                    i--;
+                }
+                else if(i != 0)
+                {
+                    cmdhold += "OR card_id = " + cards[i].card_ID;
+                }
+                else
+                {
+                    cmdhold = "card_id = " + cards[i].card_ID;
+                }
+            }
+
+            if(cards.Count != 0)
+            {
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE " + cmdhold, connection))
+                {
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                    while(reader.Read())
+                    {
+                        string temp;
+                        CardObject tempCard = new CardObject();
+                        tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                        tempCard.name = reader[2].ToString();
+                        tempCard.type = reader[3].ToString();
+                        tempCard.manaCost = reader[4].ToString();
+                        tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
+                        tempCard.power = reader[10].ToString();
+                        tempCard.toughness = reader[11].ToString();
+
+                        temp = reader[13].ToString().TrimEnd('}');
+                        temp = temp.TrimStart('{');
+                        tempCard.colors = temp.Split(',').ToList<string>();
+
+                        temp = reader[14].ToString().TrimEnd('}');
+                        temp = temp.TrimStart('{');
+                        tempCard.colorIdentity = temp.Split(',').ToList<string>();
+
+                        tempCard.text = reader[15].ToString();
+                        tempCard.convertedManaCost = float.Parse(reader[16].ToString());
+
+                        tempCard.flavorText = reader[17].ToString();
+                        tempCard.rarity = reader[18].ToString();
+                        tempCard.borderColor = reader[19].ToString();
+                        tempCard.loyalty = reader[20].ToString();
+                        tempCard.artist = reader[21].ToString();
+                        tempCard.number = reader[24].ToString();
+
+                        for(int i = 0; i < cards.Count; i++)
+                        {
+                            if(cards[i].card_ID == tempCard.cardID)
+                            {
+                                cards[i].card = tempCard;
+                            }
+                        }
+                    }
+                }
+                connection.Close();
+                
+
+            }
+           
+
+            return cards;
         }
     }
 }
