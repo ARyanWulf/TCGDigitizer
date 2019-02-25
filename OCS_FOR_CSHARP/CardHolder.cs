@@ -6,15 +6,17 @@ using System.Threading.Tasks;
 
 namespace OCS_FOR_CSHARP
 {
-    enum DBcard { id, c_time, name, type, mana_cost,
+    enum DB_card { id, c_time, name, type, mana_cost,
         expansion, foil, prerelease, location, multiverse_id,
         power, toughness, subtype, color, identity,
         text, cmc, flavor, rarity, border,
         loyalty, artist, types, supertypes, set_num};
 
-    enum DBuser { id, fname, lname, priv_lvl, c_time };
+    enum DB_user { id, fname, lname, priv_lvl, c_time, login, pword };
 
-    enum DBinvent { id, card_id, user_id, c_data, trans_type};
+    enum DB_invent { id, card_id, user_id, c_data, trans_type};
+
+    enum UserProfile { add, edit, delete};
 
     //not currently being used
     public class CardLegalities

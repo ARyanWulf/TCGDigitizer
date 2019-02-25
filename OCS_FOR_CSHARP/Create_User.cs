@@ -13,17 +13,57 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Create_User : Form
     {
-        public Create_User()
+        private int user_id;
+        private int trans_type;
+        private int currentUser = 1;//REMOVE WHEN MASTER IS MERGED 2/24/19 change function calls in settings.cs as well to reflect this
+
+        public Create_User(int ttype, int user)
         {
+            user_id = user;
+            trans_type = ttype;
+
             InitializeComponent();
+
+
+            if (trans_type == (int)UserProfile.edit)
+            {
+                Edit_User();
+            }
+        }
+
+        private void Edit_User()
+        {
+
+            NpgsqlConnection con = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
+            con.Open();
+
+            NpgsqlCommand com = new NpgsqlCommand("SELECT * FROM public.users WHERE user_id = " + user_id, con);
+            NpgsqlDataReader reader = com.ExecuteReader();
+            reader.Read();
+
+            if (reader.HasRows)
+            {
+                error_textbox.Visible = true;
+                error_textbox.Text = "Change User Fields";
+
+                //filling in fields with database user information
+                fname_textbox.Text = reader[(int)DB_user.fname].ToString();
+                lname_textbox.Text = reader[(int)DB_user.lname].ToString();
+                privilege_dropdown.SelectedIndex = (System.Convert.ToInt32(reader[(int)DB_user.priv_lvl].ToString())-1);
+                
+                //if current user is editing their own user profile
+                if (user_id == currentUser)
+                {
+                    username_textbox.Text = reader[(int)DB_user.login].ToString();
+                }
+            }
+
+            con.Close();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-                        /*
-             comboBox1.Items.Add("apple");
-             comboBox1.Items.Add("oraange")
-             comboBox1.DropDownStyle = ???*/
+            
         }
 
         private void fname_textbox_TextChanged(object sender, EventArgs e)
@@ -53,7 +93,7 @@ namespace OCS_FOR_CSHARP
 
         private void OK_Button_Click(object sender, EventArgs e)
         {
-            int privilege = -1;
+            int privilege = -2;
             bool creationFail = false;
             error_textbox.Visible = true;
             error_textbox.Text = "";
@@ -165,14 +205,31 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                List<string> existingUsers = new List<string>();
                 NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
                 connection.Open();
-                
 
-                NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.users WHERE login_name ILIKE '" + username_textbox.Text + "' AND privilege_lvl > 0", connection);
+                NpgsqlCommand command;
+
+                if (trans_type == (int)UserProfile.add)
+                {
+                    command = new NpgsqlCommand("SELECT * FROM public.users WHERE login_name ILIKE '" + username_textbox.Text + "' AND privilege_lvl > 0", connection);
+                }
+                else //if (trans_type == (int)UserProfile.edit)
+                {
+                    command = new NpgsqlCommand("SELECT * FROM public.users WHERE login_name ILIKE '" + username_textbox.Text + "' AND privilege_lvl > 0 AND user_id != " + user_id, connection);
+                }
+                //else if (trans_type == (int)UserProfile.delete)
+                //{ 
+                    //SOMETHING 
+                //}
+                //else
+                //{
+                    //error state
+                //}
+
                 NpgsqlDataReader reader = command.ExecuteReader();
                 
+                //if database has a user with the same login name
                 if (reader.HasRows)
                 {
                     if (creationFail == true)
@@ -204,10 +261,23 @@ namespace OCS_FOR_CSHARP
                     }
                     connection.Close();
                     Close();
+
+                    if (trans_type == (int)UserProfile.edit)
+                    {
+                        connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
+                        connection.Open();
+                        command = new NpgsqlCommand("UPDATE users SET privilege_lvl = -1, time_created = ('"+DateTime.Now.ToString()+"'::timestamp) WHERE user_id = " + user_id, connection);
+                        command.ExecuteNonQuery();
+                        //command = new NpgsqlCommand("UPDATE inventory Set user_id = "newuserid" WHERE user_id = "olduserid)//////////////////YOU ENDED HERE. FIX INVENTORY/USER LINK LOSS WHEN EDITING USER PROFILE
+                        connection.Close();
+                    }
+
+
                 }
                 else //Failure
                 {
                 }
+
             }
         }
 

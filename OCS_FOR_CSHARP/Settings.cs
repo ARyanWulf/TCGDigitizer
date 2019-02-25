@@ -617,18 +617,20 @@ namespace OCS_FOR_CSHARP
 
         private void newUserButton_Click(object sender, EventArgs e)
         {
-            var newForm = new Create_User();
+            var newForm = new Create_User((int)UserProfile.add, 0);
             newForm.ShowDialog();
         }
 
         private void editUserButton_Click(object sender, EventArgs e)
         {
-
-
-            
-
+            var newForm = new Create_User((int)UserProfile.edit, 1);//change user id number
+            newForm.ShowDialog();
         }
 
-    
+        private void dropUser_Click(object sender, EventArgs e)
+        {
+            //var newForm = new Create_User((int)UserProfile.delete);
+            //newForm.ShowDialog();
+        }
     }
 }
