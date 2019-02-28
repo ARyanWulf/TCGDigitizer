@@ -40,6 +40,9 @@ namespace OCS_FOR_CSHARP
 
         private void Cancel_Button_Click(object sender, EventArgs e) => Close();
 
+        // TODO:
+        // Use the cards List<cardWrapper> to
+        // populate the inventory list for the user.
         private void Inventory_Menu_Load(object sender, EventArgs e)
         {
             List<cardWrapper> cards = Get_Inventory();
@@ -90,12 +93,21 @@ namespace OCS_FOR_CSHARP
 
         }
 
+
         private List<cardWrapper> Get_Inventory()
         {
+            // create list of cards
             List<cardWrapper> cards = new List<cardWrapper>();
 
+            // open connection to server
             connection.Open();
 
+            // return entire inventory table, go through it,
+            // populate cards inside list with their card IDs,
+            // check for duplicates
+            // query the database again, looking for those same card IDs within the database
+            // go back to the system so it can read all the return data from the database so
+            // it can be returned to the calling function
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
             {
                 NpgsqlDataReader reader = cmd.ExecuteReader();
