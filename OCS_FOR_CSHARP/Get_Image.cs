@@ -451,6 +451,7 @@ namespace OCS_FOR_CSHARP
         public CardObject card;
         public string set;
         public char foil, prerelease;
+        public int count, card_ID;
 
         public cardWrapper()
         {

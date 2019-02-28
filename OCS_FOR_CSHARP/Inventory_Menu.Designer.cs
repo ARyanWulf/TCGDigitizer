@@ -190,7 +190,7 @@
             this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.Card_Table_Panel.Size = new System.Drawing.Size(750, 34);
             this.Card_Table_Panel.TabIndex = 6;
-            this.Card_Table_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Card_Table_Panel_Paint_1);
+           // this.Card_Table_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Card_Table_Panel_Paint_1);
             // 
             // Inventory_Checkbox
             // 
