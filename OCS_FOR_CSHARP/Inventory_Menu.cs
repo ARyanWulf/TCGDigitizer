@@ -164,6 +164,7 @@ namespace OCS_FOR_CSHARP
                         tempCard.name = reader[2].ToString();
                         tempCard.type = reader[3].ToString();
                         tempCard.manaCost = reader[4].ToString();
+                        tempCard.setCode = reader[5].ToString();
                         tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
                         tempCard.power = reader[10].ToString();
                         tempCard.toughness = reader[11].ToString();

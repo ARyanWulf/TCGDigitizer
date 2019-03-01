@@ -123,7 +123,7 @@ namespace OCS_FOR_CSHARP
             Card_Name_TextBox.Text = currentCard.card.name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
-            Card_Expansion_TextBox.Text = currentCard.set;
+            Card_Expansion_TextBox.Text = currentCard.card.setCode;
             textBox2.Text = currentCard.card.number;
 
             if (currentCard.card.subtypes != null)
@@ -222,7 +222,7 @@ namespace OCS_FOR_CSHARP
                     tempCard.name = reader[2].ToString();
                     tempCard.type = reader[3].ToString();
                     tempCard.manaCost = reader[4].ToString();
-                    tempWrapper.set = reader[5].ToString();
+                    tempCard.setCode = reader[5].ToString();
                     tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
                     tempCard.power = reader[10].ToString();
                     tempCard.toughness = reader[11].ToString();

@@ -74,6 +74,7 @@ namespace OCS_FOR_CSHARP
         public string loyalty { get; set; }//
         public bool? starter { get; set; }//not currently being used
         public int cardID;
+        public string setCode;
     }
 
     //not currently being used
