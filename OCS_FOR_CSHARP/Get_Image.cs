@@ -37,8 +37,8 @@ namespace OCS_FOR_CSHARP
         String Photo_Filepath = "C:\\Users\\milee\\OneDrive\\Pictures";
         
         public cardWrapper currentCard = new cardWrapper();
-        List<Card> middleMan;
         List<cardWrapper> cards = new List<cardWrapper>();
+        List<Bitmap> cardImages = new List<Bitmap>();
         CardService service = new CardService();
 
         public object DisplayInformation { get; private set; }
@@ -268,20 +268,12 @@ namespace OCS_FOR_CSHARP
                     var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
                     textBoxString = page.GetText();//gets tesseract text
                     textBox1.Text = textBoxString;
-                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
-                    textBoxString = textBoxString.Trim('\n');//removes spaces and return characters
-                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
+                    textBoxString = textBoxString.Trim(' ');//removes spaces
+                    textBoxString = textBoxString.Trim('\n');//removes endline characters
+                    textBoxString = textBoxString.Trim(' ');//removes spaces
 
-                    cards = findCardsWithName(textBoxString);
-                    if(cards.Count > 0)
-                    {
-                        currentCard = cards[0];
-                        textBox1.Text += " Success!";
-                    }
-                    else
-                    {
-                        textBox1.Text += " Failed!";
-                    }
+                    cards.Add(findCardsWithName(textBoxString));
+                    cardImages.Add(originalImg);
                 }
                 catch (Exception ex)
                 {
@@ -347,12 +339,15 @@ namespace OCS_FOR_CSHARP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (currentCard.card != null)
+            if (cards.Count > 0)
             {
-                if (!addToInventory(currentCard))
-                {
-                    MessageBox.Show("ERROR! Insufficient permissions.");
-                }
+                callingForm.reviewCards = cards;
+                callingForm.reviewImages = cardImages;
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
             }
             if (frame != null)//if webcam is never opened before closing
             {
@@ -434,56 +429,81 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        private List<cardWrapper> findCardsWithName(string cardName)
+        private cardWrapper findCardsWithName(string cardName)
         {
-            List<cardWrapper> tempList = new List<cardWrapper>();
+            cardWrapper returnCard = new cardWrapper();
+
+            returnCard.card.cardID = -1;
 
             connection.Open();
 
-            var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + cardName + "%'", connection);
-
-            NpgsqlDataReader reader = cmd.ExecuteReader();
-
-            while (reader.Read())
+            using (var cmd = new NpgsqlCommand("get_card_with_name", connection))
             {
-                string temp;
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("in_name", cardName);
+
                 cardWrapper tempWrapper = new cardWrapper();
                 CardObject tempCard = new CardObject();
-                tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
-                tempCard.name = reader[2].ToString();
-                tempCard.type = reader[3].ToString();
-                tempCard.manaCost = reader[4].ToString();
-                tempCard.setCode = reader[5].ToString();
-                tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
-                tempCard.power = reader[10].ToString();
-                tempCard.toughness = reader[11].ToString();
 
-                temp = reader[13].ToString().TrimEnd('}');
-                temp = temp.TrimStart('{');
-                tempCard.colors = temp.Split(',').ToList<string>();
-
-                temp = reader[14].ToString().TrimEnd('}');
-                temp = temp.TrimStart('{');
-                tempCard.colorIdentity = temp.Split(',').ToList<string>();
-
-                tempCard.text = reader[15].ToString();
-                tempCard.convertedManaCost = float.Parse(reader[16].ToString());
-
-                tempCard.flavorText = reader[17].ToString();
-                tempCard.rarity = reader[18].ToString();
-                tempCard.borderColor = reader[19].ToString();
-                tempCard.loyalty = reader[20].ToString();
-                tempCard.artist = reader[21].ToString();
-                tempCard.number = reader[24].ToString();
-
+                tempCard.cardID = System.Convert.ToInt32(cmd.ExecuteScalar());
                 tempWrapper.card = tempCard;
-
-                tempList.Add(tempWrapper);
+                returnCard = tempWrapper;
             }
 
+            using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_id = " + returnCard.card.cardID, connection))
+            {
+                NpgsqlDataReader reader = cmd.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    string temp;
+                    cardWrapper tempWrapper = new cardWrapper();
+                    CardObject tempCard = new CardObject();
+                    tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                    tempCard.name = reader[2].ToString();
+                    tempCard.type = reader[3].ToString();
+                    tempCard.manaCost = reader[4].ToString();
+                    tempCard.setCode = reader[5].ToString();
+                    tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
+                    tempCard.power = reader[10].ToString();
+                    tempCard.toughness = reader[11].ToString();
+
+                    temp = reader[13].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colors = temp.Split(',').ToList<string>();
+
+                    temp = reader[14].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colorIdentity = temp.Split(',').ToList<string>();
+
+                    tempCard.text = reader[15].ToString();
+                    tempCard.convertedManaCost = float.Parse(reader[16].ToString());
+
+                    tempCard.flavorText = reader[17].ToString();
+                    tempCard.rarity = reader[18].ToString();
+                    tempCard.borderColor = reader[19].ToString();
+                    tempCard.loyalty = reader[20].ToString();
+                    tempCard.artist = reader[21].ToString();
+                    tempCard.number = reader[24].ToString();
+
+                    tempWrapper.card = tempCard;
+
+                    returnCard = tempWrapper;
+                }
+            }
             connection.Close();
-            return tempList;
+
+            if(returnCard.card.cardID != -1)
+            {
+                textBox1.Text += " Success!";
+            }
+            else
+            {
+                textBox1.Text += " Failed!";
+            }
+
+            return returnCard;
         }
 
         private bool addToInventory(cardWrapper card = null)
@@ -513,6 +533,76 @@ namespace OCS_FOR_CSHARP
                 return false;
             }
         }
+
+        private void EnterCardWithCondition(object sender, KeyEventArgs e)
+        {
+            switch(e.KeyCode)  
+            {
+                case Keys.N:
+
+                    break;
+            }
+        }
+
+        private void TakePicture()
+        {
+            if (Photo_Filepath != null && Cam_Picture_Box.Image != null)
+            {
+                try
+                {
+                    //picture from web cam
+                    Bitmap originalImg = (Bitmap)Cam_Picture_Box.Image.Clone();
+                    //rotate 90 degrees
+                    originalImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
+
+                    //Dim of saved image
+                    int xStart = 1;
+                    int yStart = 1;
+                    int xEnd = originalImg.Width - xStart;
+                    int yEnd = originalImg.Height - yStart;
+                    int xWidth = (xEnd - xStart);
+                    int yHeight = (yEnd - yStart);
+
+                    //Establishing size of crop area based off original image (x,y,width,height)
+                    //All percents are measured/calulated ratios based off card dimensions
+                    Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.055/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.06/*0.05037037*/));
+
+                    //Bitmap that will store altered image (width,height)
+                    Bitmap nameHeaderBitmap = new Bitmap(nameHeaderCropRect.Width, nameHeaderCropRect.Height);
+
+                    //blank bitmap to graphics object. ready for changes
+                    Graphics nameHeadGraphics = Graphics.FromImage(nameHeaderBitmap);
+
+                    //original image cropped to two different images
+                    nameHeadGraphics.DrawImage(originalImg, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
+
+                    //calls picture alteration function to increase contrast and adjust image color
+                    Adjust_Tesseract_Img(15, nameHeaderBitmap);
+
+                    //displays original image in picture preview box
+                    Display_Picture_Box.Image = originalImg;
+                    //displays name header image in name header picture box
+                    Name_Header_Pic_Box.Image = nameHeaderBitmap;
+
+                    //will hold tesseract return string
+                    string textBoxString;
+                    var ocr = new TesseractEngine("./tessdata", "eng", EngineMode.TesseractAndCube);
+                    var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
+                    textBoxString = page.GetText();//gets tesseract text
+                    textBox1.Text = textBoxString;
+                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
+                    textBoxString = textBoxString.Trim('\n');//removes spaces and return characters
+                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
+
+                    cards.Add(findCardsWithName(textBoxString));
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    connection.Close();
+                }//need to add exception functionality
+            }
+        }
     }
 
 
@@ -522,11 +612,14 @@ namespace OCS_FOR_CSHARP
         public CardObject card;
         public char foil, prerelease;
         public int count, card_ID;
+        public char condition;
+        public bool needsAttention;
 
         public cardWrapper()
         {
             foil = 'n';
             prerelease = 'n';
+            needsAttention = false;
         }
 
         ~cardWrapper()
