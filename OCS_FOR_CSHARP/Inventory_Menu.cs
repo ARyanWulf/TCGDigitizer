@@ -29,7 +29,6 @@ namespace OCS_FOR_CSHARP
         private void Add_Card_Button_Click(object sender, EventArgs e)
         {
             var getEditCardForm = new Edit_Card_Form();
-            getEditCardForm.inv_menu = this;
             getEditCardForm.ShowDialog();
         }
 

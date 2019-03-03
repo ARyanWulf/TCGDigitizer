@@ -13,6 +13,7 @@ using MtgApiManager.Lib.Model;
 using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Utility;
 using MtgApiManager.Lib.Dto;
+using Npgsql;
 
 namespace OCS_FOR_CSHARP
 {
@@ -20,6 +21,7 @@ namespace OCS_FOR_CSHARP
     {
         public List<cardWrapper> reviewCards = new List<cardWrapper>();
         public List<Bitmap> reviewImages = new List<Bitmap>();
+        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
 
         public Review()
         {
@@ -34,7 +36,11 @@ namespace OCS_FOR_CSHARP
         }
 
         // will need to change functionality of the OK button later
-        private void OK_Button_Click(object sender, EventArgs e) => Close();
+        private void OK_Button_Click(object sender, EventArgs e)
+        {
+            Add_Cards_To_Inventory();
+            Close();
+        }
 
         private void Cancel_Button_Click(object sender, EventArgs e) => Close();
 
@@ -74,6 +80,29 @@ namespace OCS_FOR_CSHARP
         private void Review_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void Add_Cards_To_Inventory()
+        {
+            connection.Open();
+
+            for(int i = 0; i < reviewCards.Count; i++)
+            {
+                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", reviewCards[i].card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("in_trans_type", 1);
+
+                    cmd.ExecuteScalar();
+                }
+
+            }
+
+            connection.Close();
         }
     }
 }
