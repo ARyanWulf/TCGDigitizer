@@ -174,9 +174,9 @@
             this.Card_Table_Panel.MaximumSize = new System.Drawing.Size(750, 400);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(750, 34);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(750, 36);
             this.Card_Table_Panel.TabIndex = 7;
             this.Card_Table_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Card_Table_Panel_Paint);
             // 
@@ -185,7 +185,7 @@
             this.Date_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Date_Button.Location = new System.Drawing.Point(661, 5);
             this.Date_Button.Name = "Date_Button";
-            this.Date_Button.Size = new System.Drawing.Size(84, 24);
+            this.Date_Button.Size = new System.Drawing.Size(84, 26);
             this.Date_Button.TabIndex = 12;
             this.Date_Button.Text = "Date";
             this.Date_Button.UseVisualStyleBackColor = true;
@@ -195,7 +195,7 @@
             this.Mana_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Mana_Button.Location = new System.Drawing.Point(571, 5);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(82, 24);
+            this.Mana_Button.Size = new System.Drawing.Size(82, 26);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -205,7 +205,7 @@
             this.Number_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Number_Button.Location = new System.Drawing.Point(439, 5);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(124, 24);
+            this.Number_Button.Size = new System.Drawing.Size(124, 26);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -215,7 +215,7 @@
             this.Expansion_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Expansion_Button.Location = new System.Drawing.Point(307, 5);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(124, 24);
+            this.Expansion_Button.Size = new System.Drawing.Size(124, 26);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -225,7 +225,7 @@
             this.Type_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Type_Button.Location = new System.Drawing.Point(175, 5);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(124, 24);
+            this.Type_Button.Size = new System.Drawing.Size(124, 26);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -235,7 +235,7 @@
             this.Name_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Name_Button.Location = new System.Drawing.Point(43, 5);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(124, 24);
+            this.Name_Button.Size = new System.Drawing.Size(124, 26);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -247,7 +247,7 @@
             this.Inventory_Checkbox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Inventory_Checkbox.Location = new System.Drawing.Point(5, 5);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(30, 24);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(30, 26);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             this.Inventory_Checkbox.CheckedChanged += new System.EventHandler(this.Inventory_Checkbox_CheckedChanged);

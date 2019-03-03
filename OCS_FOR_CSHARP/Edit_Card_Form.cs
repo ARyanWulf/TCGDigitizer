@@ -21,7 +21,6 @@ namespace OCS_FOR_CSHARP
         public cardWrapper currentCard = new cardWrapper();
         List<cardWrapper> cards = new List<cardWrapper>();
         Form1 getImageForm;
-        public Inventory_Menu inv_menu;
         CardService service = new CardService();
         string cardData;
         List<Card> middleMan;
@@ -47,31 +46,10 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
-
-            if(CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            if(!addToInventory())
             {
-                cardWrapper card = databaseList[0];
-
-                connection.Open();
-
-                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
-                {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
-                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
-                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
-                    cmd.Parameters.AddWithValue("in_trans_type", 1);
-
-                    cmd.ExecuteScalar();
-                }
-
-                connection.Close();
-                inv_menu.refreshTable();
-                Close();
+                MessageBox.Show("ERROR! Insufficient permissions.");
             }
-
-
         }
 
         // Visual Studio recommended to use "=> Close();" over the traditional brackets.
@@ -287,6 +265,35 @@ namespace OCS_FOR_CSHARP
         private void Card_Additional_TextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public bool addToInventory()
+        {
+            if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            {
+                cardWrapper card = databaseList[0];
+
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("in_trans_type", 1);
+
+                    cmd.ExecuteScalar();
+                }
+
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

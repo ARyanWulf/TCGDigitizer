@@ -85,7 +85,7 @@
             this.Cam_Picture_Box.BackColor = System.Drawing.SystemColors.Window;
             this.Cam_Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Cam_Picture_Box.Location = new System.Drawing.Point(15, 60);
-            this.Cam_Picture_Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Cam_Picture_Box.Margin = new System.Windows.Forms.Padding(2);
             this.Cam_Picture_Box.Name = "Cam_Picture_Box";
             this.Cam_Picture_Box.Size = new System.Drawing.Size(316, 186);
             this.Cam_Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -118,7 +118,7 @@
             this.Display_Picture_Box.BackColor = System.Drawing.SystemColors.Window;
             this.Display_Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Display_Picture_Box.Location = new System.Drawing.Point(349, 60);
-            this.Display_Picture_Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Display_Picture_Box.Margin = new System.Windows.Forms.Padding(2);
             this.Display_Picture_Box.Name = "Display_Picture_Box";
             this.Display_Picture_Box.Size = new System.Drawing.Size(119, 170);
             this.Display_Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -153,7 +153,7 @@
             this.Name_Header_Pic_Box.BackColor = System.Drawing.SystemColors.Window;
             this.Name_Header_Pic_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name_Header_Pic_Box.Location = new System.Drawing.Point(483, 169);
-            this.Name_Header_Pic_Box.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Name_Header_Pic_Box.Margin = new System.Windows.Forms.Padding(2);
             this.Name_Header_Pic_Box.Name = "Name_Header_Pic_Box";
             this.Name_Header_Pic_Box.Size = new System.Drawing.Size(315, 78);
             this.Name_Header_Pic_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -198,7 +198,7 @@
             // 
             this.Manual_Entry_Toggle.AutoSize = true;
             this.Manual_Entry_Toggle.Location = new System.Drawing.Point(712, 39);
-            this.Manual_Entry_Toggle.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Manual_Entry_Toggle.Margin = new System.Windows.Forms.Padding(2);
             this.Manual_Entry_Toggle.Name = "Manual_Entry_Toggle";
             this.Manual_Entry_Toggle.Size = new System.Drawing.Size(88, 17);
             this.Manual_Entry_Toggle.TabIndex = 14;
@@ -229,6 +229,7 @@
             this.Text = "TCG Digitizer - Get Image";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterCardWithCondition);
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Display_Picture_Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Boarder)).EndInit();

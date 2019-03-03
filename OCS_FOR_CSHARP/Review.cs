@@ -19,6 +19,7 @@ namespace OCS_FOR_CSHARP
     public partial class Review : Form
     {
         public List<cardWrapper> reviewCards = new List<cardWrapper>();
+        public List<Bitmap> reviewImages = new List<Bitmap>();
 
         public Review()
         {
