@@ -90,7 +90,7 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].card.type, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
 
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].set, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].card.setCode, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
 
                 // database card number/multiverse ID
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].card.multiverseId.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
