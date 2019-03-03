@@ -21,6 +21,7 @@ namespace OCS_FOR_CSHARP
         public cardWrapper currentCard = new cardWrapper();
         List<cardWrapper> cards = new List<cardWrapper>();
         Form1 getImageForm;
+        public Inventory_Menu inv_menu;
         CardService service = new CardService();
         string cardData;
         List<Card> middleMan;
@@ -66,6 +67,8 @@ namespace OCS_FOR_CSHARP
                 }
 
                 connection.Close();
+                inv_menu.refreshTable();
+                Close();
             }
 
 

@@ -37,7 +37,7 @@ namespace OCS_FOR_CSHARP
         String Photo_Filepath = "C:\\Users\\milee\\OneDrive\\Pictures";
         
         public cardWrapper currentCard = new cardWrapper();
-        List<Card> middleMan;
+        List<cardWrapper> cardList;
         List<cardWrapper> cards = new List<cardWrapper>();
         CardService service = new CardService();
 
@@ -334,12 +334,13 @@ namespace OCS_FOR_CSHARP
         {
             if (currentCard.card != null)
             {
-                callingForm.addToList(currentCard);
+                callingForm.addToList(cardList);
                 /*var getImageForm = new Edit_Card_Form();
                 sendingForm = getImageForm;
                 sendingForm.populate(currentCard);
                 getImageForm.Show();*/
-                Close();
+                cardList.Clear();
+                //Close();
             }
             if (frame != null)//if webcam is never opened before closing
             {

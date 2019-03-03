@@ -37,31 +37,22 @@ namespace OCS_FOR_CSHARP
 
         private void Cancel_Button_Click(object sender, EventArgs e) => Close();
 
-        public void addToList(cardWrapper sentCard)
+        public void addToList(List<cardWrapper> sentCard)
         {
-            Card_Table_Panel.RowCount++;
-
-            // begin popluating rows with cards
-            // populate each row with a checkbox
-            //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
-            string tempString = sentCard.card.name;
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
-            tempString = sentCard.card.type;
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
-            //tempString = sentCard.card.expansion;
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
-            // tempString = database card expansion
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
-            // tempString = database card number
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
-            // tempString = database card mana
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
-            // tempString = database card date added
+            int addAmount = sentCard.Capacity;
+            Card_Table_Panel.RowCount += addAmount;
+            for (int i = 0; i < addAmount; i++)
+            {
+                // begin popluating rows with cards
+                // populate each row with a checkbox
+                //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.name, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.type, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.setCode, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.multiverseId.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.manaCost, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
+            }
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
