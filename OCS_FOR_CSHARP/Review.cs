@@ -44,6 +44,7 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.RowCount += addAmount;
             for (int i = 0; i < addAmount; i++)
             {
+                reviewCards.Add(sentCard[i]);
                 // begin popluating rows with cards
                 // populate each row with a checkbox
                 //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);

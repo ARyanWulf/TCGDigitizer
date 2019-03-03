@@ -341,9 +341,10 @@ namespace OCS_FOR_CSHARP
         {
             if (cards.Count > 0)
             {
-                callingForm.reviewCards = cards;
                 callingForm.reviewImages = cardImages;
-                Close();
+                callingForm.addToList(cards);
+                cards.Clear();
+                //Close();
             }
             else
             {
