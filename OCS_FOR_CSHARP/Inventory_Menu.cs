@@ -50,37 +50,56 @@ namespace OCS_FOR_CSHARP
             // initialize table to zero rows to be empty
             Card_Table_Panel.RowCount = 1;
 
-            int cardCount = 20;
-            string tempString = "Existence is suffering for a Meseeks.";
+            /*
+             * display count will be max 20 for the display limit
+             * subtract 20 from the card count if the card count is greater than 20
+             */
 
-            // begin populating table, start at second row so the first
-            // row containing buttons is not overwritten
-            for (int i = 1; i < cardCount; i++)
+
+
+            int cardsRemaining = cards.Count;
+            int displayCount = cardsRemaining;
+            if (cardsRemaining > 20)
+            {
+                cardsRemaining -= 20;
+                displayCount = 20;
+            }
+
+            // TO DO:
+            // Add refresh button to refresh the table
+            // clicking the save button for the add new card should also refresh the table
+            // Cards remaining should also be re-initialized
+
+
+            /* begin populating table, start at second row so the first row containing buttons is not overwritten */
+            for (int i = 1; i < displayCount + 1; i++)
             {
                 // create a new row for each card
                 Card_Table_Panel.RowCount++;
 
-                // begin popluating rows with cards
+                /* begin popluating rows with cards */
+
                 // populate each row with a checkbox
+                /* Currently not working, inventory table auto formats the column to be wider than it should be*/
                 //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
 
-                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
-                // tempString = database card name
+                // card name
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].card.name, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
 
-                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
-                // tempString = database card type
+                // database card type
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].card.type, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
 
-                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
-                // tempString = database card expansion
+                // database card set expansion
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].set, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
 
-                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
-                // tempString = database card number
+                // database card number/multiverse ID
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].card.multiverseId.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
 
-                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
-                // tempString = database card mana
+                // database card mana
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i-1].card.manaCost, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
 
-                Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
-                // tempString = database card date added
+                // database card date added
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
 
             }
             AutoScroll = true;
@@ -93,7 +112,10 @@ namespace OCS_FOR_CSHARP
 
         }
 
-
+        /*
+        List of variables returned:
+            *
+        */
         private List<cardWrapper> Get_Inventory()
         {
             // create list of cards
@@ -148,6 +170,9 @@ namespace OCS_FOR_CSHARP
                 }
             }
 
+
+            // TO DO:
+            // add ability to grab card expansion
             if(cards.Count != 0)
             {
                 connection.Open();
