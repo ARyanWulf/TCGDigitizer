@@ -268,11 +268,26 @@ namespace OCS_FOR_CSHARP
                     var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
                     textBoxString = page.GetText();//gets tesseract text
                     textBox1.Text = textBoxString;
-                    textBoxString = textBoxString.Trim(' ', '\n');//removes spaces and return characters
+                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
+                    textBoxString = textBoxString.Trim('\n');//removes spaces and return characters
+                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
 
                     cards = findCardsWithName(textBoxString);
+                    if(cards.Count > 0)
+                    {
+                        currentCard = cards[0];
+                        textBox1.Text += " Success!";
+                    }
+                    else
+                    {
+                        textBox1.Text += " Failed!";
+                    }
                 }
-                catch (Exception ex) { }//need to add exception functionality
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                    connection.Close();
+                }//need to add exception functionality
             }
         }
 
@@ -334,12 +349,10 @@ namespace OCS_FOR_CSHARP
         {
             if (currentCard.card != null)
             {
-                callingForm.addToList(currentCard);
-                /*var getImageForm = new Edit_Card_Form();
-                sendingForm = getImageForm;
-                sendingForm.populate(currentCard);
-                getImageForm.Show();*/
-                Close();
+                if (!addToInventory(currentCard))
+                {
+                    MessageBox.Show("ERROR! Insufficient permissions.");
+                }
             }
             if (frame != null)//if webcam is never opened before closing
             {
@@ -427,7 +440,7 @@ namespace OCS_FOR_CSHARP
 
             connection.Open();
 
-            var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '" + cardName + "'", connection);
+            var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + cardName + "%'", connection);
 
             NpgsqlDataReader reader = cmd.ExecuteReader();
 
@@ -472,7 +485,37 @@ namespace OCS_FOR_CSHARP
             connection.Close();
             return tempList;
         }
+
+        private bool addToInventory(cardWrapper card = null)
+        {
+            if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            {
+
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("in_trans_type", 1);
+
+                    cmd.ExecuteScalar();
+                }
+
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
+
+
 
     public class cardWrapper
     {
