@@ -50,7 +50,10 @@ namespace OCS_FOR_CSHARP
             {
                 MessageBox.Show("ERROR! Insufficient permissions.");
             }
-
+            else
+            {
+                Close();
+            }
         }
 
         // Visual Studio recommended to use "=> Close();" over the traditional brackets.

@@ -21,6 +21,7 @@ namespace OCS_FOR_CSHARP
     {
         public List<cardWrapper> reviewCards = new List<cardWrapper>();
         public List<Bitmap> reviewImages = new List<Bitmap>();
+        Form1 getImageForm;
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
 
         public Review()
@@ -30,9 +31,13 @@ namespace OCS_FOR_CSHARP
 
         private void Scan_Card_Button_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Form1();//Change to the Inventory viewer form
-            getImageForm.callingForm = this;
-            getImageForm.Show();
+            if (getImageForm == null)
+            {
+                getImageForm = new Form1();//Change to the Inventory viewer form
+                getImageForm.callingForm = this;
+                getImageForm.Show();
+            }
+            getImageForm.BringToFront();
         }
 
         // will need to change functionality of the OK button later
@@ -46,7 +51,7 @@ namespace OCS_FOR_CSHARP
 
         public void addToList(List<cardWrapper> sentCard)
         {
-            int addAmount = sentCard.Capacity;
+            int addAmount = sentCard.Count;
             Card_Table_Panel.RowCount += addAmount;
             for (int i = 0; i < addAmount; i++)
             {
@@ -80,7 +85,10 @@ namespace OCS_FOR_CSHARP
 
         private void Review_Load(object sender, EventArgs e)
         {
-
+            getImageForm = new Form1();
+            getImageForm.callingForm = this;
+            getImageForm.Show();
+            getImageForm.BringToFront();
         }
 
         private void Add_Cards_To_Inventory()

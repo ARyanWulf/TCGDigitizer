@@ -38,6 +38,7 @@ namespace OCS_FOR_CSHARP
         
         public cardWrapper currentCard = new cardWrapper();
         List<cardWrapper> cards = new List<cardWrapper>();
+        List<cardWrapper> databaseList = new List<cardWrapper>();
         List<Bitmap> cardImages = new List<Bitmap>();
         CardService service = new CardService();
 
@@ -409,6 +410,16 @@ namespace OCS_FOR_CSHARP
                     Display_Picture_Box.ImageLocation = currentCard.card.ImageUrl.OriginalString;
                 }
             }*/
+            Manual_Entry_Toggle.Checked = false;
+            cardWrapper tempCard = findCardsWithName(textBox1.Text);
+            if (tempCard.card.cardID != -1)
+            {
+                textBox1.Text = "Card found: " + tempCard.card.name;
+            }
+            else
+            {
+                textBox1.Text = "Card not found.";
+            }
         }
 
         private void Manual_Entry_Toggle_CheckedChanged(object sender, EventArgs e)
@@ -434,6 +445,7 @@ namespace OCS_FOR_CSHARP
         {
             cardWrapper returnCard = new cardWrapper();
 
+            returnCard.card = new CardObject();
             returnCard.card.cardID = -1;
 
             connection.Open();
@@ -604,6 +616,7 @@ namespace OCS_FOR_CSHARP
                 }//need to add exception functionality
             }
         }
+
     }
 
 

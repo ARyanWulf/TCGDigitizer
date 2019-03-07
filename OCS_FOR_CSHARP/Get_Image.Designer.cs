@@ -50,9 +50,10 @@
             // 
             // button
             // 
-            this.button.Location = new System.Drawing.Point(342, 9);
+            this.button.Location = new System.Drawing.Point(513, 14);
+            this.button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(96, 35);
+            this.button.Size = new System.Drawing.Size(144, 54);
             this.button.TabIndex = 0;
             this.button.Text = "Open";
             this.button.UseVisualStyleBackColor = true;
@@ -62,19 +63,21 @@
             // 
             this.textBox1.AcceptsReturn = true;
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox1.Location = new System.Drawing.Point(483, 60);
+            this.textBox1.Location = new System.Drawing.Point(724, 92);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(316, 187);
+            this.textBox1.Size = new System.Drawing.Size(472, 286);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.Tess_TextBox);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(234, 9);
+            this.button1.Location = new System.Drawing.Point(351, 14);
+            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(96, 35);
+            this.button1.Size = new System.Drawing.Size(144, 54);
             this.button1.TabIndex = 2;
             this.button1.Text = "Take Picture";
             this.button1.UseVisualStyleBackColor = true;
@@ -84,10 +87,9 @@
             // 
             this.Cam_Picture_Box.BackColor = System.Drawing.SystemColors.Window;
             this.Cam_Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Cam_Picture_Box.Location = new System.Drawing.Point(15, 60);
-            this.Cam_Picture_Box.Margin = new System.Windows.Forms.Padding(2);
+            this.Cam_Picture_Box.Location = new System.Drawing.Point(22, 92);
             this.Cam_Picture_Box.Name = "Cam_Picture_Box";
-            this.Cam_Picture_Box.Size = new System.Drawing.Size(316, 186);
+            this.Cam_Picture_Box.Size = new System.Drawing.Size(473, 285);
             this.Cam_Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Cam_Picture_Box.TabIndex = 3;
             this.Cam_Picture_Box.TabStop = false;
@@ -95,9 +97,10 @@
             // 
             // Stop_Video_Button
             // 
-            this.Stop_Video_Button.Location = new System.Drawing.Point(124, 9);
+            this.Stop_Video_Button.Location = new System.Drawing.Point(186, 14);
+            this.Stop_Video_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Stop_Video_Button.Name = "Stop_Video_Button";
-            this.Stop_Video_Button.Size = new System.Drawing.Size(96, 35);
+            this.Stop_Video_Button.Size = new System.Drawing.Size(144, 54);
             this.Stop_Video_Button.TabIndex = 4;
             this.Stop_Video_Button.Text = "Stop Webcam";
             this.Stop_Video_Button.UseVisualStyleBackColor = true;
@@ -105,9 +108,10 @@
             // 
             // Start_Video__Button
             // 
-            this.Start_Video__Button.Location = new System.Drawing.Point(15, 9);
+            this.Start_Video__Button.Location = new System.Drawing.Point(22, 14);
+            this.Start_Video__Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Start_Video__Button.Name = "Start_Video__Button";
-            this.Start_Video__Button.Size = new System.Drawing.Size(96, 35);
+            this.Start_Video__Button.Size = new System.Drawing.Size(144, 54);
             this.Start_Video__Button.TabIndex = 5;
             this.Start_Video__Button.Text = "Start Webcam";
             this.Start_Video__Button.UseVisualStyleBackColor = true;
@@ -117,10 +121,9 @@
             // 
             this.Display_Picture_Box.BackColor = System.Drawing.SystemColors.Window;
             this.Display_Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Display_Picture_Box.Location = new System.Drawing.Point(349, 60);
-            this.Display_Picture_Box.Margin = new System.Windows.Forms.Padding(2);
+            this.Display_Picture_Box.Location = new System.Drawing.Point(524, 92);
             this.Display_Picture_Box.Name = "Display_Picture_Box";
-            this.Display_Picture_Box.Size = new System.Drawing.Size(119, 170);
+            this.Display_Picture_Box.Size = new System.Drawing.Size(178, 260);
             this.Display_Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Display_Picture_Box.TabIndex = 6;
             this.Display_Picture_Box.TabStop = false;
@@ -129,10 +132,9 @@
             // Preview_Label
             // 
             this.Preview_Label.AutoSize = true;
-            this.Preview_Label.Location = new System.Drawing.Point(346, 44);
-            this.Preview_Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Preview_Label.Location = new System.Drawing.Point(519, 68);
             this.Preview_Label.Name = "Preview_Label";
-            this.Preview_Label.Size = new System.Drawing.Size(77, 13);
+            this.Preview_Label.Size = new System.Drawing.Size(112, 20);
             this.Preview_Label.TabIndex = 7;
             this.Preview_Label.Text = "Image Preview";
             // 
@@ -140,10 +142,10 @@
             // 
             this.Card_Boarder.BackColor = System.Drawing.Color.Transparent;
             this.Card_Boarder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Card_Boarder.Location = new System.Drawing.Point(44, 60);
-            this.Card_Boarder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
+            this.Card_Boarder.Location = new System.Drawing.Point(66, 92);
+            this.Card_Boarder.Margin = new System.Windows.Forms.Padding(3, 0, 3, 3);
             this.Card_Boarder.Name = "Card_Boarder";
-            this.Card_Boarder.Size = new System.Drawing.Size(256, 186);
+            this.Card_Boarder.Size = new System.Drawing.Size(383, 285);
             this.Card_Boarder.TabIndex = 8;
             this.Card_Boarder.TabStop = false;
             this.Card_Boarder.Click += new System.EventHandler(this.Card_Boarder_Click);
@@ -152,10 +154,9 @@
             // 
             this.Name_Header_Pic_Box.BackColor = System.Drawing.SystemColors.Window;
             this.Name_Header_Pic_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Name_Header_Pic_Box.Location = new System.Drawing.Point(483, 169);
-            this.Name_Header_Pic_Box.Margin = new System.Windows.Forms.Padding(2);
+            this.Name_Header_Pic_Box.Location = new System.Drawing.Point(724, 260);
             this.Name_Header_Pic_Box.Name = "Name_Header_Pic_Box";
-            this.Name_Header_Pic_Box.Size = new System.Drawing.Size(315, 78);
+            this.Name_Header_Pic_Box.Size = new System.Drawing.Size(472, 119);
             this.Name_Header_Pic_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Name_Header_Pic_Box.TabIndex = 9;
             this.Name_Header_Pic_Box.TabStop = false;
@@ -163,9 +164,10 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(620, 253);
+            this.button2.Location = new System.Drawing.Point(930, 389);
+            this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(100, 36);
+            this.button2.Size = new System.Drawing.Size(150, 55);
             this.button2.TabIndex = 10;
             this.button2.Text = "Save";
             this.button2.UseVisualStyleBackColor = true;
@@ -174,10 +176,9 @@
             // Output_Label
             // 
             this.Output_Label.AutoSize = true;
-            this.Output_Label.Location = new System.Drawing.Point(480, 44);
-            this.Output_Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Output_Label.Location = new System.Drawing.Point(720, 68);
             this.Output_Label.Name = "Output_Label";
-            this.Output_Label.Size = new System.Drawing.Size(39, 13);
+            this.Output_Label.Size = new System.Drawing.Size(58, 20);
             this.Output_Label.TabIndex = 12;
             this.Output_Label.Text = "Output";
             this.Output_Label.Click += new System.EventHandler(this.Output_Label_Click);
@@ -185,9 +186,10 @@
             // Search_Card_Button
             // 
             this.Search_Card_Button.Enabled = false;
-            this.Search_Card_Button.Location = new System.Drawing.Point(505, 253);
+            this.Search_Card_Button.Location = new System.Drawing.Point(758, 389);
+            this.Search_Card_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Search_Card_Button.Name = "Search_Card_Button";
-            this.Search_Card_Button.Size = new System.Drawing.Size(100, 36);
+            this.Search_Card_Button.Size = new System.Drawing.Size(150, 55);
             this.Search_Card_Button.TabIndex = 13;
             this.Search_Card_Button.Text = "Search for card";
             this.Search_Card_Button.UseVisualStyleBackColor = true;
@@ -197,20 +199,21 @@
             // Manual_Entry_Toggle
             // 
             this.Manual_Entry_Toggle.AutoSize = true;
-            this.Manual_Entry_Toggle.Location = new System.Drawing.Point(712, 39);
-            this.Manual_Entry_Toggle.Margin = new System.Windows.Forms.Padding(2);
+            this.Manual_Entry_Toggle.Enabled = false;
+            this.Manual_Entry_Toggle.Location = new System.Drawing.Point(1068, 60);
             this.Manual_Entry_Toggle.Name = "Manual_Entry_Toggle";
-            this.Manual_Entry_Toggle.Size = new System.Drawing.Size(88, 17);
+            this.Manual_Entry_Toggle.Size = new System.Drawing.Size(128, 24);
             this.Manual_Entry_Toggle.TabIndex = 14;
             this.Manual_Entry_Toggle.Text = "Manual Entry";
             this.Manual_Entry_Toggle.UseVisualStyleBackColor = true;
+            this.Manual_Entry_Toggle.Visible = false;
             this.Manual_Entry_Toggle.CheckedChanged += new System.EventHandler(this.Manual_Entry_Toggle_CheckedChanged);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(817, 301);
+            this.ClientSize = new System.Drawing.Size(1226, 463);
             this.Controls.Add(this.Manual_Entry_Toggle);
             this.Controls.Add(this.Search_Card_Button);
             this.Controls.Add(this.Output_Label);
@@ -225,6 +228,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.button);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "TCG Digitizer - Get Image";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
