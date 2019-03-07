@@ -52,6 +52,7 @@ namespace OCS_FOR_CSHARP
         public void addToList(List<cardWrapper> sentCard)
         {
             int addAmount = sentCard.Count;
+            int rowOffset = Card_Table_Panel.RowCount;
             Card_Table_Panel.RowCount += addAmount;
             for (int i = 0; i < addAmount; i++)
             {
@@ -59,12 +60,12 @@ namespace OCS_FOR_CSHARP
                 // begin popluating rows with cards
                 // populate each row with a checkbox
                 //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
-                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.name, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
-                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.type, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
-                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.setCode, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
-                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.multiverseId.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
-                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.manaCost, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.name, AutoEllipsis = true }, 1, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.type, AutoEllipsis = true }, 2, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.setCode, AutoEllipsis = true }, 3, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.multiverseId.ToString(), AutoEllipsis = true }, 4, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.manaCost, AutoEllipsis = true }, 5, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, rowOffset + i);
             }
         }
 

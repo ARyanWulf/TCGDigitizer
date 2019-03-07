@@ -15,6 +15,11 @@ namespace OCS_FOR_CSHARP
     {
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
 
+        public int display_lower;
+        public int display_upper;
+        private List<cardWrapper> cards = new List<cardWrapper>();
+        private TableLayoutPanel tempTable;
+
         public Inventory_Menu()
         {
             InitializeComponent();
@@ -46,6 +51,9 @@ namespace OCS_FOR_CSHARP
         // populate the inventory list for the user.
         private void Inventory_Menu_Load(object sender, EventArgs e)
         {
+            tempTable = Card_Table_Panel;
+            display_lower = 0;
+            display_upper = 0;
             refreshTable();
         }
 
@@ -174,24 +182,38 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
-            List<cardWrapper> cards = Get_Inventory();
-            // initialize table to zero rows to be empty
+            Card_Table_Panel.Visible = false;
+            //Clear table and redraw
+            Card_Table_Panel.Controls.Clear();
             Card_Table_Panel.RowCount = 1;
+            Card_Table_Panel.AutoScroll = true;
+            Card_Table_Panel.Controls.Add(new CheckBox { Name = "Inventory_Checkbox", CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, 0);
+            Card_Table_Panel.Controls.Add(new Button { Name = "Name_Button", Text = "Name", Dock = DockStyle.Fill }, 1, 0);
+            Card_Table_Panel.Controls.Add(new Button { Name = "Type_Button", Text = "Type", Dock = DockStyle.Fill }, 2, 0);
+            Card_Table_Panel.Controls.Add(new Button { Name = "Expansion_Button", Text = "Expansion", Dock = DockStyle.Fill }, 3, 0);
+            Card_Table_Panel.Controls.Add(new Button { Name = "Number_Button", Text = "Number", Dock = DockStyle.Fill }, 4, 0);
+            Card_Table_Panel.Controls.Add(new Button { Name = "Mana_Button", Text = "Mana", Dock = DockStyle.Fill }, 5, 0);
+            Card_Table_Panel.Controls.Add(new Button { Name = "Date_Button", Text = "Date", Dock = DockStyle.Fill }, 6, 0);
 
+
+            cards = Get_Inventory();
+            InventoryCountLabel.Text = "Cards in inventory: " + cards.Count();
+            // initialize table to zero rows to be empty
+            if(cards.Count - display_lower < 20) //If the amount of cards to be displayed on refresh is less than 20
+            {
+                display_upper = cards.Count;
+            }
+            else
+            {
+                display_upper = display_lower + 20;
+            }
+            int displayRange = display_upper - display_lower;
+            int cardIndex = display_lower;
+            Card_Table_Panel.RowCount += displayRange;
             /*
              * display count will be max 20 for the display limit
              * subtract 20 from the card count if the card count is greater than 20
              */
-
-
-
-            int cardsRemaining = cards.Count;
-            int displayCount = cardsRemaining;
-            if (cardsRemaining > 20)
-            {
-                cardsRemaining -= 20;
-                displayCount = 20;
-            }
 
             // TO DO:
             // Add refresh button to refresh the table
@@ -200,37 +222,36 @@ namespace OCS_FOR_CSHARP
 
 
             /* begin populating table, start at second row so the first row containing buttons is not overwritten */
-            for (int i = 1; i < displayCount + 1; i++)
+            for (int i = 1; i <= displayRange; i++)
             {
                 // create a new row for each card
-                Card_Table_Panel.RowCount++;
-
                 /* begin popluating rows with cards */
 
                 // populate each row with a checkbox
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
-                //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
 
                 // card name
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i - 1].card.name, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true }, 1, i);
 
                 // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i - 1].card.type, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true }, 2, i);
 
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i - 1].card.setCode, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true }, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i - 1].card.multiverseId.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.multiverseId.ToString(), AutoEllipsis = true }, 4, i);
 
                 // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[i - 1].card.manaCost, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true }, 5, i);
 
                 // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
-
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, i);
+                cardIndex++;
             }
             AutoScroll = true;
+            Card_Table_Panel.Visible = true;
         }
 
         public void addToInventory(cardWrapper newEntry)
@@ -245,6 +266,17 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
         }
 
+        private void InventoryCountLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RefreshButton_Click(object sender, EventArgs e)
+        {
+            RefreshButton.Enabled = false;
+            refreshTable();
+            RefreshButton.Enabled = true;
+        }
     }
 }
 
