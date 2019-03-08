@@ -54,6 +54,7 @@ namespace OCS_FOR_CSHARP
             tempTable = Card_Table_Panel;
             display_lower = 0;
             display_upper = 0;
+            Page_Back_Button.Enabled = false;
             refreshTable();
         }
 
@@ -252,6 +253,23 @@ namespace OCS_FOR_CSHARP
             }
             AutoScroll = true;
             Card_Table_Panel.Visible = true;
+            if(cards.Count() > 20 && display_upper + 1 < cards.Count())
+            {
+                Page_Forward_Button.Enabled = true;
+            }
+            else
+            {
+                Page_Forward_Button.Enabled = false;
+            }
+
+            if(display_lower >= 20)
+            {
+                Page_Back_Button.Enabled = true;
+            }
+            else
+            {
+                Page_Back_Button.Enabled = false;
+            }
         }
 
         public void addToInventory(cardWrapper newEntry)
@@ -276,6 +294,18 @@ namespace OCS_FOR_CSHARP
             RefreshButton.Enabled = false;
             refreshTable();
             RefreshButton.Enabled = true;
+        }
+
+        private void Page_Forward_Button_Click(object sender, EventArgs e)
+        {
+            display_lower += 20;
+            refreshTable();
+        }
+
+        private void Page_Back_Button_Click(object sender, EventArgs e)
+        {
+            display_lower -= 20;
+            refreshTable();
         }
     }
 }

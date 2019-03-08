@@ -325,7 +325,7 @@ namespace OCS_FOR_CSHARP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            BringToFront();
         }
 
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)

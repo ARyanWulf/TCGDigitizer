@@ -84,7 +84,7 @@ namespace OCS_FOR_CSHARP
 
         private void Edit_Card_Form_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Card_Flavor_Text_Label_Click(object sender, EventArgs e)
@@ -180,8 +180,8 @@ namespace OCS_FOR_CSHARP
 
         private void Enter()
         {
-
-            if (Name_Textbox.Text != null)
+            databaseList.Clear();
+            if (Name_Textbox.Text.Length != 0)
             {
                 connection.Open();
 
@@ -238,17 +238,20 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                textBox1.Text = "Card not valid";
                 cardExists = false;
-                return;
             }
 
-            if(databaseList[0] != null)
+            if(databaseList.Count != 0)
             {
                 cardExists = true;
                 button2.Enabled = true;
+                textBox1.Text = "";
                 Name_Textbox.ReadOnly = true;
                 populate(databaseList[0]);
+            }
+            else
+            {
+                textBox1.Text = "Card not valid";
             }
         }
 
@@ -259,9 +262,22 @@ namespace OCS_FOR_CSHARP
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Edit_Card_Form newEditForm = new Edit_Card_Form();
+            /*Edit_Card_Form newEditForm = new Edit_Card_Form();
             newEditForm.Show();
-            this.Dispose(false);
+            this.Dispose(false);*/
+            button2.Enabled = false;
+            Name_Textbox.Clear();
+            Card_Type_TextBox.Clear();
+            Card_Additional_TextBox.Clear();
+            Card_Mana_Cost_TextBox.Clear();
+            Card_Expansion_TextBox.Clear();
+            Card_Description_TextBox.Clear();
+            Card_Flavor_Text_TextBox.Clear();
+            Card_Power_TextBox.Clear();
+            Card_Toughness_TextBox.Clear();
+            textBox2.Clear();
+            textBox1.Clear();
+            Name_Textbox.ReadOnly = false;
         }
 
         private void Card_Description_TextBox_TextChanged(object sender, EventArgs e)
@@ -305,14 +321,14 @@ namespace OCS_FOR_CSHARP
 
         private void Name_Textbox_TextChanged(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length < 1)
+            /*if (textBox1.Text.Length == 0)
             {
                 button4.Enabled = false;
             }
             else
             {
                 button4.Enabled = true;
-            }
+            }*/
         }
     }
 }
