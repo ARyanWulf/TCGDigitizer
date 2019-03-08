@@ -20,7 +20,7 @@ namespace OCS_FOR_CSHARP
 
         private void ScanButton_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Review();
+            var getImageForm = new Form1();
             getImageForm.ShowDialog();
         }
 

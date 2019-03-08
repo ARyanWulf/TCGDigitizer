@@ -22,6 +22,7 @@ namespace OCS_FOR_CSHARP
         public List<cardWrapper> reviewCards = new List<cardWrapper>();
         public List<Bitmap> reviewImages = new List<Bitmap>();
         Form1 getImageForm;
+        public Form1 callingForm;
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
 
         public Review()
@@ -88,10 +89,10 @@ namespace OCS_FOR_CSHARP
 
         private void Review_Load(object sender, EventArgs e)
         {
-            getImageForm = new Form1();
+            /*getImageForm = new Form1();
             getImageForm.callingForm = this;
             getImageForm.Show();
-            getImageForm.BringToFront();
+            getImageForm.BringToFront();*/
         }
 
         private void Add_Cards_To_Inventory()

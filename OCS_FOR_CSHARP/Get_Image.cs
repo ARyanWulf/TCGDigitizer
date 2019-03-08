@@ -42,6 +42,8 @@ namespace OCS_FOR_CSHARP
         List<Bitmap> cardImages = new List<Bitmap>();
         CardService service = new CardService();
 
+        Review getImageForm;
+
         public object DisplayInformation { get; private set; }
 
         public Form1()
@@ -325,7 +327,10 @@ namespace OCS_FOR_CSHARP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            getImageForm = new Review();
+            getImageForm.callingForm = this;
+            getImageForm.Show();
+            getImageForm.BringToFront();
         }
 
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
