@@ -51,6 +51,7 @@ namespace OCS_FOR_CSHARP
 
         public void addToList(List<cardWrapper> sentCard)
         {
+            Card_Table_Panel.Visible = false;
             int addAmount = sentCard.Count;
             int rowOffset = Card_Table_Panel.RowCount;
             Card_Table_Panel.RowCount += addAmount;
@@ -67,6 +68,7 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.manaCost, AutoEllipsis = true }, 5, rowOffset + i);
                 Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, rowOffset + i);
             }
+            Card_Table_Panel.Visible = true;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)

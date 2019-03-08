@@ -26,6 +26,7 @@ namespace OCS_FOR_CSHARP
         List<Card> middleMan;
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
         List<cardWrapper> databaseList = new List<cardWrapper>();
+        private bool cardExists = false;
 
         public Edit_Card_Form()
         {
@@ -96,16 +97,13 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        private void Card_Name_TextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         public void populate(cardWrapper input)
         {
             currentCard = input;
 
-            Card_Name_TextBox.Text = currentCard.card.name;
+            Name_Textbox.Text = currentCard.card.name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
             Card_Expansion_TextBox.Text = currentCard.card.setCode;
@@ -183,18 +181,18 @@ namespace OCS_FOR_CSHARP
         private void Enter()
         {
 
-            if (Card_Name_TextBox.Text != null)
+            if (Name_Textbox.Text != null)
             {
                 connection.Open();
 
-                var str = "SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'";
+                var str = "SELECT * FROM public.card WHERE card_name ILIKE '%" + Name_Textbox.Text + "%'";
 
                 /*if(Card_Type_TextBox.Text != null)
                 {
                     str += "AND card_type ILIKE '%" + Card_Type_TextBox.Text + "%'";
                 }*/
                 
-                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'", connection);
+                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Name_Textbox.Text + "%'", connection);
                 
                 NpgsqlDataReader reader = cmd.ExecuteReader();
 
@@ -241,10 +239,15 @@ namespace OCS_FOR_CSHARP
             else
             {
                 textBox1.Text = "Card not valid";
+                cardExists = false;
+                return;
             }
 
             if(databaseList[0] != null)
             {
+                cardExists = true;
+                button2.Enabled = true;
+                Name_Textbox.ReadOnly = true;
                 populate(databaseList[0]);
             }
         }
@@ -297,6 +300,18 @@ namespace OCS_FOR_CSHARP
             else
             {
                 return false;
+            }
+        }
+
+        private void Name_Textbox_TextChanged(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Length < 1)
+            {
+                button4.Enabled = false;
+            }
+            else
+            {
+                button4.Enabled = true;
             }
         }
     }
