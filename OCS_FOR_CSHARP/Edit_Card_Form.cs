@@ -26,6 +26,7 @@ namespace OCS_FOR_CSHARP
         List<Card> middleMan;
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
         List<cardWrapper> databaseList = new List<cardWrapper>();
+        private bool cardExists = false;
 
         public Edit_Card_Form()
         {
@@ -46,7 +47,14 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
-             
+            if(!addToInventory())
+            {
+                MessageBox.Show("ERROR! Insufficient permissions.");
+            }
+            else
+            {
+                Close();
+            }
         }
 
         // Visual Studio recommended to use "=> Close();" over the traditional brackets.
@@ -76,7 +84,7 @@ namespace OCS_FOR_CSHARP
 
         private void Edit_Card_Form_Load(object sender, EventArgs e)
         {
-
+            
         }
 
         private void Card_Flavor_Text_Label_Click(object sender, EventArgs e)
@@ -89,19 +97,16 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        private void Card_Name_TextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        
 
         public void populate(cardWrapper input)
         {
-            currentCard.card = input.card;
+            currentCard = input;
 
-            Card_Name_TextBox.Text = currentCard.card.name;
+            Name_Textbox.Text = currentCard.card.name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
-            Card_Expansion_TextBox.Text = currentCard.set;
+            Card_Expansion_TextBox.Text = currentCard.card.setCode;
             textBox2.Text = currentCard.card.number;
 
             if (currentCard.card.subtypes != null)
@@ -175,23 +180,23 @@ namespace OCS_FOR_CSHARP
 
         private void Enter()
         {
-
-            if (Card_Name_TextBox.Text != null)
+            databaseList.Clear();
+            if (Name_Textbox.Text.Length != 0)
             {
                 connection.Open();
 
-                var str = "SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'";
+                var str = "SELECT * FROM public.card WHERE card_name ILIKE '%" + Name_Textbox.Text + "%'";
 
                 /*if(Card_Type_TextBox.Text != null)
                 {
                     str += "AND card_type ILIKE '%" + Card_Type_TextBox.Text + "%'";
                 }*/
                 
-                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Card_Name_TextBox.Text + "%'", connection);
+                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Name_Textbox.Text + "%'", connection);
                 
                 NpgsqlDataReader reader = cmd.ExecuteReader();
 
-                for (int i = 0; reader.Read(); i++)
+                while (reader.Read())
                 {
                     string temp;
                     cardWrapper tempWrapper = new cardWrapper();
@@ -200,7 +205,7 @@ namespace OCS_FOR_CSHARP
                     tempCard.name = reader[2].ToString();
                     tempCard.type = reader[3].ToString();
                     tempCard.manaCost = reader[4].ToString();
-                    tempWrapper.set = reader[5].ToString();
+                    tempCard.setCode = reader[5].ToString();
                     tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
                     tempCard.power = reader[10].ToString();
                     tempCard.toughness = reader[11].ToString();
@@ -233,12 +238,20 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                textBox1.Text = "Card not valid";
+                cardExists = false;
             }
 
-            if(databaseList[0] != null)
+            if(databaseList.Count != 0)
             {
+                cardExists = true;
+                button2.Enabled = true;
+                textBox1.Text = "";
+                Name_Textbox.ReadOnly = true;
                 populate(databaseList[0]);
+            }
+            else
+            {
+                textBox1.Text = "Card not valid";
             }
         }
 
@@ -249,9 +262,22 @@ namespace OCS_FOR_CSHARP
 
         private void button5_Click(object sender, EventArgs e)
         {
-            Edit_Card_Form newEditForm = new Edit_Card_Form();
+            /*Edit_Card_Form newEditForm = new Edit_Card_Form();
             newEditForm.Show();
-            this.Dispose(false);
+            this.Dispose(false);*/
+            button2.Enabled = false;
+            Name_Textbox.Clear();
+            Card_Type_TextBox.Clear();
+            Card_Additional_TextBox.Clear();
+            Card_Mana_Cost_TextBox.Clear();
+            Card_Expansion_TextBox.Clear();
+            Card_Description_TextBox.Clear();
+            Card_Flavor_Text_TextBox.Clear();
+            Card_Power_TextBox.Clear();
+            Card_Toughness_TextBox.Clear();
+            textBox2.Clear();
+            textBox1.Clear();
+            Name_Textbox.ReadOnly = false;
         }
 
         private void Card_Description_TextBox_TextChanged(object sender, EventArgs e)
@@ -262,6 +288,47 @@ namespace OCS_FOR_CSHARP
         private void Card_Additional_TextBox_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        public bool addToInventory()
+        {
+            if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            {
+                cardWrapper card = databaseList[0];
+
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("in_trans_type", 1);
+
+                    cmd.ExecuteScalar();
+                }
+
+                connection.Close();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void Name_Textbox_TextChanged(object sender, EventArgs e)
+        {
+            /*if (textBox1.Text.Length == 0)
+            {
+                button4.Enabled = false;
+            }
+            else
+            {
+                button4.Enabled = true;
+            }*/
         }
     }
 }

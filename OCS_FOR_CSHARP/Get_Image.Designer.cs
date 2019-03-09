@@ -160,7 +160,6 @@
             this.Name_Header_Pic_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Name_Header_Pic_Box.TabIndex = 9;
             this.Name_Header_Pic_Box.TabStop = false;
-            this.Name_Header_Pic_Box.Visible = false;
             this.Name_Header_Pic_Box.Click += new System.EventHandler(this.Name_Header_Pic_Box_Click);
             // 
             // button2
@@ -177,7 +176,7 @@
             // Output_Label
             // 
             this.Output_Label.AutoSize = true;
-            this.Output_Label.Location = new System.Drawing.Point(720, 67);
+            this.Output_Label.Location = new System.Drawing.Point(720, 68);
             this.Output_Label.Name = "Output_Label";
             this.Output_Label.Size = new System.Drawing.Size(58, 20);
             this.Output_Label.TabIndex = 12;
@@ -187,7 +186,7 @@
             // Search_Card_Button
             // 
             this.Search_Card_Button.Enabled = false;
-            this.Search_Card_Button.Location = new System.Drawing.Point(757, 389);
+            this.Search_Card_Button.Location = new System.Drawing.Point(758, 389);
             this.Search_Card_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Search_Card_Button.Name = "Search_Card_Button";
             this.Search_Card_Button.Size = new System.Drawing.Size(150, 55);
@@ -200,12 +199,14 @@
             // Manual_Entry_Toggle
             // 
             this.Manual_Entry_Toggle.AutoSize = true;
+            this.Manual_Entry_Toggle.Enabled = false;
             this.Manual_Entry_Toggle.Location = new System.Drawing.Point(1068, 60);
             this.Manual_Entry_Toggle.Name = "Manual_Entry_Toggle";
             this.Manual_Entry_Toggle.Size = new System.Drawing.Size(128, 24);
             this.Manual_Entry_Toggle.TabIndex = 14;
             this.Manual_Entry_Toggle.Text = "Manual Entry";
             this.Manual_Entry_Toggle.UseVisualStyleBackColor = true;
+            this.Manual_Entry_Toggle.Visible = false;
             this.Manual_Entry_Toggle.CheckedChanged += new System.EventHandler(this.Manual_Entry_Toggle_CheckedChanged);
             // 
             // Form1
@@ -232,6 +233,7 @@
             this.Text = "TCG Digitizer - Get Image";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterCardWithCondition);
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Display_Picture_Box)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Boarder)).EndInit();

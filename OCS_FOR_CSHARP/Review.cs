@@ -13,12 +13,17 @@ using MtgApiManager.Lib.Model;
 using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Utility;
 using MtgApiManager.Lib.Dto;
+using Npgsql;
 
 namespace OCS_FOR_CSHARP
 {
     public partial class Review : Form
     {
         public List<cardWrapper> reviewCards = new List<cardWrapper>();
+        public List<Bitmap> reviewImages = new List<Bitmap>();
+        Form1 getImageForm;
+        public Form1 callingForm;
+        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
 
         public Review()
         {
@@ -27,41 +32,44 @@ namespace OCS_FOR_CSHARP
 
         private void Scan_Card_Button_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Form1();//Change to the Inventory viewer form
-            getImageForm.callingForm = this;
-            getImageForm.Show();
+            if (getImageForm == null)
+            {
+                getImageForm = new Form1();//Change to the Inventory viewer form
+                getImageForm.callingForm = this;
+                getImageForm.Show();
+            }
+            getImageForm.BringToFront();
         }
 
         // will need to change functionality of the OK button later
-        private void OK_Button_Click(object sender, EventArgs e) => Close();
+        private void OK_Button_Click(object sender, EventArgs e)
+        {
+            Add_Cards_To_Inventory();
+            Close();
+        }
 
         private void Cancel_Button_Click(object sender, EventArgs e) => Close();
 
-        public void addToList(cardWrapper sentCard)
+        public void addToList(List<cardWrapper> sentCard)
         {
-            Card_Table_Panel.RowCount++;
-
-            // begin popluating rows with cards
-            // populate each row with a checkbox
-            //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
-            string tempString = sentCard.card.name;
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
-            tempString = sentCard.card.type;
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
-            //tempString = sentCard.card.expansion;
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
-            // tempString = database card expansion
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
-            // tempString = database card number
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
-            // tempString = database card mana
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = tempString, AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
-            // tempString = database card date added
+            Card_Table_Panel.Visible = false;
+            int addAmount = sentCard.Count;
+            int rowOffset = Card_Table_Panel.RowCount;
+            Card_Table_Panel.RowCount += addAmount;
+            for (int i = 0; i < addAmount; i++)
+            {
+                reviewCards.Add(sentCard[i]);
+                // begin popluating rows with cards
+                // populate each row with a checkbox
+                //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.name, AutoEllipsis = true }, 1, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.type, AutoEllipsis = true }, 2, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.setCode, AutoEllipsis = true }, 3, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.multiverseId.ToString(), AutoEllipsis = true }, 4, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = sentCard[i].card.manaCost, AutoEllipsis = true }, 5, rowOffset + i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, rowOffset + i);
+            }
+            Card_Table_Panel.Visible = true;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -81,7 +89,33 @@ namespace OCS_FOR_CSHARP
 
         private void Review_Load(object sender, EventArgs e)
         {
+            /*getImageForm = new Form1();
+            getImageForm.callingForm = this;
+            getImageForm.Show();
+            getImageForm.BringToFront();*/
+        }
 
+        private void Add_Cards_To_Inventory()
+        {
+            connection.Open();
+
+            for(int i = 0; i < reviewCards.Count; i++)
+            {
+                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", reviewCards[i].card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("in_trans_type", 1);
+
+                    cmd.ExecuteScalar();
+                }
+
+            }
+
+            connection.Close();
         }
     }
 }
