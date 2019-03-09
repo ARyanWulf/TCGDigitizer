@@ -230,7 +230,7 @@ namespace OCS_FOR_CSHARP
 
                 // populate each row with a checkbox
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
-                Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
+                Card_Table_Panel.Controls.Add(new CheckBox { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
 
                 // card name
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true }, 1, i);
@@ -242,7 +242,7 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true }, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.multiverseId.ToString(), AutoEllipsis = true }, 4, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true }, 4, i);
 
                 // database card mana
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true }, 5, i);
@@ -253,7 +253,7 @@ namespace OCS_FOR_CSHARP
             }
             AutoScroll = true;
             Card_Table_Panel.Visible = true;
-            if(cards.Count() > 20 && display_upper + 1 < cards.Count())
+            if(cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
             }
@@ -279,7 +279,7 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.name, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
             Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.type, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
             Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.setCode, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.multiverseId.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
+            Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.number.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
             Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.manaCost, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
             Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
         }
@@ -307,7 +307,13 @@ namespace OCS_FOR_CSHARP
             display_lower -= 20;
             refreshTable();
         }
+
+        private void Card_Table_Panel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
+
 }
 
 
