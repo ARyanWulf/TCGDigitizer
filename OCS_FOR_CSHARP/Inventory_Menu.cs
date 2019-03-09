@@ -253,7 +253,7 @@ namespace OCS_FOR_CSHARP
             }
             AutoScroll = true;
             Card_Table_Panel.Visible = true;
-            if(cards.Count() > 20 && display_upper + 1 < cards.Count())
+            if(cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
             }
