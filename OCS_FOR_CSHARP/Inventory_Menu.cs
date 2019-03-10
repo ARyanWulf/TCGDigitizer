@@ -23,6 +23,7 @@ namespace OCS_FOR_CSHARP
         public Inventory_Menu()
         {
             InitializeComponent();
+            refreshTable();
         }
 
         private void Scan_Card_Button_Click(object sender, EventArgs e)
@@ -55,7 +56,6 @@ namespace OCS_FOR_CSHARP
             display_lower = 0;
             display_upper = 0;
             Page_Back_Button.Enabled = false;
-            refreshTable();
         }
 
         private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
@@ -89,19 +89,12 @@ namespace OCS_FOR_CSHARP
                 {
                     cardWrapper card = new cardWrapper();
                     card.card_ID = System.Convert.ToInt32(reader[1].ToString());
-                    card.count = System.Convert.ToInt32(reader[4].ToString());
+                    card.count = System.Convert.ToInt32(reader[2].ToString());
 
-                    if (cards.Contains(card))
-                    {
-                        cards[cards.IndexOf(card)].count += card.count;
-                    }
-                    else
-                    {
-                        cards.Add(card);
-                    }
+                    cards.Add(card);
                 }
             }
-            connection.Close();
+            connecti b on.Close();
 
             string cmdhold = "";
             for (int i = 0; i < cards.Count; i++)
@@ -242,7 +235,7 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true }, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.multiverseId.ToString(), AutoEllipsis = true }, 4, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true }, 4, i);
 
                 // database card mana
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true }, 5, i);

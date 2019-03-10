@@ -292,13 +292,16 @@ namespace OCS_FOR_CSHARP
 
         public bool addToInventory()
         {
+
             if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
             {
                 cardWrapper card = databaseList[0];
+                bool exists = false;
+                int inv_id;
 
                 connection.Open();
 
-                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                using (var cmd = new NpgsqlCommand("new_trans_event", connection))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -311,6 +314,51 @@ namespace OCS_FOR_CSHARP
                 }
 
                 connection.Close();
+
+
+                connection.Open();
+                using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory WHERE card_id = " + card.card.cardID, connection))
+                {
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+
+
+                    if (reader.HasRows)
+                    {
+                        exists = true;
+                    }
+                }
+                connection.Close();
+
+                if (exists)
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("update_inv_count", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
+                else
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
                 return true;
             }
             else
