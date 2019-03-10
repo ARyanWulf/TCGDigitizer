@@ -94,7 +94,7 @@ namespace OCS_FOR_CSHARP
                     cards.Add(card);
                 }
             }
-            connecti b on.Close();
+            connection.Close();
 
             string cmdhold = "";
             for (int i = 0; i < cards.Count; i++)
