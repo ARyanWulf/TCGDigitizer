@@ -89,19 +89,20 @@ namespace OCS_FOR_CSHARP
 
         private void Review_Load(object sender, EventArgs e)
         {
-            /*getImageForm = new Form1();
+            getImageForm = new Form1();
             getImageForm.callingForm = this;
             getImageForm.Show();
-            getImageForm.BringToFront();*/
+            getImageForm.BringToFront();
         }
 
         private void Add_Cards_To_Inventory()
         {
-            connection.Open();
-
+            bool exists = false;
             for(int i = 0; i < reviewCards.Count; i++)
             {
-                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("new_trans_event", connection))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
@@ -113,9 +114,54 @@ namespace OCS_FOR_CSHARP
                     cmd.ExecuteScalar();
                 }
 
-            }
+                connection.Close();
 
-            connection.Close();
+
+                connection.Open();
+                using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory WHERE card_id = " + reviewCards[i].card.cardID, connection))
+                {
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+
+
+                    if (reader.HasRows)
+                    {
+                        exists = true;
+                    }
+                }
+                connection.Close();
+
+                if (exists)
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("update_inv_count", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", reviewCards[i].card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
+                else
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", reviewCards[i].card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
+
+            }
         }
     }
 }

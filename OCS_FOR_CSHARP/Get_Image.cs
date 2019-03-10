@@ -42,8 +42,6 @@ namespace OCS_FOR_CSHARP
         List<Bitmap> cardImages = new List<Bitmap>();
         CardService service = new CardService();
 
-        Review getImageForm;
-
         public object DisplayInformation { get; private set; }
 
         public Form1()
@@ -275,7 +273,7 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.Trim('\n');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
 
-                    cards.Add(findCardsWithName(textBoxString));
+                    addToList(findCardsWithName(textBoxString));
                     cardImages.Add(originalImg);
                 }
                 catch (Exception ex)
@@ -327,10 +325,26 @@ namespace OCS_FOR_CSHARP
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            getImageForm = new Review();
-            getImageForm.callingForm = this;
-            getImageForm.Show();
-            getImageForm.BringToFront();
+        }
+
+        public void addToList(cardWrapper sentCard)
+        {
+            Card_Table_Panel.Visible = false;
+            int rowOffset = Card_Table_Panel.RowCount;
+            Card_Table_Panel.RowCount ++;
+            //if (!Card_Table_Panel.AutoScroll) Card_Table_Panel.AutoScroll = true;
+            cards.Add(sentCard);
+
+            // begin popluating rows with cards
+            // populate each row with a checkbox
+            //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true }, 1, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true }, 2, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true }, 3, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true }, 4, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true }, 5, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, rowOffset);
+            Card_Table_Panel.Visible = true;
         }
 
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
@@ -347,10 +361,8 @@ namespace OCS_FOR_CSHARP
         {
             if (cards.Count > 0)
             {
-                callingForm.reviewImages = cardImages;
-                callingForm.addToList(cards);
-                cards.Clear();
-                //Close();
+                Add_Cards_To_Inventory();
+                Close();
             }
             else
             {
@@ -524,18 +536,19 @@ namespace OCS_FOR_CSHARP
             return returnCard;
         }
 
-        private bool addToInventory(cardWrapper card = null)
+        private void Add_Cards_To_Inventory()
         {
-            if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            bool exists = false;
+            for (int i = 0; i < cards.Count; i++)
             {
-
+                exists = false;
                 connection.Open();
 
-                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                using (var cmd = new NpgsqlCommand("new_trans_event", connection))
                 {
                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
-                    cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
                     cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
                     cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
                     cmd.Parameters.AddWithValue("in_trans_type", 1);
@@ -544,13 +557,55 @@ namespace OCS_FOR_CSHARP
                 }
 
                 connection.Close();
-                return true;
-            }
-            else
-            {
-                return false;
+
+
+                connection.Open();
+                using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory WHERE card_id = " + cards[i].card.cardID, connection))
+                {
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+
+
+                    if (reader.HasRows)
+                    {
+                        exists = true;
+                    }
+                }
+                connection.Close();
+
+                if (exists)
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("update_inv_count", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
+                else
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
+
             }
         }
+
 
         private void EnterCardWithCondition(object sender, KeyEventArgs e)
         {

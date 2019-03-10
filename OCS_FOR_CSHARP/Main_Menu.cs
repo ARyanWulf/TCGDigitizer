@@ -61,7 +61,7 @@ namespace OCS_FOR_CSHARP
 
     static class CurrentUser
     {
-        private static int _user_ID = 3;
+        private static int _user_ID = 19;
         private static int _prvlg_lvl = 1;
 
         public static int user_ID
