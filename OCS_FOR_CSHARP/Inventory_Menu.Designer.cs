@@ -265,6 +265,7 @@
             this.Inventory_Checkbox.Size = new System.Drawing.Size(30, 32);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
+            this.Inventory_Checkbox.CheckedChanged += new System.EventHandler(this.Inventory_Checkbox_CheckedChanged);
             // 
             // InventoryCountLabel
             // 

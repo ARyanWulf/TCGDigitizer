@@ -27,6 +27,7 @@ namespace OCS_FOR_CSHARP
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
         List<cardWrapper> databaseList = new List<cardWrapper>();
         private bool cardExists = false;
+        public int startCode = -1;
 
         public Edit_Card_Form()
         {
@@ -84,7 +85,22 @@ namespace OCS_FOR_CSHARP
 
         private void Edit_Card_Form_Load(object sender, EventArgs e)
         {
-            
+            if (startCode == 0)//Viewing card info
+            {
+                button4.Enabled = false;
+                button4.Visible = false;
+                Name_Textbox.ReadOnly = true;
+            }
+            else if(startCode == 1)//Manual entry
+            {
+                button4.Enabled = true;
+                button4.Visible = true;
+                Name_Textbox.ReadOnly = false;
+            }
+            else
+            {
+                Close();
+            }
         }
 
         private void Card_Flavor_Text_Label_Click(object sender, EventArgs e)

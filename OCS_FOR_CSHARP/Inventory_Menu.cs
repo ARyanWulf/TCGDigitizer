@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -19,6 +20,7 @@ namespace OCS_FOR_CSHARP
         public int display_upper;
         private List<cardWrapper> cards = new List<cardWrapper>();
         private TableLayoutPanel tempTable;
+        private List<int> selectedCards = new List<int>();
 
         public Inventory_Menu()
         {
@@ -34,6 +36,7 @@ namespace OCS_FOR_CSHARP
         private void Add_Card_Button_Click(object sender, EventArgs e)
         {
             var getEditCardForm = new Edit_Card_Form();
+            getEditCardForm.startCode = 1;
             //getEditCardForm.inv_menu = this;
             getEditCardForm.ShowDialog();
         }
@@ -221,7 +224,7 @@ namespace OCS_FOR_CSHARP
             // clicking the save button for the add new card should also refresh the table
             // Cards remaining should also be re-initialized
 
-
+            
             /* begin populating table, start at second row so the first row containing buttons is not overwritten */
             for (int i = 1; i <= displayRange; i++)
             {
@@ -230,25 +233,44 @@ namespace OCS_FOR_CSHARP
 
                 // populate each row with a checkbox
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
-                Card_Table_Panel.Controls.Add(new CheckBox { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
-
+                var check = new CheckBox { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill };
+                check.Tag = cards[cardIndex].card.cardID;
+                Card_Table_Panel.Controls.Add(check, 0, i);
+                var temp = new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true };
+                temp.Tag = cards[cardIndex].card.cardID;
+                temp.Click += temp_Click;
                 // card name
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true }, 1, i);
+                Card_Table_Panel.Controls.Add(temp, 1, i);
 
+                temp = new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true };
+                temp.Tag = cards[cardIndex].card.cardID;
+                temp.Click += temp_Click;
                 // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true }, 2, i);
+                Card_Table_Panel.Controls.Add(temp, 2, i);
 
+                temp = new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true };
+                temp.Tag = cards[cardIndex].card.cardID;
+                temp.Click += temp_Click;
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true }, 3, i);
+                Card_Table_Panel.Controls.Add(temp, 3, i);
 
+                temp = new Label() { Text = cards[cardIndex].card.number, AutoEllipsis = true };
+                temp.Tag = cards[cardIndex].card.cardID;
+                temp.Click += temp_Click;
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true }, 4, i);
+                Card_Table_Panel.Controls.Add(temp, 4, i);
 
+                temp = new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true };
+                temp.Tag = cards[cardIndex].card.cardID;
+                temp.Click += temp_Click;
                 // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true }, 5, i);
+                Card_Table_Panel.Controls.Add(temp, 5, i);
 
+                temp = new Label() { Text = "N/A", AutoEllipsis = true };
+                temp.Tag = cards[cardIndex].card.cardID;
+                temp.Click += temp_Click;
                 // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, i);
+                Card_Table_Panel.Controls.Add(temp, 6, i);
                 cardIndex++;
             }
             AutoScroll = true;
@@ -286,7 +308,7 @@ namespace OCS_FOR_CSHARP
 
         private void InventoryCountLabel_Click(object sender, EventArgs e)
         {
-
+            //Card_Table_Panel.GetRow();
         }
 
         private void RefreshButton_Click(object sender, EventArgs e)
@@ -310,6 +332,25 @@ namespace OCS_FOR_CSHARP
 
         private void Card_Table_Panel_Paint(object sender, PaintEventArgs e)
         {
+
+        }
+
+        private void Card_Table_Panel_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void Inventory_Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void temp_Click(object sender, EventArgs e)
+        {
+            var temp = sender as Label;
+            Edit_Card_Form sendingForm = new Edit_Card_Form();
+            sendingForm.startCode = 0;
+            
 
         }
     }
