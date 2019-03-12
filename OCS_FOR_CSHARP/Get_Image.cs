@@ -269,8 +269,9 @@ namespace OCS_FOR_CSHARP
                     var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
                     textBoxString = page.GetText();//gets tesseract text
                     textBox1.Text = textBoxString;
-                    textBoxString = textBoxString.Trim(' ');//removes spaces
-                    textBoxString = textBoxString.Trim('\n');//removes endline characters
+                    textBoxString = textBoxString.Replace("â€”", "-");//removes endline characters
+                    textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
+                    textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
 
                     addToList(findCardsWithName(textBoxString));

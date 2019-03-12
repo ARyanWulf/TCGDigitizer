@@ -172,6 +172,7 @@ namespace OCS_FOR_CSHARP
             }
 
             //pictureBox1.Image = newForm.Display_Picture_Box.Image;
+
             /*if (currentCard.card.ImageUrl.OriginalString != null)
             {
                 pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);

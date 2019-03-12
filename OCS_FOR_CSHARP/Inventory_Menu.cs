@@ -226,22 +226,22 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
 
                 // card name
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true }, 1, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 1, i);
 
                 // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true }, 2, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 2, i);
 
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true }, 3, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true }, 4, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 4, i);
 
                 // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true }, 5, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 5, i);
 
                 // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 6, i);
                 cardIndex++;
             }
             AutoScroll = true;
