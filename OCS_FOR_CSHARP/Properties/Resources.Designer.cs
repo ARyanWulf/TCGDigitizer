@@ -63,6 +63,16 @@ namespace OCS_FOR_CSHARP.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap cardsmenu {
+            get {
+                object obj = ResourceManager.GetObject("cardsmenu", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap TCG_Logo_Transparent {
             get {
                 object obj = ResourceManager.GetObject("TCG Logo Transparent", resourceCulture);

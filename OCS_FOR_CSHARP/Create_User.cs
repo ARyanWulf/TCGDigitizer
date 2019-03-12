@@ -165,7 +165,7 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                List<string> existingUsers = new List<string>();
+                //List<string> existingUsers = new List<string>();
                 NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
                 connection.Open();
                 

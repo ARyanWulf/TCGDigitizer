@@ -6,17 +6,33 @@ using System.Threading.Tasks;
 
 namespace OCS_FOR_CSHARP
 {
+    //=======================================================================
+    //index enum for database information retrieval
+    //=======================================================================
+    //Database Card Table
     enum DBcard { id, c_time, name, type, mana_cost,
         expansion, foil, prerelease, location, multiverse_id,
         power, toughness, subtype, color, identity,
         text, cmc, flavor, rarity, border,
         loyalty, artist, types, supertypes, set_num};
 
-    enum DBuser { id, fname, lname, priv_lvl, c_time };
+    //Database Card Table
+    enum DBuser { id, fname, lname, priv_lvl, c_time, log_name, log_pass };
 
-    enum DBinvent { id, card_id, user_id, c_data, trans_type};
+    //Database Card Table
+    enum DBtrans { id, card_id, user_id, c_data, trans_type };
+    
+    //Database Card Table
+    enum DBinvent { id, card_id, inv_count};
+    //=======================================================================
 
-    //not currently being used
+
+
+
+    //=======================================================================
+    //Card Objects used during JSON parce
+    //=======================================================================
+    //not currently being used needed for JSON parce
     public class CardLegalities
     {
         public string __invalid_name__1v1 { get; set; }
@@ -119,7 +135,14 @@ namespace OCS_FOR_CSHARP
         public int totalSetSize { get; set; }
         public string type { get; set; }
     }
+    //=======================================================================
 
+
+
+
+    //=======================================================================
+    //Set Object for JSON set parce
+    //=======================================================================
     // setlist object for https://mtgjson.com/json/AllSets.json
     public class SetObject
     {
@@ -127,6 +150,7 @@ namespace OCS_FOR_CSHARP
         public string name { get; set; }
         public string releaseDate { get; set; }
     }
+    //=======================================================================
 
 
 
