@@ -211,14 +211,6 @@ namespace OCS_FOR_CSHARP
 
         private void Tess_TextBox(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length < 1)
-            {
-                Search_Card_Button.Enabled = false;
-            }
-            else
-            {
-                Search_Card_Button.Enabled = true;
-            }
         }
 
  
@@ -227,6 +219,7 @@ namespace OCS_FOR_CSHARP
         {
             if (Photo_Filepath != null && Cam_Picture_Box.Image != null)
             {
+                CardObject tempCard = new CardObject();
                 try
                 {
                     //picture from web cam
@@ -273,6 +266,7 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
                     textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
+                    tempCard.name = textBoxString;
 
                     textBox1.Text += "\n" + textBoxString;
                     addToList(findCardsWithName(textBoxString));
@@ -280,21 +274,9 @@ namespace OCS_FOR_CSHARP
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
-                    connection.Close();
+
                 }//need to add exception functionality
             }
-        }
-
-        private void Stop_Video_Button_Click(object sender, EventArgs e)
-        {
-
-            Card_Boarder.Visible = false;
-            if (frame != null)//if webcam is never opened before closing
-            {
-                frame.Stop(); //I shutdown the webcam if application is closed
-            }
-            Cam_Picture_Box.Image = null;
         }
 
         private void Start_Video_Button_Click(object sender, EventArgs e)
@@ -376,88 +358,9 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        
-
         private void Output_Label_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void Search_Card_Button_Click(object sender, EventArgs e)
-        {
-            /*string searchString = textBox1.Text;
-            Manual_Entry_Toggle.Checked = false;
-            textBox1.Text = "Searching...";
-            if (textBox1.Text.Length > 141)
-            {
-                textBox1.Text = "Card not found. Check for typos and try again.";
-            }
-            else
-            {
-                service.Where(x => x.Name, searchString);
-                middleMan = service.All().Value;
-                if (middleMan == null)
-                {
-                    textBox1.Text = "Card not found. Check for typos and try again.";
-                }
-                else if (middleMan.Count > 1)
-                {
-                    textBox1.Text = "Multiple cards found!";
-                    for (int i = 0; i < middleMan.Count; i++)
-                    {
-                        if (middleMan[i].Name == textBox1.Text)
-                        {
-                            if (currentCard.card == null || currentCard.card.Name != middleMan[i].Name)
-                            {
-                                currentCard.card = middleMan[i];
-                                textBox1.Text += "\r\n" + currentCard.card.Name;
-                            }
-                            else
-                            {
-                                currentCard.printing.Add(middleMan[i].Set);
-                                textBox1.Text += "\r\n" + middleMan[i].Name + " - " + middleMan[i].Number.ToString();
-                            }
-                        }
-                    }
-                    cards.Add(currentCard);
-                }
-                else
-                {
-                    currentCard.card = middleMan[0];
-                    cards.Add(currentCard);
-                    textBox1.Text = "Card found!\r\n" + currentCard.card.Name;
-                    Display_Picture_Box.ImageLocation = currentCard.card.ImageUrl.OriginalString;
-                }
-            }*/
-            Manual_Entry_Toggle.Checked = false;
-            cardWrapper tempCard = findCardsWithName(textBox1.Text);
-            if (tempCard.card.cardID != -1)
-            {
-                textBox1.Text = "Card found: " + tempCard.card.name;
-            }
-            else
-            {
-                textBox1.Text = "Card not found.";
-            }
-        }
-
-        private void Manual_Entry_Toggle_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Manual_Entry_Toggle.Checked)
-            {
-                Output_Label.Text = "Card Name";
-                textBox1.Text = "";
-                textBox1.Multiline = false;
-                textBox1.ReadOnly = false;
-                Search_Card_Button.Visible = true;
-            }
-            else
-            {
-                Output_Label.Text = "Output";
-                textBox1.ReadOnly = true;
-                Search_Card_Button.Visible = false;
-                textBox1.Multiline = true;
-            }
         }
 
         private cardWrapper findCardsWithName(string cardName)
@@ -682,6 +585,28 @@ namespace OCS_FOR_CSHARP
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (cards.Count > 0)
+            {
+                Add_Cards_To_Inventory();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
+            }
+            if (frame != null)//if webcam is never opened before closing
+            {
+                frame.Stop(); //I shutdown the webcam if application is closed
+            }
         }
     }
 

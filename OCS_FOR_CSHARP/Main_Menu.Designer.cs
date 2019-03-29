@@ -257,7 +257,7 @@
             this.password_label.AutoSize = true;
             this.password_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
+            this.password_label.ForeColor = System.Drawing.Color.Silver;
             this.password_label.Location = new System.Drawing.Point(293, 485);
             this.password_label.Name = "password_label";
             this.password_label.Size = new System.Drawing.Size(53, 13);
@@ -280,7 +280,7 @@
             this.user_name_label.AutoSize = true;
             this.user_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.user_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
+            this.user_name_label.ForeColor = System.Drawing.Color.Silver;
             this.user_name_label.Location = new System.Drawing.Point(293, 378);
             this.user_name_label.Name = "user_name_label";
             this.user_name_label.Size = new System.Drawing.Size(55, 13);
