@@ -18,6 +18,11 @@ namespace OCS_FOR_CSHARP
         {
             InitializeComponent();
 
+            //REMOVE IF NOT USED FOR UI IMPROVEMENTS 3/12
+            //var designSize = this.ClientSize;
+            //this.FormBorderStyle = FormBorderStyle.Sizable;
+            //this.Size = designSize;
+
             login_label.Visible = true;
             login_username_textbox.Visible = true;
             user_name_label.Visible = true;
@@ -27,15 +32,49 @@ namespace OCS_FOR_CSHARP
             logout_link.Visible = false;
             textBox1.Visible = true;
 
+            //REMOVE FOR FINAL PRODUCT
+            //login_username_textbox.Text = "admin";
+            //login_password_textbox.Text = "admin";
+
+            login_username_textbox.GotFocus += login_username_textbox_GotFocus;
+            login_password_textbox.GotFocus += login_password_textbox_GotFocus;
+
             welcome_label.Visible = false;
             welcome_label.TextAlign = ContentAlignment.MiddleRight;
 
-            ScanButton.Enabled = false;
-            InventoryButton.Enabled = false;
-            SettingsButton.Enabled = false;
+            //Final build should change all of these to false TEMP
+            ScanButton.Enabled = true;
+            InventoryButton.Enabled = true;
+            SettingsButton.Enabled = true;
 
             CurrentUser.user_ID = 0;
             CurrentUser.prvlg_lvl = 0;
+        }
+
+        /*REMOVE IF NOT USED FOR UI IMPROVEMENTS 3/12
+        protected override void WndProc(ref Message m)
+        {
+            switch (m.Msg)
+            {
+                case 0x84:
+                    base.WndProc(ref m);
+                    if ((int)m.Result == 0x1)
+                        m.Result = (IntPtr)0x2;
+                    return;
+            }
+
+            base.WndProc(ref m);
+        }
+        */
+
+        private void login_username_textbox_GotFocus(object sender, EventArgs e)
+        {
+            login_username_textbox.Clear();
+        }
+
+        private void login_password_textbox_GotFocus(object sender, EventArgs e)
+        {
+            login_password_textbox.Clear();
         }
 
         private void ScanButton_Click(object sender, EventArgs e)
@@ -257,6 +296,71 @@ namespace OCS_FOR_CSHARP
         }
 
         private void Main_Menu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tcgdigitizer_logo_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void login_password_textbox_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void login_button_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void login_label_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LogoPicture_Click(object sender, EventArgs e)
+        {
+
+        }
+        /**/
+        private void user_name_label_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void password_label_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void login_username_textbox_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ContactText_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CloseTextButton_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void welcome_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void logout_link_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
 
         }
