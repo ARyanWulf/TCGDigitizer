@@ -274,6 +274,7 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
 
+                    textBox1.Text += "\n" + textBoxString;
                     addToList(findCardsWithName(textBoxString));
                     cardImages.Add(originalImg);
                 }
