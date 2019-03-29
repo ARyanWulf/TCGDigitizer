@@ -79,20 +79,47 @@ namespace OCS_FOR_CSHARP
 
         private void ScanButton_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Form1();
-            getImageForm.ShowDialog();
+            //var getImageForm = new Form1();
+            //getImageForm.ShowDialog();
+
+            //loads Scan form into panel 2
+            panel2.Controls.Clear();
+            Form1 scan_form = new Form1();
+            scan_form.TopLevel = false;
+            panel2.Controls.Add(scan_form);
+            scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            scan_form.Dock = DockStyle.Fill;
+            scan_form.Show();
         }
 
         private void InventoryButton_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Inventory_Menu();//Change to the Inventory viewer form
-            getImageForm.ShowDialog();
+            //var getImageForm = new Inventory_Menu();//Change to the Inventory viewer form
+            //getImageForm.ShowDialog();
+
+            //loads Inventory form into panel 2
+            panel2.Controls.Clear();
+            Inventory_Menu inventory_form = new Inventory_Menu();
+            inventory_form.TopLevel = false;
+            panel2.Controls.Add(inventory_form);
+            inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            inventory_form.Dock = DockStyle.Fill;
+            inventory_form.Show();
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Settings();
-            getImageForm.ShowDialog();
+            //var getImageForm = new Settings();
+            //getImageForm.ShowDialog();
+
+            //loads Inventory form into panel 2
+            panel2.Controls.Clear();
+            Settings settings_form = new Settings();
+            settings_form.TopLevel = false;
+            panel2.Controls.Add(settings_form);
+            settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            settings_form.Dock = DockStyle.Fill;
+            settings_form.Show();
 
         }
 
