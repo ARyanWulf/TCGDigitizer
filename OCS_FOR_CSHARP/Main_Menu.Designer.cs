@@ -271,6 +271,7 @@
             this.login_password_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_password_textbox.Location = new System.Drawing.Point(297, 508);
             this.login_password_textbox.Name = "login_password_textbox";
+            this.login_password_textbox.PasswordChar = '*';
             this.login_password_textbox.Size = new System.Drawing.Size(323, 38);
             this.login_password_textbox.TabIndex = 23;
             this.login_password_textbox.TextChanged += new System.EventHandler(this.login_password_textbox_TextChanged_1);
