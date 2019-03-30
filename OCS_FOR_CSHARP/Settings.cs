@@ -50,7 +50,8 @@ namespace OCS_FOR_CSHARP
             Close();
         }
 
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        // Autopopulate with a list of current users that exist in the system
+        private void users_panel(object sender, PaintEventArgs e)
         {
 
         }
