@@ -48,66 +48,72 @@
             // fname_label
             // 
             this.fname_label.AutoSize = true;
-            this.fname_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.fname_label.Location = new System.Drawing.Point(16, 56);
+            this.fname_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fname_label.ForeColor = System.Drawing.Color.Silver;
+            this.fname_label.Location = new System.Drawing.Point(11, 54);
             this.fname_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.fname_label.Name = "fname_label";
-            this.fname_label.Size = new System.Drawing.Size(76, 17);
+            this.fname_label.Size = new System.Drawing.Size(86, 20);
             this.fname_label.TabIndex = 0;
             this.fname_label.Text = "First Name";
             // 
             // lname_label
             // 
             this.lname_label.AutoSize = true;
-            this.lname_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lname_label.Location = new System.Drawing.Point(16, 99);
+            this.lname_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lname_label.ForeColor = System.Drawing.Color.Silver;
+            this.lname_label.Location = new System.Drawing.Point(11, 97);
             this.lname_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lname_label.Name = "lname_label";
-            this.lname_label.Size = new System.Drawing.Size(76, 17);
+            this.lname_label.Size = new System.Drawing.Size(86, 20);
             this.lname_label.TabIndex = 1;
             this.lname_label.Text = "Last Name";
             // 
             // privilege_label
             // 
             this.privilege_label.AutoSize = true;
-            this.privilege_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.privilege_label.Location = new System.Drawing.Point(16, 142);
+            this.privilege_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.privilege_label.ForeColor = System.Drawing.Color.Silver;
+            this.privilege_label.Location = new System.Drawing.Point(11, 140);
             this.privilege_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.privilege_label.Name = "privilege_label";
-            this.privilege_label.Size = new System.Drawing.Size(100, 17);
+            this.privilege_label.Size = new System.Drawing.Size(108, 20);
             this.privilege_label.TabIndex = 2;
             this.privilege_label.Text = "Privilege Level";
             // 
             // username_label
             // 
             this.username_label.AutoSize = true;
-            this.username_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.username_label.Location = new System.Drawing.Point(16, 218);
+            this.username_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_label.ForeColor = System.Drawing.Color.Silver;
+            this.username_label.Location = new System.Drawing.Point(11, 216);
             this.username_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.username_label.Name = "username_label";
-            this.username_label.Size = new System.Drawing.Size(73, 17);
+            this.username_label.Size = new System.Drawing.Size(83, 20);
             this.username_label.TabIndex = 3;
             this.username_label.Text = "Username";
             // 
             // password_label
             // 
             this.password_label.AutoSize = true;
-            this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password_label.Location = new System.Drawing.Point(16, 260);
+            this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_label.ForeColor = System.Drawing.Color.Silver;
+            this.password_label.Location = new System.Drawing.Point(11, 258);
             this.password_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(69, 17);
+            this.password_label.Size = new System.Drawing.Size(78, 20);
             this.password_label.TabIndex = 4;
             this.password_label.Text = "Password";
             // 
             // passwordconf_label
             // 
             this.passwordconf_label.AutoSize = true;
-            this.passwordconf_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.passwordconf_label.Location = new System.Drawing.Point(16, 301);
+            this.passwordconf_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passwordconf_label.ForeColor = System.Drawing.Color.Silver;
+            this.passwordconf_label.Location = new System.Drawing.Point(11, 299);
             this.passwordconf_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.passwordconf_label.Name = "passwordconf_label";
-            this.passwordconf_label.Size = new System.Drawing.Size(56, 17);
+            this.passwordconf_label.Size = new System.Drawing.Size(64, 20);
             this.passwordconf_label.TabIndex = 5;
             this.passwordconf_label.Text = "Confirm";
             // 

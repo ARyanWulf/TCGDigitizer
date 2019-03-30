@@ -49,11 +49,11 @@
             this.Cancel_Button = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.CardName = new System.Windows.Forms.TextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.CardName = new System.Windows.Forms.ComboBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Display_Picture_Box)).BeginInit();
@@ -73,12 +73,13 @@
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox1.Location = new System.Drawing.Point(-2, 569);
+            this.textBox1.Location = new System.Drawing.Point(-2, 488);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(325, 97);
+            this.textBox1.Size = new System.Drawing.Size(325, 178);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = ".";
             this.textBox1.TextChanged += new System.EventHandler(this.Tess_TextBox);
             // 
             // button1
@@ -354,6 +355,7 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.CardName);
             this.panel2.Controls.Add(this.Preview_Label);
             this.panel2.Controls.Add(this.Display_Picture_Box);
@@ -361,15 +363,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(247, 873);
             this.panel2.TabIndex = 21;
-            // 
-            // CardName
-            // 
-            this.CardName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CardName.Location = new System.Drawing.Point(9, 370);
-            this.CardName.Name = "CardName";
-            this.CardName.Size = new System.Drawing.Size(224, 26);
-            this.CardName.TabIndex = 8;
-            this.CardName.Text = "Name";
             // 
             // button3
             // 
@@ -394,7 +387,6 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.AutoScroll = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.Card_Table_Panel);
             this.panel3.Location = new System.Drawing.Point(245, 50);
             this.panel3.Name = "panel3";
@@ -429,19 +421,37 @@
             this.panel4.Size = new System.Drawing.Size(756, 100);
             this.panel4.TabIndex = 24;
             // 
+            // CardName
+            // 
+            this.CardName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.CardName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.CardName.BackColor = System.Drawing.Color.SlateGray;
+            this.CardName.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CardName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CardName.FormattingEnabled = true;
+            this.CardName.Items.AddRange(new object[] {
+            "Cancel AKH",
+            "Cancel XLN"});
+            this.CardName.Location = new System.Drawing.Point(9, 370);
+            this.CardName.Name = "CardName";
+            this.CardName.Size = new System.Drawing.Size(224, 28);
+            this.CardName.TabIndex = 19;
+            this.CardName.TabStop = false;
+            this.CardName.Text = "Name";
+            // 
             // comboBox1
             // 
             this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox1.BackColor = System.Drawing.Color.SlateGray;
+            this.comboBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Cancel AKH",
-            "Cancel XLN"});
-            this.comboBox1.Location = new System.Drawing.Point(109, 200);
+            this.comboBox1.Location = new System.Drawing.Point(9, 419);
             this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 19;
-            this.comboBox1.TabStop = false;
+            this.comboBox1.Size = new System.Drawing.Size(65, 28);
+            this.comboBox1.TabIndex = 20;
+            this.comboBox1.Text = "Set";
             // 
             // Form1
             // 
@@ -504,7 +514,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.TextBox CardName;
+        private System.Windows.Forms.ComboBox CardName;
         private System.Windows.Forms.ComboBox comboBox1;
     }
 }
