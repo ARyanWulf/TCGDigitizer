@@ -275,9 +275,13 @@ namespace OCS_FOR_CSHARP
                     cardWrapper tempCard = new cardWrapper();
                     if(CardName.Text != "Name" && CardName.Text != "")
                     {
-                        tempCard.card = new CardObject { name = CardName.Text, }
+                        tempCard.card = new CardObject { name = CardName.Text, };
                     }
-                    tempCard.cardStatus = Color.Yellow;
+                    else
+                    {
+                        tempCard.card = new CardObject { name = "Unknown Card" };
+                    }
+                    tempCard.cardStatus = Color.Red;
                     addToList(tempCard);
                     cardImages.Add((Bitmap)Display_Picture_Box.Image.Clone());
                     if (connection.State == ConnectionState.Open) connection.Close();
@@ -328,18 +332,14 @@ namespace OCS_FOR_CSHARP
 
             // begin popluating rows with cards
             // populate each row with a checkbox
-            if (sentCard.needsAttention)
-            {
-                cardStatus
-            }
 
-            Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = cardStatus }, 0, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, BackColor = cardStatus }, 1, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, BackColor = cardStatus }, 2, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, BackColor = cardStatus }, 3, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true, BackColor = cardStatus }, 4, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, BackColor = cardStatus }, 5, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = cardStatus }, 6, rowOffset);
+            Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus }, 0, Card_Table_Panel.RowCount - 1);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 1, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 2, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 3, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true, BackColor = sentCard.cardStatus }, 4, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 5, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = sentCard.cardStatus }, 6, rowOffset);
             Card_Table_Panel.Visible = true;
         }
 
@@ -394,9 +394,10 @@ namespace OCS_FOR_CSHARP
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_id = " + returnCard.card.cardID, connection))
             {
                 NpgsqlDataReader reader = cmd.ExecuteReader();
-
+                int printings = 0;
                 while (reader.Read())
                 {
+                    printings++;
                     string temp;
                     cardWrapper tempWrapper = new cardWrapper();
                     CardObject tempCard = new CardObject();
@@ -430,6 +431,10 @@ namespace OCS_FOR_CSHARP
                     tempWrapper.card = tempCard;
 
                     returnCard = tempWrapper;
+                    if(printings > 1)
+                    {
+                        tempWrapper.cardStatus = Color.Yellow;
+                    }
                 }
             }
             connection.Close();

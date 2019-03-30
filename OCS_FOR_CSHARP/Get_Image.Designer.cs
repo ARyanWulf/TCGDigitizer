@@ -54,6 +54,7 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Display_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Boarder)).BeginInit();
@@ -68,13 +69,15 @@
             // textBox1
             // 
             this.textBox1.AcceptsReturn = true;
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.textBox1.BackColor = System.Drawing.Color.SlateGray;
             this.textBox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.textBox1.Location = new System.Drawing.Point(-2, 479);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
+            this.textBox1.Location = new System.Drawing.Point(-2, 569);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(325, 187);
+            this.textBox1.Size = new System.Drawing.Size(325, 97);
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.Tess_TextBox);
             // 
@@ -205,8 +208,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 56F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(754, 58);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 57F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(754, 59);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Date_Button
@@ -217,7 +220,7 @@
             this.Date_Button.ForeColor = System.Drawing.Color.Silver;
             this.Date_Button.Location = new System.Drawing.Point(635, 4);
             this.Date_Button.Name = "Date_Button";
-            this.Date_Button.Size = new System.Drawing.Size(115, 50);
+            this.Date_Button.Size = new System.Drawing.Size(115, 51);
             this.Date_Button.TabIndex = 12;
             this.Date_Button.Text = "Date";
             this.Date_Button.UseVisualStyleBackColor = true;
@@ -230,7 +233,7 @@
             this.Mana_Button.ForeColor = System.Drawing.Color.Silver;
             this.Mana_Button.Location = new System.Drawing.Point(517, 4);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(111, 50);
+            this.Mana_Button.Size = new System.Drawing.Size(111, 51);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -243,7 +246,7 @@
             this.Number_Button.ForeColor = System.Drawing.Color.Silver;
             this.Number_Button.Location = new System.Drawing.Point(399, 4);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(111, 50);
+            this.Number_Button.Size = new System.Drawing.Size(111, 51);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -256,7 +259,7 @@
             this.Expansion_Button.ForeColor = System.Drawing.Color.Silver;
             this.Expansion_Button.Location = new System.Drawing.Point(281, 4);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(111, 50);
+            this.Expansion_Button.Size = new System.Drawing.Size(111, 51);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -269,7 +272,7 @@
             this.Type_Button.ForeColor = System.Drawing.Color.Silver;
             this.Type_Button.Location = new System.Drawing.Point(163, 4);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(111, 50);
+            this.Type_Button.Size = new System.Drawing.Size(111, 51);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -282,7 +285,7 @@
             this.Name_Button.ForeColor = System.Drawing.Color.Silver;
             this.Name_Button.Location = new System.Drawing.Point(45, 4);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(111, 50);
+            this.Name_Button.Size = new System.Drawing.Size(111, 51);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -297,7 +300,7 @@
             this.Inventory_Checkbox.ForeColor = System.Drawing.Color.Silver;
             this.Inventory_Checkbox.Location = new System.Drawing.Point(4, 4);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 50);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 51);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             // 
@@ -316,7 +319,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(1002, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(325, 905);
+            this.panel1.Size = new System.Drawing.Size(325, 873);
             this.panel1.TabIndex = 19;
             // 
             // Cancel_Button
@@ -356,7 +359,7 @@
             this.panel2.Controls.Add(this.Display_Picture_Box);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(247, 905);
+            this.panel2.Size = new System.Drawing.Size(247, 873);
             this.panel2.TabIndex = 21;
             // 
             // CardName
@@ -391,10 +394,11 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.AutoScroll = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel3.Controls.Add(this.comboBox1);
             this.panel3.Controls.Add(this.Card_Table_Panel);
             this.panel3.Location = new System.Drawing.Point(245, 50);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(758, 757);
+            this.panel3.Size = new System.Drawing.Size(758, 725);
             this.panel3.TabIndex = 23;
             // 
             // button4
@@ -420,17 +424,31 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.button3);
-            this.panel4.Location = new System.Drawing.Point(245, 805);
+            this.panel4.Location = new System.Drawing.Point(245, 773);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(756, 100);
             this.panel4.TabIndex = 24;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.comboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Cancel AKH",
+            "Cancel XLN"});
+            this.comboBox1.Location = new System.Drawing.Point(109, 200);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 19;
+            this.comboBox1.TabStop = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1325, 905);
+            this.ClientSize = new System.Drawing.Size(1325, 873);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -487,6 +505,7 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.TextBox CardName;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 
