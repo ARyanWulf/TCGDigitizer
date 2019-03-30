@@ -32,7 +32,6 @@
             this.DefualtButton = new System.Windows.Forms.Button();
             this.DeleteAllButton = new System.Windows.Forms.Button();
             this.Load_Card_Button = new System.Windows.Forms.Button();
-            this.user_settings_backpanel = new System.Windows.Forms.PictureBox();
             this.user_text_box = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.selectAllCheckBox = new System.Windows.Forms.CheckBox();
@@ -49,8 +48,9 @@
             this.dropUser = new System.Windows.Forms.Button();
             this.editUserButton = new System.Windows.Forms.Button();
             this.Header = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.user_settings_backpanel)).BeginInit();
+            this.user_settings_backpanel = new System.Windows.Forms.PictureBox();
             this.tableLayoutPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.user_settings_backpanel)).BeginInit();
             this.SuspendLayout();
             // 
             // QuitButton
@@ -102,17 +102,6 @@
             this.Load_Card_Button.UseVisualStyleBackColor = true;
             this.Load_Card_Button.Click += new System.EventHandler(this.Load_Card_Button_Click);
             // 
-            // user_settings_backpanel
-            // 
-            this.user_settings_backpanel.BackColor = System.Drawing.Color.Transparent;
-            this.user_settings_backpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.user_settings_backpanel.Location = new System.Drawing.Point(21, 68);
-            this.user_settings_backpanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.user_settings_backpanel.Name = "user_settings_backpanel";
-            this.user_settings_backpanel.Size = new System.Drawing.Size(657, 199);
-            this.user_settings_backpanel.TabIndex = 10;
-            this.user_settings_backpanel.TabStop = false;
-            // 
             // user_text_box
             // 
             this.user_text_box.BackColor = System.Drawing.SystemColors.Control;
@@ -138,7 +127,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.33742F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 84.66257F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 243F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 107F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.tableLayoutPanel1.Controls.Add(this.selectAllCheckBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.last_name_label_1, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.user_first_name_sort, 1, 0);
@@ -168,13 +157,13 @@
             this.selectAllCheckBox.Location = new System.Drawing.Point(5, 4);
             this.selectAllCheckBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.selectAllCheckBox.Name = "selectAllCheckBox";
-            this.selectAllCheckBox.Size = new System.Drawing.Size(34, 33);
+            this.selectAllCheckBox.Size = new System.Drawing.Size(33, 33);
             this.selectAllCheckBox.TabIndex = 17;
             this.selectAllCheckBox.UseVisualStyleBackColor = true;
             // 
             // last_name_label_1
             // 
-            this.last_name_label_1.Location = new System.Drawing.Point(269, 41);
+            this.last_name_label_1.Location = new System.Drawing.Point(263, 41);
             this.last_name_label_1.Name = "last_name_label_1";
             this.last_name_label_1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.last_name_label_1.Size = new System.Drawing.Size(85, 26);
@@ -184,17 +173,17 @@
             // 
             // user_first_name_sort
             // 
-            this.user_first_name_sort.Location = new System.Drawing.Point(47, 4);
+            this.user_first_name_sort.Location = new System.Drawing.Point(46, 4);
             this.user_first_name_sort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.user_first_name_sort.Name = "user_first_name_sort";
-            this.user_first_name_sort.Size = new System.Drawing.Size(214, 30);
+            this.user_first_name_sort.Size = new System.Drawing.Size(209, 30);
             this.user_first_name_sort.TabIndex = 0;
             this.user_first_name_sort.Text = "First Name";
             this.user_first_name_sort.UseVisualStyleBackColor = true;
             // 
             // user_last_name_sort
             // 
-            this.user_last_name_sort.Location = new System.Drawing.Point(269, 4);
+            this.user_last_name_sort.Location = new System.Drawing.Point(263, 4);
             this.user_last_name_sort.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.user_last_name_sort.Name = "user_last_name_sort";
             this.user_last_name_sort.Size = new System.Drawing.Size(237, 30);
@@ -204,7 +193,7 @@
             // 
             // first_name_label_1
             // 
-            this.first_name_label_1.Location = new System.Drawing.Point(47, 41);
+            this.first_name_label_1.Location = new System.Drawing.Point(46, 41);
             this.first_name_label_1.Name = "first_name_label_1";
             this.first_name_label_1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.first_name_label_1.Size = new System.Drawing.Size(121, 26);
@@ -214,7 +203,7 @@
             // 
             // authority_label_1
             // 
-            this.authority_label_1.Location = new System.Drawing.Point(514, 41);
+            this.authority_label_1.Location = new System.Drawing.Point(508, 41);
             this.authority_label_1.Name = "authority_label_1";
             this.authority_label_1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.authority_label_1.Size = new System.Drawing.Size(85, 26);
@@ -224,7 +213,7 @@
             // 
             // authority_sort_button
             // 
-            this.authority_sort_button.Location = new System.Drawing.Point(514, 4);
+            this.authority_sort_button.Location = new System.Drawing.Point(508, 4);
             this.authority_sort_button.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.authority_sort_button.Name = "authority_sort_button";
             this.authority_sort_button.Size = new System.Drawing.Size(99, 30);
@@ -242,7 +231,7 @@
             this.userCheckBox1.Location = new System.Drawing.Point(5, 43);
             this.userCheckBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.userCheckBox1.Name = "userCheckBox1";
-            this.userCheckBox1.Size = new System.Drawing.Size(34, 23);
+            this.userCheckBox1.Size = new System.Drawing.Size(33, 23);
             this.userCheckBox1.TabIndex = 16;
             this.userCheckBox1.UseVisualStyleBackColor = true;
             // 
@@ -268,7 +257,7 @@
             // newUserButton
             // 
             this.newUserButton.Location = new System.Drawing.Point(40, 224);
-            this.newUserButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.newUserButton.Margin = new System.Windows.Forms.Padding(4);
             this.newUserButton.Name = "newUserButton";
             this.newUserButton.Size = new System.Drawing.Size(192, 34);
             this.newUserButton.TabIndex = 17;
@@ -279,7 +268,7 @@
             // dropUser
             // 
             this.dropUser.Location = new System.Drawing.Point(239, 224);
-            this.dropUser.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dropUser.Margin = new System.Windows.Forms.Padding(4);
             this.dropUser.Name = "dropUser";
             this.dropUser.Size = new System.Drawing.Size(197, 34);
             this.dropUser.TabIndex = 18;
@@ -289,7 +278,7 @@
             // editUserButton
             // 
             this.editUserButton.Location = new System.Drawing.Point(444, 224);
-            this.editUserButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.editUserButton.Margin = new System.Windows.Forms.Padding(4);
             this.editUserButton.Name = "editUserButton";
             this.editUserButton.Size = new System.Drawing.Size(217, 34);
             this.editUserButton.TabIndex = 19;
@@ -307,6 +296,17 @@
             this.Header.Size = new System.Drawing.Size(197, 58);
             this.Header.TabIndex = 20;
             this.Header.Text = "Settings";
+            // 
+            // user_settings_backpanel
+            // 
+            this.user_settings_backpanel.BackColor = System.Drawing.Color.Transparent;
+            this.user_settings_backpanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.user_settings_backpanel.Location = new System.Drawing.Point(21, 68);
+            this.user_settings_backpanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.user_settings_backpanel.Name = "user_settings_backpanel";
+            this.user_settings_backpanel.Size = new System.Drawing.Size(657, 199);
+            this.user_settings_backpanel.TabIndex = 10;
+            this.user_settings_backpanel.TabStop = false;
             // 
             // Settings
             // 
@@ -331,9 +331,9 @@
             this.Name = "Settings";
             this.Text = "TCGDigitizer - Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.user_settings_backpanel)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.user_settings_backpanel)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
