@@ -113,60 +113,66 @@
             // 
             // fname_textbox
             // 
-            this.fname_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.fname_textbox.BackColor = System.Drawing.Color.SlateGray;
+            this.fname_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.fname_textbox.Location = new System.Drawing.Point(105, 54);
-            this.fname_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.fname_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.fname_textbox.Name = "fname_textbox";
-            this.fname_textbox.Size = new System.Drawing.Size(413, 23);
+            this.fname_textbox.Size = new System.Drawing.Size(413, 26);
             this.fname_textbox.TabIndex = 6;
             this.fname_textbox.TextChanged += new System.EventHandler(this.fname_textbox_TextChanged);
             // 
             // lname_textbox
             // 
-            this.lname_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lname_textbox.BackColor = System.Drawing.Color.SlateGray;
+            this.lname_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lname_textbox.Location = new System.Drawing.Point(105, 96);
-            this.lname_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lname_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.lname_textbox.Name = "lname_textbox";
-            this.lname_textbox.Size = new System.Drawing.Size(413, 23);
+            this.lname_textbox.Size = new System.Drawing.Size(413, 26);
             this.lname_textbox.TabIndex = 7;
             this.lname_textbox.TextChanged += new System.EventHandler(this.lname_textbox_TextChanged);
             // 
             // passconf_textbox
             // 
-            this.passconf_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.passconf_textbox.BackColor = System.Drawing.Color.SlateGray;
+            this.passconf_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.passconf_textbox.Location = new System.Drawing.Point(105, 298);
-            this.passconf_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.passconf_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.passconf_textbox.Name = "passconf_textbox";
-            this.passconf_textbox.Size = new System.Drawing.Size(413, 23);
+            this.passconf_textbox.Size = new System.Drawing.Size(413, 26);
             this.passconf_textbox.TabIndex = 11;
             this.passconf_textbox.TextChanged += new System.EventHandler(this.passconf_textbox_TextChanged);
             // 
             // pass_textbox
             // 
-            this.pass_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pass_textbox.BackColor = System.Drawing.Color.SlateGray;
+            this.pass_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pass_textbox.Location = new System.Drawing.Point(105, 257);
-            this.pass_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pass_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.pass_textbox.Name = "pass_textbox";
-            this.pass_textbox.Size = new System.Drawing.Size(413, 23);
+            this.pass_textbox.Size = new System.Drawing.Size(413, 26);
             this.pass_textbox.TabIndex = 10;
             this.pass_textbox.TextChanged += new System.EventHandler(this.pass_textbox_TextChanged);
             // 
             // username_textbox
             // 
-            this.username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.username_textbox.BackColor = System.Drawing.Color.SlateGray;
+            this.username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.username_textbox.Location = new System.Drawing.Point(105, 215);
-            this.username_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.username_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.username_textbox.Name = "username_textbox";
-            this.username_textbox.Size = new System.Drawing.Size(413, 23);
+            this.username_textbox.Size = new System.Drawing.Size(413, 26);
             this.username_textbox.TabIndex = 9;
             this.username_textbox.TextChanged += new System.EventHandler(this.username_textbox_TextChanged);
             // 
             // Cancel_Button
             // 
             this.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Cancel_Button.Location = new System.Drawing.Point(442, 377);
+            this.Cancel_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cancel_Button.Location = new System.Drawing.Point(422, 377);
             this.Cancel_Button.Name = "Cancel_Button";
-            this.Cancel_Button.Size = new System.Drawing.Size(75, 23);
+            this.Cancel_Button.Size = new System.Drawing.Size(109, 37);
             this.Cancel_Button.TabIndex = 13;
             this.Cancel_Button.Text = "Cancel";
             this.Cancel_Button.UseVisualStyleBackColor = true;
@@ -175,17 +181,18 @@
             // OK_Button
             // 
             this.OK_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.OK_Button.Location = new System.Drawing.Point(363, 377);
+            this.OK_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.OK_Button.Location = new System.Drawing.Point(307, 377);
             this.OK_Button.Name = "OK_Button";
-            this.OK_Button.Size = new System.Drawing.Size(75, 23);
+            this.OK_Button.Size = new System.Drawing.Size(109, 37);
             this.OK_Button.TabIndex = 12;
-            this.OK_Button.Text = "OK";
+            this.OK_Button.Text = "Okay";
             this.OK_Button.UseVisualStyleBackColor = true;
             this.OK_Button.Click += new System.EventHandler(this.OK_Button_Click);
             // 
             // privilege_dropdown
             // 
-            this.privilege_dropdown.BackColor = System.Drawing.SystemColors.Window;
+            this.privilege_dropdown.BackColor = System.Drawing.Color.SlateGray;
             this.privilege_dropdown.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.privilege_dropdown.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.privilege_dropdown.FormattingEnabled = true;
@@ -196,7 +203,7 @@
             "4 - Employee  (limited usage rights, no login changes except own)",
             "5 - Read Only  (view only rights, no login changes)"});
             this.privilege_dropdown.Location = new System.Drawing.Point(122, 136);
-            this.privilege_dropdown.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.privilege_dropdown.Margin = new System.Windows.Forms.Padding(2);
             this.privilege_dropdown.Name = "privilege_dropdown";
             this.privilege_dropdown.Size = new System.Drawing.Size(396, 24);
             this.privilege_dropdown.TabIndex = 14;
@@ -204,10 +211,12 @@
             // 
             // error_textbox
             // 
+            this.error_textbox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.error_textbox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.error_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.error_textbox.ForeColor = System.Drawing.Color.Silver;
             this.error_textbox.Location = new System.Drawing.Point(19, 3);
-            this.error_textbox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.error_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.error_textbox.Multiline = true;
             this.error_textbox.Name = "error_textbox";
             this.error_textbox.ReadOnly = true;
