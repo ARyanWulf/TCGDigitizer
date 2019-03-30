@@ -275,7 +275,7 @@ namespace OCS_FOR_CSHARP
                     cardWrapper tempCard = new cardWrapper();
                     if(CardName.Text != "Name" && CardName.Text != "")
                     {
-                        tempCard.card = new CardObject { name = CardName.Text, }
+                        tempCard.card = new CardObject { name = CardName.Text, };
                     }
                     tempCard.cardStatus = Color.Yellow;
                     addToList(tempCard);
