@@ -211,14 +211,6 @@ namespace OCS_FOR_CSHARP
 
         private void Tess_TextBox(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length < 1)
-            {
-                Search_Card_Button.Enabled = false;
-            }
-            else
-            {
-                Search_Card_Button.Enabled = true;
-            }
         }
 
  
@@ -273,28 +265,24 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
                     textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
+                    CardName.Text = textBoxString;
 
-                    textBox1.Text += "\n" + textBoxString;
                     addToList(findCardsWithName(textBoxString));
                     cardImages.Add(originalImg);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
-                    connection.Close();
+                    cardWrapper tempCard = new cardWrapper();
+                    if(CardName.Text != "Name" && CardName.Text != "")
+                    {
+                        tempCard.card = new CardObject { name = CardName.Text, }
+                    }
+                    tempCard.cardStatus = Color.Yellow;
+                    addToList(tempCard);
+                    cardImages.Add((Bitmap)Display_Picture_Box.Image.Clone());
+                    if (connection.State == ConnectionState.Open) connection.Close();
                 }//need to add exception functionality
             }
-        }
-
-        private void Stop_Video_Button_Click(object sender, EventArgs e)
-        {
-
-            Card_Boarder.Visible = false;
-            if (frame != null)//if webcam is never opened before closing
-            {
-                frame.Stop(); //I shutdown the webcam if application is closed
-            }
-            Cam_Picture_Box.Image = null;
         }
 
         private void Start_Video_Button_Click(object sender, EventArgs e)
@@ -337,15 +325,21 @@ namespace OCS_FOR_CSHARP
             //if (!Card_Table_Panel.AutoScroll) Card_Table_Panel.AutoScroll = true;
             cards.Add(sentCard);
 
+
             // begin popluating rows with cards
             // populate each row with a checkbox
-            //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true }, 1, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true }, 2, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true }, 3, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true }, 4, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true }, 5, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, rowOffset);
+            if (sentCard.needsAttention)
+            {
+                cardStatus
+            }
+
+            Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = cardStatus }, 0, Card_Table_Panel.RowCount - 1);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, BackColor = cardStatus }, 1, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, BackColor = cardStatus }, 2, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, BackColor = cardStatus }, 3, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true, BackColor = cardStatus }, 4, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, BackColor = cardStatus }, 5, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = cardStatus }, 6, rowOffset);
             Card_Table_Panel.Visible = true;
         }
 
@@ -361,103 +355,17 @@ namespace OCS_FOR_CSHARP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (cards.Count > 0)
-            {
-                Add_Cards_To_Inventory();
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
-            }
+            Card_Boarder.Visible = false;
             if (frame != null)//if webcam is never opened before closing
             {
                 frame.Stop(); //I shutdown the webcam if application is closed
             }
+            Cam_Picture_Box.Image = null;
         }
-
-        
 
         private void Output_Label_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void Search_Card_Button_Click(object sender, EventArgs e)
-        {
-            /*string searchString = textBox1.Text;
-            Manual_Entry_Toggle.Checked = false;
-            textBox1.Text = "Searching...";
-            if (textBox1.Text.Length > 141)
-            {
-                textBox1.Text = "Card not found. Check for typos and try again.";
-            }
-            else
-            {
-                service.Where(x => x.Name, searchString);
-                middleMan = service.All().Value;
-                if (middleMan == null)
-                {
-                    textBox1.Text = "Card not found. Check for typos and try again.";
-                }
-                else if (middleMan.Count > 1)
-                {
-                    textBox1.Text = "Multiple cards found!";
-                    for (int i = 0; i < middleMan.Count; i++)
-                    {
-                        if (middleMan[i].Name == textBox1.Text)
-                        {
-                            if (currentCard.card == null || currentCard.card.Name != middleMan[i].Name)
-                            {
-                                currentCard.card = middleMan[i];
-                                textBox1.Text += "\r\n" + currentCard.card.Name;
-                            }
-                            else
-                            {
-                                currentCard.printing.Add(middleMan[i].Set);
-                                textBox1.Text += "\r\n" + middleMan[i].Name + " - " + middleMan[i].Number.ToString();
-                            }
-                        }
-                    }
-                    cards.Add(currentCard);
-                }
-                else
-                {
-                    currentCard.card = middleMan[0];
-                    cards.Add(currentCard);
-                    textBox1.Text = "Card found!\r\n" + currentCard.card.Name;
-                    Display_Picture_Box.ImageLocation = currentCard.card.ImageUrl.OriginalString;
-                }
-            }*/
-            Manual_Entry_Toggle.Checked = false;
-            cardWrapper tempCard = findCardsWithName(textBox1.Text);
-            if (tempCard.card.cardID != -1)
-            {
-                textBox1.Text = "Card found: " + tempCard.card.name;
-            }
-            else
-            {
-                textBox1.Text = "Card not found.";
-            }
-        }
-
-        private void Manual_Entry_Toggle_CheckedChanged(object sender, EventArgs e)
-        {
-            if (Manual_Entry_Toggle.Checked)
-            {
-                Output_Label.Text = "Card Name";
-                textBox1.Text = "";
-                textBox1.Multiline = false;
-                textBox1.ReadOnly = false;
-                Search_Card_Button.Visible = true;
-            }
-            else
-            {
-                Output_Label.Text = "Output";
-                textBox1.ReadOnly = true;
-                Search_Card_Button.Visible = false;
-                textBox1.Multiline = true;
-            }
         }
 
         private cardWrapper findCardsWithName(string cardName)
@@ -544,7 +452,7 @@ namespace OCS_FOR_CSHARP
             for (int i = 0; i < cards.Count; i++)
             {
                 exists = false;
-                connection.Open();
+                connection.Open(); 
 
                 using (var cmd = new NpgsqlCommand("new_trans_event", connection))
                 {
@@ -668,13 +576,14 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
                     textBoxString = textBoxString.Trim('\n');//removes spaces and return characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
+                    CardName.Text = textBoxString; 
 
                     cards.Add(findCardsWithName(textBoxString));
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
-                    connection.Close();
+                    if (connection.State == ConnectionState.Open) connection.Close();
                 }//need to add exception functionality
             }
         }
@@ -682,6 +591,33 @@ namespace OCS_FOR_CSHARP
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (cards.Count > 0)
+            {
+                Add_Cards_To_Inventory();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
+            }
+            if (frame != null)//if webcam is never opened before closing
+            {
+                frame.Stop(); //I shutdown the webcam if application is closed
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -693,13 +629,12 @@ namespace OCS_FOR_CSHARP
         public char foil, prerelease;
         public int count, card_ID;
         public char condition;
-        public bool needsAttention;
+        public Color cardStatus;
 
         public cardWrapper()
         {
             foil = 'n';
             prerelease = 'n';
-            needsAttention = false;
         }
 
         ~cardWrapper()

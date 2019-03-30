@@ -141,7 +141,7 @@
             this.panel1.Controls.Add(this.QuitButton);
             this.panel1.Location = new System.Drawing.Point(0, 300);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 756);
+            this.panel1.Size = new System.Drawing.Size(321, 1068);
             this.panel1.TabIndex = 17;
             // 
             // corner_logo_picturebox
@@ -195,14 +195,14 @@
             this.panel2.Controls.Add(this.ContactText);
             this.panel2.Location = new System.Drawing.Point(320, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1057, 1105);
+            this.panel2.Size = new System.Drawing.Size(1308, 1105);
             this.panel2.TabIndex = 18;
             // 
             // welcome_label
             // 
             this.welcome_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.welcome_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome_label.Location = new System.Drawing.Point(-173, 899);
+            this.welcome_label.Location = new System.Drawing.Point(78, 899);
             this.welcome_label.Name = "welcome_label";
             this.welcome_label.Size = new System.Drawing.Size(293, 36);
             this.welcome_label.TabIndex = 28;
@@ -257,7 +257,7 @@
             this.password_label.AutoSize = true;
             this.password_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
+            this.password_label.ForeColor = System.Drawing.Color.Silver;
             this.password_label.Location = new System.Drawing.Point(293, 485);
             this.password_label.Name = "password_label";
             this.password_label.Size = new System.Drawing.Size(53, 13);
@@ -280,7 +280,7 @@
             this.user_name_label.AutoSize = true;
             this.user_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.user_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
+            this.user_name_label.ForeColor = System.Drawing.Color.Silver;
             this.user_name_label.Location = new System.Drawing.Point(293, 378);
             this.user_name_label.Name = "user_name_label";
             this.user_name_label.Size = new System.Drawing.Size(55, 13);
@@ -362,7 +362,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1370, 749);
+            this.ClientSize = new System.Drawing.Size(1621, 1061);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.logo_panel);
             this.Controls.Add(this.panel1);

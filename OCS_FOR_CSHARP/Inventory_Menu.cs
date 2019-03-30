@@ -179,15 +179,16 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Visible = false;
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
-            Card_Table_Panel.RowCount = 1;
+            //Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
+            Card_Table_Panel.RowCount = 0;
             Card_Table_Panel.AutoScroll = true;
-            Card_Table_Panel.Controls.Add(new CheckBox { Name = "Inventory_Checkbox", CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, 0);
+            /*Card_Table_Panel.Controls.Add(new CheckBox { Name = "Inventory_Checkbox", CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Name_Button", Text = "Name", Dock = DockStyle.Fill }, 1, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Type_Button", Text = "Type", Dock = DockStyle.Fill }, 2, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Expansion_Button", Text = "Expansion", Dock = DockStyle.Fill }, 3, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Number_Button", Text = "Number", Dock = DockStyle.Fill }, 4, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Mana_Button", Text = "Mana", Dock = DockStyle.Fill }, 5, 0);
-            Card_Table_Panel.Controls.Add(new Button { Name = "Date_Button", Text = "Date", Dock = DockStyle.Fill }, 6, 0);
+            Card_Table_Panel.Controls.Add(new Button { Name = "Date_Button", Text = "Date", Dock = DockStyle.Fill }, 6, 0);*/
 
 
             cards = Get_Inventory();
@@ -204,46 +205,47 @@ namespace OCS_FOR_CSHARP
             int displayRange = display_upper - display_lower;
             int cardIndex = display_lower;
             Card_Table_Panel.RowCount += displayRange;
+
             /*
              * display count will be max 20 for the display limit
              * subtract 20 from the card count if the card count is greater than 20
              */
 
             // TO DO:
-            // Add refresh button to refresh the table
-            // clicking the save button for the add new card should also refresh the table
             // Cards remaining should also be re-initialized
 
 
             /* begin populating table, start at second row so the first row containing buttons is not overwritten */
-            for (int i = 1; i <= displayRange; i++)
+            for (int i = 0; i < displayRange; i++)
             {
+                //Card_Table_Panel.RowStyles[0].Height = 200;
                 // create a new row for each card
                 /* begin popluating rows with cards */
-
                 // populate each row with a checkbox
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
                 Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
 
                 // card name
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 1, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 1, i);
 
                 // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 2, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 2, i);
 
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 3, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 4, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 4, i);
 
                 // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 5, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 5, i);
 
                 // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, TextAlign = ContentAlignment.MiddleLeft }, 6, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 6, i);
                 cardIndex++;
             }
+
+
             AutoScroll = true;
             Card_Table_Panel.Visible = true;
             if(cards.Count() > 20 && display_upper < cards.Count())
@@ -299,6 +301,11 @@ namespace OCS_FOR_CSHARP
         {
             display_lower -= 20;
             refreshTable();
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
