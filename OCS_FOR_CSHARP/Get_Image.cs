@@ -279,7 +279,7 @@ namespace OCS_FOR_CSHARP
                     }
                     else
                     {
-                        tempCard.card = new CardObject { name = "Card Not Found" };
+                        tempCard.card = new CardObject { name = "Unknown Card" };
                     }
                     tempCard.cardStatus = Color.Red;
                     addToList(tempCard);
