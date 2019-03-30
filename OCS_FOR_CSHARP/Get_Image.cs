@@ -219,7 +219,6 @@ namespace OCS_FOR_CSHARP
         {
             if (Photo_Filepath != null && Cam_Picture_Box.Image != null)
             {
-                CardObject tempCard = new CardObject();
                 try
                 {
                     //picture from web cam
@@ -266,15 +265,22 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
                     textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
-                    tempCard.name = textBoxString;
+                    CardName.Text = textBoxString;
 
-                    textBox1.Text += "\n" + textBoxString;
                     addToList(findCardsWithName(textBoxString));
                     cardImages.Add(originalImg);
                 }
                 catch (Exception ex)
                 {
-
+                    cardWrapper tempCard = new cardWrapper();
+                    if(CardName.Text != "Name" && CardName.Text != "")
+                    {
+                        tempCard.card = new CardObject { name = CardName.Text, }
+                    }
+                    tempCard.cardStatus = Color.Yellow;
+                    addToList(tempCard);
+                    cardImages.Add((Bitmap)Display_Picture_Box.Image.Clone());
+                    if (connection.State == ConnectionState.Open) connection.Close();
                 }//need to add exception functionality
             }
         }
@@ -319,15 +325,21 @@ namespace OCS_FOR_CSHARP
             //if (!Card_Table_Panel.AutoScroll) Card_Table_Panel.AutoScroll = true;
             cards.Add(sentCard);
 
+
             // begin popluating rows with cards
             // populate each row with a checkbox
-            //Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter }, 0, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true }, 1, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true }, 2, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true }, 3, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true }, 4, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true }, 5, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, rowOffset);
+            if (sentCard.needsAttention)
+            {
+                cardStatus
+            }
+
+            Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = cardStatus }, 0, Card_Table_Panel.RowCount - 1);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, BackColor = cardStatus }, 1, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, BackColor = cardStatus }, 2, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, BackColor = cardStatus }, 3, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true, BackColor = cardStatus }, 4, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, BackColor = cardStatus }, 5, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = cardStatus }, 6, rowOffset);
             Card_Table_Panel.Visible = true;
         }
 
@@ -343,19 +355,12 @@ namespace OCS_FOR_CSHARP
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (cards.Count > 0)
-            {
-                Add_Cards_To_Inventory();
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
-            }
+            Card_Boarder.Visible = false;
             if (frame != null)//if webcam is never opened before closing
             {
                 frame.Stop(); //I shutdown the webcam if application is closed
             }
+            Cam_Picture_Box.Image = null;
         }
 
         private void Output_Label_Click(object sender, EventArgs e)
@@ -447,7 +452,7 @@ namespace OCS_FOR_CSHARP
             for (int i = 0; i < cards.Count; i++)
             {
                 exists = false;
-                connection.Open();
+                connection.Open(); 
 
                 using (var cmd = new NpgsqlCommand("new_trans_event", connection))
                 {
@@ -571,13 +576,14 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
                     textBoxString = textBoxString.Trim('\n');//removes spaces and return characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
+                    CardName.Text = textBoxString; 
 
                     cards.Add(findCardsWithName(textBoxString));
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(ex.ToString());
-                    connection.Close();
+                    if (connection.State == ConnectionState.Open) connection.Close();
                 }//need to add exception functionality
             }
         }
@@ -608,6 +614,11 @@ namespace OCS_FOR_CSHARP
                 frame.Stop(); //I shutdown the webcam if application is closed
             }
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
 
@@ -618,13 +629,12 @@ namespace OCS_FOR_CSHARP
         public char foil, prerelease;
         public int count, card_ID;
         public char condition;
-        public bool needsAttention;
+        public Color cardStatus;
 
         public cardWrapper()
         {
             foil = 'n';
             prerelease = 'n';
-            needsAttention = false;
         }
 
         ~cardWrapper()
