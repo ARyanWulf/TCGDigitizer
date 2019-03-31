@@ -207,7 +207,7 @@ namespace OCS_FOR_CSHARP
             }
             int displayRange = display_upper - display_lower;
             int cardIndex = display_lower;
-            Card_Table_Panel.RowCount += displayRange;
+            //Card_Table_Panel.RowCount += displayRange;
             /*
              * display count will be max 20 for the display limit
              * subtract 20 from the card count if the card count is greater than 20
@@ -225,25 +225,27 @@ namespace OCS_FOR_CSHARP
                 /* begin popluating rows with cards */
                 // populate each row with a checkbox
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
-                Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
+                Card_Table_Panel.RowCount++;
+                Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
+                Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill}, 0, i);
 
                 // card name
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 1, i);
 
                 // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 2, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 2, i);
 
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 3, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 4, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 4, i);
 
                 // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 5, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 5, i);
 
                 // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 6, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 6, i);
                 cardIndex++;
             }
 
