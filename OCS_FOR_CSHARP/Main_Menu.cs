@@ -127,6 +127,8 @@ namespace OCS_FOR_CSHARP
             panel2.Controls.Add(scan_form);
             scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             scan_form.Dock = DockStyle.Fill;
+            scan_form.Size = new Size(panel2.Width, panel2.Height);
+            scan_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             scan_form.Show();
         }
 
@@ -142,6 +144,8 @@ namespace OCS_FOR_CSHARP
             panel2.Controls.Add(inventory_form);
             inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             inventory_form.Dock = DockStyle.Fill;
+            inventory_form.Size = new Size(panel2.Width, panel2.Height);
+            inventory_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             inventory_form.Show();
         }
 
@@ -157,6 +161,8 @@ namespace OCS_FOR_CSHARP
             panel2.Controls.Add(settings_form);
             settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             settings_form.Dock = DockStyle.Fill;
+            settings_form.Size = new Size(panel2.Width, panel2.Height);
+            settings_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             settings_form.Show();
 
         }
