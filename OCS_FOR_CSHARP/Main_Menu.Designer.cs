@@ -167,7 +167,6 @@
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.welcome_label);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.login_button);
             this.panel2.Controls.Add(this.login_label);
@@ -175,7 +174,6 @@
             this.panel2.Controls.Add(this.login_password_textbox);
             this.panel2.Controls.Add(this.user_name_label);
             this.panel2.Controls.Add(this.login_username_textbox);
-            this.panel2.Controls.Add(this.logout_link);
             this.panel2.Controls.Add(this.CloseTextButton);
             this.panel2.Controls.Add(this.ContactText);
             this.panel2.Location = new System.Drawing.Point(321, 175);
@@ -187,7 +185,7 @@
             // 
             this.welcome_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.welcome_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome_label.Location = new System.Drawing.Point(71, 594);
+            this.welcome_label.Location = new System.Drawing.Point(1002, 71);
             this.welcome_label.Name = "welcome_label";
             this.welcome_label.Size = new System.Drawing.Size(293, 36);
             this.welcome_label.TabIndex = 28;
@@ -287,7 +285,7 @@
             // 
             this.logout_link.AutoSize = true;
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logout_link.Location = new System.Drawing.Point(74, 630);
+            this.logout_link.Location = new System.Drawing.Point(1203, 107);
             this.logout_link.Name = "logout_link";
             this.logout_link.Size = new System.Drawing.Size(72, 25);
             this.logout_link.TabIndex = 20;
@@ -344,7 +342,9 @@
             this.alphaGradientPanel1.Colors.Add(this.colorWithAlpha2);
             this.alphaGradientPanel1.Colors.Add(this.colorWithAlpha1);
             this.alphaGradientPanel1.ContentPadding = new System.Windows.Forms.Padding(0);
+            this.alphaGradientPanel1.Controls.Add(this.welcome_label);
             this.alphaGradientPanel1.Controls.Add(this.LogoPicture);
+            this.alphaGradientPanel1.Controls.Add(this.logout_link);
             this.alphaGradientPanel1.CornerRadius = 20;
             this.alphaGradientPanel1.Corners = System.Windows.Forms.Corner.None;
             this.alphaGradientPanel1.Gradient = true;
@@ -393,6 +393,7 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.alphaGradientPanel1.ResumeLayout(false);
+            this.alphaGradientPanel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
