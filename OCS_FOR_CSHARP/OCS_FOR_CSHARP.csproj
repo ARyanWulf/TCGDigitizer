@@ -46,6 +46,9 @@
     <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
       <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
     </Reference>
+    <Reference Include="AlphaGradientPanel, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AlphaGradientPanel.1.1.2.0\lib\net40\AlphaGradientPanel.dll</HintPath>
+    </Reference>
     <Reference Include="Json, Version=1.0.0.0, Culture=neutral, PublicKeyToken=c6752e45808247c2, processorArchitecture=MSIL">
       <HintPath>..\packages\JSON.1.0.1\lib\net40\Json.dll</HintPath>
     </Reference>
@@ -58,6 +61,8 @@
     <Reference Include="Npgsql, Version=4.0.5.0, Culture=neutral, PublicKeyToken=5d8b90d52f46fda7, processorArchitecture=MSIL">
       <HintPath>..\packages\Npgsql.4.0.5\lib\net451\Npgsql.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
@@ -79,6 +84,7 @@
     <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
     </Reference>
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -91,6 +97,9 @@
     <Reference Include="Tesseract, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Tesseract.3.3.0\lib\net45\Tesseract.dll</HintPath>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardHolder.cs" />
@@ -105,6 +114,15 @@
     </Compile>
     <Compile Include="Create_User.Designer.cs">
       <DependentUpon>Create_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GradientPanels.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Login_Screen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login_Screen.Designer.cs">
+      <DependentUpon>Login_Screen.cs</DependentUpon>
     </Compile>
     <Compile Include="Review.cs">
       <SubType>Form</SubType>
@@ -146,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Get_Image.resx">
       <DependentUpon>Get_Image.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login_Screen.resx">
+      <DependentUpon>Login_Screen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Review.resx">
       <DependentUpon>Review.cs</DependentUpon>
