@@ -280,7 +280,7 @@ namespace OCS_FOR_CSHARP
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());//CHANGED THIS
                     connection.Close();
                 }//need to add exception functionality
             }
@@ -368,7 +368,7 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
+                System.Windows.Forms.MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");//CHANGED THIS
             }
             if (frame != null)//if webcam is never opened before closing
             {
@@ -673,7 +673,7 @@ namespace OCS_FOR_CSHARP
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
+                    System.Windows.Forms.MessageBox.Show(ex.ToString());//CHANGED THIS
                     connection.Close();
                 }//need to add exception functionality
             }

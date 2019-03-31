@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -91,6 +92,8 @@ namespace OCS_FOR_CSHARP
             panel2.Controls.Add(login_prompt);
             login_prompt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             login_prompt.Dock = DockStyle.Fill;
+            login_prompt.Size = new Size(panel2.Width, panel2.Height);
+            login_prompt.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             login_prompt.Show();
         }
 
@@ -423,6 +426,16 @@ namespace OCS_FOR_CSHARP
         }
 
         private void logout_link_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
