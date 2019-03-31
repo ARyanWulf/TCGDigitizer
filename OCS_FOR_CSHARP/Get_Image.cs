@@ -532,67 +532,6 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        private void TakePicture()
-        {
-            if (Photo_Filepath != null && Cam_Picture_Box.Image != null)
-            {
-                try
-                {
-                    //picture from web cam
-                    Bitmap originalImg = (Bitmap)Cam_Picture_Box.Image.Clone();
-                    //rotate 90 degrees
-                    originalImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
-
-                    //Dim of saved image
-                    int xStart = 1;
-                    int yStart = 1;
-                    int xEnd = originalImg.Width - xStart;
-                    int yEnd = originalImg.Height - yStart;
-                    int xWidth = (xEnd - xStart);
-                    int yHeight = (yEnd - yStart);
-
-                    //Establishing size of crop area based off original image (x,y,width,height)
-                    //All percents are measured/calulated ratios based off card dimensions
-                    Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.055/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.06/*0.05037037*/));
-
-                    //Bitmap that will store altered image (width,height)
-                    Bitmap nameHeaderBitmap = new Bitmap(nameHeaderCropRect.Width, nameHeaderCropRect.Height);
-
-                    //blank bitmap to graphics object. ready for changes
-                    Graphics nameHeadGraphics = Graphics.FromImage(nameHeaderBitmap);
-
-                    //original image cropped to two different images
-                    nameHeadGraphics.DrawImage(originalImg, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
-
-                    //calls picture alteration function to increase contrast and adjust image color
-                    Adjust_Tesseract_Img(15, nameHeaderBitmap);
-
-                    //displays original image in picture preview box
-                    Display_Picture_Box.Image = originalImg;
-                    //displays name header image in name header picture box
-                    Name_Header_Pic_Box.Image = nameHeaderBitmap;
-
-                    //will hold tesseract return string
-                    string textBoxString;
-                    var ocr = new TesseractEngine("./tessdata", "eng", EngineMode.TesseractAndCube);
-                    var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
-                    textBoxString = page.GetText();//gets tesseract text
-                    textBox1.Text = textBoxString;
-                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
-                    textBoxString = textBoxString.Trim('\n');//removes spaces and return characters
-                    textBoxString = textBoxString.Trim(' ');//removes spaces and return characters
-                    CardName.Text = textBoxString; 
-
-                    cards.Add(findCardsWithName(textBoxString));
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.ToString());
-                    if (connection.State == ConnectionState.Open) connection.Close();
-                }//need to add exception functionality
-            }
-        }
-
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
             Close();
@@ -612,7 +551,7 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
+                //MessageBox.Show("Error! No cards in queue, please scan something or press cancel.");
             }
             if (frame != null)//if webcam is never opened before closing
             {
@@ -621,6 +560,16 @@ namespace OCS_FOR_CSHARP
         }
 
         private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Card_Set_Combobox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cardFlavorLabel_Click(object sender, EventArgs e)
         {
 
         }
