@@ -144,7 +144,7 @@
             this.panel1.Controls.Add(this.QuitButton);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 1322);
+            this.panel1.Size = new System.Drawing.Size(321, 901);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -153,7 +153,7 @@
             this.LogoPicture.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.LogoPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.LogoPicture.Image = global::OCS_FOR_CSHARP.Properties.Resources.TCG_Logo_Transparent;
-            this.LogoPicture.Location = new System.Drawing.Point(301, 3);
+            this.LogoPicture.Location = new System.Drawing.Point(252, 3);
             this.LogoPicture.MaximumSize = new System.Drawing.Size(600, 150);
             this.LogoPicture.Name = "LogoPicture";
             this.LogoPicture.Size = new System.Drawing.Size(600, 140);
@@ -180,14 +180,14 @@
             this.panel2.Controls.Add(this.ContactText);
             this.panel2.Location = new System.Drawing.Point(321, 175);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1339, 1147);
+            this.panel2.Size = new System.Drawing.Size(1241, 726);
             this.panel2.TabIndex = 18;
             // 
             // welcome_label
             // 
             this.welcome_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.welcome_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome_label.Location = new System.Drawing.Point(71, 594);
+            this.welcome_label.Location = new System.Drawing.Point(-27, 594);
             this.welcome_label.Name = "welcome_label";
             this.welcome_label.Size = new System.Drawing.Size(293, 36);
             this.welcome_label.TabIndex = 28;
@@ -232,7 +232,7 @@
             this.login_label.ForeColor = System.Drawing.Color.Silver;
             this.login_label.Location = new System.Drawing.Point(287, 304);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(333, 56);
+            this.login_label.Size = new System.Drawing.Size(228, 38);
             this.login_label.TabIndex = 25;
             this.login_label.Text = "User Login";
             this.login_label.Click += new System.EventHandler(this.login_label_Click_1);
@@ -245,7 +245,7 @@
             this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.password_label.Location = new System.Drawing.Point(293, 485);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(78, 20);
+            this.password_label.Size = new System.Drawing.Size(53, 13);
             this.password_label.TabIndex = 24;
             this.password_label.Text = "Password";
             this.password_label.Click += new System.EventHandler(this.password_label_Click_1);
@@ -256,7 +256,7 @@
             this.login_password_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_password_textbox.Location = new System.Drawing.Point(297, 508);
             this.login_password_textbox.Name = "login_password_textbox";
-            this.login_password_textbox.Size = new System.Drawing.Size(323, 53);
+            this.login_password_textbox.Size = new System.Drawing.Size(323, 38);
             this.login_password_textbox.TabIndex = 23;
             this.login_password_textbox.TextChanged += new System.EventHandler(this.login_password_textbox_TextChanged_1);
             // 
@@ -268,7 +268,7 @@
             this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.user_name_label.Location = new System.Drawing.Point(293, 378);
             this.user_name_label.Name = "user_name_label";
-            this.user_name_label.Size = new System.Drawing.Size(83, 20);
+            this.user_name_label.Size = new System.Drawing.Size(55, 13);
             this.user_name_label.TabIndex = 22;
             this.user_name_label.Text = "Username";
             this.user_name_label.Click += new System.EventHandler(this.user_name_label_Click_1);
@@ -279,7 +279,7 @@
             this.login_username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_username_textbox.Location = new System.Drawing.Point(297, 401);
             this.login_username_textbox.Name = "login_username_textbox";
-            this.login_username_textbox.Size = new System.Drawing.Size(323, 53);
+            this.login_username_textbox.Size = new System.Drawing.Size(323, 38);
             this.login_username_textbox.TabIndex = 21;
             this.login_username_textbox.TextChanged += new System.EventHandler(this.login_username_textbox_TextChanged_1);
             // 
@@ -289,7 +289,7 @@
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logout_link.Location = new System.Drawing.Point(74, 630);
             this.logout_link.Name = "logout_link";
-            this.logout_link.Size = new System.Drawing.Size(72, 25);
+            this.logout_link.Size = new System.Drawing.Size(52, 17);
             this.logout_link.TabIndex = 20;
             this.logout_link.TabStop = true;
             this.logout_link.Text = "Logout";
@@ -361,7 +361,7 @@
             this.alphaGradientPanel1.Location = new System.Drawing.Point(321, 0);
             this.alphaGradientPanel1.Name = "alphaGradientPanel1";
             this.alphaGradientPanel1.Rounded = true;
-            this.alphaGradientPanel1.Size = new System.Drawing.Size(1339, 175);
+            this.alphaGradientPanel1.Size = new System.Drawing.Size(1241, 175);
             this.alphaGradientPanel1.TabIndex = 19;
             // 
             // colorWithAlpha2
@@ -380,7 +380,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1638, 1266);
+            this.ClientSize = new System.Drawing.Size(1540, 845);
             this.Controls.Add(this.alphaGradientPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
