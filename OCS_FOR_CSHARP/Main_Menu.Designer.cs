@@ -143,7 +143,7 @@
             this.panel1.Controls.Add(this.QuitButton);
             this.panel1.Location = new System.Drawing.Point(0, 300);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 1387);
+            this.panel1.Size = new System.Drawing.Size(321, 1497);
             this.panel1.TabIndex = 17;
             // 
             // corner_logo_picturebox
@@ -198,14 +198,14 @@
             this.panel2.Controls.Add(this.ContactText);
             this.panel2.Location = new System.Drawing.Point(320, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1161, 1105);
+            this.panel2.Size = new System.Drawing.Size(1135, 1105);
             this.panel2.TabIndex = 18;
             // 
             // welcome_label
             // 
             this.welcome_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.welcome_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome_label.Location = new System.Drawing.Point(-95, 899);
+            this.welcome_label.Location = new System.Drawing.Point(-77, 899);
             this.welcome_label.Name = "welcome_label";
             this.welcome_label.Size = new System.Drawing.Size(293, 36);
             this.welcome_label.TabIndex = 28;
