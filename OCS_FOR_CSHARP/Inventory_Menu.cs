@@ -302,9 +302,11 @@ namespace OCS_FOR_CSHARP
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            //TopPanel.Visible = false;
             RefreshButton.Enabled = false;
             refreshTable();
             RefreshButton.Enabled = true;
+            //TopPanel.Visible = true;
         }
 
         private void Page_Forward_Button_Click(object sender, EventArgs e)
