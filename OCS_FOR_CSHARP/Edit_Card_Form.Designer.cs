@@ -137,6 +137,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.BackColor = System.Drawing.Color.SlateGray;
             this.textBox1.Location = new System.Drawing.Point(50, 438);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -259,6 +260,7 @@
             // 
             // Card_Additional_TextBox
             // 
+            this.Card_Additional_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Additional_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Additional_TextBox.Location = new System.Drawing.Point(450, 130);
             this.Card_Additional_TextBox.Name = "Card_Additional_TextBox";
@@ -269,6 +271,7 @@
             // 
             // Card_Type_TextBox
             // 
+            this.Card_Type_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Type_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Type_TextBox.Location = new System.Drawing.Point(450, 100);
             this.Card_Type_TextBox.Name = "Card_Type_TextBox";
@@ -278,6 +281,7 @@
             // 
             // Card_Toughness_TextBox
             // 
+            this.Card_Toughness_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Toughness_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Toughness_TextBox.Location = new System.Drawing.Point(450, 450);
             this.Card_Toughness_TextBox.Name = "Card_Toughness_TextBox";
@@ -287,6 +291,7 @@
             // 
             // Card_Power_TextBox
             // 
+            this.Card_Power_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Power_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Power_TextBox.Location = new System.Drawing.Point(450, 420);
             this.Card_Power_TextBox.Name = "Card_Power_TextBox";
@@ -296,6 +301,7 @@
             // 
             // Card_Flavor_Text_TextBox
             // 
+            this.Card_Flavor_Text_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Flavor_Text_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Flavor_Text_TextBox.Location = new System.Drawing.Point(450, 340);
             this.Card_Flavor_Text_TextBox.Multiline = true;
@@ -306,6 +312,7 @@
             // 
             // Card_Description_TextBox
             // 
+            this.Card_Description_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Description_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Description_TextBox.Location = new System.Drawing.Point(450, 219);
             this.Card_Description_TextBox.Multiline = true;
@@ -317,6 +324,7 @@
             // 
             // Card_Expansion_TextBox
             // 
+            this.Card_Expansion_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Expansion_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Expansion_TextBox.Location = new System.Drawing.Point(450, 190);
             this.Card_Expansion_TextBox.Name = "Card_Expansion_TextBox";
@@ -326,6 +334,7 @@
             // 
             // Card_Mana_Cost_TextBox
             // 
+            this.Card_Mana_Cost_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Mana_Cost_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Mana_Cost_TextBox.Location = new System.Drawing.Point(450, 160);
             this.Card_Mana_Cost_TextBox.Name = "Card_Mana_Cost_TextBox";
@@ -345,6 +354,7 @@
             // 
             // textBox2
             // 
+            this.textBox2.BackColor = System.Drawing.Color.SlateGray;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.textBox2.Location = new System.Drawing.Point(450, 479);
             this.textBox2.Name = "textBox2";
@@ -378,6 +388,7 @@
             // 
             // Name_Textbox
             // 
+            this.Name_Textbox.BackColor = System.Drawing.Color.SlateGray;
             this.Name_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Name_Textbox.Location = new System.Drawing.Point(450, 66);
             this.Name_Textbox.Name = "Name_Textbox";
