@@ -115,9 +115,6 @@
     <Compile Include="Create_User.Designer.cs">
       <DependentUpon>Create_User.cs</DependentUpon>
     </Compile>
-    <Compile Include="GradientPanels.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Login_Screen.cs">
       <SubType>Form</SubType>
     </Compile>

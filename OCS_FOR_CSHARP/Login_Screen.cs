@@ -101,5 +101,10 @@ namespace OCS_FOR_CSHARP
                 login_password_textbox.Text = pass_mask;
             }
         }
+
+        private void Login_Screen_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

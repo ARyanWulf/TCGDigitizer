@@ -90,7 +90,7 @@ namespace OCS_FOR_CSHARP
             login_prompt.evtFrm += new ShowFrm(logged_in);
             login_prompt.TopLevel = false;
             panel2.Controls.Add(login_prompt);
-            login_prompt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            login_prompt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             login_prompt.Dock = DockStyle.Fill;
             login_prompt.Size = new Size(panel2.Width, panel2.Height);
             login_prompt.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
@@ -125,7 +125,7 @@ namespace OCS_FOR_CSHARP
             Form1 scan_form = new Form1();
             scan_form.TopLevel = false;
             panel2.Controls.Add(scan_form);
-            scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             scan_form.Dock = DockStyle.Fill;
             scan_form.Size = new Size(panel2.Width, panel2.Height);
             scan_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
@@ -142,7 +142,7 @@ namespace OCS_FOR_CSHARP
             Inventory_Menu inventory_form = new Inventory_Menu();
             inventory_form.TopLevel = false;
             panel2.Controls.Add(inventory_form);
-            inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             inventory_form.Dock = DockStyle.Fill;
             inventory_form.Size = new Size(panel2.Width, panel2.Height);
             inventory_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
@@ -159,7 +159,7 @@ namespace OCS_FOR_CSHARP
             Settings settings_form = new Settings();
             settings_form.TopLevel = false;
             panel2.Controls.Add(settings_form);
-            settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             settings_form.Dock = DockStyle.Fill;
             settings_form.Size = new Size(panel2.Width, panel2.Height);
             settings_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);

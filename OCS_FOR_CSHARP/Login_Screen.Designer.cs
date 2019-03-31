@@ -138,6 +138,7 @@
             // 
             // Login_Screen
             // 
+            this.AcceptButton = this.login_button;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
@@ -152,6 +153,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Login_Screen";
             this.Text = "Login_Screen";
+            this.Load += new System.EventHandler(this.Login_Screen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
