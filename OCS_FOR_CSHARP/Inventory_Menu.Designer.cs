@@ -427,8 +427,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1270, 863);
             this.Controls.Add(this.PagePanel);
@@ -438,7 +436,6 @@
             this.Controls.Add(this.Cancel_Button);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Inventory_Menu";
-            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "TCG Digitizer - Inventory";
             this.Load += new System.EventHandler(this.Inventory_Menu_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
