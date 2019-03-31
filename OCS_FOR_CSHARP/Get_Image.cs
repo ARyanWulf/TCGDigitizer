@@ -265,6 +265,7 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
                     textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
+                    textBox1.Text = textBoxString;
                     CardName.Text = textBoxString;
 
                     addToList(findCardWithName(textBoxString));
@@ -627,7 +628,10 @@ namespace OCS_FOR_CSHARP
 
         private void CardName_TextChanged(object sender, EventArgs e)
         {
-            var tempList = findCardsWithName(CardName.Text);
+            if(CardName.Text != textBox1.Text)
+            {
+                var tempList = findCardsWithName(CardName.Text);
+            }
 
             //for(int i = 0;)
         }
