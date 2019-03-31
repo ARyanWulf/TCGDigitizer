@@ -56,6 +56,9 @@ namespace OCS_FOR_CSHARP
             display_lower = 0;
             display_upper = 0;
             Page_Back_Button.Enabled = false;
+            Size tempSize = panel1.MaximumSize;
+            tempSize.Height = Height;
+            panel1.MaximumSize = tempSize;
         }
 
         private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
@@ -176,7 +179,9 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
-            Card_Table_Panel.Visible = false;
+            panel2.Visible = false;
+            panel1.Visible = false;
+            //Card_Table_Panel.Visible = false;
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
             //Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
@@ -207,7 +212,7 @@ namespace OCS_FOR_CSHARP
             }
             int displayRange = display_upper - display_lower;
             int cardIndex = display_lower;
-            //Card_Table_Panel.RowCount += displayRange;
+            Card_Table_Panel.RowCount += displayRange;
             /*
              * display count will be max 20 for the display limit
              * subtract 20 from the card count if the card count is greater than 20
@@ -225,7 +230,7 @@ namespace OCS_FOR_CSHARP
                 /* begin popluating rows with cards */
                 // populate each row with a checkbox
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
-                Card_Table_Panel.RowCount++;
+                //Card_Table_Panel.RowCount++;
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
                 Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill}, 0, i);
 
@@ -256,7 +261,9 @@ namespace OCS_FOR_CSHARP
             panel1.HorizontalScroll.Maximum = 0;
             panel1.AutoScroll = true;
 
-            Card_Table_Panel.Visible = true;
+            //Card_Table_Panel.Visible = true;
+            panel1.Visible = true;
+            panel2.Visible = true;
             if(cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
@@ -295,9 +302,11 @@ namespace OCS_FOR_CSHARP
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            //TopPanel.Visible = false;
             RefreshButton.Enabled = false;
             refreshTable();
             RefreshButton.Enabled = true;
+            //TopPanel.Visible = true;
         }
 
         private void Page_Forward_Button_Click(object sender, EventArgs e)

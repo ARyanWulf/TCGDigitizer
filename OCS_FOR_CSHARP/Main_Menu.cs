@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,14 +24,14 @@ namespace OCS_FOR_CSHARP
             //this.FormBorderStyle = FormBorderStyle.Sizable;
             //this.Size = designSize;
 
-            login_label.Visible = true;
-            login_username_textbox.Visible = true;
-            user_name_label.Visible = true;
-            login_password_textbox.Visible = true;
-            password_label.Visible = true;
-            login_button.Visible = true;
-            logout_link.Visible = false;
-            textBox1.Visible = true;
+            //login_label.Visible = true;
+            //login_username_textbox.Visible = true;
+            //user_name_label.Visible = true;
+            //login_password_textbox.Visible = true;
+            //password_label.Visible = true;
+            //login_button.Visible = true;
+            //logout_link.Visible = false;
+            //textBox1.Visible = true;
 
             //REMOVE FOR FINAL PRODUCT
             //login_username_textbox.Text = "admin";
@@ -39,18 +40,33 @@ namespace OCS_FOR_CSHARP
             login_username_textbox.GotFocus += login_username_textbox_GotFocus;
             login_password_textbox.GotFocus += login_password_textbox_GotFocus;
 
-            welcome_label.Visible = false;
-            welcome_label.TextAlign = ContentAlignment.MiddleRight;
+            //welcome_label.Visible = false;
+            //welcome_label.TextAlign = ContentAlignment.MiddleRight;
 
             //Final build should change all of these to false TEMP
-            ScanButton.Enabled = true;
-            InventoryButton.Enabled = true;
-            SettingsButton.Enabled = true;
+            ScanButton.Enabled = false;
+            InventoryButton.Enabled = false;
+            SettingsButton.Enabled = false;
+
+            Login_Screen();
 
             CurrentUser.user_ID = 0;
             CurrentUser.prvlg_lvl = 0;
         }
 
+        public bool ActiveUser
+        {
+            get
+            {
+                return ScanButton.Enabled;
+            }
+            set
+            {
+                ScanButton.Enabled = value;
+                InventoryButton.Enabled = value;
+                SettingsButton.Enabled = value;
+            }
+        }
         /*REMOVE IF NOT USED FOR UI IMPROVEMENTS 3/12
         protected override void WndProc(ref Message m)
         {
@@ -66,6 +82,28 @@ namespace OCS_FOR_CSHARP
             base.WndProc(ref m);
         }
         */
+
+        private void Login_Screen()
+        {
+            panel2.Controls.Clear();
+            Login_Screen login_prompt = new Login_Screen();
+            login_prompt.evtFrm += new ShowFrm(logged_in);
+            login_prompt.TopLevel = false;
+            panel2.Controls.Add(login_prompt);
+            login_prompt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            login_prompt.Dock = DockStyle.Fill;
+            login_prompt.Size = new Size(panel2.Width, panel2.Height);
+            login_prompt.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+            login_prompt.Show();
+        }
+
+        void logged_in()
+        {
+            panel2.Controls.Clear();
+            ScanButton.Enabled = true;
+            InventoryButton.Enabled = true;
+            SettingsButton.Enabled = true;
+        }
 
         private void login_username_textbox_GotFocus(object sender, EventArgs e)
         {
@@ -87,8 +125,10 @@ namespace OCS_FOR_CSHARP
             Form1 scan_form = new Form1();
             scan_form.TopLevel = false;
             panel2.Controls.Add(scan_form);
-            scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             scan_form.Dock = DockStyle.Fill;
+            scan_form.Size = new Size(panel2.Width, panel2.Height);
+            scan_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             scan_form.Show();
         }
 
@@ -102,8 +142,10 @@ namespace OCS_FOR_CSHARP
             Inventory_Menu inventory_form = new Inventory_Menu();
             inventory_form.TopLevel = false;
             panel2.Controls.Add(inventory_form);
-            inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             inventory_form.Dock = DockStyle.Fill;
+            inventory_form.Size = new Size(panel2.Width, panel2.Height);
+            inventory_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             inventory_form.Show();
         }
 
@@ -117,8 +159,10 @@ namespace OCS_FOR_CSHARP
             Settings settings_form = new Settings();
             settings_form.TopLevel = false;
             panel2.Controls.Add(settings_form);
-            settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             settings_form.Dock = DockStyle.Fill;
+            settings_form.Size = new Size(panel2.Width, panel2.Height);
+            settings_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             settings_form.Show();
 
         }
@@ -388,6 +432,16 @@ namespace OCS_FOR_CSHARP
         }
 
         private void logout_link_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
