@@ -143,7 +143,7 @@
             this.panel1.Controls.Add(this.QuitButton);
             this.panel1.Location = new System.Drawing.Point(0, 300);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 1387);
+            this.panel1.Size = new System.Drawing.Size(321, 1442);
             this.panel1.TabIndex = 17;
             // 
             // corner_logo_picturebox
@@ -373,7 +373,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1621, 1050);
+            this.ClientSize = new System.Drawing.Size(1647, 1050);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.logo_panel);
             this.Controls.Add(this.panel1);
