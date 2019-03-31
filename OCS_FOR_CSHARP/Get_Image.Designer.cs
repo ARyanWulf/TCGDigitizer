@@ -226,8 +226,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 91F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(1131, 93);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 92F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(1131, 94);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Date_Button
@@ -239,7 +239,7 @@
             this.Date_Button.Location = new System.Drawing.Point(956, 6);
             this.Date_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Date_Button.Name = "Date_Button";
-            this.Date_Button.Size = new System.Drawing.Size(170, 81);
+            this.Date_Button.Size = new System.Drawing.Size(170, 82);
             this.Date_Button.TabIndex = 12;
             this.Date_Button.Text = "Date";
             this.Date_Button.UseVisualStyleBackColor = true;
@@ -253,7 +253,7 @@
             this.Mana_Button.Location = new System.Drawing.Point(778, 6);
             this.Mana_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(169, 81);
+            this.Mana_Button.Size = new System.Drawing.Size(169, 82);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -267,7 +267,7 @@
             this.Number_Button.Location = new System.Drawing.Point(600, 6);
             this.Number_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(169, 81);
+            this.Number_Button.Size = new System.Drawing.Size(169, 82);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -281,7 +281,7 @@
             this.Expansion_Button.Location = new System.Drawing.Point(422, 6);
             this.Expansion_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(169, 81);
+            this.Expansion_Button.Size = new System.Drawing.Size(169, 82);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -295,7 +295,7 @@
             this.Type_Button.Location = new System.Drawing.Point(244, 6);
             this.Type_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(169, 81);
+            this.Type_Button.Size = new System.Drawing.Size(169, 82);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -309,7 +309,7 @@
             this.Name_Button.Location = new System.Drawing.Point(66, 6);
             this.Name_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(169, 81);
+            this.Name_Button.Size = new System.Drawing.Size(169, 82);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -325,7 +325,7 @@
             this.Inventory_Checkbox.Location = new System.Drawing.Point(5, 6);
             this.Inventory_Checkbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(52, 81);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(52, 82);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             // 

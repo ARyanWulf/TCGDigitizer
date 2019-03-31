@@ -144,7 +144,7 @@
             this.panel1.Controls.Add(this.QuitButton);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 1400);
+            this.panel1.Size = new System.Drawing.Size(321, 1322);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -180,7 +180,7 @@
             this.panel2.Controls.Add(this.ContactText);
             this.panel2.Location = new System.Drawing.Point(321, 175);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1339, 1225);
+            this.panel2.Size = new System.Drawing.Size(1339, 1147);
             this.panel2.TabIndex = 18;
             // 
             // welcome_label
@@ -380,13 +380,14 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1638, 1344);
+            this.ClientSize = new System.Drawing.Size(1638, 1266);
             this.Controls.Add(this.alphaGradientPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Main_Menu";
             this.Text = "TCG Digitizer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Menu_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
