@@ -50,12 +50,17 @@ namespace OCS_FOR_CSHARP
             Close();
         }
 
-        // Autopopulate with a list of current users that exist in the system
         private void users_panel(object sender, PaintEventArgs e)
         {
 
         }
 
+        // Autopopulate with a list of current users that exist in the system
+        public void addToUserList()
+        {
+
+        }
+        
         private void button1_Click(object sender, EventArgs e)
         {
 

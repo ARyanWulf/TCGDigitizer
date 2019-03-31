@@ -474,7 +474,6 @@
         private System.Windows.Forms.TextBox Card_Toughness_TextBox;
         private System.Windows.Forms.TextBox Card_Power_TextBox;
         private System.Windows.Forms.TextBox Card_Flavor_Text_TextBox;
-        private System.Windows.Forms.TextBox Card_Description_TextBox;
         private System.Windows.Forms.TextBox Card_Expansion_TextBox;
         private System.Windows.Forms.TextBox Card_Mana_Cost_TextBox;
         private System.Windows.Forms.Label Card_Nmbr_Label;
@@ -482,5 +481,6 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TextBox Name_Textbox;
+        private System.Windows.Forms.TextBox Card_Description_TextBox;
     }
 }
