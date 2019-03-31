@@ -267,7 +267,7 @@ namespace OCS_FOR_CSHARP
                     textBoxString = textBoxString.Trim(' ');//removes spaces
                     CardName.Text = textBoxString;
 
-                    addToList(findCardsWithName(textBoxString));
+                    addToList(findCardWithName(textBoxString));
                     cardImages.Add(originalImg);
                 }
                 catch (Exception ex)
@@ -368,7 +368,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        private cardWrapper findCardsWithName(string cardName)
+        private cardWrapper findCardWithName(string cardName)
         {
             cardWrapper returnCard = new cardWrapper();
 
@@ -386,18 +386,19 @@ namespace OCS_FOR_CSHARP
                 cardWrapper tempWrapper = new cardWrapper();
                 CardObject tempCard = new CardObject();
 
+                var rowsAffected = cmd.ExecuteNonQuery();
+                if(rowsAffected > 1)
+                {
+                    tempWrapper.cardStatus = Color.Yellow;
+                }
                 tempCard.cardID = System.Convert.ToInt32(cmd.ExecuteScalar());
-                tempWrapper.card = tempCard;
-                returnCard = tempWrapper;
             }
 
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_id = " + returnCard.card.cardID, connection))
             {
                 NpgsqlDataReader reader = cmd.ExecuteReader();
-                int printings = 0;
                 while (reader.Read())
                 {
-                    printings++;
                     string temp;
                     cardWrapper tempWrapper = new cardWrapper();
                     CardObject tempCard = new CardObject();
@@ -431,10 +432,8 @@ namespace OCS_FOR_CSHARP
                     tempWrapper.card = tempCard;
 
                     returnCard = tempWrapper;
-                    if(printings > 1)
-                    {
-                        tempWrapper.cardStatus = Color.Yellow;
-                    }
+                    Card_Set_Combobox.Items.Add(tempCard.setCode);
+                    CardName.Items.Add(tempCard.name);
                 }
             }
             connection.Close();
@@ -446,6 +445,54 @@ namespace OCS_FOR_CSHARP
             else
             {
                 textBox1.Text += " Failed!";
+            }
+
+            CardName.Text = returnCard.card.name;
+            Card_Set_Combobox.Text = returnCard.card.setCode;
+            Card_Type_TextBox.Text = returnCard.card.type;
+            if (returnCard.card.text != "n/a")
+            {
+                cardTextTextbox.Visible = true;
+                cardTextLabel.Visible = true;
+                cardTextTextbox.Text = returnCard.card.text;
+            }
+            else
+            {
+                cardTextLabel.Visible = false;
+                cardTextTextbox.Visible = false;
+            }
+
+            if (returnCard.card.flavorText != "n/a")
+            {
+                cardFlavorLabel.Visible = true;
+                cardFlavorTextbox.Visible = true;
+                cardFlavorTextbox.Text = returnCard.card.flavorText;
+            }
+            else
+            {
+                cardFlavorLabel.Visible = false;
+                cardFlavorTextbox.Visible = false;
+            }
+
+            if(returnCard.card.loyalty != "n/a")
+            {
+                cardLoyaltyLabel.Visible = true;
+                cardPTLabel.Visible = false;
+                cardPTLTextbox.Visible = true;
+                cardPTLTextbox.Text = returnCard.card.loyalty;
+            }
+            else if(returnCard.card.power != "n/a")
+            {
+                cardPTLabel.Visible = true;
+                cardPTLTextbox.Visible = true;
+                cardLoyaltyLabel.Visible = false;
+                cardPTLTextbox.Text = returnCard.card.power + "/" + returnCard.card.toughness;
+            }
+            else
+            {
+                cardPTLabel.Visible = false;
+                cardPTLTextbox.Visible = false;
+                cardLoyaltyLabel.Visible = false;
             }
 
             return returnCard;
@@ -572,6 +619,77 @@ namespace OCS_FOR_CSHARP
         private void cardFlavorLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void CardName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void CardName_TextChanged(object sender, EventArgs e)
+        {
+            var tempList = findCardsWithName(CardName.Text);
+
+            //for(int i = 0;)
+        }
+
+        private List<cardWrapper> findCardsWithName(string cardName)
+        {
+            List<cardWrapper> returnList = new List<cardWrapper>();
+
+            List<int> tempIDs = new List<int>();
+
+            connection.Open();
+
+            using (var cmd = new NpgsqlCommand("get_cards_containing_name", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("in_name", cardName);
+
+                //tempID = 
+                var reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    string temp;
+                    cardWrapper tempWrapper = new cardWrapper();
+                    CardObject tempCard = new CardObject();
+                    tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                    tempCard.name = reader[2].ToString();
+                    tempCard.type = reader[3].ToString();
+                    tempCard.manaCost = reader[4].ToString();
+                    tempCard.setCode = reader[5].ToString();
+                    tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
+                    tempCard.power = reader[10].ToString();
+                    tempCard.toughness = reader[11].ToString();
+
+                    temp = reader[13].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colors = temp.Split(',').ToList<string>();
+
+                    temp = reader[14].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colorIdentity = temp.Split(',').ToList<string>();
+
+                    tempCard.text = reader[15].ToString();
+                    tempCard.convertedManaCost = float.Parse(reader[16].ToString());
+
+                    tempCard.flavorText = reader[17].ToString();
+                    tempCard.rarity = reader[18].ToString();
+                    tempCard.borderColor = reader[19].ToString();
+                    tempCard.loyalty = reader[20].ToString();
+                    tempCard.artist = reader[21].ToString();
+                    tempCard.number = reader[24].ToString();
+
+                    tempWrapper.card = tempCard;
+
+                    returnList.Add(tempWrapper);
+                }
+            }
+
+            connection.Close();
+
+            return returnList;
         }
     }
 
