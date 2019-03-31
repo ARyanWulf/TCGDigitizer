@@ -28,17 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main_Menu));
             this.ScanButton = new System.Windows.Forms.Button();
             this.InventoryButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.ContactButton = new System.Windows.Forms.Button();
             this.QuitButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.corner_logo_picturebox = new System.Windows.Forms.PictureBox();
-            this.tcgdigitizer_logo_label = new System.Windows.Forms.Label();
-            this.logo_panel = new System.Windows.Forms.Panel();
+            this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.welcome_label = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -49,38 +45,42 @@
             this.user_name_label = new System.Windows.Forms.Label();
             this.login_username_textbox = new System.Windows.Forms.TextBox();
             this.logout_link = new System.Windows.Forms.LinkLabel();
-            this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.CloseTextButton = new System.Windows.Forms.Button();
             this.ContactText = new System.Windows.Forms.TextBox();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
+            this.alphaGradientPanel1 = new System.Windows.Forms.AlphaGradientPanel();
+            this.colorWithAlpha2 = new System.Windows.Forms.ColorWithAlpha();
+            this.colorWithAlpha1 = new System.Windows.Forms.ColorWithAlpha();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.corner_logo_picturebox)).BeginInit();
-            this.logo_panel.SuspendLayout();
-            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.alphaGradientPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ScanButton
             // 
+            this.ScanButton.BackColor = System.Drawing.Color.Transparent;
             this.ScanButton.FlatAppearance.BorderSize = 0;
             this.ScanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ScanButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ScanButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScanButton.ForeColor = System.Drawing.Color.Silver;
-            this.ScanButton.Location = new System.Drawing.Point(0, 0);
+            this.ScanButton.Location = new System.Drawing.Point(-2, 80);
             this.ScanButton.Name = "ScanButton";
             this.ScanButton.Size = new System.Drawing.Size(316, 150);
             this.ScanButton.TabIndex = 0;
             this.ScanButton.Text = "Scan";
-            this.ScanButton.UseVisualStyleBackColor = true;
+            this.ScanButton.UseVisualStyleBackColor = false;
             this.ScanButton.Click += new System.EventHandler(this.ScanButton_Click);
             // 
             // InventoryButton
             // 
             this.InventoryButton.FlatAppearance.BorderSize = 0;
             this.InventoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.InventoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.InventoryButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryButton.ForeColor = System.Drawing.Color.Silver;
-            this.InventoryButton.Location = new System.Drawing.Point(0, 150);
+            this.InventoryButton.Location = new System.Drawing.Point(-2, 230);
             this.InventoryButton.Name = "InventoryButton";
             this.InventoryButton.Size = new System.Drawing.Size(316, 150);
             this.InventoryButton.TabIndex = 1;
@@ -92,9 +92,9 @@
             // 
             this.SettingsButton.FlatAppearance.BorderSize = 0;
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.SettingsButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingsButton.ForeColor = System.Drawing.Color.Silver;
-            this.SettingsButton.Location = new System.Drawing.Point(0, 300);
+            this.SettingsButton.Location = new System.Drawing.Point(-2, 380);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(316, 150);
             this.SettingsButton.TabIndex = 2;
@@ -106,9 +106,9 @@
             // 
             this.ContactButton.FlatAppearance.BorderSize = 0;
             this.ContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ContactButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactButton.ForeColor = System.Drawing.Color.Silver;
-            this.ContactButton.Location = new System.Drawing.Point(0, 450);
+            this.ContactButton.Location = new System.Drawing.Point(-2, 530);
             this.ContactButton.Name = "ContactButton";
             this.ContactButton.Size = new System.Drawing.Size(316, 150);
             this.ContactButton.TabIndex = 3;
@@ -120,9 +120,9 @@
             // 
             this.QuitButton.FlatAppearance.BorderSize = 0;
             this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.QuitButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitButton.ForeColor = System.Drawing.Color.Silver;
-            this.QuitButton.Location = new System.Drawing.Point(0, 600);
+            this.QuitButton.Location = new System.Drawing.Point(-2, 680);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(316, 150);
             this.QuitButton.TabIndex = 4;
@@ -135,55 +135,38 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.AutoSize = true;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.ScanButton);
             this.panel1.Controls.Add(this.InventoryButton);
             this.panel1.Controls.Add(this.SettingsButton);
             this.panel1.Controls.Add(this.ContactButton);
             this.panel1.Controls.Add(this.QuitButton);
-            this.panel1.Location = new System.Drawing.Point(0, 300);
+            this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 1442);
+            this.panel1.Size = new System.Drawing.Size(321, 1400);
             this.panel1.TabIndex = 17;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
-            // corner_logo_picturebox
+            // LogoPicture
             // 
-            this.corner_logo_picturebox.Image = ((System.Drawing.Image)(resources.GetObject("corner_logo_picturebox.Image")));
-            this.corner_logo_picturebox.Location = new System.Drawing.Point(64, 45);
-            this.corner_logo_picturebox.Name = "corner_logo_picturebox";
-            this.corner_logo_picturebox.Size = new System.Drawing.Size(192, 153);
-            this.corner_logo_picturebox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.corner_logo_picturebox.TabIndex = 5;
-            this.corner_logo_picturebox.TabStop = false;
-            // 
-            // tcgdigitizer_logo_label
-            // 
-            this.tcgdigitizer_logo_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tcgdigitizer_logo_label.ForeColor = System.Drawing.Color.Silver;
-            this.tcgdigitizer_logo_label.Location = new System.Drawing.Point(-21, 182);
-            this.tcgdigitizer_logo_label.Name = "tcgdigitizer_logo_label";
-            this.tcgdigitizer_logo_label.Size = new System.Drawing.Size(355, 58);
-            this.tcgdigitizer_logo_label.TabIndex = 18;
-            this.tcgdigitizer_logo_label.Text = "TCG Digitizer";
-            this.tcgdigitizer_logo_label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tcgdigitizer_logo_label.Click += new System.EventHandler(this.tcgdigitizer_logo_label_Click);
-            // 
-            // logo_panel
-            // 
-            this.logo_panel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.logo_panel.Controls.Add(this.corner_logo_picturebox);
-            this.logo_panel.Controls.Add(this.tcgdigitizer_logo_label);
-            this.logo_panel.Location = new System.Drawing.Point(0, 0);
-            this.logo_panel.Name = "logo_panel";
-            this.logo_panel.Size = new System.Drawing.Size(320, 300);
-            this.logo_panel.TabIndex = 5;
+            this.LogoPicture.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.LogoPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.LogoPicture.Image = global::OCS_FOR_CSHARP.Properties.Resources.TCG_Logo_Transparent;
+            this.LogoPicture.Location = new System.Drawing.Point(301, 3);
+            this.LogoPicture.MaximumSize = new System.Drawing.Size(600, 150);
+            this.LogoPicture.Name = "LogoPicture";
+            this.LogoPicture.Size = new System.Drawing.Size(600, 140);
+            this.LogoPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.LogoPicture.TabIndex = 19;
+            this.LogoPicture.TabStop = false;
+            this.LogoPicture.Click += new System.EventHandler(this.LogoPicture_Click);
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.AutoScroll = true;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.welcome_label);
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Controls.Add(this.login_button);
@@ -193,19 +176,18 @@
             this.panel2.Controls.Add(this.user_name_label);
             this.panel2.Controls.Add(this.login_username_textbox);
             this.panel2.Controls.Add(this.logout_link);
-            this.panel2.Controls.Add(this.LogoPicture);
             this.panel2.Controls.Add(this.CloseTextButton);
             this.panel2.Controls.Add(this.ContactText);
-            this.panel2.Location = new System.Drawing.Point(320, 0);
+            this.panel2.Location = new System.Drawing.Point(321, 175);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1161, 1105);
+            this.panel2.Size = new System.Drawing.Size(1339, 1225);
             this.panel2.TabIndex = 18;
             // 
             // welcome_label
             // 
             this.welcome_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.welcome_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.welcome_label.Location = new System.Drawing.Point(-95, 899);
+            this.welcome_label.Location = new System.Drawing.Point(71, 594);
             this.welcome_label.Name = "welcome_label";
             this.welcome_label.Size = new System.Drawing.Size(293, 36);
             this.welcome_label.TabIndex = 28;
@@ -218,7 +200,7 @@
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Silver;
-            this.textBox1.Location = new System.Drawing.Point(297, 665);
+            this.textBox1.Location = new System.Drawing.Point(295, 667);
             this.textBox1.MaximumSize = new System.Drawing.Size(500, 300);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -246,11 +228,11 @@
             // login_label
             // 
             this.login_label.AutoSize = true;
-            this.login_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_label.Font = new System.Drawing.Font("Copperplate Gothic Light", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_label.ForeColor = System.Drawing.Color.Silver;
             this.login_label.Location = new System.Drawing.Point(287, 304);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(276, 59);
+            this.login_label.Size = new System.Drawing.Size(333, 56);
             this.login_label.TabIndex = 25;
             this.login_label.Text = "User Login";
             this.login_label.Click += new System.EventHandler(this.login_label_Click_1);
@@ -260,7 +242,7 @@
             this.password_label.AutoSize = true;
             this.password_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.password_label.ForeColor = System.Drawing.Color.Silver;
+            this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.password_label.Location = new System.Drawing.Point(293, 485);
             this.password_label.Name = "password_label";
             this.password_label.Size = new System.Drawing.Size(78, 20);
@@ -274,7 +256,6 @@
             this.login_password_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_password_textbox.Location = new System.Drawing.Point(297, 508);
             this.login_password_textbox.Name = "login_password_textbox";
-            this.login_password_textbox.PasswordChar = '*';
             this.login_password_textbox.Size = new System.Drawing.Size(323, 53);
             this.login_password_textbox.TabIndex = 23;
             this.login_password_textbox.TextChanged += new System.EventHandler(this.login_password_textbox_TextChanged_1);
@@ -284,7 +265,7 @@
             this.user_name_label.AutoSize = true;
             this.user_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.user_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.user_name_label.ForeColor = System.Drawing.Color.Silver;
+            this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.user_name_label.Location = new System.Drawing.Point(293, 378);
             this.user_name_label.Name = "user_name_label";
             this.user_name_label.Size = new System.Drawing.Size(83, 20);
@@ -306,7 +287,7 @@
             // 
             this.logout_link.AutoSize = true;
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logout_link.Location = new System.Drawing.Point(116, 935);
+            this.logout_link.Location = new System.Drawing.Point(74, 630);
             this.logout_link.Name = "logout_link";
             this.logout_link.Size = new System.Drawing.Size(72, 25);
             this.logout_link.TabIndex = 20;
@@ -314,19 +295,6 @@
             this.logout_link.Text = "Logout";
             this.logout_link.VisitedLinkColor = System.Drawing.Color.Blue;
             this.logout_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logout_link_LinkClicked_1);
-            // 
-            // LogoPicture
-            // 
-            this.LogoPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.LogoPicture.Image = global::OCS_FOR_CSHARP.Properties.Resources.TCG_Logo_Transparent;
-            this.LogoPicture.Location = new System.Drawing.Point(133, 98);
-            this.LogoPicture.MaximumSize = new System.Drawing.Size(600, 150);
-            this.LogoPicture.Name = "LogoPicture";
-            this.LogoPicture.Size = new System.Drawing.Size(600, 140);
-            this.LogoPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.LogoPicture.TabIndex = 19;
-            this.LogoPicture.TabStop = false;
-            this.LogoPicture.Click += new System.EventHandler(this.LogoPicture_Click);
             // 
             // CloseTextButton
             // 
@@ -362,32 +330,69 @@
             this.ContactText.WordWrap = false;
             this.ContactText.TextChanged += new System.EventHandler(this.ContactText_TextChanged_1);
             // 
-            // contextMenuStrip1
+            // backgroundWorker1
             // 
-            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            // 
+            // alphaGradientPanel1
+            // 
+            this.alphaGradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.alphaGradientPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.alphaGradientPanel1.Border = false;
+            this.alphaGradientPanel1.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.alphaGradientPanel1.Colors.Add(this.colorWithAlpha2);
+            this.alphaGradientPanel1.Colors.Add(this.colorWithAlpha1);
+            this.alphaGradientPanel1.ContentPadding = new System.Windows.Forms.Padding(0);
+            this.alphaGradientPanel1.Controls.Add(this.LogoPicture);
+            this.alphaGradientPanel1.CornerRadius = 20;
+            this.alphaGradientPanel1.Corners = System.Windows.Forms.Corner.None;
+            this.alphaGradientPanel1.Gradient = true;
+            this.alphaGradientPanel1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.alphaGradientPanel1.GradientOffset = 1F;
+            this.alphaGradientPanel1.GradientSize = new System.Drawing.Size(0, 0);
+            this.alphaGradientPanel1.GradientWrapMode = System.Drawing.Drawing2D.WrapMode.Tile;
+            this.alphaGradientPanel1.Grayscale = false;
+            this.alphaGradientPanel1.Image = null;
+            this.alphaGradientPanel1.ImageAlpha = 75;
+            this.alphaGradientPanel1.ImagePadding = new System.Windows.Forms.Padding(5);
+            this.alphaGradientPanel1.ImagePosition = System.Windows.Forms.ImagePosition.BottomRight;
+            this.alphaGradientPanel1.ImageSize = new System.Drawing.Size(48, 48);
+            this.alphaGradientPanel1.Location = new System.Drawing.Point(321, 0);
+            this.alphaGradientPanel1.Name = "alphaGradientPanel1";
+            this.alphaGradientPanel1.Rounded = true;
+            this.alphaGradientPanel1.Size = new System.Drawing.Size(1339, 175);
+            this.alphaGradientPanel1.TabIndex = 19;
+            // 
+            // colorWithAlpha2
+            // 
+            this.colorWithAlpha2.Alpha = 255;
+            this.colorWithAlpha2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(61)))), ((int)(((byte)(66)))), ((int)(((byte)(74)))));
+            this.colorWithAlpha2.Parent = this.alphaGradientPanel1;
+            // 
+            // colorWithAlpha1
+            // 
+            this.colorWithAlpha1.Alpha = 255;
+            this.colorWithAlpha1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.colorWithAlpha1.Parent = this.alphaGradientPanel1;
             // 
             // Main_Menu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1647, 1050);
-            this.Controls.Add(this.panel2);
-            this.Controls.Add(this.logo_panel);
+            this.ClientSize = new System.Drawing.Size(1638, 1344);
+            this.Controls.Add(this.alphaGradientPanel1);
             this.Controls.Add(this.panel1);
+            this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Main_Menu";
             this.Text = "TCG Digitizer";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Menu_Load);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.corner_logo_picturebox)).EndInit();
-            this.logo_panel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
+            this.alphaGradientPanel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -401,9 +406,6 @@
         private System.Windows.Forms.Button ContactButton;
         private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox corner_logo_picturebox;
-        private System.Windows.Forms.Label tcgdigitizer_logo_label;
-        private System.Windows.Forms.Panel logo_panel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label welcome_label;
         private System.Windows.Forms.TextBox textBox1;
@@ -417,6 +419,11 @@
         private System.Windows.Forms.PictureBox LogoPicture;
         private System.Windows.Forms.Button CloseTextButton;
         private System.Windows.Forms.TextBox ContactText;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.AlphaGradientPanel alphaGradientPanel1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker3;
+        private System.Windows.Forms.ColorWithAlpha colorWithAlpha1;
+        private System.Windows.Forms.ColorWithAlpha colorWithAlpha2;
     }
 }
