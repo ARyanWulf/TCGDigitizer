@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.Scan_Card_Button = new System.Windows.Forms.Button();
-            this.OK_Button = new System.Windows.Forms.Button();
-            this.Cancel_Button = new System.Windows.Forms.Button();
             this.Add_Card_Button = new System.Windows.Forms.Button();
             this.Card_Table_Panel = new System.Windows.Forms.TableLayoutPanel();
             this.InventoryCountLabel = new System.Windows.Forms.Label();
@@ -47,6 +45,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.Cancel_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -63,32 +62,6 @@
             this.Scan_Card_Button.Text = "Scan Card";
             this.Scan_Card_Button.UseVisualStyleBackColor = false;
             this.Scan_Card_Button.Click += new System.EventHandler(this.Scan_Card_Button_Click);
-            // 
-            // OK_Button
-            // 
-            this.OK_Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.OK_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.OK_Button.Location = new System.Drawing.Point(813, 809);
-            this.OK_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.OK_Button.Name = "OK_Button";
-            this.OK_Button.Size = new System.Drawing.Size(112, 35);
-            this.OK_Button.TabIndex = 2;
-            this.OK_Button.Text = "OK";
-            this.OK_Button.UseVisualStyleBackColor = false;
-            this.OK_Button.Click += new System.EventHandler(this.OK_Button_Click);
-            // 
-            // Cancel_Button
-            // 
-            this.Cancel_Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.Cancel_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.Cancel_Button.Location = new System.Drawing.Point(932, 809);
-            this.Cancel_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Cancel_Button.Name = "Cancel_Button";
-            this.Cancel_Button.Size = new System.Drawing.Size(112, 35);
-            this.Cancel_Button.TabIndex = 3;
-            this.Cancel_Button.Text = "Cancel";
-            this.Cancel_Button.UseVisualStyleBackColor = false;
-            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Add_Card_Button
             // 
@@ -118,34 +91,33 @@
             this.Card_Table_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.Card_Table_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.Card_Table_Panel.Cursor = System.Windows.Forms.Cursors.Default;
-            this.Card_Table_Panel.Dock = System.Windows.Forms.DockStyle.Left;
-            this.Card_Table_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Card_Table_Panel.Location = new System.Drawing.Point(1, 0);
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Card_Table_Panel.MaximumSize = new System.Drawing.Size(0, 650);
-            this.Card_Table_Panel.MinimumSize = new System.Drawing.Size(0, 50);
+            this.Card_Table_Panel.MaximumSize = new System.Drawing.Size(973, 0);
+            this.Card_Table_Panel.MinimumSize = new System.Drawing.Size(973, 50);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 20;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(973, 52);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(973, 1521);
             this.Card_Table_Panel.TabIndex = 6;
             // 
             // InventoryCountLabel
@@ -176,9 +148,8 @@
             // 
             // Page_Back_Button
             // 
-            this.Page_Back_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Page_Back_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.Page_Back_Button.Location = new System.Drawing.Point(732, 809);
+            this.Page_Back_Button.Location = new System.Drawing.Point(851, 810);
             this.Page_Back_Button.Name = "Page_Back_Button";
             this.Page_Back_Button.Size = new System.Drawing.Size(34, 34);
             this.Page_Back_Button.TabIndex = 9;
@@ -188,9 +159,8 @@
             // 
             // Page_Forward_Button
             // 
-            this.Page_Forward_Button.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.Page_Forward_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.Page_Forward_Button.Location = new System.Drawing.Point(772, 809);
+            this.Page_Forward_Button.Location = new System.Drawing.Point(891, 809);
             this.Page_Forward_Button.Name = "Page_Forward_Button";
             this.Page_Forward_Button.Size = new System.Drawing.Size(34, 34);
             this.Page_Forward_Button.TabIndex = 10;
@@ -212,7 +182,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 102F));
             this.tableLayoutPanel1.Controls.Add(this.button1, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.button2, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 4, 0);
@@ -225,8 +195,8 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 63F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(973, 60);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(975, 60);
             this.tableLayoutPanel1.TabIndex = 11;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -238,6 +208,8 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(876, 6);
             this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.button1.MaximumSize = new System.Drawing.Size(92, 53);
+            this.button1.MinimumSize = new System.Drawing.Size(92, 53);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 53);
             this.button1.TabIndex = 12;
@@ -253,7 +225,7 @@
             this.button2.Location = new System.Drawing.Point(800, 6);
             this.button2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(67, 53);
+            this.button2.Size = new System.Drawing.Size(67, 55);
             this.button2.TabIndex = 11;
             this.button2.Text = "Mana";
             this.button2.UseVisualStyleBackColor = false;
@@ -267,7 +239,7 @@
             this.button3.Location = new System.Drawing.Point(724, 6);
             this.button3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(67, 53);
+            this.button3.Size = new System.Drawing.Size(67, 55);
             this.button3.TabIndex = 10;
             this.button3.Text = "Number";
             this.button3.UseVisualStyleBackColor = false;
@@ -281,7 +253,7 @@
             this.button4.Location = new System.Drawing.Point(648, 6);
             this.button4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(67, 53);
+            this.button4.Size = new System.Drawing.Size(67, 55);
             this.button4.TabIndex = 9;
             this.button4.Text = "Expansion";
             this.button4.UseVisualStyleBackColor = false;
@@ -295,7 +267,7 @@
             this.button5.Location = new System.Drawing.Point(397, 6);
             this.button5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(242, 53);
+            this.button5.Size = new System.Drawing.Size(242, 55);
             this.button5.TabIndex = 8;
             this.button5.Text = "Type";
             this.button5.UseVisualStyleBackColor = false;
@@ -310,7 +282,7 @@
             this.button6.Location = new System.Drawing.Point(46, 6);
             this.button6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(342, 53);
+            this.button6.Size = new System.Drawing.Size(342, 55);
             this.button6.TabIndex = 7;
             this.button6.Text = "Name";
             this.button6.UseVisualStyleBackColor = false;
@@ -324,7 +296,7 @@
             this.checkBox1.Location = new System.Drawing.Point(5, 6);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(32, 53);
+            this.checkBox1.Size = new System.Drawing.Size(32, 55);
             this.checkBox1.TabIndex = 1;
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
@@ -340,18 +312,31 @@
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
             this.panel1.AutoScroll = true;
             this.panel1.AutoSize = true;
             this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panel1.Controls.Add(this.Card_Table_Panel);
             this.panel1.Location = new System.Drawing.Point(18, 143);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.MaximumSize = new System.Drawing.Size(1027, 650);
-            this.panel1.MinimumSize = new System.Drawing.Size(1000, 52);
+            this.panel1.MaximumSize = new System.Drawing.Size(1000, 650);
+            this.panel1.MinimumSize = new System.Drawing.Size(1000, 80);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1000, 52);
+            this.panel1.Size = new System.Drawing.Size(1000, 650);
             this.panel1.TabIndex = 14;
+            // 
+            // Cancel_Button
+            // 
+            this.Cancel_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.Cancel_Button.Enabled = false;
+            this.Cancel_Button.Location = new System.Drawing.Point(932, 809);
+            this.Cancel_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Cancel_Button.Name = "Cancel_Button";
+            this.Cancel_Button.Size = new System.Drawing.Size(112, 35);
+            this.Cancel_Button.TabIndex = 3;
+            this.Cancel_Button.Text = "Cancel";
+            this.Cancel_Button.UseVisualStyleBackColor = false;
+            this.Cancel_Button.Visible = false;
+            this.Cancel_Button.Click += new System.EventHandler(this.Cancel_Button_Click);
             // 
             // Inventory_Menu
             // 
@@ -370,7 +355,6 @@
             this.Controls.Add(this.Page_Back_Button);
             this.Controls.Add(this.InventoryCountLabel);
             this.Controls.Add(this.Cancel_Button);
-            this.Controls.Add(this.OK_Button);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Inventory_Menu";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
@@ -390,8 +374,6 @@
         #endregion
 
         private System.Windows.Forms.Button Scan_Card_Button;
-        private System.Windows.Forms.Button OK_Button;
-        private System.Windows.Forms.Button Cancel_Button;
         private System.Windows.Forms.Button Add_Card_Button;
         private System.Windows.Forms.TableLayoutPanel Card_Table_Panel;
         private System.Windows.Forms.Label InventoryCountLabel;
@@ -408,5 +390,6 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button Cancel_Button;
     }
 }

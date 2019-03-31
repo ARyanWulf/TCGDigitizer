@@ -181,7 +181,10 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Controls.Clear();
             //Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
             Card_Table_Panel.RowCount = 0;
-            Card_Table_Panel.AutoScroll = true;
+            Card_Table_Panel.Dock = DockStyle.None;
+            Card_Table_Panel.AutoSize = true;
+            Card_Table_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            //Card_Table_Panel.AutoScroll = true;
             /*Card_Table_Panel.Controls.Add(new CheckBox { Name = "Inventory_Checkbox", CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Name_Button", Text = "Name", Dock = DockStyle.Fill }, 1, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Type_Button", Text = "Type", Dock = DockStyle.Fill }, 2, 0);
@@ -205,17 +208,16 @@ namespace OCS_FOR_CSHARP
             int displayRange = display_upper - display_lower;
             int cardIndex = display_lower;
             Card_Table_Panel.RowCount += displayRange;
-
             /*
              * display count will be max 20 for the display limit
              * subtract 20 from the card count if the card count is greater than 20
              */
 
-            // TO DO:
-            // Cards remaining should also be re-initialized
+                // TO DO:
+                // Cards remaining should also be re-initialized
 
 
-            /* begin populating table, start at second row so the first row containing buttons is not overwritten */
+                /* begin populating table, start at second row so the first row containing buttons is not overwritten */
             for (int i = 0; i < displayRange; i++)
             {
                 //Card_Table_Panel.RowStyles[0].Height = 200;
@@ -229,24 +231,29 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 1, i);
 
                 // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 2, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 2, i);
 
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 3, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 4, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 4, i);
 
                 // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 5, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 5, i);
 
                 // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 6, i);
+                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left, Height = 75 }, 6, i);
                 cardIndex++;
             }
 
 
-            AutoScroll = true;
+            panel1.AutoScroll = false;
+            panel1.HorizontalScroll.Enabled = false;
+            panel1.HorizontalScroll.Visible = false;
+            panel1.HorizontalScroll.Maximum = 0;
+            panel1.AutoScroll = true;
+
             Card_Table_Panel.Visible = true;
             if(cards.Count() > 20 && display_upper < cards.Count())
             {

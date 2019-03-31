@@ -294,7 +294,7 @@ namespace OCS_FOR_CSHARP
         public bool addToInventory()
         {
 
-            if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            if (/*CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5*/true)
             {
                 cardWrapper card = databaseList[0];
                 bool exists = false;
