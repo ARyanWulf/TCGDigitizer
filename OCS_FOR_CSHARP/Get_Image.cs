@@ -47,11 +47,11 @@ namespace OCS_FOR_CSHARP
         public Form1()
         {
             InitializeComponent();
-            var position = this.PointToScreen(Card_Boarder.Location);
-            position = Cam_Picture_Box.PointToClient(position);
-            Card_Boarder.Parent = Cam_Picture_Box;
-            Card_Boarder.Location = position;
-            Card_Boarder.Visible = false;
+            //var position = this.PointToScreen(Card_Boarder.Location);
+            //position = Cam_Picture_Box.PointToClient(position);
+            //Card_Boarder.Parent = Cam_Picture_Box;
+            //Card_Boarder.Location = position;
+            //Card_Boarder.Visible = false;
         }
 
         void Start_cam()
