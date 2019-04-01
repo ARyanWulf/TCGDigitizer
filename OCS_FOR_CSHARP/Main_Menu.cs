@@ -15,6 +15,11 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Main_Menu : Form
     {
+        Form1 scan_form;
+        Inventory_Menu inventory_form;
+        Settings settings_form;
+        Edit_Card_Form edit_form;
+
         public Main_Menu()
         {
             InitializeComponent();
@@ -124,8 +129,13 @@ namespace OCS_FOR_CSHARP
             //getImageForm.ShowDialog();
 
             //loads Scan form into panel 2
+
+            
             panel2.Controls.Clear();
-            Form1 scan_form = new Form1();
+            if (scan_form == null|| scan_form.IsDisposed)
+            {
+                scan_form = new Form1();
+            }
             scan_form.TopLevel = false;
             panel2.Controls.Add(scan_form);
             scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -142,7 +152,11 @@ namespace OCS_FOR_CSHARP
 
             //loads Inventory form into panel 2
             panel2.Controls.Clear();
-            Inventory_Menu inventory_form = new Inventory_Menu();
+            if(inventory_form == null || inventory_form.IsDisposed)
+            {
+                inventory_form = new Inventory_Menu();
+            }
+
             inventory_form.TopLevel = false;
             panel2.Controls.Add(inventory_form);
             inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -159,7 +173,11 @@ namespace OCS_FOR_CSHARP
 
             //loads Inventory form into panel 2
             panel2.Controls.Clear();
-            Settings settings_form = new Settings();
+            if(settings_form == null || settings_form.IsDisposed)
+            {
+                settings_form = new Settings();
+            }
+
             settings_form.TopLevel = false;
             panel2.Controls.Add(settings_form);
             settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -457,14 +475,18 @@ namespace OCS_FOR_CSHARP
         private void ManualEntryButton_Click(object sender, EventArgs e)
         {
             panel2.Controls.Clear();
-            Edit_Card_Form inventory_form = new Edit_Card_Form();
-            inventory_form.TopLevel = false;
-            panel2.Controls.Add(inventory_form);
-            inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            inventory_form.Dock = DockStyle.Fill;
-            inventory_form.Size = new Size(panel2.Width, panel2.Height);
-            inventory_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
-            inventory_form.Show();
+            if(edit_form == null || edit_form.IsDisposed)
+            {
+                edit_form = new Edit_Card_Form();
+            }
+
+            edit_form.TopLevel = false;
+            panel2.Controls.Add(edit_form);
+            edit_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            edit_form.Dock = DockStyle.Fill;
+            edit_form.Size = new Size(panel2.Width, panel2.Height);
+            edit_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+            edit_form.Show();
         }
     }
 
