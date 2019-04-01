@@ -56,9 +56,36 @@ namespace OCS_FOR_CSHARP
         }
 
         // Autopopulate with a list of current users that exist in the system
-        public void addToUserList()
+        public void addToUsersList()
         {
+            //var users = getUsers();
+        }
 
+        private List<userWrapper> getUsers()
+        {
+            List<userWrapper> users = new List<userWrapper>();
+
+            connection.Open();
+
+            using (var cmd = new NpgsqlCommand("SELECT * FROM users"))
+            {
+                var reader = cmd.ExecuteReader();
+
+                while(reader.Read())
+                {
+                    userWrapper tempUser = new userWrapper();
+
+                    tempUser.first = reader[1].ToString();
+                    tempUser.last = reader[2].ToString();
+                    tempUser.prvlg = reader[3].ToString();
+
+                    users.Add(tempUser);
+                }
+            }
+
+            connection.Close();
+
+            return users;
         }
         
         private void button1_Click(object sender, EventArgs e)
@@ -637,4 +664,20 @@ namespace OCS_FOR_CSHARP
 
     
     }
+
+    public class userWrapper
+    {
+        public string first, last, prvlg;
+
+        public userWrapper()
+        {
+            first = "";
+            last = "";
+            prvlg = "";
+        }
+
+        ~userWrapper()
+        {
+        }
+    };
 }
