@@ -343,6 +343,11 @@ namespace OCS_FOR_CSHARP
         {
 
         }
+
+        private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
+        {
+            refreshTable();
+        }
     }
 }
 
