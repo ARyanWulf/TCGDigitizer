@@ -28,10 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Add_Card_Button = new System.Windows.Forms.Button();
             this.Card_Table_Panel = new System.Windows.Forms.TableLayoutPanel();
             this.InventoryCountLabel = new System.Windows.Forms.Label();
-            this.RefreshButton = new System.Windows.Forms.Button();
             this.Page_Back_Button = new System.Windows.Forms.Button();
             this.Page_Forward_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
@@ -49,31 +47,15 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.PagePanel = new System.Windows.Forms.Panel();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.RefreshButton = new System.Windows.Forms.Button();
+            this.Add_Card_Button = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.TopPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.PagePanel.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // Add_Card_Button
-            // 
-            this.Add_Card_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.Add_Card_Button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Add_Card_Button.FlatAppearance.BorderSize = 0;
-            this.Add_Card_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Add_Card_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Add_Card_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Add_Card_Button.Location = new System.Drawing.Point(5, 6);
-            this.Add_Card_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Add_Card_Button.Name = "Add_Card_Button";
-            this.Add_Card_Button.Size = new System.Drawing.Size(308, 68);
-            this.Add_Card_Button.TabIndex = 5;
-            this.Add_Card_Button.Text = "Add Card";
-            this.Add_Card_Button.UseVisualStyleBackColor = false;
-            this.Add_Card_Button.Click += new System.EventHandler(this.Add_Card_Button_Click);
             // 
             // Card_Table_Panel
             // 
@@ -115,34 +97,18 @@
             this.InventoryCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.InventoryCountLabel.Click += new System.EventHandler(this.InventoryCountLabel_Click);
             // 
-            // RefreshButton
-            // 
-            this.RefreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.RefreshButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.RefreshButton.FlatAppearance.BorderSize = 0;
-            this.RefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RefreshButton.ForeColor = System.Drawing.Color.Transparent;
-            this.RefreshButton.Location = new System.Drawing.Point(322, 6);
-            this.RefreshButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(308, 68);
-            this.RefreshButton.TabIndex = 8;
-            this.RefreshButton.Text = "Refresh Table";
-            this.RefreshButton.UseVisualStyleBackColor = false;
-            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
-            // 
             // Page_Back_Button
             // 
             this.Page_Back_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.Page_Back_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Page_Back_Button.FlatAppearance.BorderSize = 0;
             this.Page_Back_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Page_Back_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Page_Back_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Page_Back_Button.ForeColor = System.Drawing.Color.Silver;
             this.Page_Back_Button.Location = new System.Drawing.Point(4, 4);
+            this.Page_Back_Button.MaximumSize = new System.Drawing.Size(0, 80);
             this.Page_Back_Button.Name = "Page_Back_Button";
-            this.Page_Back_Button.Size = new System.Drawing.Size(126, 163);
+            this.Page_Back_Button.Size = new System.Drawing.Size(310, 72);
             this.Page_Back_Button.TabIndex = 9;
             this.Page_Back_Button.Text = "<";
             this.Page_Back_Button.UseVisualStyleBackColor = false;
@@ -154,11 +120,12 @@
             this.Page_Forward_Button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Page_Forward_Button.FlatAppearance.BorderSize = 0;
             this.Page_Forward_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Page_Forward_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Page_Forward_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Page_Forward_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Page_Forward_Button.Location = new System.Drawing.Point(137, 4);
+            this.Page_Forward_Button.Location = new System.Drawing.Point(321, 4);
+            this.Page_Forward_Button.MaximumSize = new System.Drawing.Size(0, 80);
             this.Page_Forward_Button.Name = "Page_Forward_Button";
-            this.Page_Forward_Button.Size = new System.Drawing.Size(126, 163);
+            this.Page_Forward_Button.Size = new System.Drawing.Size(310, 72);
             this.Page_Forward_Button.TabIndex = 10;
             this.Page_Forward_Button.Text = ">";
             this.Page_Forward_Button.UseVisualStyleBackColor = false;
@@ -366,9 +333,9 @@
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.Page_Forward_Button, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.Page_Back_Button, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.InventoryCountLabel, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.RefreshButton, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.Add_Card_Button, 0, 0);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
@@ -383,12 +350,14 @@
             this.PagePanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.PagePanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.PagePanel.Controls.Add(this.tableLayoutPanel3);
+            this.PagePanel.Enabled = false;
             this.PagePanel.Location = new System.Drawing.Point(1000, 80);
             this.PagePanel.Margin = new System.Windows.Forms.Padding(0);
             this.PagePanel.MinimumSize = new System.Drawing.Size(269, 173);
             this.PagePanel.Name = "PagePanel";
             this.PagePanel.Size = new System.Drawing.Size(269, 173);
             this.PagePanel.TabIndex = 16;
+            this.PagePanel.Visible = false;
             // 
             // tableLayoutPanel3
             // 
@@ -396,8 +365,6 @@
             this.tableLayoutPanel3.ColumnCount = 2;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Controls.Add(this.Page_Back_Button, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.Page_Forward_Button, 1, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
@@ -407,6 +374,42 @@
             this.tableLayoutPanel3.Size = new System.Drawing.Size(267, 171);
             this.tableLayoutPanel3.TabIndex = 0;
             // 
+            // RefreshButton
+            // 
+            this.RefreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.RefreshButton.Enabled = false;
+            this.RefreshButton.FlatAppearance.BorderSize = 0;
+            this.RefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.RefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RefreshButton.ForeColor = System.Drawing.Color.Transparent;
+            this.RefreshButton.Location = new System.Drawing.Point(402, 452);
+            this.RefreshButton.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.RefreshButton.Name = "RefreshButton";
+            this.RefreshButton.Size = new System.Drawing.Size(308, 68);
+            this.RefreshButton.TabIndex = 8;
+            this.RefreshButton.Text = "Refresh Table";
+            this.RefreshButton.UseVisualStyleBackColor = false;
+            this.RefreshButton.Visible = false;
+            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
+            // 
+            // Add_Card_Button
+            // 
+            this.Add_Card_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.Add_Card_Button.Enabled = false;
+            this.Add_Card_Button.FlatAppearance.BorderSize = 0;
+            this.Add_Card_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Add_Card_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Add_Card_Button.ForeColor = System.Drawing.Color.Silver;
+            this.Add_Card_Button.Location = new System.Drawing.Point(100, 441);
+            this.Add_Card_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Add_Card_Button.Name = "Add_Card_Button";
+            this.Add_Card_Button.Size = new System.Drawing.Size(308, 68);
+            this.Add_Card_Button.TabIndex = 5;
+            this.Add_Card_Button.Text = "Add Card";
+            this.Add_Card_Button.UseVisualStyleBackColor = false;
+            this.Add_Card_Button.Visible = false;
+            this.Add_Card_Button.Click += new System.EventHandler(this.Add_Card_Button_Click);
+            // 
             // Inventory_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -414,7 +417,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1270, 863);
             this.Controls.Add(this.PagePanel);
+            this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.TopPanel);
+            this.Controls.Add(this.Add_Card_Button);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Cancel_Button);
@@ -432,17 +437,14 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.PagePanel.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Button Add_Card_Button;
         private System.Windows.Forms.TableLayoutPanel Card_Table_Panel;
         private System.Windows.Forms.Label InventoryCountLabel;
-        private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.Button Page_Back_Button;
         private System.Windows.Forms.Button Page_Forward_Button;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -460,5 +462,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private System.Windows.Forms.Panel PagePanel;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.Button RefreshButton;
+        private System.Windows.Forms.Button Add_Card_Button;
     }
 }

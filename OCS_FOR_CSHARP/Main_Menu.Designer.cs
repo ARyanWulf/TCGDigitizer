@@ -53,6 +53,7 @@
             this.alphaGradientPanel1 = new System.Windows.Forms.AlphaGradientPanel();
             this.colorWithAlpha2 = new System.Windows.Forms.ColorWithAlpha();
             this.colorWithAlpha1 = new System.Windows.Forms.ColorWithAlpha();
+            this.ManualEntryButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).BeginInit();
             this.panel2.SuspendLayout();
@@ -80,7 +81,7 @@
             this.InventoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InventoryButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryButton.ForeColor = System.Drawing.Color.Silver;
-            this.InventoryButton.Location = new System.Drawing.Point(-2, 230);
+            this.InventoryButton.Location = new System.Drawing.Point(-2, 380);
             this.InventoryButton.Name = "InventoryButton";
             this.InventoryButton.Size = new System.Drawing.Size(316, 150);
             this.InventoryButton.TabIndex = 1;
@@ -94,7 +95,7 @@
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SettingsButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingsButton.ForeColor = System.Drawing.Color.Silver;
-            this.SettingsButton.Location = new System.Drawing.Point(-2, 380);
+            this.SettingsButton.Location = new System.Drawing.Point(-2, 530);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(316, 150);
             this.SettingsButton.TabIndex = 2;
@@ -108,7 +109,7 @@
             this.ContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ContactButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactButton.ForeColor = System.Drawing.Color.Silver;
-            this.ContactButton.Location = new System.Drawing.Point(-2, 530);
+            this.ContactButton.Location = new System.Drawing.Point(-2, 680);
             this.ContactButton.Name = "ContactButton";
             this.ContactButton.Size = new System.Drawing.Size(316, 150);
             this.ContactButton.TabIndex = 3;
@@ -122,7 +123,7 @@
             this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.QuitButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitButton.ForeColor = System.Drawing.Color.Silver;
-            this.QuitButton.Location = new System.Drawing.Point(-2, 680);
+            this.QuitButton.Location = new System.Drawing.Point(-2, 830);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(316, 150);
             this.QuitButton.TabIndex = 4;
@@ -137,6 +138,7 @@
             this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.ManualEntryButton);
             this.panel1.Controls.Add(this.ScanButton);
             this.panel1.Controls.Add(this.InventoryButton);
             this.panel1.Controls.Add(this.SettingsButton);
@@ -144,7 +146,7 @@
             this.panel1.Controls.Add(this.QuitButton);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(321, 1347);
+            this.panel1.Size = new System.Drawing.Size(323, 1347);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -377,6 +379,20 @@
             this.colorWithAlpha1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.colorWithAlpha1.Parent = this.alphaGradientPanel1;
             // 
+            // ManualEntryButton
+            // 
+            this.ManualEntryButton.FlatAppearance.BorderSize = 0;
+            this.ManualEntryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ManualEntryButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManualEntryButton.ForeColor = System.Drawing.Color.Silver;
+            this.ManualEntryButton.Location = new System.Drawing.Point(2, 230);
+            this.ManualEntryButton.Name = "ManualEntryButton";
+            this.ManualEntryButton.Size = new System.Drawing.Size(316, 150);
+            this.ManualEntryButton.TabIndex = 5;
+            this.ManualEntryButton.Text = "Manual Entry";
+            this.ManualEntryButton.UseVisualStyleBackColor = true;
+            this.ManualEntryButton.Click += new System.EventHandler(this.ManualEntryButton_Click);
+            // 
             // Main_Menu
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -428,5 +444,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha1;
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha2;
+        private System.Windows.Forms.Button ManualEntryButton;
     }
 }

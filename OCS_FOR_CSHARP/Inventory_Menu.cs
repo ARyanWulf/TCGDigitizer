@@ -57,7 +57,7 @@ namespace OCS_FOR_CSHARP
             display_upper = 0;
             Page_Back_Button.Enabled = false;
             Size tempSize = panel1.MaximumSize;
-            tempSize.Height = Height - 100;
+            tempSize.Height = Height - 200;
             panel1.MaximumSize = tempSize;
         }
 

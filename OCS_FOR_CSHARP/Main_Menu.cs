@@ -47,6 +47,7 @@ namespace OCS_FOR_CSHARP
             ScanButton.Enabled = false;
             InventoryButton.Enabled = false;
             SettingsButton.Enabled = false;
+            ManualEntryButton.Enabled = false;
 
             Login_Screen();
 
@@ -65,6 +66,7 @@ namespace OCS_FOR_CSHARP
                 ScanButton.Enabled = value;
                 InventoryButton.Enabled = value;
                 SettingsButton.Enabled = value;
+                ManualEntryButton.Enabled = value;
             }
         }
         /*REMOVE IF NOT USED FOR UI IMPROVEMENTS 3/12
@@ -103,6 +105,7 @@ namespace OCS_FOR_CSHARP
             ScanButton.Enabled = true;
             InventoryButton.Enabled = true;
             SettingsButton.Enabled = true;
+            ManualEntryButton.Enabled = true;
         }
 
         private void login_username_textbox_GotFocus(object sender, EventArgs e)
@@ -449,6 +452,19 @@ namespace OCS_FOR_CSHARP
         private void panel2_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void ManualEntryButton_Click(object sender, EventArgs e)
+        {
+            panel2.Controls.Clear();
+            Edit_Card_Form inventory_form = new Edit_Card_Form();
+            inventory_form.TopLevel = false;
+            panel2.Controls.Add(inventory_form);
+            inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            inventory_form.Dock = DockStyle.Fill;
+            inventory_form.Size = new Size(panel2.Width, panel2.Height);
+            inventory_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+            inventory_form.Show();
         }
     }
 
