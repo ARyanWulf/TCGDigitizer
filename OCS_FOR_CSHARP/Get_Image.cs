@@ -327,6 +327,7 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Visible = false;
             int rowOffset = Card_Table_Panel.RowCount;
             Card_Table_Panel.RowCount ++;
+            Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 50 });
             //if (!Card_Table_Panel.AutoScroll) Card_Table_Panel.AutoScroll = true;
             cards.Add(sentCard);
 
@@ -335,11 +336,11 @@ namespace OCS_FOR_CSHARP
             // populate each row with a checkbox
 
             Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus }, 0, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 1, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 2, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 3, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoEllipsis = true, BackColor = sentCard.cardStatus }, 4, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 5, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 1, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 2, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 3, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoSize = true, Anchor = AnchorStyles.None, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 4, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 5, rowOffset);
             Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = sentCard.cardStatus }, 6, rowOffset);
             Card_Table_Panel.Visible = true;
         }
