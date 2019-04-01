@@ -18,11 +18,11 @@ namespace OCS_FOR_CSHARP
         public Settings()
         {
             InitializeComponent();
-            var position = this.PointToScreen(user_text_box.Location);
-            position = user_settings_backpanel.PointToClient(position);
-            user_text_box.Parent = user_settings_backpanel;
-            user_text_box.Location = position;
-            user_text_box.Visible = true;
+            //var position = this.PointToScreen(user_text_box.Location);
+            //position = user_settings_backpanel.PointToClient(position);
+            //user_text_box.Parent = user_settings_backpanel;
+           // user_text_box.Location = position;
+            //user_text_box.Visible = true;
 
         }
 
