@@ -252,7 +252,7 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                textBox1.Text = "Card not valid";
+                Name_Textbox.Text = "Card not valid";
             }
         }
 
