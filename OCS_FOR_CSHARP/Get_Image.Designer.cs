@@ -228,8 +228,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 65F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(754, 67);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 66F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(754, 68);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Date_Button
@@ -240,7 +240,7 @@
             this.Date_Button.ForeColor = System.Drawing.Color.Silver;
             this.Date_Button.Location = new System.Drawing.Point(635, 4);
             this.Date_Button.Name = "Date_Button";
-            this.Date_Button.Size = new System.Drawing.Size(115, 59);
+            this.Date_Button.Size = new System.Drawing.Size(115, 60);
             this.Date_Button.TabIndex = 12;
             this.Date_Button.Text = "Date";
             this.Date_Button.UseVisualStyleBackColor = true;
@@ -253,7 +253,7 @@
             this.Mana_Button.ForeColor = System.Drawing.Color.Silver;
             this.Mana_Button.Location = new System.Drawing.Point(517, 4);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(111, 59);
+            this.Mana_Button.Size = new System.Drawing.Size(111, 60);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -266,7 +266,7 @@
             this.Number_Button.ForeColor = System.Drawing.Color.Silver;
             this.Number_Button.Location = new System.Drawing.Point(399, 4);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(111, 59);
+            this.Number_Button.Size = new System.Drawing.Size(111, 60);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -279,7 +279,7 @@
             this.Expansion_Button.ForeColor = System.Drawing.Color.Silver;
             this.Expansion_Button.Location = new System.Drawing.Point(281, 4);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(111, 59);
+            this.Expansion_Button.Size = new System.Drawing.Size(111, 60);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -292,7 +292,7 @@
             this.Type_Button.ForeColor = System.Drawing.Color.Silver;
             this.Type_Button.Location = new System.Drawing.Point(163, 4);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(111, 59);
+            this.Type_Button.Size = new System.Drawing.Size(111, 60);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -305,7 +305,7 @@
             this.Name_Button.ForeColor = System.Drawing.Color.Silver;
             this.Name_Button.Location = new System.Drawing.Point(45, 4);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(111, 59);
+            this.Name_Button.Size = new System.Drawing.Size(111, 60);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -320,7 +320,7 @@
             this.Inventory_Checkbox.ForeColor = System.Drawing.Color.Silver;
             this.Inventory_Checkbox.Location = new System.Drawing.Point(4, 4);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 59);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 60);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             // 
@@ -339,7 +339,7 @@
             this.panel1.Controls.Add(this.button1);
             this.panel1.Location = new System.Drawing.Point(1002, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(325, 952);
+            this.panel1.Size = new System.Drawing.Size(325, 845);
             this.panel1.TabIndex = 19;
             // 
             // Cancel_Button
@@ -379,7 +379,7 @@
             this.panel2.Controls.Add(this.Display_Picture_Box);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(247, 952);
+            this.panel2.Size = new System.Drawing.Size(247, 845);
             this.panel2.TabIndex = 21;
             // 
             // flowLayoutPanel3
@@ -608,7 +608,7 @@
             this.panel3.Controls.Add(this.Card_Table_Panel);
             this.panel3.Location = new System.Drawing.Point(245, 50);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(758, 804);
+            this.panel3.Size = new System.Drawing.Size(758, 697);
             this.panel3.TabIndex = 23;
             // 
             // button4
@@ -634,7 +634,7 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.button4);
             this.panel4.Controls.Add(this.button3);
-            this.panel4.Location = new System.Drawing.Point(245, 852);
+            this.panel4.Location = new System.Drawing.Point(245, 745);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(756, 100);
             this.panel4.TabIndex = 24;
@@ -649,7 +649,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1325, 952);
+            this.ClientSize = new System.Drawing.Size(1325, 845);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);

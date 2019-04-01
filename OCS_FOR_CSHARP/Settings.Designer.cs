@@ -124,6 +124,7 @@
             // selectAllCheckBox
             // 
             this.selectAllCheckBox.AutoSize = true;
+            this.selectAllCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.selectAllCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
             this.selectAllCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.selectAllCheckBox.ForeColor = System.Drawing.SystemColors.ControlText;
