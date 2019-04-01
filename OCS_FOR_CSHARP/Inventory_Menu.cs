@@ -200,7 +200,15 @@ namespace OCS_FOR_CSHARP
 
 
             cards = Get_Inventory();
-            InventoryCountLabel.Text = "Cards in inventory: " + cards.Count();
+            int cardCount = 0;
+            for(int i = 0; i < cards.Count; i++)
+            {
+                for(int j = 0; j < cards[i].count; j++)
+                {
+                    cardCount++;
+                }
+            }
+            InventoryCountLabel.Text = "Cards in inventory: " + cardCount;
             // initialize table to zero rows to be empty
             if(cards.Count - display_lower < 20) //If the amount of cards to be displayed on refresh is less than 20
             {
@@ -334,6 +342,11 @@ namespace OCS_FOR_CSHARP
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
+        {
+            refreshTable();
         }
     }
 }
