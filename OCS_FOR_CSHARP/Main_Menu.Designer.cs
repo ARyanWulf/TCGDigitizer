@@ -34,6 +34,7 @@
             this.ContactButton = new System.Windows.Forms.Button();
             this.QuitButton = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.ManualEntryButton = new System.Windows.Forms.Button();
             this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -53,7 +54,6 @@
             this.alphaGradientPanel1 = new System.Windows.Forms.AlphaGradientPanel();
             this.colorWithAlpha2 = new System.Windows.Forms.ColorWithAlpha();
             this.colorWithAlpha1 = new System.Windows.Forms.ColorWithAlpha();
-            this.ManualEntryButton = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).BeginInit();
             this.panel2.SuspendLayout();
@@ -62,7 +62,7 @@
             // 
             // ScanButton
             // 
-            this.ScanButton.BackColor = System.Drawing.Color.Transparent;
+            this.ScanButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
             this.ScanButton.FlatAppearance.BorderSize = 0;
             this.ScanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ScanButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,6 +149,20 @@
             this.panel1.Size = new System.Drawing.Size(323, 1347);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
+            // 
+            // ManualEntryButton
+            // 
+            this.ManualEntryButton.FlatAppearance.BorderSize = 0;
+            this.ManualEntryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ManualEntryButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ManualEntryButton.ForeColor = System.Drawing.Color.Silver;
+            this.ManualEntryButton.Location = new System.Drawing.Point(2, 230);
+            this.ManualEntryButton.Name = "ManualEntryButton";
+            this.ManualEntryButton.Size = new System.Drawing.Size(316, 150);
+            this.ManualEntryButton.TabIndex = 5;
+            this.ManualEntryButton.Text = "Manual Entry";
+            this.ManualEntryButton.UseVisualStyleBackColor = true;
+            this.ManualEntryButton.Click += new System.EventHandler(this.ManualEntryButton_Click);
             // 
             // LogoPicture
             // 
@@ -378,20 +392,6 @@
             this.colorWithAlpha1.Alpha = 255;
             this.colorWithAlpha1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.colorWithAlpha1.Parent = this.alphaGradientPanel1;
-            // 
-            // ManualEntryButton
-            // 
-            this.ManualEntryButton.FlatAppearance.BorderSize = 0;
-            this.ManualEntryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManualEntryButton.Font = new System.Drawing.Font("Copperplate Gothic Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ManualEntryButton.ForeColor = System.Drawing.Color.Silver;
-            this.ManualEntryButton.Location = new System.Drawing.Point(2, 230);
-            this.ManualEntryButton.Name = "ManualEntryButton";
-            this.ManualEntryButton.Size = new System.Drawing.Size(316, 150);
-            this.ManualEntryButton.TabIndex = 5;
-            this.ManualEntryButton.Text = "Manual Entry";
-            this.ManualEntryButton.UseVisualStyleBackColor = true;
-            this.ManualEntryButton.Click += new System.EventHandler(this.ManualEntryButton_Click);
             // 
             // Main_Menu
             // 
