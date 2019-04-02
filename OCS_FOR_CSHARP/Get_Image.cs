@@ -373,13 +373,6 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        private cardWrapper getCard(int cardID)
-        {
-            connection.Open();
-
-            connection.Close();
-        }
-
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
         {
 
@@ -650,7 +643,18 @@ namespace OCS_FOR_CSHARP
 
         private void button4_Click(object sender, EventArgs e)
         {
+            while(selectedCards.Count > 0)
+            {
+                cards.Remove(selectedCards[0]);
+                selectedCards.Remove(selectedCards[0]);
+            }
 
+            Card_Table_Panel.Controls.Clear();
+
+            for(int i = 0; i < cards.Count; i++)
+            {
+
+            }
         }
 
         private void Card_Set_Combobox_SelectedIndexChanged(object sender, EventArgs e)

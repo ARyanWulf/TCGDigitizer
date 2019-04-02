@@ -56,9 +56,13 @@ namespace OCS_FOR_CSHARP
             display_lower = 0;
             display_upper = 0;
             Page_Back_Button.Enabled = false;
+<<<<<<< HEAD
             Size tempSize = panel1.MaximumSize;
             tempSize.Height = Height;
             panel1.MaximumSize = tempSize;
+=======
+            
+>>>>>>> e14aa04359776a62dadd826146f123f05074fb81
         }
 
         private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
@@ -178,8 +182,11 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
-            panel2.Visible = false;
+            //panel2.Visible = false;
             panel1.Visible = false;
+            Size tempSize = panel1.MaximumSize;
+            tempSize.Height = Height - 100;
+            panel1.MaximumSize = tempSize;
             //Card_Table_Panel.Visible = false;
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
@@ -231,9 +238,12 @@ namespace OCS_FOR_CSHARP
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
                 //Card_Table_Panel.RowCount++;
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
-                Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill}, 0, i);
 
+                CheckBox tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill};
+                tempCheck.CheckedChanged += new EventHandler(tempCheck_CheckedChanged);
+                Card_Table_Panel.Controls.Add(tempCheck, 0, i);
                 // card name
+<<<<<<< HEAD
                 Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 1, i);
 
                 // database card type
@@ -250,6 +260,36 @@ namespace OCS_FOR_CSHARP
 
                 // database card date added
                 Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 6, i);
+=======
+                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 1, i);
+
+                // database card type
+                tempLabel = new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 2, i);
+
+                // database card set expansion
+                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 3, i);
+
+                // database card number/multiverse ID
+                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 4, i);
+
+                // database card mana
+                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 5, i);
+
+                // database card date added
+                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 6, i);
+>>>>>>> e14aa04359776a62dadd826146f123f05074fb81
                 cardIndex++;
             }
 
@@ -262,7 +302,7 @@ namespace OCS_FOR_CSHARP
 
             //Card_Table_Panel.Visible = true;
             panel1.Visible = true;
-            panel2.Visible = true;
+            //panel2.Visible = true;
             if(cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
@@ -334,6 +374,29 @@ namespace OCS_FOR_CSHARP
         {
 
         }
+<<<<<<< HEAD
+=======
+
+        private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
+        {
+            refreshTable();
+        }
+
+        private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
+        {
+            refreshTable();
+        }
+
+        private void tempCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tempLabel_Click(object sender, EventArgs e)
+        {
+            
+        }
+>>>>>>> e14aa04359776a62dadd826146f123f05074fb81
     }
 }
 
