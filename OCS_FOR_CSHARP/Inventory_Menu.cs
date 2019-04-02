@@ -241,25 +241,39 @@ namespace OCS_FOR_CSHARP
                 /* Currently not working, inventory table auto formats the column to be wider than it should be*/
                 //Card_Table_Panel.RowCount++;
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
-                Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill}, 0, i);
 
+                CheckBox tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill};
+                tempCheck.CheckedChanged += new EventHandler(tempCheck_CheckedChanged);
+                Card_Table_Panel.Controls.Add(tempCheck, 0, i);
                 // card name
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 1, i);
+                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 1, i);
 
                 // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 2, i);
+                tempLabel = new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 2, i);
 
                 // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 3, i);
+                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 3, i);
 
                 // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 4, i);
+                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 4, i);
 
                 // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 5, i);
+                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 5, i);
 
                 // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].count.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 6, i);
+                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel.Click += new EventHandler(tempLabel_Click);
+                Card_Table_Panel.Controls.Add(tempLabel, 6, i);
                 cardIndex++;
             }
 
@@ -353,6 +367,16 @@ namespace OCS_FOR_CSHARP
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
         {
             refreshTable();
+        }
+
+        private void tempCheck_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tempLabel_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

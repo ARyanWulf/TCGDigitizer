@@ -19,6 +19,8 @@ namespace OCS_FOR_CSHARP
         Inventory_Menu inventory_form;
         Settings settings_form;
         Edit_Card_Form edit_form;
+        Product_Info product_info;
+        bool product_info_clicked = false;
 
         public Main_Menu()
         {
@@ -191,7 +193,28 @@ namespace OCS_FOR_CSHARP
 
         private void ContactButton_Click(object sender, EventArgs e)
         {
-            if (ContactText.Visible == true)
+            product_info_clicked = !product_info_clicked;
+            panel2.Controls.Clear();
+            if (product_info_clicked || CurrentUser.user_ID != 0)
+            {
+                if (product_info == null || product_info.IsDisposed)
+                {
+                    product_info = new Product_Info();
+                }
+
+                product_info.TopLevel = false;
+                panel2.Controls.Add(product_info);
+                product_info.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                product_info.Dock = DockStyle.Fill;
+                product_info.Size = new Size(panel2.Width, panel2.Height);
+                product_info.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+                product_info.Show();
+            }
+            else if (!product_info_clicked && CurrentUser.user_ID == 0)
+            {
+                Login_Screen();
+            }
+            /*if (ContactText.Visible == true)
             {
                 ContactText.Visible = false;
                 CloseTextButton.Visible = false;
@@ -222,7 +245,7 @@ namespace OCS_FOR_CSHARP
                     login_button.Visible = false;
                     textBox1.Visible = false;
                 }
-            }    
+            }    */
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -473,6 +496,7 @@ namespace OCS_FOR_CSHARP
 
             CurrentUser.user_ID = 0;
             CurrentUser.prvlg_lvl = 0;
+            logout_link.Enabled = false;
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
