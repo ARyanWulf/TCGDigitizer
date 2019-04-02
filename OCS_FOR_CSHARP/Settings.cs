@@ -15,13 +15,17 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Settings : Form
     {
+        // the list of users that will be used to populate the table
+        private List<userWrapper> users = new List<userWrapper>();
+
         public Settings()
         {
             InitializeComponent();
+            Populate_Settings_List();
             //var position = this.PointToScreen(user_text_box.Location);
             //position = user_settings_backpanel.PointToClient(position);
             //user_text_box.Parent = user_settings_backpanel;
-           // user_text_box.Location = position;
+            //user_text_box.Location = position;
             //user_text_box.Visible = true;
 
         }
@@ -56,22 +60,35 @@ namespace OCS_FOR_CSHARP
         }
 
         // Autopopulate with a list of current users that exist in the system
-        public void addToUsersList()
+        public void Populate_Settings_List()
         {
-            //var users = getUsers();
+            users = Get_Users();
+
+            int displayRange = users.Count;
+
+            for (int i = 0; i < displayRange; i++)
+            {
+                Users_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 30 });
+                Users_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
+
+                Users_Panel.Controls.Add(new Label() { Text = users[i].first, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 1, i);
+                Users_Panel.Controls.Add(new Label() { Text = users[i].last, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 1, i);
+                Users_Panel.Controls.Add(new Label() { Text = users[i].prvlg, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 1, i);
+            }
         }
 
-        private List<userWrapper> getUsers()
+        private List<userWrapper> Get_Users()
         {
             List<userWrapper> users = new List<userWrapper>();
 
             connection.Open();
 
-            using (var cmd = new NpgsqlCommand("SELECT * FROM users"))
+            using (var cmd = new NpgsqlCommand("SELECT * FROM users", connection))
             {
                 var reader = cmd.ExecuteReader();
 
-                while(reader.Read())
+                // grab all users that exist in the database and add them to the databaseList
+                while (reader.Read())
                 {
                     userWrapper tempUser = new userWrapper();
 
