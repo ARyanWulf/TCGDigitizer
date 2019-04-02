@@ -118,10 +118,11 @@
             // 
             this.Cam_Picture_Box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.Cam_Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Cam_Picture_Box.Location = new System.Drawing.Point(1, 101);
+            this.Cam_Picture_Box.Dock = System.Windows.Forms.DockStyle.Top;
+            this.Cam_Picture_Box.Location = new System.Drawing.Point(0, 99);
             this.Cam_Picture_Box.Margin = new System.Windows.Forms.Padding(2);
             this.Cam_Picture_Box.Name = "Cam_Picture_Box";
-            this.Cam_Picture_Box.Size = new System.Drawing.Size(316, 186);
+            this.Cam_Picture_Box.Size = new System.Drawing.Size(321, 186);
             this.Cam_Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Cam_Picture_Box.TabIndex = 3;
             this.Cam_Picture_Box.TabStop = false;
@@ -129,12 +130,13 @@
             // 
             // Start_Video__Button
             // 
+            this.Start_Video__Button.Dock = System.Windows.Forms.DockStyle.Top;
             this.Start_Video__Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Start_Video__Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Start_Video__Button.ForeColor = System.Drawing.Color.Silver;
-            this.Start_Video__Button.Location = new System.Drawing.Point(-2, -2);
+            this.Start_Video__Button.Location = new System.Drawing.Point(0, 0);
             this.Start_Video__Button.Name = "Start_Video__Button";
-            this.Start_Video__Button.Size = new System.Drawing.Size(325, 99);
+            this.Start_Video__Button.Size = new System.Drawing.Size(321, 99);
             this.Start_Video__Button.TabIndex = 5;
             this.Start_Video__Button.Text = "Start Scanner";
             this.Start_Video__Button.UseVisualStyleBackColor = true;
@@ -169,7 +171,7 @@
             // 
             this.Card_Boarder.BackColor = System.Drawing.Color.Transparent;
             this.Card_Boarder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Card_Boarder.Location = new System.Drawing.Point(30, 101);
+            this.Card_Boarder.Location = new System.Drawing.Point(35, 99);
             this.Card_Boarder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.Card_Boarder.Name = "Card_Boarder";
             this.Card_Boarder.Size = new System.Drawing.Size(256, 186);
@@ -228,8 +230,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 68F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(754, 70);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 71F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(754, 73);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Date_Button
@@ -240,7 +242,7 @@
             this.Date_Button.ForeColor = System.Drawing.Color.Silver;
             this.Date_Button.Location = new System.Drawing.Point(635, 4);
             this.Date_Button.Name = "Date_Button";
-            this.Date_Button.Size = new System.Drawing.Size(115, 62);
+            this.Date_Button.Size = new System.Drawing.Size(115, 65);
             this.Date_Button.TabIndex = 12;
             this.Date_Button.Text = "Date";
             this.Date_Button.UseVisualStyleBackColor = true;
@@ -253,7 +255,7 @@
             this.Mana_Button.ForeColor = System.Drawing.Color.Silver;
             this.Mana_Button.Location = new System.Drawing.Point(517, 4);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(111, 62);
+            this.Mana_Button.Size = new System.Drawing.Size(111, 65);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -266,7 +268,7 @@
             this.Number_Button.ForeColor = System.Drawing.Color.Silver;
             this.Number_Button.Location = new System.Drawing.Point(399, 4);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(111, 62);
+            this.Number_Button.Size = new System.Drawing.Size(111, 65);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -279,7 +281,7 @@
             this.Expansion_Button.ForeColor = System.Drawing.Color.Silver;
             this.Expansion_Button.Location = new System.Drawing.Point(281, 4);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(111, 62);
+            this.Expansion_Button.Size = new System.Drawing.Size(111, 65);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -292,7 +294,7 @@
             this.Type_Button.ForeColor = System.Drawing.Color.Silver;
             this.Type_Button.Location = new System.Drawing.Point(163, 4);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(111, 62);
+            this.Type_Button.Size = new System.Drawing.Size(111, 65);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -305,7 +307,7 @@
             this.Name_Button.ForeColor = System.Drawing.Color.Silver;
             this.Name_Button.Location = new System.Drawing.Point(45, 4);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(111, 62);
+            this.Name_Button.Size = new System.Drawing.Size(111, 65);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -320,14 +322,12 @@
             this.Inventory_Checkbox.ForeColor = System.Drawing.Color.Silver;
             this.Inventory_Checkbox.Location = new System.Drawing.Point(4, 4);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 62);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 65);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             // 
             // panel1
             // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.Card_Boarder);
@@ -337,7 +337,8 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.Start_Video__Button);
             this.panel1.Controls.Add(this.button1);
-            this.panel1.Location = new System.Drawing.Point(1002, 0);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(1000, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(325, 749);
             this.panel1.TabIndex = 19;
@@ -371,12 +372,11 @@
             // 
             // panel2
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel2.Controls.Add(this.flowLayoutPanel3);
             this.panel2.Controls.Add(this.Preview_Label);
             this.panel2.Controls.Add(this.Display_Picture_Box);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(247, 749);
