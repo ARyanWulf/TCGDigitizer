@@ -56,9 +56,7 @@ namespace OCS_FOR_CSHARP
             display_lower = 0;
             display_upper = 0;
             Page_Back_Button.Enabled = false;
-            Size tempSize = panel1.MaximumSize;
-            tempSize.Height = Height - 200;
-            panel1.MaximumSize = tempSize;
+            
         }
 
         private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
@@ -179,8 +177,11 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
-            panel2.Visible = false;
+            //panel2.Visible = false;
             panel1.Visible = false;
+            Size tempSize = panel1.MaximumSize;
+            tempSize.Height = Height - 100;
+            panel1.MaximumSize = tempSize;
             //Card_Table_Panel.Visible = false;
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
@@ -271,7 +272,7 @@ namespace OCS_FOR_CSHARP
 
             //Card_Table_Panel.Visible = true;
             panel1.Visible = true;
-            panel2.Visible = true;
+            //panel2.Visible = true;
             if(cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
@@ -345,6 +346,11 @@ namespace OCS_FOR_CSHARP
         }
 
         private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
+        {
+            refreshTable();
+        }
+
+        private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
         {
             refreshTable();
         }
