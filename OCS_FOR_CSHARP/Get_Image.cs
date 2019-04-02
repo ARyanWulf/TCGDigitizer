@@ -35,6 +35,10 @@ namespace OCS_FOR_CSHARP
         VideoCaptureDevice frame = null;
         FilterInfoCollection Devices;
         String Photo_Filepath = "C:\\Users\\milee\\OneDrive\\Pictures";
+        Timer searchTimer = new Timer();
+        List<cardWrapper> selectedCards = new List<cardWrapper>();
+        int badCard = 0;
+        int numScans = 0;
         
         public cardWrapper currentCard = new cardWrapper();
         List<cardWrapper> cards = new List<cardWrapper>();
@@ -47,6 +51,10 @@ namespace OCS_FOR_CSHARP
         public Form1()
         {
             InitializeComponent();
+            searchTimer.Tick += new EventHandler(searchEventHandler);
+            searchTimer.Interval = 3000;
+            searchTimer.Enabled = true;
+            searchTimer.Stop();
             //var position = this.PointToScreen(Card_Boarder.Location);
             //position = Cam_Picture_Box.PointToClient(position);
             //Card_Boarder.Parent = Cam_Picture_Box;
@@ -221,6 +229,7 @@ namespace OCS_FOR_CSHARP
             {
                 try
                 {
+                    numScans++;
                     //picture from web cam
                     Bitmap originalImg = (Bitmap)Cam_Picture_Box.Image.Clone();
                     //rotate 90 degrees
@@ -273,6 +282,7 @@ namespace OCS_FOR_CSHARP
                 }
                 catch (Exception ex)
                 {
+                    badCard--;
                     cardWrapper tempCard = new cardWrapper();
                     if(CardName.Text != "Name" && CardName.Text != "")
                     {
@@ -282,6 +292,7 @@ namespace OCS_FOR_CSHARP
                     {
                         tempCard.card = new CardObject { name = "Unknown Card" };
                     }
+                    tempCard.card_ID = badCard; 
                     tempCard.cardStatus = Color.Red;
                     addToList(tempCard);
                     cardImages.Add((Bitmap)Display_Picture_Box.Image.Clone());
@@ -335,14 +346,38 @@ namespace OCS_FOR_CSHARP
             // begin popluating rows with cards
             // populate each row with a checkbox
 
-            Card_Table_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus }, 0, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 1, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 2, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 3, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoSize = true, Anchor = AnchorStyles.None, AutoEllipsis = true, BackColor = sentCard.cardStatus }, 4, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus }, 5, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = sentCard.cardStatus }, 6, rowOffset);
+            var tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempCheck.CheckStateChanged += new EventHandler(cardCheckChanged);
+
+            Card_Table_Panel.Controls.Add(tempCheck, 0, Card_Table_Panel.RowCount - 1);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 1, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 2, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 3, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoSize = true, Anchor = AnchorStyles.None, AutoEllipsis = true, BackColor = sentCard.cardStatus, Tag = sentCard }, 4, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 5, rowOffset);
+            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = sentCard.cardStatus, Tag = sentCard }, 6, rowOffset);
             Card_Table_Panel.Visible = true;
+        }
+
+        private void cardCheckChanged(Object sender, EventArgs eventArgs)
+        {
+            var temp = sender as CheckBox;
+            if (temp.Checked)
+            {
+
+                selectedCards.Add(temp.Tag as cardWrapper);
+            }
+            else
+            {
+                selectedCards.Remove(temp.Tag as cardWrapper);
+            }
+        }
+
+        private cardWrapper getCard(int cardID)
+        {
+            connection.Open();
+
+            connection.Close();
         }
 
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
@@ -381,7 +416,7 @@ namespace OCS_FOR_CSHARP
 
             using (var cmd = new NpgsqlCommand("get_card_with_name", connection))
             {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("in_name", cardName);
 
@@ -393,7 +428,7 @@ namespace OCS_FOR_CSHARP
                 {
                     tempWrapper.cardStatus = Color.Yellow;
                 }
-                tempCard.cardID = System.Convert.ToInt32(cmd.ExecuteScalar());
+                tempCard.cardID = Convert.ToInt32(cmd.ExecuteScalar());
             }
 
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_id = " + returnCard.card.cardID, connection))
@@ -404,12 +439,12 @@ namespace OCS_FOR_CSHARP
                     string temp;
                     cardWrapper tempWrapper = new cardWrapper();
                     CardObject tempCard = new CardObject();
-                    tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                    tempCard.cardID = Convert.ToInt32(reader[0].ToString());
                     tempCard.name = reader[2].ToString();
                     tempCard.type = reader[3].ToString();
                     tempCard.manaCost = reader[4].ToString();
                     tempCard.setCode = reader[5].ToString();
-                    tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
+                    tempCard.multiverseId = Convert.ToInt32(reader[9].ToString());
                     tempCard.power = reader[10].ToString();
                     tempCard.toughness = reader[11].ToString();
 
@@ -510,7 +545,7 @@ namespace OCS_FOR_CSHARP
 
                 using (var cmd = new NpgsqlCommand("new_trans_event", connection))
                 {
-                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
                     cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
@@ -542,7 +577,7 @@ namespace OCS_FOR_CSHARP
                     connection.Open();
                     using (var cmd = new NpgsqlCommand("update_inv_count", connection))
                     {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
                         cmd.Parameters.AddWithValue("in_new_count", 1);
@@ -557,7 +592,7 @@ namespace OCS_FOR_CSHARP
                     connection.Open();
                     using (var cmd = new NpgsqlCommand("new_inv_event", connection))
                     {
-                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        cmd.CommandType = CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
                         cmd.Parameters.AddWithValue("in_new_count", 1);
@@ -593,6 +628,11 @@ namespace OCS_FOR_CSHARP
 
         private void button3_Click(object sender, EventArgs e)
         {
+
+            for(int i = 0; i < Card_Table_Panel.RowCount; i++)
+            {
+            }
+
             if (cards.Count > 0)
             {
                 Add_Cards_To_Inventory();
@@ -625,16 +665,34 @@ namespace OCS_FOR_CSHARP
 
         private void CardName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            searchTimer.Stop();
+        }
+
+        private void searchEventHandler(Object myObject, EventArgs eventArgs)
+        {
+            searchTimer.Stop();
+            var tempList = findCardsWithName(CardName.Text);
+
+            CardName.Items.Clear();
+
+            for (int i = 0; i < tempList.Count; i++)
+            {
+                CardName.Items.Add(tempList[i].card.name + " " + tempList[i].card.setCode);
+            }
+
         }
 
         private void CardName_TextChanged(object sender, EventArgs e)
         {
-            if(CardName.Text != textBox1.Text)
+            if((CardName.Text != textBox1.Text) && (CardName.Text != "") && (CardName.Text.Length >= 3) && (CardName.SelectedText != CardName.Text))
             {
-                var tempList = findCardsWithName(CardName.Text);
+                searchTimer.Stop();
+                searchTimer.Start();
             }
-
-            //for(int i = 0;)
+            else
+            {
+                searchTimer.Stop();
+            }
         }
 
         private List<cardWrapper> findCardsWithName(string cardName)
@@ -647,24 +705,26 @@ namespace OCS_FOR_CSHARP
 
             using (var cmd = new NpgsqlCommand("get_cards_containing_name", connection))
             {
-                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                cmd.CommandType = CommandType.StoredProcedure;
 
                 cmd.Parameters.AddWithValue("in_name", cardName);
 
                 //tempID = 
                 var reader = cmd.ExecuteReader();
 
+                //if(reader.HasRows)
+
                 while(reader.Read())
                 {
                     string temp;
                     cardWrapper tempWrapper = new cardWrapper();
                     CardObject tempCard = new CardObject();
-                    tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                    tempCard.cardID = Convert.ToInt32(reader[0].ToString());
                     tempCard.name = reader[2].ToString();
                     tempCard.type = reader[3].ToString();
                     tempCard.manaCost = reader[4].ToString();
                     tempCard.setCode = reader[5].ToString();
-                    tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
+                    tempCard.multiverseId = Convert.ToInt32(reader[9].ToString());
                     tempCard.power = reader[10].ToString();
                     tempCard.toughness = reader[11].ToString();
 
@@ -697,9 +757,7 @@ namespace OCS_FOR_CSHARP
             return returnList;
         }
     }
-
-
-
+    
     public class cardWrapper
     {
         public CardObject card;
