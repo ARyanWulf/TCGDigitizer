@@ -138,6 +138,7 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.SlateGray;
+            this.textBox1.ForeColor = System.Drawing.Color.Silver;
             this.textBox1.Location = new System.Drawing.Point(50, 347);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -251,6 +252,7 @@
             // 
             this.Card_Additional_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Additional_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Additional_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Additional_TextBox.Location = new System.Drawing.Point(349, 85);
             this.Card_Additional_TextBox.Name = "Card_Additional_TextBox";
             this.Card_Additional_TextBox.ReadOnly = true;
@@ -262,6 +264,7 @@
             // 
             this.Card_Type_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Type_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Type_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Type_TextBox.Location = new System.Drawing.Point(349, 54);
             this.Card_Type_TextBox.Name = "Card_Type_TextBox";
             this.Card_Type_TextBox.ReadOnly = true;
@@ -272,6 +275,7 @@
             // 
             this.Card_Toughness_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Toughness_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Toughness_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Toughness_TextBox.Location = new System.Drawing.Point(349, 405);
             this.Card_Toughness_TextBox.Name = "Card_Toughness_TextBox";
             this.Card_Toughness_TextBox.ReadOnly = true;
@@ -282,6 +286,7 @@
             // 
             this.Card_Power_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Power_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Power_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Power_TextBox.Location = new System.Drawing.Point(349, 375);
             this.Card_Power_TextBox.Name = "Card_Power_TextBox";
             this.Card_Power_TextBox.ReadOnly = true;
@@ -292,6 +297,7 @@
             // 
             this.Card_Flavor_Text_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Flavor_Text_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Flavor_Text_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Flavor_Text_TextBox.Location = new System.Drawing.Point(349, 295);
             this.Card_Flavor_Text_TextBox.Multiline = true;
             this.Card_Flavor_Text_TextBox.Name = "Card_Flavor_Text_TextBox";
@@ -303,6 +309,7 @@
             // 
             this.Card_Description_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Description_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Description_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Description_TextBox.Location = new System.Drawing.Point(349, 175);
             this.Card_Description_TextBox.Multiline = true;
             this.Card_Description_TextBox.Name = "Card_Description_TextBox";
@@ -315,6 +322,7 @@
             // 
             this.Card_Expansion_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Expansion_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Expansion_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Expansion_TextBox.Location = new System.Drawing.Point(349, 145);
             this.Card_Expansion_TextBox.Name = "Card_Expansion_TextBox";
             this.Card_Expansion_TextBox.ReadOnly = true;
@@ -325,6 +333,7 @@
             // 
             this.Card_Mana_Cost_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Mana_Cost_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Card_Mana_Cost_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Mana_Cost_TextBox.Location = new System.Drawing.Point(349, 115);
             this.Card_Mana_Cost_TextBox.Name = "Card_Mana_Cost_TextBox";
             this.Card_Mana_Cost_TextBox.ReadOnly = true;
@@ -345,6 +354,7 @@
             // 
             this.textBox2.BackColor = System.Drawing.Color.SlateGray;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.textBox2.ForeColor = System.Drawing.Color.Silver;
             this.textBox2.Location = new System.Drawing.Point(349, 434);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
@@ -379,6 +389,7 @@
             // 
             this.Name_Textbox.BackColor = System.Drawing.Color.SlateGray;
             this.Name_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.Name_Textbox.ForeColor = System.Drawing.Color.Silver;
             this.Name_Textbox.Location = new System.Drawing.Point(349, 24);
             this.Name_Textbox.Name = "Name_Textbox";
             this.Name_Textbox.Size = new System.Drawing.Size(200, 26);

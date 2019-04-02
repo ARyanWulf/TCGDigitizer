@@ -17,6 +17,7 @@ namespace OCS_FOR_CSHARP
 
         public int display_lower;
         public int display_upper;
+        public List<cardWrapper> id_list = new List<cardWrapper>();
         private List<cardWrapper> cards = new List<cardWrapper>();
         private TableLayoutPanel tempTable;
 
@@ -56,13 +57,7 @@ namespace OCS_FOR_CSHARP
             display_lower = 0;
             display_upper = 0;
             Page_Back_Button.Enabled = false;
-<<<<<<< HEAD
-            Size tempSize = panel1.MaximumSize;
-            tempSize.Height = Height;
-            panel1.MaximumSize = tempSize;
-=======
             
->>>>>>> e14aa04359776a62dadd826146f123f05074fb81
         }
 
         private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
@@ -113,7 +108,7 @@ namespace OCS_FOR_CSHARP
                 }
                 else if(i != 0)
                 {
-                    cmdhold += " OR card_id = " + cards[i].card_ID;
+                    cmdhold += "OR card_id = " + cards[i].card_ID;
                 }
                 else
                 {
@@ -128,7 +123,7 @@ namespace OCS_FOR_CSHARP
             {
                 connection.Open();
 
-                using (var cmd = new NpgsqlCommand("SELECT * FROM card WHERE " + cmdhold + " ORDER BY card_name", connection))
+                using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE " + cmdhold, connection))
                 {
                     NpgsqlDataReader reader = cmd.ExecuteReader();
 
@@ -176,6 +171,7 @@ namespace OCS_FOR_CSHARP
                 
 
             }
+           
 
             return cards;
         }
@@ -206,7 +202,15 @@ namespace OCS_FOR_CSHARP
 
 
             cards = Get_Inventory();
-            InventoryCountLabel.Text = "Cards in inventory: " + cards.Count();
+            int cardCount = 0;
+            for(int i = 0; i < cards.Count; i++)
+            {
+                for(int j = 0; j < cards[i].count; j++)
+                {
+                    cardCount++;
+                }
+            }
+            InventoryCountLabel.Text = "Cards in inventory: " + cardCount;
             // initialize table to zero rows to be empty
             if(cards.Count - display_lower < 20) //If the amount of cards to be displayed on refresh is less than 20
             {
@@ -239,57 +243,38 @@ namespace OCS_FOR_CSHARP
                 //Card_Table_Panel.RowCount++;
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
 
-                CheckBox tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill};
+                CheckBox tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
                 tempCheck.CheckedChanged += new EventHandler(tempCheck_CheckedChanged);
                 Card_Table_Panel.Controls.Add(tempCheck, 0, i);
                 // card name
-<<<<<<< HEAD
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 1, i);
-
-                // database card type
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 2, i);
-
-                // database card set expansion
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 3, i);
-
-                // database card number/multiverse ID
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 4, i);
-
-                // database card mana
-                Card_Table_Panel.Controls.Add(new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 5, i);
-
-                // database card date added
-                Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.Left }, 6, i);
-=======
-                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 1, i);
 
                 // database card type
-                tempLabel = new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel = new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 2, i);
 
                 // database card set expansion
-                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 3, i);
 
                 // database card number/multiverse ID
-                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 4, i);
 
                 // database card mana
-                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 5, i);
 
                 // database card date added
-                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None };
+                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 6, i);
->>>>>>> e14aa04359776a62dadd826146f123f05074fb81
                 cardIndex++;
             }
 
@@ -374,8 +359,6 @@ namespace OCS_FOR_CSHARP
         {
 
         }
-<<<<<<< HEAD
-=======
 
         private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
         {
@@ -389,14 +372,99 @@ namespace OCS_FOR_CSHARP
 
         private void tempCheck_CheckedChanged(object sender, EventArgs e)
         {
-
+            CheckBox temp = (CheckBox) sender;
+            id_list.Add((cardWrapper) temp.Tag);
+            //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
+            populate((cardWrapper) temp.Tag);
         }
 
         private void tempLabel_Click(object sender, EventArgs e)
         {
-            
+            Label temp = (Label) sender;
+            id_list.Add((cardWrapper) temp.Tag);
+            //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
+            populate((cardWrapper) temp.Tag);
         }
->>>>>>> e14aa04359776a62dadd826146f123f05074fb81
+
+        public void populate(cardWrapper input)
+        {
+            cardWrapper currentCard = input;
+
+            Name_Textbox.Text = currentCard.card.name;
+            Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
+            Card_Type_TextBox.Text = currentCard.card.type;
+            Card_Expansion_TextBox.Text = currentCard.card.setCode;
+            textBox2.Text = currentCard.card.number;
+
+            if (currentCard.card.subtypes != null)
+            {
+                Card_Additional_Label.Visible = true;
+                Card_Additional_TextBox.Visible = true;
+                for (int i = 0; i < currentCard.card.subtypes.Count; i++)
+                    Card_Additional_TextBox.Text += currentCard.card.subtypes[i] + " ";
+
+            }
+            else
+            {
+                Card_Additional_Label.Visible = false;
+                Card_Additional_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.power != null)
+            {
+                Card_Power_Label.Visible = true;
+                Card_Power_TextBox.Visible = true;
+                Card_Power_TextBox.Text = currentCard.card.power;
+            }
+            else
+            {
+                Card_Power_Label.Visible = false;
+                Card_Power_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.toughness != null)
+            {
+                Card_Toughness_Label.Visible = true;
+                Card_Toughness_TextBox.Visible = true;
+                Card_Toughness_TextBox.Text = currentCard.card.toughness;
+            }
+            else
+            {
+                Card_Toughness_Label.Visible = false;
+                Card_Toughness_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.text != null)
+            {
+                Card_Description_Label.Visible = true;
+                Card_Description_TextBox.Visible = true;
+                Card_Description_TextBox.Text = currentCard.card.text;
+            }
+            else
+            {
+                Card_Description_Label.Visible = false;
+                Card_Description_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.flavorText != null)
+            {
+                Card_Flavor_Text_Label.Visible = true;
+                Card_Flavor_Text_TextBox.Visible = true;
+                Card_Flavor_Text_TextBox.Text = currentCard.card.flavorText;
+            }
+            else
+            {
+                Card_Flavor_Text_Label.Visible = false;
+                Card_Flavor_Text_TextBox.Visible = false;
+            }
+
+            //pictureBox1.Image = newForm.Display_Picture_Box.Image;
+
+            /*if (currentCard.card.ImageUrl.OriginalString != null)
+            {
+                pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
+            }*/
+        }
     }
 }
 
