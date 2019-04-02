@@ -117,7 +117,7 @@
             this.Users_Panel.Name = "Users_Panel";
             this.Users_Panel.RowCount = 1;
             this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.8125F));
-            this.Users_Panel.Size = new System.Drawing.Size(678, 27);
+            this.Users_Panel.Size = new System.Drawing.Size(680, 30);
             this.Users_Panel.TabIndex = 12;
             this.Users_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.users_panel);
             // 
@@ -143,7 +143,7 @@
             this.user_first_name_sort.Location = new System.Drawing.Point(29, 3);
             this.user_first_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_first_name_sort.Name = "user_first_name_sort";
-            this.user_first_name_sort.Size = new System.Drawing.Size(376, 27);
+            this.user_first_name_sort.Size = new System.Drawing.Size(375, 27);
             this.user_first_name_sort.TabIndex = 0;
             this.user_first_name_sort.Text = "First Name";
             this.user_first_name_sort.UseVisualStyleBackColor = true;
@@ -153,7 +153,7 @@
             this.user_last_name_sort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.user_last_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_last_name_sort.ForeColor = System.Drawing.Color.Silver;
-            this.user_last_name_sort.Location = new System.Drawing.Point(410, 3);
+            this.user_last_name_sort.Location = new System.Drawing.Point(409, 3);
             this.user_last_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_last_name_sort.Name = "user_last_name_sort";
             this.user_last_name_sort.Size = new System.Drawing.Size(181, 27);
@@ -166,7 +166,7 @@
             this.authority_sort_button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.authority_sort_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.authority_sort_button.ForeColor = System.Drawing.Color.Silver;
-            this.authority_sort_button.Location = new System.Drawing.Point(596, 3);
+            this.authority_sort_button.Location = new System.Drawing.Point(595, 3);
             this.authority_sort_button.Margin = new System.Windows.Forms.Padding(2);
             this.authority_sort_button.Name = "authority_sort_button";
             this.authority_sort_button.Size = new System.Drawing.Size(82, 27);
@@ -266,7 +266,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(681, 33);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(680, 33);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
             // Settings

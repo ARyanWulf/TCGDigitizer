@@ -19,6 +19,8 @@ namespace OCS_FOR_CSHARP
         Inventory_Menu inventory_form;
         Settings settings_form;
         Edit_Card_Form edit_form;
+        Product_Info product_info;
+        bool product_info_clicked = false;
 
         public Main_Menu()
         {
@@ -53,7 +55,7 @@ namespace OCS_FOR_CSHARP
             InventoryButton.Enabled = false;
             SettingsButton.Enabled = false;
             ManualEntryButton.Enabled = false;
-
+            logout_link.Enabled = false;
             Login_Screen();
 
             CurrentUser.user_ID = 0;
@@ -111,6 +113,7 @@ namespace OCS_FOR_CSHARP
             InventoryButton.Enabled = true;
             SettingsButton.Enabled = true;
             ManualEntryButton.Enabled = true;
+            logout_link.Enabled = true;
         }
 
         private void login_username_textbox_GotFocus(object sender, EventArgs e)
@@ -190,7 +193,28 @@ namespace OCS_FOR_CSHARP
 
         private void ContactButton_Click(object sender, EventArgs e)
         {
-            if (ContactText.Visible == true)
+            product_info_clicked = !product_info_clicked;
+            panel2.Controls.Clear();
+            if (product_info_clicked || CurrentUser.user_ID != 0)
+            {
+                if (product_info == null || product_info.IsDisposed)
+                {
+                    product_info = new Product_Info();
+                }
+
+                product_info.TopLevel = false;
+                panel2.Controls.Add(product_info);
+                product_info.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+                product_info.Dock = DockStyle.Fill;
+                product_info.Size = new Size(panel2.Width, panel2.Height);
+                product_info.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
+                product_info.Show();
+            }
+            else if (!product_info_clicked && CurrentUser.user_ID == 0)
+            {
+                Login_Screen();
+            }
+            /*if (ContactText.Visible == true)
             {
                 ContactText.Visible = false;
                 CloseTextButton.Visible = false;
@@ -221,7 +245,7 @@ namespace OCS_FOR_CSHARP
                     login_button.Visible = false;
                     textBox1.Visible = false;
                 }
-            }    
+            }    */
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -340,14 +364,12 @@ namespace OCS_FOR_CSHARP
                             password_label.Visible = false;
                             login_button.Visible = false;
                             textBox1.Visible = false;
-                            logout_link.Visible = true;
-
                             welcome_label.Text = "Welcome " + username;
                             welcome_label.Visible = true;
 
-                            ScanButton.Enabled = true;
-                            InventoryButton.Enabled = true;
-                            SettingsButton.Enabled = true;
+                            //ScanButton.Enabled = true;
+                            //InventoryButton.Enabled = true;
+                            //SettingsButton.Enabled = true;
 
                             login_username_textbox.Text = "";
                             login_password_textbox.Text = "";
@@ -454,7 +476,27 @@ namespace OCS_FOR_CSHARP
 
         private void logout_link_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            /*login_label.Visible = true;
+            login_username_textbox.Visible = true;
+            user_name_label.Visible = true;
+            login_password_textbox.Visible = true;
+            password_label.Visible = true;
+            login_button.Visible = true;
+            logout_link.Visible = false;
+            textBox1.Visible = true;
+            welcome_label.Visible = false;*/
+            Login_Screen();
 
+            ContactText.Visible = false;
+            CloseTextButton.Visible = false;
+            ManualEntryButton.Enabled = false;
+            ScanButton.Enabled = false;
+            InventoryButton.Enabled = false;
+            SettingsButton.Enabled = false;
+
+            CurrentUser.user_ID = 0;
+            CurrentUser.prvlg_lvl = 0;
+            logout_link.Enabled = false;
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
