@@ -107,16 +107,16 @@
             this.Users_Panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Users_Panel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.Users_Panel.ColumnCount = 4;
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.796116F));
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93.20388F));
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
-            this.Users_Panel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.Users_Panel.ForeColor = System.Drawing.Color.Silver;
             this.Users_Panel.Location = new System.Drawing.Point(24, 129);
             this.Users_Panel.Margin = new System.Windows.Forms.Padding(2);
             this.Users_Panel.Name = "Users_Panel";
             this.Users_Panel.RowCount = 1;
-            this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 57.8125F));
+            this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.Users_Panel.Size = new System.Drawing.Size(680, 30);
             this.Users_Panel.TabIndex = 12;
             this.Users_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.users_panel);
@@ -131,7 +131,7 @@
             this.selectAllCheckBox.Location = new System.Drawing.Point(3, 3);
             this.selectAllCheckBox.Margin = new System.Windows.Forms.Padding(2);
             this.selectAllCheckBox.Name = "selectAllCheckBox";
-            this.selectAllCheckBox.Size = new System.Drawing.Size(21, 27);
+            this.selectAllCheckBox.Size = new System.Drawing.Size(26, 27);
             this.selectAllCheckBox.TabIndex = 17;
             this.selectAllCheckBox.UseVisualStyleBackColor = true;
             // 
@@ -140,10 +140,10 @@
             this.user_first_name_sort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.user_first_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_first_name_sort.ForeColor = System.Drawing.Color.Silver;
-            this.user_first_name_sort.Location = new System.Drawing.Point(29, 3);
+            this.user_first_name_sort.Location = new System.Drawing.Point(34, 3);
             this.user_first_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_first_name_sort.Name = "user_first_name_sort";
-            this.user_first_name_sort.Size = new System.Drawing.Size(375, 27);
+            this.user_first_name_sort.Size = new System.Drawing.Size(276, 27);
             this.user_first_name_sort.TabIndex = 0;
             this.user_first_name_sort.Text = "First Name";
             this.user_first_name_sort.UseVisualStyleBackColor = true;
@@ -153,10 +153,10 @@
             this.user_last_name_sort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.user_last_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_last_name_sort.ForeColor = System.Drawing.Color.Silver;
-            this.user_last_name_sort.Location = new System.Drawing.Point(409, 3);
+            this.user_last_name_sort.Location = new System.Drawing.Point(315, 3);
             this.user_last_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_last_name_sort.Name = "user_last_name_sort";
-            this.user_last_name_sort.Size = new System.Drawing.Size(181, 27);
+            this.user_last_name_sort.Size = new System.Drawing.Size(276, 27);
             this.user_last_name_sort.TabIndex = 1;
             this.user_last_name_sort.Text = "Last Name";
             this.user_last_name_sort.UseVisualStyleBackColor = true;
@@ -166,10 +166,10 @@
             this.authority_sort_button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.authority_sort_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.authority_sort_button.ForeColor = System.Drawing.Color.Silver;
-            this.authority_sort_button.Location = new System.Drawing.Point(595, 3);
+            this.authority_sort_button.Location = new System.Drawing.Point(596, 3);
             this.authority_sort_button.Margin = new System.Windows.Forms.Padding(2);
             this.authority_sort_button.Name = "authority_sort_button";
-            this.authority_sort_button.Size = new System.Drawing.Size(82, 27);
+            this.authority_sort_button.Size = new System.Drawing.Size(81, 27);
             this.authority_sort_button.TabIndex = 15;
             this.authority_sort_button.Text = "Authority";
             this.authority_sort_button.UseVisualStyleBackColor = true;
@@ -253,10 +253,10 @@
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.388206F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93.61179F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 280F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.Controls.Add(this.selectAllCheckBox, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.user_last_name_sort, 2, 0);
             this.tableLayoutPanel1.Controls.Add(this.user_first_name_sort, 1, 0);
@@ -265,7 +265,7 @@
             this.tableLayoutPanel1.Location = new System.Drawing.Point(24, 96);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(680, 33);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
