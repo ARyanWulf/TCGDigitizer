@@ -17,6 +17,7 @@ namespace OCS_FOR_CSHARP
 
         public int display_lower;
         public int display_upper;
+        public bool hold = false;
         public List<cardWrapper> id_list = new List<cardWrapper>();
         private List<cardWrapper> cards = new List<cardWrapper>();
         private TableLayoutPanel tempTable;
@@ -178,6 +179,7 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
+            //yes
             //panel2.Visible = false;
             panel1.Visible = false;
             Size tempSize = panel1.MaximumSize;
@@ -366,11 +368,6 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
-        private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
-        {
-            refreshTable();
-        }
-
         private void tempCheck_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox temp = (CheckBox)sender;
@@ -465,6 +462,11 @@ namespace OCS_FOR_CSHARP
             {
                 pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
             }*/
+        }
+
+        private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
+        {
+            refreshTable();
         }
     }
 }

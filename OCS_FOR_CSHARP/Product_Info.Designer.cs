@@ -39,12 +39,13 @@
             this.ContactText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ContactText.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactText.ForeColor = System.Drawing.Color.Silver;
-            this.ContactText.Location = new System.Drawing.Point(150, 145);
-            this.ContactText.MaximumSize = new System.Drawing.Size(500, 300);
+            this.ContactText.Location = new System.Drawing.Point(41, 183);
+            this.ContactText.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ContactText.MaximumSize = new System.Drawing.Size(667, 369);
             this.ContactText.Multiline = true;
             this.ContactText.Name = "ContactText";
             this.ContactText.ReadOnly = true;
-            this.ContactText.Size = new System.Drawing.Size(500, 234);
+            this.ContactText.Size = new System.Drawing.Size(419, 288);
             this.ContactText.TabIndex = 18;
             this.ContactText.Text = "TCG Digitizer Development Team\r\n-Brodie Boldt\r\n-Chris Cooper\r\n-Ryan Fox\r\n-Jared P" +
     "arks";
@@ -57,21 +58,21 @@
             this.login_label.AutoSize = true;
             this.login_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_label.ForeColor = System.Drawing.Color.Silver;
-            this.login_label.Location = new System.Drawing.Point(240, 82);
-            this.login_label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.login_label.Location = new System.Drawing.Point(48, 105);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(320, 39);
+            this.login_label.Size = new System.Drawing.Size(403, 52);
             this.login_label.TabIndex = 32;
             this.login_label.Text = "Product Information";
             // 
             // Product_Info
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(495, 554);
             this.Controls.Add(this.login_label);
             this.Controls.Add(this.ContactText);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Product_Info";
             this.Text = "Product_Info";
             this.ResumeLayout(false);
