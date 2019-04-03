@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using MtgApiManager.Lib.Service;
+using MtgApiManager.Lib.Model;
+using MtgApiManager.Lib.Core;
+using MtgApiManager.Lib.Utility;
+using MtgApiManager.Lib.Dto;
 
 namespace OCS_FOR_CSHARP
 {
@@ -21,6 +26,7 @@ namespace OCS_FOR_CSHARP
         public List<cardWrapper> id_list = new List<cardWrapper>();
         private List<cardWrapper> cards = new List<cardWrapper>();
         private TableLayoutPanel tempTable;
+        CardService service = new CardService();
 
         public Inventory_Menu()
         {
@@ -456,12 +462,17 @@ namespace OCS_FOR_CSHARP
                 Card_Flavor_Text_TextBox.Visible = false;
             }
 
-            //pictureBox1.Image = newForm.Display_Picture_Box.Image;
 
-            /*if (currentCard.card.ImageUrl.OriginalString != null)
+
+            try
             {
-                pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
-            }*/
+                var image = service.Where(x => x.Set, currentCard.card.setCode).Where(y => y.Number, currentCard.card.number).All().Value[0].ImageUrl.OriginalString;
+                pictureBox1.Load(image);
+            }
+            catch
+            {
+
+            }
         }
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
