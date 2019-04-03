@@ -37,13 +37,11 @@ namespace OCS_FOR_CSHARP
         String Photo_Filepath = "C:\\Users\\milee\\OneDrive\\Pictures";
         Timer searchTimer = new Timer();
         List<cardWrapper> selectedCards = new List<cardWrapper>();
-        int badCard = 0;
-        int numScans = 0;
+        List<cardWrapper> foundCards = new List<cardWrapper>();
         
         public cardWrapper currentCard;
         List<cardWrapper> cards = new List<cardWrapper>();
         List<cardWrapper> databaseList = new List<cardWrapper>();
-        List<Bitmap> cardImages = new List<Bitmap>();
         CardService service = new CardService();
 
         public object DisplayInformation { get; private set; }
@@ -234,7 +232,6 @@ namespace OCS_FOR_CSHARP
             {
                 try
                 {
-                    numScans++;
                     //picture from web cam
                     Bitmap originalImg = (Bitmap)Cam_Picture_Box.Image.Clone();
                     //rotate 90 degrees
@@ -283,11 +280,10 @@ namespace OCS_FOR_CSHARP
                     CardName.Text = textBoxString;
 
                     addToList(findCardWithName(textBoxString));
-                    cardImages.Add(originalImg);
+                    currentCard.tempImg = originalImg;
                 }
                 catch (Exception ex)
                 {
-                    badCard--;
                     cardWrapper tempCard = new cardWrapper();
                     if(CardName.Text != "Name" && CardName.Text != "")
                     {
@@ -297,10 +293,9 @@ namespace OCS_FOR_CSHARP
                     {
                         tempCard.card = new CardObject { name = "Unknown Card" };
                     }
-                    tempCard.card_ID = badCard; 
                     tempCard.cardStatus = Color.Red;
+                    tempCard.tempImg = (Bitmap)Display_Picture_Box.Image.Clone();
                     addToList(tempCard);
-                    cardImages.Add((Bitmap)Display_Picture_Box.Image.Clone());
                     if (connection.State == ConnectionState.Open) connection.Close();
                 }//need to add exception functionality
             }
@@ -396,11 +391,12 @@ namespace OCS_FOR_CSHARP
         private void Label_Clicked(Object sender, EventArgs eventArgs)
         {
             var returnCard = (sender as Label).Tag as cardWrapper;
+            currentCard = returnCard;
 
             CardName.Text = returnCard.card.name;
             Card_Set_Combobox.Text = returnCard.card.setCode;
             Card_Type_TextBox.Text = returnCard.card.type;
-            if (returnCard.card.text != "n/a")
+            if (returnCard.card.text != "n/a" || returnCard.card.text != null)
             {
                 cardTextTextbox.Visible = true;
                 cardTextLabel.Visible = true;
@@ -412,7 +408,7 @@ namespace OCS_FOR_CSHARP
                 cardTextTextbox.Visible = false;
             }
 
-            if (returnCard.card.flavorText != "n/a")
+            if (returnCard.card.flavorText != "n/a" || returnCard.card.flavorText != null)
             {
                 cardFlavorLabel.Visible = true;
                 cardFlavorTextbox.Visible = true;
@@ -424,14 +420,14 @@ namespace OCS_FOR_CSHARP
                 cardFlavorTextbox.Visible = false;
             }
 
-            if (returnCard.card.loyalty != "n/a")
+            if (returnCard.card.loyalty != "n/a" || returnCard.card.loyalty != null)
             {
                 cardLoyaltyLabel.Visible = true;
                 cardPTLabel.Visible = false;
                 cardPTLTextbox.Visible = true;
                 cardPTLTextbox.Text = returnCard.card.loyalty;
             }
-            else if (returnCard.card.power != "n/a")
+            else if (returnCard.card.power != "n/a" || returnCard.card.power != null)
             {
                 cardPTLabel.Visible = true;
                 cardPTLTextbox.Visible = true;
@@ -469,9 +465,7 @@ namespace OCS_FOR_CSHARP
         private cardWrapper findCardWithName(string cardName)
         {
             cardWrapper returnCard = new cardWrapper();
-
-            returnCard.card = new CardObject();
-            returnCard.card.cardID = -1;
+            cardWrapper tempWrapper = new cardWrapper();
 
             connection.Open();
 
@@ -481,7 +475,6 @@ namespace OCS_FOR_CSHARP
 
                 cmd.Parameters.AddWithValue("in_name", cardName);
 
-                cardWrapper tempWrapper = new cardWrapper();
                 CardObject tempCard = new CardObject();
 
                 var rowsAffected = cmd.ExecuteNonQuery();
@@ -489,7 +482,12 @@ namespace OCS_FOR_CSHARP
                 {
                     tempWrapper.cardStatus = Color.Yellow;
                 }
+                else
+                {
+                    tempWrapper.cardStatus = this.BackColor;
+                }
                 tempCard.cardID = Convert.ToInt32(cmd.ExecuteScalar());
+                returnCard.card = tempCard;
             }
 
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_id = " + returnCard.card.cardID, connection))
@@ -498,7 +496,6 @@ namespace OCS_FOR_CSHARP
                 while (reader.Read())
                 {
                     string temp;
-                    cardWrapper tempWrapper = new cardWrapper();
                     CardObject tempCard = new CardObject();
                     tempCard.cardID = Convert.ToInt32(reader[0].ToString());
                     tempCard.name = reader[2].ToString();
@@ -592,6 +589,8 @@ namespace OCS_FOR_CSHARP
                 cardPTLTextbox.Visible = false;
                 cardLoyaltyLabel.Visible = false;
             }
+            
+            currentCard = returnCard;
 
             return returnCard;
         }
@@ -717,12 +716,7 @@ namespace OCS_FOR_CSHARP
                 selectedCards.Remove(selectedCards[0]);
             }
 
-            Card_Table_Panel.Controls.Clear();
-
-            for(int i = 0; i < cards.Count; i++)
-            {
-                addToList(cards[i]);
-            }
+            resetList();
         }
 
         private void Card_Set_Combobox_SelectedIndexChanged(object sender, EventArgs e)
@@ -738,20 +732,38 @@ namespace OCS_FOR_CSHARP
         private void CardName_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchTimer.Stop();
+            var selectedCard = foundCards[CardName.SelectedIndex];
+            currentCard.card = selectedCard.card;
+            currentCard.card_ID = selectedCard.card_ID;
+            currentCard.condition = selectedCard.condition;
+            currentCard.cardStatus = this.BackColor;
+
+            resetList();
         }
 
         private void searchEventHandler(Object myObject, EventArgs eventArgs)
         {
             searchTimer.Stop();
-            var tempList = findCardsWithName(CardName.Text);
+            foundCards.Clear();
+            foundCards = findCardsWithName(CardName.Text);
 
             CardName.Items.Clear();
 
-            for (int i = 0; i < tempList.Count; i++)
+            for (int i = 0; i < foundCards.Count; i++)
             {
-                CardName.Items.Add(tempList[i].card.name + " " + tempList[i].card.setCode);
+                CardName.Items.Add(foundCards[i].card.name + " " + foundCards[i].card.setCode);
             }
 
+        }
+
+        private void resetList()
+        {
+            Card_Table_Panel.Controls.Clear();
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                addToList(cards[i]);
+            }
         }
 
         private void CardName_TextChanged(object sender, EventArgs e)
@@ -837,6 +849,7 @@ namespace OCS_FOR_CSHARP
         public int count, card_ID;
         public char condition;
         public Color cardStatus;
+        public Bitmap tempImg;
 
         public cardWrapper()
         {
