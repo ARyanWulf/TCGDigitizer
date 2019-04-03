@@ -396,7 +396,7 @@ namespace OCS_FOR_CSHARP
             CardName.Text = returnCard.card.name;
             Card_Set_Combobox.Text = returnCard.card.setCode;
             Card_Type_TextBox.Text = returnCard.card.type;
-            if (returnCard.card.text != "n/a" || returnCard.card.text != null)
+            if (returnCard.card.text != "n/a" && returnCard.card.text != null)
             {
                 cardTextTextbox.Visible = true;
                 cardTextLabel.Visible = true;
@@ -408,7 +408,7 @@ namespace OCS_FOR_CSHARP
                 cardTextTextbox.Visible = false;
             }
 
-            if (returnCard.card.flavorText != "n/a" || returnCard.card.flavorText != null)
+            if (returnCard.card.flavorText != "n/a" && returnCard.card.flavorText != null)
             {
                 cardFlavorLabel.Visible = true;
                 cardFlavorTextbox.Visible = true;
@@ -420,14 +420,14 @@ namespace OCS_FOR_CSHARP
                 cardFlavorTextbox.Visible = false;
             }
 
-            if (returnCard.card.loyalty != "n/a" || returnCard.card.loyalty != null)
+            if (returnCard.card.loyalty != "n/a" && returnCard.card.loyalty != null)
             {
                 cardLoyaltyLabel.Visible = true;
                 cardPTLabel.Visible = false;
                 cardPTLTextbox.Visible = true;
                 cardPTLTextbox.Text = returnCard.card.loyalty;
             }
-            else if (returnCard.card.power != "n/a" || returnCard.card.power != null)
+            else if (returnCard.card.power != "n/a" && returnCard.card.power != null)
             {
                 cardPTLabel.Visible = true;
                 cardPTLTextbox.Visible = true;
