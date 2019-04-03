@@ -335,12 +335,12 @@ namespace OCS_FOR_CSHARP
 
         public void addToList(cardWrapper sentCard)
         {
-            Card_Table_Panel.Visible = false;
-            int rowOffset = Card_Table_Panel.RowCount;
-            Card_Table_Panel.RowCount ++;
-            Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 50 });
+            tableLayoutPanel5.Visible = false;
+            int rowOffset = tableLayoutPanel5.RowCount;
+            tableLayoutPanel5.RowCount ++;
+            tableLayoutPanel5.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 50 });
             //if (!Card_Table_Panel.AutoScroll) Card_Table_Panel.AutoScroll = true;
-            cards.Add(sentCard);
+            if(!cards.Contains(sentCard)) cards.Add(sentCard);
 
 
             // begin popluating rows with cards
@@ -348,30 +348,30 @@ namespace OCS_FOR_CSHARP
 
             var tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempCheck.CheckStateChanged += new EventHandler(cardCheckChanged);
-            Card_Table_Panel.Controls.Add(tempCheck, 0, Card_Table_Panel.RowCount - 1);
+            tableLayoutPanel5.Controls.Add(tempCheck, 0, tableLayoutPanel5.RowCount - 1);
 
             var tempLabel = new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
-            Card_Table_Panel.Controls.Add(tempLabel, 1, rowOffset);
+            tableLayoutPanel5.Controls.Add(tempLabel, 1, rowOffset);
 
             tempLabel = new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
-            Card_Table_Panel.Controls.Add(tempLabel, 2, rowOffset);
+            tableLayoutPanel5.Controls.Add(tempLabel, 2, rowOffset);
 
             tempLabel = new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
-            Card_Table_Panel.Controls.Add(tempLabel, 3, rowOffset);
+            tableLayoutPanel5.Controls.Add(tempLabel, 3, rowOffset);
 
 
             tempLabel = new Label() { Text = sentCard.card.number, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
-            Card_Table_Panel.Controls.Add(tempLabel, 4, rowOffset);
+            tableLayoutPanel5.Controls.Add(tempLabel, 4, rowOffset);
 
             tempLabel = new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
-            Card_Table_Panel.Controls.Add(tempLabel, 5, rowOffset);
+            tableLayoutPanel5.Controls.Add(tempLabel, 5, rowOffset);
 
-            Card_Table_Panel.Visible = true;
+            tableLayoutPanel5.Visible = true;
         }
 
         private void cardCheckChanged(Object sender, EventArgs eventArgs)
@@ -694,14 +694,10 @@ namespace OCS_FOR_CSHARP
         private void button3_Click(object sender, EventArgs e)
         {
 
-            for(int i = 0; i < Card_Table_Panel.RowCount; i++)
-            {
-            }
-
-            if (cards.Count > 0)
+            if (selectedCards.Count > 0)
             {
                 Add_Cards_To_Inventory();
-                Close();
+                deleteSelected();
             }
             else
             {
@@ -770,7 +766,8 @@ namespace OCS_FOR_CSHARP
 
         private void resetList()
         {
-            Card_Table_Panel.Controls.Clear();
+            tableLayoutPanel5.Controls.Clear();
+            tableLayoutPanel5.RowCount = 0;
 
             for (int i = 0; i < cards.Count; i++)
             {
@@ -865,7 +862,7 @@ namespace OCS_FOR_CSHARP
                     selectedCards.Add(cards[i]);
                 }
 
-                foreach(var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                foreach(var cb in tableLayoutPanel5.Controls.OfType<CheckBox>())
                 {
                     cb.Checked = true;
                 }
@@ -874,7 +871,7 @@ namespace OCS_FOR_CSHARP
             {
                 selectedCards.Clear();
 
-                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                foreach (var cb in tableLayoutPanel5.Controls.OfType<CheckBox>())
                 {
                     cb.Checked = false;
                 }
