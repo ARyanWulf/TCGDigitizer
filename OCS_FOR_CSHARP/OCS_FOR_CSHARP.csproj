@@ -127,6 +127,11 @@
     <Compile Include="Product_Info.Designer.cs">
       <DependentUpon>Product_Info.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Review.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,14 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Settings.resx">
       <DependentUpon>Settings.cs</DependentUpon>
     </EmbeddedResource>
@@ -216,6 +216,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\cardsmenu.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\manual_icon_2_flat_silver_64.png" />
+    <Content Include="Resources\manual_icon_flat_silver_64.png" />
+    <Content Include="Resources\product_info_icon_flat_silver_64.png" />
+    <Content Include="Resources\quit_icon_flat_silver_64.png" />
+    <Content Include="Resources\scan_icon_flat_silver_64.png" />
+    <Content Include="Resources\settings_icon_flat_silver_64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Tesseract.3.3.0\build\Tesseract.targets" Condition="Exists('..\packages\Tesseract.3.3.0\build\Tesseract.targets')" />

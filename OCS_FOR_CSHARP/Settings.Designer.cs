@@ -107,12 +107,12 @@
             this.Users_Panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Users_Panel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.Users_Panel.ColumnCount = 4;
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.142506F));
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93.85749F));
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 182F));
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 82F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 6.796116F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 93.20388F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 185F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 85F));
             this.Users_Panel.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.Users_Panel.Location = new System.Drawing.Point(22, 129);
+            this.Users_Panel.Location = new System.Drawing.Point(24, 129);
             this.Users_Panel.Margin = new System.Windows.Forms.Padding(2);
             this.Users_Panel.Name = "Users_Panel";
             this.Users_Panel.RowCount = 1;

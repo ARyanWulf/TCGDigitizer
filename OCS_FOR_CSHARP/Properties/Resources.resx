@@ -124,4 +124,22 @@
   <data name="cardsmenu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\cardsmenu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="manual_icon_2_flat_silver_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\manual_icon_2_flat_silver_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="manual_icon_flat_silver_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\manual_icon_flat_silver_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="product_info_icon_flat_silver_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\product_info_icon_flat_silver_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="quit_icon_flat_silver_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\quit_icon_flat_silver_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="scan_icon_flat_silver_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\scan_icon_flat_silver_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings_icon_flat_silver_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings_icon_flat_silver_64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

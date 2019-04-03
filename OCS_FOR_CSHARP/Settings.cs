@@ -62,19 +62,32 @@ namespace OCS_FOR_CSHARP
         // Autopopulate with a list of current users that exist in the system
         public void Populate_Settings_List()
         {
+            //Users_Panel.Visible = false;
+            //Clear table and redraw
+            Users_Panel.Controls.Clear();
+            //Users_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
+            Users_Panel.RowCount = 0;
+            Users_Panel.Dock = DockStyle.None;
+            Users_Panel.AutoSize = true;
+            Users_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+
             users = Get_Users();
 
             int displayRange = users.Count;
 
+            Users_Panel.RowCount = displayRange;
+
             for (int i = 0; i < displayRange; i++)
             {
                 Users_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 30 });
-                Users_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, i);
+                Users_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.None }, 0, i);
 
                 Users_Panel.Controls.Add(new Label() { Text = users[i].first, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 1, i);
-                Users_Panel.Controls.Add(new Label() { Text = users[i].last, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 1, i);
-                Users_Panel.Controls.Add(new Label() { Text = users[i].prvlg, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 1, i);
+                Users_Panel.Controls.Add(new Label() { Text = users[i].last, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 2, i);
+                Users_Panel.Controls.Add(new Label() { Text = users[i].prvlg, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None }, 3, i);
             }
+
+
         }
 
         private List<userWrapper> Get_Users()

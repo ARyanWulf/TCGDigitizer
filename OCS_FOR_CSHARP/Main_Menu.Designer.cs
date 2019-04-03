@@ -38,7 +38,6 @@
             this.ManualEntryButton = new System.Windows.Forms.Button();
             this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.login_button = new System.Windows.Forms.Button();
             this.login_label = new System.Windows.Forms.Label();
             this.password_label = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.login_username_textbox = new System.Windows.Forms.TextBox();
             this.CloseTextButton = new System.Windows.Forms.Button();
             this.ContactText = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.welcome_label = new System.Windows.Forms.Label();
             this.logout_link = new System.Windows.Forms.LinkLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -72,7 +72,7 @@
             this.ScanButton.ForeColor = System.Drawing.Color.Silver;
             this.ScanButton.Location = new System.Drawing.Point(3, 3);
             this.ScanButton.Name = "ScanButton";
-            this.ScanButton.Size = new System.Drawing.Size(312, 132);
+            this.ScanButton.Size = new System.Drawing.Size(312, 118);
             this.ScanButton.TabIndex = 0;
             this.ScanButton.Text = "Scan";
             this.ScanButton.UseVisualStyleBackColor = false;
@@ -84,9 +84,9 @@
             this.InventoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InventoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryButton.ForeColor = System.Drawing.Color.Silver;
-            this.InventoryButton.Location = new System.Drawing.Point(3, 279);
+            this.InventoryButton.Location = new System.Drawing.Point(3, 251);
             this.InventoryButton.Name = "InventoryButton";
-            this.InventoryButton.Size = new System.Drawing.Size(312, 132);
+            this.InventoryButton.Size = new System.Drawing.Size(312, 118);
             this.InventoryButton.TabIndex = 1;
             this.InventoryButton.Text = "Inventory";
             this.InventoryButton.UseVisualStyleBackColor = true;
@@ -98,9 +98,9 @@
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingsButton.ForeColor = System.Drawing.Color.Silver;
-            this.SettingsButton.Location = new System.Drawing.Point(3, 417);
+            this.SettingsButton.Location = new System.Drawing.Point(3, 375);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(312, 132);
+            this.SettingsButton.Size = new System.Drawing.Size(312, 118);
             this.SettingsButton.TabIndex = 2;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = true;
@@ -112,9 +112,9 @@
             this.ContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactButton.ForeColor = System.Drawing.Color.Silver;
-            this.ContactButton.Location = new System.Drawing.Point(3, 555);
+            this.ContactButton.Location = new System.Drawing.Point(3, 499);
             this.ContactButton.Name = "ContactButton";
-            this.ContactButton.Size = new System.Drawing.Size(312, 132);
+            this.ContactButton.Size = new System.Drawing.Size(312, 118);
             this.ContactButton.TabIndex = 3;
             this.ContactButton.Text = "Product Information";
             this.ContactButton.UseVisualStyleBackColor = true;
@@ -126,9 +126,9 @@
             this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitButton.ForeColor = System.Drawing.Color.Silver;
-            this.QuitButton.Location = new System.Drawing.Point(3, 693);
+            this.QuitButton.Location = new System.Drawing.Point(3, 623);
             this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(312, 133);
+            this.QuitButton.Size = new System.Drawing.Size(312, 123);
             this.QuitButton.TabIndex = 4;
             this.QuitButton.Text = "Quit";
             this.QuitButton.UseVisualStyleBackColor = true;
@@ -142,7 +142,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(318, 829);
+            this.panel1.Size = new System.Drawing.Size(318, 749);
             this.panel1.TabIndex = 17;
             this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
@@ -166,7 +166,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(318, 829);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(318, 749);
             this.tableLayoutPanel1.TabIndex = 5;
             // 
             // ManualEntryButton
@@ -176,9 +176,9 @@
             this.ManualEntryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ManualEntryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManualEntryButton.ForeColor = System.Drawing.Color.Silver;
-            this.ManualEntryButton.Location = new System.Drawing.Point(3, 141);
+            this.ManualEntryButton.Location = new System.Drawing.Point(3, 127);
             this.ManualEntryButton.Name = "ManualEntryButton";
-            this.ManualEntryButton.Size = new System.Drawing.Size(312, 132);
+            this.ManualEntryButton.Size = new System.Drawing.Size(312, 118);
             this.ManualEntryButton.TabIndex = 1;
             this.ManualEntryButton.Text = "Manual Entry";
             this.ManualEntryButton.UseVisualStyleBackColor = true;
@@ -214,27 +214,9 @@
             this.panel2.Controls.Add(this.textBox1);
             this.panel2.Location = new System.Drawing.Point(321, 176);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(951, 653);
+            this.panel2.Size = new System.Drawing.Size(951, 573);
             this.panel2.TabIndex = 18;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Silver;
-            this.textBox1.Location = new System.Drawing.Point(295, 667);
-            this.textBox1.MaximumSize = new System.Drawing.Size(500, 300);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(323, 122);
-            this.textBox1.TabIndex = 27;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.Visible = false;
-            this.textBox1.WordWrap = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // login_button
             // 
@@ -346,6 +328,24 @@
             this.ContactText.WordWrap = false;
             this.ContactText.TextChanged += new System.EventHandler(this.ContactText_TextChanged_1);
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.Silver;
+            this.textBox1.Location = new System.Drawing.Point(295, 667);
+            this.textBox1.MaximumSize = new System.Drawing.Size(500, 300);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(323, 122);
+            this.textBox1.TabIndex = 27;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Visible = false;
+            this.textBox1.WordWrap = false;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
             // welcome_label
             // 
             this.welcome_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -426,7 +426,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1274, 829);
+            this.ClientSize = new System.Drawing.Size(1274, 749);
             this.Controls.Add(this.alphaGradientPanel1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
