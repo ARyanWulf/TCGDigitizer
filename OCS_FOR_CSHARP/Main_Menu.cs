@@ -114,6 +114,8 @@ namespace OCS_FOR_CSHARP
             SettingsButton.Enabled = true;
             ManualEntryButton.Enabled = true;
             logout_link.Enabled = true;
+
+            // change button colors to silver from black to show they are enabled
         }
 
         private void login_username_textbox_GotFocus(object sender, EventArgs e)
