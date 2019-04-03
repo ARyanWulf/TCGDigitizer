@@ -348,14 +348,29 @@ namespace OCS_FOR_CSHARP
 
             var tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempCheck.CheckStateChanged += new EventHandler(cardCheckChanged);
-
             Card_Table_Panel.Controls.Add(tempCheck, 0, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 1, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 2, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 3, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoSize = true, Anchor = AnchorStyles.None, AutoEllipsis = true, BackColor = sentCard.cardStatus, Tag = sentCard }, 4, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 5, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = sentCard.cardStatus, Tag = sentCard }, 6, rowOffset);
+
+            var tempLabel = new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 1, rowOffset);
+
+            tempLabel = new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 2, rowOffset);
+
+            tempLabel = new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 3, rowOffset);
+
+
+            tempLabel = new Label() { Text = sentCard.card.number, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 4, rowOffset);
+
+            tempLabel = new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 5, rowOffset);
+
             Card_Table_Panel.Visible = true;
         }
 
@@ -371,6 +386,11 @@ namespace OCS_FOR_CSHARP
             {
                 selectedCards.Remove(temp.Tag as cardWrapper);
             }
+        }
+
+        private void Label_Clicked(Object sender, EventArgs eventArgs)
+        {
+
         }
 
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
@@ -653,7 +673,7 @@ namespace OCS_FOR_CSHARP
 
             for(int i = 0; i < cards.Count; i++)
             {
-
+                addToList(cards[i]);
             }
         }
 
