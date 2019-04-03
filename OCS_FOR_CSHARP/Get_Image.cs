@@ -373,12 +373,7 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        private cardWrapper getCard(int cardID)
-        {
-            connection.Open();
-
-            connection.Close();
-        }
+        
 
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
         {
