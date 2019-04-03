@@ -371,15 +371,21 @@ namespace OCS_FOR_CSHARP
         private void tempCheck_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox temp = (CheckBox)sender;
-            id_list.Add((cardWrapper)temp.Tag);
-            //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
+            if (temp.Checked)
+            {
+                id_list.Add((cardWrapper)temp.Tag);
+                //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
+            }
+            else
+            {
+                id_list.Remove((cardWrapper)temp.Tag);
+            }
             populate((cardWrapper)temp.Tag);
         }
 
         private void tempLabel_Click(object sender, EventArgs e)
         {
             Label temp = (Label)sender;
-            id_list.Add((cardWrapper)temp.Tag);
             //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
             populate((cardWrapper)temp.Tag);
         }

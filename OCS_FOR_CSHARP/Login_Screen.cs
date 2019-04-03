@@ -19,6 +19,7 @@ namespace OCS_FOR_CSHARP
         {
             InitializeComponent();
             login_button.Visible = true;
+            MessageLabel.Text = "";
         }
 
         private void login_button_Click(object sender, EventArgs e)
@@ -71,33 +72,38 @@ namespace OCS_FOR_CSHARP
                             */
                             //login_username_textbox.Text = "";
                             //login_password_textbox.Text = "";
+                            MessageLabel.Text = "";
                             evtFrm();
                         }
                         else
                         {
                             CurrentUser.user_ID = 0;
                             CurrentUser.prvlg_lvl = 0;
-                            textBox1.AppendText("Unforeseen Error - Returned Deleted");
+                            //textBox1.AppendText("Unforeseen Error - Returned Deleted");
+                            MessageLabel.Text = "Unforseen Error - Returned Deleted";
                             login_password_textbox.Text = pass_mask;
                         }
 
                     }
                     else
                     {
-                        textBox1.AppendText("Username/Password Doesn't Match");
+                        //textBox1.AppendText("Username/Password Doesn't Match");
+                        MessageLabel.Text = "Username/Password doesn't match";
                         login_password_textbox.Text = pass_mask;
                     }
 
                 }
                 else
                 {
-                    textBox1.AppendText("Password Range Error");
+                    //textBox1.AppendText("Password Range Error");
+                    MessageLabel.Text = "Password Range Error";
                     login_password_textbox.Text = pass_mask;
                 }
             }
             else
             {
-                textBox1.AppendText("Username Range Error");
+                //textBox1.AppendText("Username Range Error");
+                MessageLabel.Text = "Username Range Error";
                 login_password_textbox.Text = pass_mask;
             }
         }
