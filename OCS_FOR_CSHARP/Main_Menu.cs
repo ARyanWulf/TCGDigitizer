@@ -132,8 +132,9 @@ namespace OCS_FOR_CSHARP
             //getImageForm.ShowDialog();
 
             //loads Scan form into panel 2
+            ResetButtonColors();
+            ScanButton.BackColor = Color.FromArgb(65, 70, 78);
 
-            
             panel2.Controls.Clear();
             if (scan_form == null|| scan_form.IsDisposed)
             {
@@ -154,6 +155,9 @@ namespace OCS_FOR_CSHARP
             //getImageForm.ShowDialog();
 
             //loads Inventory form into panel 2
+            ResetButtonColors();
+            InventoryButton.BackColor = Color.FromArgb(65, 70, 78);
+
             panel2.Controls.Clear();
             if(inventory_form == null || inventory_form.IsDisposed)
             {
@@ -175,6 +179,9 @@ namespace OCS_FOR_CSHARP
             //getImageForm.ShowDialog();
 
             //loads Inventory form into panel 2
+            ResetButtonColors();
+            SettingsButton.BackColor = Color.FromArgb(65, 70, 78);
+
             panel2.Controls.Clear();
             if(settings_form == null || settings_form.IsDisposed)
             {
@@ -193,6 +200,8 @@ namespace OCS_FOR_CSHARP
 
         private void ContactButton_Click(object sender, EventArgs e)
         {
+            ResetButtonColors();
+            ContactButton.BackColor = Color.FromArgb(65, 70, 78);
             product_info_clicked = !product_info_clicked;
             panel2.Controls.Clear();
             if (product_info_clicked || CurrentUser.user_ID != 0)
@@ -212,6 +221,7 @@ namespace OCS_FOR_CSHARP
             }
             else if (!product_info_clicked && CurrentUser.user_ID == 0)
             {
+                ResetButtonColors();
                 Login_Screen();
             }
             /*if (ContactText.Visible == true)
@@ -302,6 +312,8 @@ namespace OCS_FOR_CSHARP
 
         private void logout_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            ResetButtonColors();
+
             login_label.Visible = true;
             login_username_textbox.Visible = true;
             user_name_label.Visible = true;
@@ -485,6 +497,7 @@ namespace OCS_FOR_CSHARP
             logout_link.Visible = false;
             textBox1.Visible = true;
             welcome_label.Visible = false;*/
+            ResetButtonColors();
             Login_Screen();
 
             ContactText.Visible = false;
@@ -499,23 +512,11 @@ namespace OCS_FOR_CSHARP
             logout_link.Enabled = false;
         }
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
 
         private void ManualEntryButton_Click(object sender, EventArgs e)
         {
+            ResetButtonColors();
+            ManualEntryButton.BackColor = Color.FromArgb(65, 70, 78);
             panel2.Controls.Clear();
             if(edit_form == null || edit_form.IsDisposed)
             {
@@ -530,7 +531,18 @@ namespace OCS_FOR_CSHARP
             edit_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             edit_form.Show();
         }
+
+        private void ResetButtonColors()
+        {
+            var defaultColor = Color.FromArgb(40, 44, 52);
+            ManualEntryButton.BackColor = defaultColor;
+            ScanButton.BackColor = defaultColor;
+            InventoryButton.BackColor = defaultColor;
+            ContactButton.BackColor = defaultColor;
+            SettingsButton.BackColor = defaultColor;
+        }
     }
+
 
     static class CurrentUser
     {
