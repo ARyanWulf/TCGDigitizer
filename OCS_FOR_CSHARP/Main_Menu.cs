@@ -52,9 +52,17 @@ namespace OCS_FOR_CSHARP
 
             //Final build should change all of these to false TEMP
             ScanButton.Enabled = false;
-            InventoryButton.Enabled = false;
-            SettingsButton.Enabled = false;
+            ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_black_64;
+
             ManualEntryButton.Enabled = false;
+            ManualEntryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_black_64;
+
+            InventoryButton.Enabled = false;
+            InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_black_64;
+
+            SettingsButton.Enabled = false;
+            SettingsButton.Image = OCS_FOR_CSHARP.Properties.Resources.settings_icon_flat_black_64;
+
             logout_link.Enabled = false;
             Login_Screen();
 
@@ -109,10 +117,19 @@ namespace OCS_FOR_CSHARP
         void logged_in()
         {
             panel2.Controls.Clear();
+
             ScanButton.Enabled = true;
-            InventoryButton.Enabled = true;
-            SettingsButton.Enabled = true;
+            ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_silver_64;
+
             ManualEntryButton.Enabled = true;
+            ManualEntryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_silver_64;
+
+            InventoryButton.Enabled = true;
+            InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_silver_64;
+
+            SettingsButton.Enabled = true;
+            SettingsButton.Image = OCS_FOR_CSHARP.Properties.Resources.settings_icon_flat_silver_64;
+
             logout_link.Enabled = true;
 
             // change button colors to silver from black to show they are enabled
@@ -312,6 +329,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        // broken one, use the logout_link_LinkClicked1 further below
         private void logout_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ResetButtonColors();
@@ -504,10 +522,18 @@ namespace OCS_FOR_CSHARP
 
             ContactText.Visible = false;
             CloseTextButton.Visible = false;
-            ManualEntryButton.Enabled = false;
+
             ScanButton.Enabled = false;
+            ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_black_64;
+
+            ManualEntryButton.Enabled = false;
+            ManualEntryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_black_64;
+
             InventoryButton.Enabled = false;
+            InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_black_64;
+
             SettingsButton.Enabled = false;
+            SettingsButton.Image = OCS_FOR_CSHARP.Properties.Resources.settings_icon_flat_black_64;
 
             CurrentUser.user_ID = 0;
             CurrentUser.prvlg_lvl = 0;
