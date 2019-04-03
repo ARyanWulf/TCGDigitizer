@@ -218,11 +218,17 @@
     <None Include="Resources\cardsmenu.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\manual_icon_2_flat_black_64.png" />
     <Content Include="Resources\manual_icon_2_flat_silver_64.png" />
+    <Content Include="Resources\manual_icon_flat_black_64.png" />
     <Content Include="Resources\manual_icon_flat_silver_64.png" />
+    <Content Include="Resources\product_info_icon_flat_black_64.png" />
     <Content Include="Resources\product_info_icon_flat_silver_64.png" />
+    <Content Include="Resources\quit_icon_flat_black_64.png" />
     <Content Include="Resources\quit_icon_flat_silver_64.png" />
+    <Content Include="Resources\scan_icon_flat_black_64.png" />
     <Content Include="Resources\scan_icon_flat_silver_64.png" />
+    <Content Include="Resources\settings_icon_flat_black_64.png" />
     <Content Include="Resources\settings_icon_flat_silver_64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
