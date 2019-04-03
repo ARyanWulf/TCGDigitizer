@@ -530,6 +530,8 @@ namespace OCS_FOR_CSHARP
             edit_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             edit_form.Show();
         }
+
+        
     }
 
     static class CurrentUser
