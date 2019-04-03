@@ -400,6 +400,19 @@ namespace OCS_FOR_CSHARP
         {
             cardWrapper currentCard = input;
 
+            try
+            {
+                var image = service.Where(x => x.Set, currentCard.card.setCode).Where(y => y.Number, currentCard.card.number).All().Value[0].ImageUrl.OriginalString;
+                System.Net.WebRequest req = System.Net.WebRequest.Create(image);
+                System.Net.WebResponse response = req.GetResponse();
+                var stream = response.GetResponseStream();
+                pictureBox1.Image = Image.FromStream(stream);
+                stream.Close();
+            }
+            catch
+            {
+            }
+
             Name_Textbox.Text = currentCard.card.name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
@@ -470,15 +483,7 @@ namespace OCS_FOR_CSHARP
 
 
 
-            try
-            {
-                var image = service.Where(x => x.Set, currentCard.card.setCode).Where(y => y.Number, currentCard.card.number).All().Value[0].ImageUrl.OriginalString;
-                pictureBox1.Load(image);
-            }
-            catch
-            {
 
-            }
         }
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
