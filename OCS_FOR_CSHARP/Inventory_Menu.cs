@@ -401,6 +401,7 @@ namespace OCS_FOR_CSHARP
         public void populate(cardWrapper input)
         {
             cardWrapper currentCard = input;
+            pictureBox1.Image = null;
 
             try
             {
