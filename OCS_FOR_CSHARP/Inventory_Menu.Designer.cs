@@ -95,17 +95,17 @@
             this.Card_Table_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.Card_Table_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.Card_Table_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.Card_Table_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 165F));
+            this.Card_Table_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 166F));
             this.Card_Table_Panel.Cursor = System.Windows.Forms.Cursors.Default;
             this.Card_Table_Panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Table_Panel.Location = new System.Drawing.Point(1, 0);
-            this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Table_Panel.MaximumSize = new System.Drawing.Size(865, 0);
             this.Card_Table_Panel.MinimumSize = new System.Drawing.Size(865, 39);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 105F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(865, 107);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 106F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(865, 108);
             this.Card_Table_Panel.TabIndex = 6;
             // 
             // InventoryCountLabel
@@ -172,7 +172,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 180F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 181F));
             this.tableLayoutPanel1.Controls.Add(this.button1, 6, 0);
             this.tableLayoutPanel1.Controls.Add(this.button2, 5, 0);
             this.tableLayoutPanel1.Controls.Add(this.button3, 4, 0);
@@ -182,11 +182,11 @@
             this.tableLayoutPanel1.Controls.Add(this.checkBox1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(867, 81);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(867, 82);
             this.tableLayoutPanel1.TabIndex = 11;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -200,7 +200,7 @@
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Silver;
             this.button1.Location = new System.Drawing.Point(715, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.MaximumSize = new System.Drawing.Size(125, 39);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(125, 39);
@@ -217,7 +217,7 @@
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Silver;
             this.button2.Location = new System.Drawing.Point(614, 5);
-            this.button2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button2.Margin = new System.Windows.Forms.Padding(4);
             this.button2.MaximumSize = new System.Drawing.Size(0, 39);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(92, 39);
@@ -234,7 +234,7 @@
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Silver;
             this.button3.Location = new System.Drawing.Point(513, 5);
-            this.button3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button3.Margin = new System.Windows.Forms.Padding(4);
             this.button3.MaximumSize = new System.Drawing.Size(0, 39);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(92, 39);
@@ -251,7 +251,7 @@
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Silver;
             this.button4.Location = new System.Drawing.Point(412, 5);
-            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button4.Margin = new System.Windows.Forms.Padding(4);
             this.button4.MaximumSize = new System.Drawing.Size(0, 39);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(92, 39);
@@ -268,7 +268,7 @@
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Silver;
             this.button5.Location = new System.Drawing.Point(244, 5);
-            this.button5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button5.Margin = new System.Windows.Forms.Padding(4);
             this.button5.MaximumSize = new System.Drawing.Size(0, 39);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(159, 39);
@@ -286,7 +286,7 @@
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.Silver;
             this.button6.Location = new System.Drawing.Point(43, 5);
-            this.button6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.button6.Margin = new System.Windows.Forms.Padding(4);
             this.button6.MaximumSize = new System.Drawing.Size(0, 39);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(192, 39);
@@ -301,7 +301,7 @@
             this.checkBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(5, 5);
-            this.checkBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox1.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox1.MaximumSize = new System.Drawing.Size(0, 39);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(29, 39);
@@ -326,10 +326,9 @@
             this.panel1.Controls.Add(this.Card_Table_Panel);
             this.panel1.Location = new System.Drawing.Point(1, 113);
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
-            this.panel1.MaximumSize = new System.Drawing.Size(889, 640);
-            this.panel1.MinimumSize = new System.Drawing.Size(889, 64);
+            this.panel1.MinimumSize = new System.Drawing.Size(0, 64);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(889, 111);
+            this.panel1.Size = new System.Drawing.Size(870, 112);
             this.panel1.TabIndex = 14;
             // 
             // Cancel_Button
@@ -337,7 +336,7 @@
             this.Cancel_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.Cancel_Button.Enabled = false;
             this.Cancel_Button.Location = new System.Drawing.Point(639, 679);
-            this.Cancel_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Cancel_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Cancel_Button.Name = "Cancel_Button";
             this.Cancel_Button.Size = new System.Drawing.Size(100, 28);
             this.Cancel_Button.TabIndex = 3;
@@ -386,7 +385,7 @@
             this.RefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RefreshButton.ForeColor = System.Drawing.Color.Transparent;
             this.RefreshButton.Location = new System.Drawing.Point(357, 362);
-            this.RefreshButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.RefreshButton.Margin = new System.Windows.Forms.Padding(4);
             this.RefreshButton.Name = "RefreshButton";
             this.RefreshButton.Size = new System.Drawing.Size(273, 54);
             this.RefreshButton.TabIndex = 8;
@@ -404,7 +403,7 @@
             this.Add_Card_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Add_Card_Button.ForeColor = System.Drawing.Color.Silver;
             this.Add_Card_Button.Location = new System.Drawing.Point(89, 353);
-            this.Add_Card_Button.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Add_Card_Button.Margin = new System.Windows.Forms.Padding(4);
             this.Add_Card_Button.Name = "Add_Card_Button";
             this.Add_Card_Button.Size = new System.Drawing.Size(273, 54);
             this.Add_Card_Button.TabIndex = 5;
@@ -443,7 +442,7 @@
             this.CardPanel.Controls.Add(this.checkBox2);
             this.CardPanel.Controls.Add(this.pictureBox1);
             this.CardPanel.Location = new System.Drawing.Point(895, 65);
-            this.CardPanel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.CardPanel.Margin = new System.Windows.Forms.Padding(4);
             this.CardPanel.Name = "CardPanel";
             this.CardPanel.Size = new System.Drawing.Size(1061, 907);
             this.CardPanel.TabIndex = 16;
@@ -454,7 +453,7 @@
             this.Name_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Name_Textbox.ForeColor = System.Drawing.Color.Silver;
             this.Name_Textbox.Location = new System.Drawing.Point(544, 16);
-            this.Name_Textbox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Name_Textbox.Margin = new System.Windows.Forms.Padding(4);
             this.Name_Textbox.Name = "Name_Textbox";
             this.Name_Textbox.Size = new System.Drawing.Size(265, 30);
             this.Name_Textbox.TabIndex = 57;
@@ -465,7 +464,7 @@
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.textBox2.ForeColor = System.Drawing.Color.Silver;
             this.textBox2.Location = new System.Drawing.Point(544, 521);
-            this.textBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(4);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(52, 30);
@@ -489,7 +488,7 @@
             this.Card_Mana_Cost_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Mana_Cost_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Mana_Cost_TextBox.Location = new System.Drawing.Point(544, 128);
-            this.Card_Mana_Cost_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Mana_Cost_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Mana_Cost_TextBox.Name = "Card_Mana_Cost_TextBox";
             this.Card_Mana_Cost_TextBox.ReadOnly = true;
             this.Card_Mana_Cost_TextBox.Size = new System.Drawing.Size(265, 30);
@@ -501,7 +500,7 @@
             this.Card_Expansion_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Expansion_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Expansion_TextBox.Location = new System.Drawing.Point(544, 165);
-            this.Card_Expansion_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Expansion_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Expansion_TextBox.Name = "Card_Expansion_TextBox";
             this.Card_Expansion_TextBox.ReadOnly = true;
             this.Card_Expansion_TextBox.Size = new System.Drawing.Size(265, 30);
@@ -513,7 +512,7 @@
             this.Card_Description_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Description_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Description_TextBox.Location = new System.Drawing.Point(544, 202);
-            this.Card_Description_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Description_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Description_TextBox.Multiline = true;
             this.Card_Description_TextBox.Name = "Card_Description_TextBox";
             this.Card_Description_TextBox.ReadOnly = true;
@@ -526,7 +525,7 @@
             this.Card_Flavor_Text_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Flavor_Text_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Flavor_Text_TextBox.Location = new System.Drawing.Point(544, 350);
-            this.Card_Flavor_Text_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Flavor_Text_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Flavor_Text_TextBox.Multiline = true;
             this.Card_Flavor_Text_TextBox.Name = "Card_Flavor_Text_TextBox";
             this.Card_Flavor_Text_TextBox.ReadOnly = true;
@@ -539,7 +538,7 @@
             this.Card_Power_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Power_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Power_TextBox.Location = new System.Drawing.Point(544, 448);
-            this.Card_Power_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Power_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Power_TextBox.Name = "Card_Power_TextBox";
             this.Card_Power_TextBox.ReadOnly = true;
             this.Card_Power_TextBox.Size = new System.Drawing.Size(52, 30);
@@ -551,7 +550,7 @@
             this.Card_Toughness_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Toughness_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Toughness_TextBox.Location = new System.Drawing.Point(544, 485);
-            this.Card_Toughness_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Toughness_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Toughness_TextBox.Name = "Card_Toughness_TextBox";
             this.Card_Toughness_TextBox.ReadOnly = true;
             this.Card_Toughness_TextBox.Size = new System.Drawing.Size(52, 30);
@@ -563,7 +562,7 @@
             this.Card_Type_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Type_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Type_TextBox.Location = new System.Drawing.Point(544, 53);
-            this.Card_Type_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Type_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Type_TextBox.Name = "Card_Type_TextBox";
             this.Card_Type_TextBox.ReadOnly = true;
             this.Card_Type_TextBox.Size = new System.Drawing.Size(265, 30);
@@ -575,7 +574,7 @@
             this.Card_Additional_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Additional_TextBox.ForeColor = System.Drawing.Color.Silver;
             this.Card_Additional_TextBox.Location = new System.Drawing.Point(544, 91);
-            this.Card_Additional_TextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Card_Additional_TextBox.Margin = new System.Windows.Forms.Padding(4);
             this.Card_Additional_TextBox.Name = "Card_Additional_TextBox";
             this.Card_Additional_TextBox.ReadOnly = true;
             this.Card_Additional_TextBox.Size = new System.Drawing.Size(265, 30);
@@ -706,7 +705,7 @@
             this.textBox1.BackColor = System.Drawing.Color.SlateGray;
             this.textBox1.ForeColor = System.Drawing.Color.Silver;
             this.textBox1.Location = new System.Drawing.Point(145, 414);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
@@ -718,7 +717,7 @@
             this.checkBox2.AutoSize = true;
             this.checkBox2.ForeColor = System.Drawing.Color.Silver;
             this.checkBox2.Location = new System.Drawing.Point(241, 359);
-            this.checkBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.checkBox2.Margin = new System.Windows.Forms.Padding(4);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(52, 21);
             this.checkBox2.TabIndex = 35;
@@ -731,7 +730,7 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.Location = new System.Drawing.Point(145, 16);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(239, 326);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -751,7 +750,7 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Cancel_Button);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Inventory_Menu";
             this.Text = "TCG Digitizer - Inventory";
             this.Load += new System.EventHandler(this.Inventory_Menu_Load);

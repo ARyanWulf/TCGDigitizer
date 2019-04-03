@@ -182,6 +182,7 @@ namespace OCS_FOR_CSHARP
             panel1.Visible = false;
             Size tempSize = panel1.MaximumSize;
             tempSize.Height = Height - 100;
+            tempSize.Width = Card_Table_Panel.Width;
             panel1.MaximumSize = tempSize;
             //Card_Table_Panel.Visible = false;
             //Clear table and redraw
