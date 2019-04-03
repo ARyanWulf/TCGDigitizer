@@ -40,7 +40,7 @@ namespace OCS_FOR_CSHARP
         int badCard = 0;
         int numScans = 0;
         
-        public cardWrapper currentCard = new cardWrapper();
+        public cardWrapper currentCard;
         List<cardWrapper> cards = new List<cardWrapper>();
         List<cardWrapper> databaseList = new List<cardWrapper>();
         List<Bitmap> cardImages = new List<Bitmap>();
@@ -395,17 +395,60 @@ namespace OCS_FOR_CSHARP
 
         private void Label_Clicked(Object sender, EventArgs eventArgs)
         {
+            var returnCard = (sender as Label).Tag as cardWrapper;
 
+            CardName.Text = returnCard.card.name;
+            Card_Set_Combobox.Text = returnCard.card.setCode;
+            Card_Type_TextBox.Text = returnCard.card.type;
+            if (returnCard.card.text != "n/a")
+            {
+                cardTextTextbox.Visible = true;
+                cardTextLabel.Visible = true;
+                cardTextTextbox.Text = returnCard.card.text;
+            }
+            else
+            {
+                cardTextLabel.Visible = false;
+                cardTextTextbox.Visible = false;
+            }
+
+            if (returnCard.card.flavorText != "n/a")
+            {
+                cardFlavorLabel.Visible = true;
+                cardFlavorTextbox.Visible = true;
+                cardFlavorTextbox.Text = returnCard.card.flavorText;
+            }
+            else
+            {
+                cardFlavorLabel.Visible = false;
+                cardFlavorTextbox.Visible = false;
+            }
+
+            if (returnCard.card.loyalty != "n/a")
+            {
+                cardLoyaltyLabel.Visible = true;
+                cardPTLabel.Visible = false;
+                cardPTLTextbox.Visible = true;
+                cardPTLTextbox.Text = returnCard.card.loyalty;
+            }
+            else if (returnCard.card.power != "n/a")
+            {
+                cardPTLabel.Visible = true;
+                cardPTLTextbox.Visible = true;
+                cardLoyaltyLabel.Visible = false;
+                cardPTLTextbox.Text = returnCard.card.power + "/" + returnCard.card.toughness;
+            }
+            else
+            {
+                cardPTLabel.Visible = false;
+                cardPTLTextbox.Visible = false;
+                cardLoyaltyLabel.Visible = false;
+            }
         }
 
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
         {
 
-        }
-
-        public cardWrapper getCard()
-        {
-            return currentCard;
         }
 
         private void button2_Click(object sender, EventArgs e)
