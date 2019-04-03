@@ -114,10 +114,12 @@
             this.Users_Panel.ForeColor = System.Drawing.Color.Silver;
             this.Users_Panel.Location = new System.Drawing.Point(24, 129);
             this.Users_Panel.Margin = new System.Windows.Forms.Padding(2);
+            this.Users_Panel.MaximumSize = new System.Drawing.Size(680, 0);
+            this.Users_Panel.MinimumSize = new System.Drawing.Size(680, 0);
             this.Users_Panel.Name = "Users_Panel";
             this.Users_Panel.RowCount = 1;
             this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.Users_Panel.Size = new System.Drawing.Size(680, 30);
+            this.Users_Panel.Size = new System.Drawing.Size(680, 2);
             this.Users_Panel.TabIndex = 12;
             this.Users_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.users_panel);
             // 
@@ -138,6 +140,7 @@
             // user_first_name_sort
             // 
             this.user_first_name_sort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.user_first_name_sort.FlatAppearance.BorderSize = 0;
             this.user_first_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_first_name_sort.ForeColor = System.Drawing.Color.Silver;
             this.user_first_name_sort.Location = new System.Drawing.Point(34, 3);
@@ -151,6 +154,7 @@
             // user_last_name_sort
             // 
             this.user_last_name_sort.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.user_last_name_sort.FlatAppearance.BorderSize = 0;
             this.user_last_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_last_name_sort.ForeColor = System.Drawing.Color.Silver;
             this.user_last_name_sort.Location = new System.Drawing.Point(315, 3);
@@ -164,6 +168,7 @@
             // authority_sort_button
             // 
             this.authority_sort_button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.authority_sort_button.FlatAppearance.BorderSize = 0;
             this.authority_sort_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.authority_sort_button.ForeColor = System.Drawing.Color.Silver;
             this.authority_sort_button.Location = new System.Drawing.Point(596, 3);
@@ -230,11 +235,11 @@
             // Header
             // 
             this.Header.AutoSize = true;
-            this.Header.Font = new System.Drawing.Font("Ink Free", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Header.Font = new System.Drawing.Font("Microsoft Sans Serif", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Header.ForeColor = System.Drawing.Color.Silver;
-            this.Header.Location = new System.Drawing.Point(26, 6);
+            this.Header.Location = new System.Drawing.Point(20, 18);
             this.Header.Name = "Header";
-            this.Header.Size = new System.Drawing.Size(154, 46);
+            this.Header.Size = new System.Drawing.Size(153, 42);
             this.Header.TabIndex = 20;
             this.Header.Text = "Settings";
             // 
