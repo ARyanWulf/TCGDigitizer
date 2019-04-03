@@ -598,69 +598,74 @@ namespace OCS_FOR_CSHARP
         private void Add_Cards_To_Inventory()
         {
             bool exists = false;
-            for (int i = 0; i < cards.Count; i++)
+            for (int i = 0; i < selectedCards.Count; i++)
             {
-                exists = false;
-                connection.Open(); 
-
-                using (var cmd = new NpgsqlCommand("new_trans_event", connection))
+                if(selectedCards[i].cardStatus != Color.Red)
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
-                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
-                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
-                    cmd.Parameters.AddWithValue("in_trans_type", 1);
-
-                    cmd.ExecuteScalar();
-                }
-
-                connection.Close();
-
-
-                connection.Open();
-                using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory WHERE card_id = " + cards[i].card.cardID, connection))
-                {
-                    NpgsqlDataReader reader = cmd.ExecuteReader();
-
-
-                    if (reader.HasRows)
-                    {
-                        exists = true;
-                    }
-                }
-                connection.Close();
-
-                if (exists)
-                {
-
+                    exists = false;
                     connection.Open();
-                    using (var cmd = new NpgsqlCommand("update_inv_count", connection))
+
+                    using (var cmd = new NpgsqlCommand("new_trans_event", connection))
                     {
                         cmd.CommandType = CommandType.StoredProcedure;
 
-                        cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
-                        cmd.Parameters.AddWithValue("in_new_count", 1);
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", selectedCards[i].card.cardID);
+                        cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                        cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                        cmd.Parameters.AddWithValue("in_trans_type", 1);
 
                         cmd.ExecuteScalar();
                     }
+
                     connection.Close();
-                }
-                else
-                {
+
 
                     connection.Open();
-                    using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                    using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory WHERE card_id = " + selectedCards[i].card.cardID, connection))
                     {
-                        cmd.CommandType = CommandType.StoredProcedure;
+                        NpgsqlDataReader reader = cmd.ExecuteReader();
 
-                        cmd.Parameters.AddWithValue("in_foreign_card_id", cards[i].card.cardID);
-                        cmd.Parameters.AddWithValue("in_new_count", 1);
 
-                        cmd.ExecuteScalar();
+                        if (reader.HasRows)
+                        {
+                            exists = true;
+                        }
                     }
                     connection.Close();
+
+                    if (exists)
+                    {
+
+                        connection.Open();
+                        using (var cmd = new NpgsqlCommand("update_inv_count", connection))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("in_foreign_card_id", selectedCards[i].card.cardID);
+                            cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                            cmd.ExecuteScalar();
+                        }
+                        connection.Close();
+                    }
+                    else
+                    {
+
+                        connection.Open();
+                        using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                        {
+                            cmd.CommandType = CommandType.StoredProcedure;
+
+                            cmd.Parameters.AddWithValue("in_foreign_card_id", selectedCards[i].card.cardID);
+                            cmd.Parameters.AddWithValue("in_new_count", 1);
+
+                            cmd.ExecuteScalar();
+                        }
+                        connection.Close();
+                    }
                 }
+
+                
 
             }
         }
@@ -710,7 +715,12 @@ namespace OCS_FOR_CSHARP
 
         private void button4_Click(object sender, EventArgs e)
         {
-            while(selectedCards.Count > 0)
+            deleteSelected();
+        }
+
+        private void deleteSelected()
+        {
+            while (selectedCards.Count > 0)
             {
                 cards.Remove(selectedCards[0]);
                 selectedCards.Remove(selectedCards[0]);
@@ -840,8 +850,36 @@ namespace OCS_FOR_CSHARP
 
             return returnList;
         }
+
+        private void Inventory_Checkbox_CheckedChanged(object sender, EventArgs e)
+        {
+            var temp = sender as CheckBox;
+
+            if(temp.Checked)
+            {
+                selectedCards.Clear();
+                for(int i = 0; i < cards.Count; i++)
+                {
+                    selectedCards.Add(cards[i]);
+                }
+
+                foreach(var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                {
+                    cb.Checked = true;
+                }
+            }
+            else
+            {
+                selectedCards.Clear();
+
+                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                {
+                    cb.Checked = false;
+                }
+            }
+        }
     }
-    
+
     public class cardWrapper
     {
         public CardObject card;

@@ -179,6 +179,7 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
+            //yes
             //panel2.Visible = false;
             panel1.Visible = false;
             Size tempSize = panel1.MaximumSize;
