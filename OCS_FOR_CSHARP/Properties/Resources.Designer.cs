@@ -73,9 +73,29 @@ namespace OCS_FOR_CSHARP.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap manual_icon_2_flat_black_64 {
+            get {
+                object obj = ResourceManager.GetObject("manual_icon_2_flat_black_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap manual_icon_2_flat_silver_64 {
             get {
                 object obj = ResourceManager.GetObject("manual_icon_2_flat_silver_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap manual_icon_flat_black_64 {
+            get {
+                object obj = ResourceManager.GetObject("manual_icon_flat_black_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -93,9 +113,29 @@ namespace OCS_FOR_CSHARP.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap product_info_icon_flat_black_64 {
+            get {
+                object obj = ResourceManager.GetObject("product_info_icon_flat_black_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap product_info_icon_flat_silver_64 {
             get {
                 object obj = ResourceManager.GetObject("product_info_icon_flat_silver_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quit_icon_flat_black_64 {
+            get {
+                object obj = ResourceManager.GetObject("quit_icon_flat_black_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +153,29 @@ namespace OCS_FOR_CSHARP.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap scan_icon_flat_black_64 {
+            get {
+                object obj = ResourceManager.GetObject("scan_icon_flat_black_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap scan_icon_flat_silver_64 {
             get {
                 object obj = ResourceManager.GetObject("scan_icon_flat_silver_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_icon_flat_black_64 {
+            get {
+                object obj = ResourceManager.GetObject("settings_icon_flat_black_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -31,8 +31,6 @@ namespace OCS_FOR_CSHARP
         public Inventory_Menu()
         {
             InitializeComponent();
-            pictureBox1.WaitOnLoad = false;
-            pictureBox1.Image = pictureBox1.InitialImage;
             refreshTable();
         }
 
@@ -401,7 +399,20 @@ namespace OCS_FOR_CSHARP
         public void populate(cardWrapper input)
         {
             cardWrapper currentCard = input;
-            pictureBox1.Image = null;
+
+            try
+            {
+                var image = service.Where(x => x.Set, currentCard.card.setCode).Where(y => y.Number, currentCard.card.number).All().Value[0].ImageUrl.OriginalString;
+                System.Net.WebRequest req = System.Net.WebRequest.Create(image);
+                System.Net.WebResponse response = req.GetResponse();
+                var stream = response.GetResponseStream();
+                pictureBox1.Image = Image.FromStream(stream);
+                stream.Close();
+            }
+            catch
+            {
+            }
+
             Name_Textbox.Text = currentCard.card.name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
@@ -472,15 +483,7 @@ namespace OCS_FOR_CSHARP
 
 
 
-            try
-            {
-                var image = service.Where(x => x.Set, currentCard.card.setCode).Where(y => y.Number, currentCard.card.number).All().Value[0].ImageUrl.OriginalString;
-                pictureBox1.LoadAsync(image);
-            }
-            catch
-            {
 
-            }
         }
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
