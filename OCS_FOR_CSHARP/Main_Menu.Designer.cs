@@ -70,11 +70,13 @@
             this.ScanButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ScanButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScanButton.ForeColor = System.Drawing.Color.Silver;
+            this.ScanButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_silver_64;
             this.ScanButton.Location = new System.Drawing.Point(3, 3);
             this.ScanButton.Name = "ScanButton";
             this.ScanButton.Size = new System.Drawing.Size(312, 118);
             this.ScanButton.TabIndex = 0;
             this.ScanButton.Text = "Scan";
+            this.ScanButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ScanButton.UseVisualStyleBackColor = false;
             this.ScanButton.Click += new System.EventHandler(this.ScanButton_Click);
             // 
@@ -84,11 +86,13 @@
             this.InventoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InventoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryButton.ForeColor = System.Drawing.Color.Silver;
+            this.InventoryButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_silver_64;
             this.InventoryButton.Location = new System.Drawing.Point(3, 251);
             this.InventoryButton.Name = "InventoryButton";
             this.InventoryButton.Size = new System.Drawing.Size(312, 118);
             this.InventoryButton.TabIndex = 1;
             this.InventoryButton.Text = "Inventory";
+            this.InventoryButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.InventoryButton.UseVisualStyleBackColor = true;
             this.InventoryButton.Click += new System.EventHandler(this.InventoryButton_Click);
             // 
@@ -98,11 +102,13 @@
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingsButton.ForeColor = System.Drawing.Color.Silver;
+            this.SettingsButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.settings_icon_flat_silver_64;
             this.SettingsButton.Location = new System.Drawing.Point(3, 375);
             this.SettingsButton.Name = "SettingsButton";
             this.SettingsButton.Size = new System.Drawing.Size(312, 118);
             this.SettingsButton.TabIndex = 2;
             this.SettingsButton.Text = "Settings";
+            this.SettingsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.SettingsButton.UseVisualStyleBackColor = true;
             this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
@@ -112,11 +118,13 @@
             this.ContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactButton.ForeColor = System.Drawing.Color.Silver;
+            this.ContactButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.product_info_icon_flat_silver_64;
             this.ContactButton.Location = new System.Drawing.Point(3, 499);
             this.ContactButton.Name = "ContactButton";
             this.ContactButton.Size = new System.Drawing.Size(312, 118);
             this.ContactButton.TabIndex = 3;
             this.ContactButton.Text = "Product Information";
+            this.ContactButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ContactButton.UseVisualStyleBackColor = true;
             this.ContactButton.Click += new System.EventHandler(this.ContactButton_Click);
             // 
@@ -126,11 +134,13 @@
             this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitButton.ForeColor = System.Drawing.Color.Silver;
+            this.QuitButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.quit_icon_flat_silver_64;
             this.QuitButton.Location = new System.Drawing.Point(3, 623);
             this.QuitButton.Name = "QuitButton";
             this.QuitButton.Size = new System.Drawing.Size(312, 123);
             this.QuitButton.TabIndex = 4;
             this.QuitButton.Text = "Quit";
+            this.QuitButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.QuitButton.UseVisualStyleBackColor = true;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
@@ -176,11 +186,13 @@
             this.ManualEntryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ManualEntryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManualEntryButton.ForeColor = System.Drawing.Color.Silver;
+            this.ManualEntryButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_silver_64;
             this.ManualEntryButton.Location = new System.Drawing.Point(3, 127);
             this.ManualEntryButton.Name = "ManualEntryButton";
             this.ManualEntryButton.Size = new System.Drawing.Size(312, 118);
             this.ManualEntryButton.TabIndex = 1;
             this.ManualEntryButton.Text = "Manual Entry";
+            this.ManualEntryButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.ManualEntryButton.UseVisualStyleBackColor = true;
             this.ManualEntryButton.Click += new System.EventHandler(this.ManualEntryButton_Click);
             // 
