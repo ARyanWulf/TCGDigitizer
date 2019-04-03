@@ -154,7 +154,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(318, 749);
             this.panel1.TabIndex = 17;
-            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // tableLayoutPanel1
             // 
@@ -228,7 +227,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(951, 573);
             this.panel2.TabIndex = 18;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
             // login_button
             // 
@@ -385,10 +383,6 @@
             this.logout_link.VisitedLinkColor = System.Drawing.Color.Blue;
             this.logout_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logout_link_LinkClicked_1);
             // 
-            // backgroundWorker1
-            // 
-            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
-            // 
             // alphaGradientPanel1
             // 
             this.alphaGradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -415,7 +409,7 @@
             this.alphaGradientPanel1.ImagePadding = new System.Windows.Forms.Padding(5);
             this.alphaGradientPanel1.ImagePosition = System.Windows.Forms.ImagePosition.BottomRight;
             this.alphaGradientPanel1.ImageSize = new System.Drawing.Size(48, 48);
-            this.alphaGradientPanel1.Location = new System.Drawing.Point(321, 0);
+            this.alphaGradientPanel1.Location = new System.Drawing.Point(318, 0);
             this.alphaGradientPanel1.Name = "alphaGradientPanel1";
             this.alphaGradientPanel1.Rounded = true;
             this.alphaGradientPanel1.Size = new System.Drawing.Size(959, 175);
