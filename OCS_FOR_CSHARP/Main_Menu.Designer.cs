@@ -439,6 +439,7 @@
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Main_Menu";
             this.Text = "TCG Digitizer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Menu_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
