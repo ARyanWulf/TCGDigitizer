@@ -31,6 +31,8 @@ namespace OCS_FOR_CSHARP
         public Inventory_Menu()
         {
             InitializeComponent();
+            pictureBox1.WaitOnLoad = false;
+            pictureBox1.Image = pictureBox1.InitialImage;
             refreshTable();
         }
 

@@ -71,9 +71,10 @@
             this.ScanButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ScanButton.ForeColor = System.Drawing.Color.Silver;
             this.ScanButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_silver_64;
-            this.ScanButton.Location = new System.Drawing.Point(3, 3);
+            this.ScanButton.Location = new System.Drawing.Point(0, 0);
+            this.ScanButton.Margin = new System.Windows.Forms.Padding(0);
             this.ScanButton.Name = "ScanButton";
-            this.ScanButton.Size = new System.Drawing.Size(312, 118);
+            this.ScanButton.Size = new System.Drawing.Size(318, 124);
             this.ScanButton.TabIndex = 0;
             this.ScanButton.Text = "Scan";
             this.ScanButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -82,14 +83,16 @@
             // 
             // InventoryButton
             // 
+            this.InventoryButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InventoryButton.FlatAppearance.BorderSize = 0;
             this.InventoryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.InventoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryButton.ForeColor = System.Drawing.Color.Silver;
             this.InventoryButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_silver_64;
-            this.InventoryButton.Location = new System.Drawing.Point(3, 251);
+            this.InventoryButton.Location = new System.Drawing.Point(0, 248);
+            this.InventoryButton.Margin = new System.Windows.Forms.Padding(0);
             this.InventoryButton.Name = "InventoryButton";
-            this.InventoryButton.Size = new System.Drawing.Size(312, 118);
+            this.InventoryButton.Size = new System.Drawing.Size(318, 124);
             this.InventoryButton.TabIndex = 1;
             this.InventoryButton.Text = "Inventory";
             this.InventoryButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -98,14 +101,16 @@
             // 
             // SettingsButton
             // 
+            this.SettingsButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.SettingsButton.FlatAppearance.BorderSize = 0;
             this.SettingsButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingsButton.ForeColor = System.Drawing.Color.Silver;
             this.SettingsButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.settings_icon_flat_silver_64;
-            this.SettingsButton.Location = new System.Drawing.Point(3, 375);
+            this.SettingsButton.Location = new System.Drawing.Point(0, 372);
+            this.SettingsButton.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(312, 118);
+            this.SettingsButton.Size = new System.Drawing.Size(318, 124);
             this.SettingsButton.TabIndex = 2;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -114,14 +119,16 @@
             // 
             // ContactButton
             // 
+            this.ContactButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ContactButton.FlatAppearance.BorderSize = 0;
             this.ContactButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactButton.ForeColor = System.Drawing.Color.Silver;
             this.ContactButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.product_info_icon_flat_silver_64;
-            this.ContactButton.Location = new System.Drawing.Point(3, 499);
+            this.ContactButton.Location = new System.Drawing.Point(0, 496);
+            this.ContactButton.Margin = new System.Windows.Forms.Padding(0);
             this.ContactButton.Name = "ContactButton";
-            this.ContactButton.Size = new System.Drawing.Size(312, 118);
+            this.ContactButton.Size = new System.Drawing.Size(318, 124);
             this.ContactButton.TabIndex = 3;
             this.ContactButton.Text = "Product Information";
             this.ContactButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -130,14 +137,16 @@
             // 
             // QuitButton
             // 
+            this.QuitButton.Dock = System.Windows.Forms.DockStyle.Fill;
             this.QuitButton.FlatAppearance.BorderSize = 0;
             this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitButton.ForeColor = System.Drawing.Color.Silver;
             this.QuitButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.quit_icon_flat_silver_64;
-            this.QuitButton.Location = new System.Drawing.Point(3, 623);
+            this.QuitButton.Location = new System.Drawing.Point(0, 620);
+            this.QuitButton.Margin = new System.Windows.Forms.Padding(0);
             this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(312, 123);
+            this.QuitButton.Size = new System.Drawing.Size(318, 129);
             this.QuitButton.TabIndex = 4;
             this.QuitButton.Text = "Quit";
             this.QuitButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -186,9 +195,10 @@
             this.ManualEntryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ManualEntryButton.ForeColor = System.Drawing.Color.Silver;
             this.ManualEntryButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_silver_64;
-            this.ManualEntryButton.Location = new System.Drawing.Point(3, 127);
+            this.ManualEntryButton.Location = new System.Drawing.Point(0, 124);
+            this.ManualEntryButton.Margin = new System.Windows.Forms.Padding(0);
             this.ManualEntryButton.Name = "ManualEntryButton";
-            this.ManualEntryButton.Size = new System.Drawing.Size(312, 118);
+            this.ManualEntryButton.Size = new System.Drawing.Size(318, 124);
             this.ManualEntryButton.TabIndex = 1;
             this.ManualEntryButton.Text = "Manual Entry";
             this.ManualEntryButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -248,7 +258,7 @@
             this.login_label.ForeColor = System.Drawing.Color.Silver;
             this.login_label.Location = new System.Drawing.Point(160, 59);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(184, 39);
+            this.login_label.Size = new System.Drawing.Size(234, 52);
             this.login_label.TabIndex = 25;
             this.login_label.Text = "User Login";
             this.login_label.Visible = false;
@@ -262,7 +272,7 @@
             this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.password_label.Location = new System.Drawing.Point(166, 240);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(53, 13);
+            this.password_label.Size = new System.Drawing.Size(69, 17);
             this.password_label.TabIndex = 24;
             this.password_label.Text = "Password";
             this.password_label.Visible = false;
@@ -274,7 +284,7 @@
             this.login_password_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_password_textbox.Location = new System.Drawing.Point(170, 263);
             this.login_password_textbox.Name = "login_password_textbox";
-            this.login_password_textbox.Size = new System.Drawing.Size(323, 38);
+            this.login_password_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_password_textbox.TabIndex = 23;
             this.login_password_textbox.Visible = false;
             this.login_password_textbox.TextChanged += new System.EventHandler(this.login_password_textbox_TextChanged_1);
@@ -287,7 +297,7 @@
             this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.user_name_label.Location = new System.Drawing.Point(166, 133);
             this.user_name_label.Name = "user_name_label";
-            this.user_name_label.Size = new System.Drawing.Size(55, 13);
+            this.user_name_label.Size = new System.Drawing.Size(73, 17);
             this.user_name_label.TabIndex = 22;
             this.user_name_label.Text = "Username";
             this.user_name_label.Visible = false;
@@ -299,7 +309,7 @@
             this.login_username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_username_textbox.Location = new System.Drawing.Point(170, 156);
             this.login_username_textbox.Name = "login_username_textbox";
-            this.login_username_textbox.Size = new System.Drawing.Size(323, 38);
+            this.login_username_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_username_textbox.TabIndex = 21;
             this.login_username_textbox.Visible = false;
             this.login_username_textbox.TextChanged += new System.EventHandler(this.login_username_textbox_TextChanged_1);
@@ -376,7 +386,7 @@
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logout_link.Location = new System.Drawing.Point(889, 45);
             this.logout_link.Name = "logout_link";
-            this.logout_link.Size = new System.Drawing.Size(52, 17);
+            this.logout_link.Size = new System.Drawing.Size(60, 20);
             this.logout_link.TabIndex = 20;
             this.logout_link.TabStop = true;
             this.logout_link.Text = "Logout";
