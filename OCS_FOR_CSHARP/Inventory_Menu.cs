@@ -465,8 +465,6 @@ namespace OCS_FOR_CSHARP
                 pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
             }*/
         }
-
-
     }
 }
 
