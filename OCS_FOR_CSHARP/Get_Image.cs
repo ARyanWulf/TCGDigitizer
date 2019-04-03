@@ -731,7 +731,6 @@ namespace OCS_FOR_CSHARP
 
         private void Card_Set_Combobox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         private void cardFlavorLabel_Click(object sender, EventArgs e)
@@ -742,13 +741,16 @@ namespace OCS_FOR_CSHARP
         private void CardName_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchTimer.Stop();
-            var selectedCard = foundCards[CardName.SelectedIndex];
-            currentCard.card = selectedCard.card;
-            currentCard.card_ID = selectedCard.card_ID;
-            currentCard.condition = selectedCard.condition;
-            currentCard.cardStatus = this.BackColor;
+            if (currentCard != null)
+            {
+                var selectedCard = foundCards[CardName.SelectedIndex];
+                currentCard.card = selectedCard.card;
+                currentCard.card_ID = selectedCard.card_ID;
+                currentCard.condition = selectedCard.condition;
+                currentCard.cardStatus = this.BackColor;
 
-            resetList();
+                resetList();
+            }
         }
 
         private void searchEventHandler(Object myObject, EventArgs eventArgs)
@@ -877,6 +879,10 @@ namespace OCS_FOR_CSHARP
                     cb.Checked = false;
                 }
             }
+        }
+
+        private void Name_Button_Click(object sender, EventArgs e)
+        {
         }
     }
 
