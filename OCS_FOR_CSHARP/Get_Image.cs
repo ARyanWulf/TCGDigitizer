@@ -55,6 +55,11 @@ namespace OCS_FOR_CSHARP
             searchTimer.Interval = 3000;
             searchTimer.Enabled = true;
             searchTimer.Stop();
+            flowLayoutPanel3.AutoScroll = false;
+            flowLayoutPanel3.HorizontalScroll.Enabled = false;
+            flowLayoutPanel3.HorizontalScroll.Visible = false;
+            flowLayoutPanel3.HorizontalScroll.Maximum = 0;
+            flowLayoutPanel3.AutoScroll = true;
             //var position = this.PointToScreen(Card_Boarder.Location);
             //position = Cam_Picture_Box.PointToClient(position);
             //Card_Boarder.Parent = Cam_Picture_Box;

@@ -72,6 +72,7 @@
             this.button4 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Display_Picture_Box)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Boarder)).BeginInit();
@@ -86,6 +87,7 @@
             this.flowLayoutPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBox1
@@ -96,11 +98,11 @@
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.SystemColors.WindowText;
-            this.textBox1.Location = new System.Drawing.Point(3, 554);
+            this.textBox1.Location = new System.Drawing.Point(3, 574);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(315, 179);
+            this.textBox1.Size = new System.Drawing.Size(315, 94);
             this.textBox1.TabIndex = 1;
             this.textBox1.Text = ".";
             this.textBox1.TextChanged += new System.EventHandler(this.Tess_TextBox);
@@ -108,12 +110,13 @@
             // button1
             // 
             this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(3, 308);
+            this.button1.Location = new System.Drawing.Point(3, 366);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(315, 117);
+            this.button1.Size = new System.Drawing.Size(315, 157);
             this.button1.TabIndex = 2;
             this.button1.Text = "Scan Card";
             this.button1.UseVisualStyleBackColor = true;
@@ -124,10 +127,10 @@
             this.Cam_Picture_Box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.Cam_Picture_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Cam_Picture_Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Cam_Picture_Box.Location = new System.Drawing.Point(2, 125);
+            this.Cam_Picture_Box.Location = new System.Drawing.Point(2, 165);
             this.Cam_Picture_Box.Margin = new System.Windows.Forms.Padding(2);
             this.Cam_Picture_Box.Name = "Cam_Picture_Box";
-            this.Cam_Picture_Box.Size = new System.Drawing.Size(317, 178);
+            this.Cam_Picture_Box.Size = new System.Drawing.Size(317, 196);
             this.Cam_Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Cam_Picture_Box.TabIndex = 3;
             this.Cam_Picture_Box.TabStop = false;
@@ -136,12 +139,13 @@
             // Start_Video__Button
             // 
             this.Start_Video__Button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Start_Video__Button.FlatAppearance.BorderSize = 0;
             this.Start_Video__Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Start_Video__Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Start_Video__Button.ForeColor = System.Drawing.Color.Silver;
             this.Start_Video__Button.Location = new System.Drawing.Point(3, 3);
             this.Start_Video__Button.Name = "Start_Video__Button";
-            this.Start_Video__Button.Size = new System.Drawing.Size(315, 117);
+            this.Start_Video__Button.Size = new System.Drawing.Size(315, 157);
             this.Start_Video__Button.TabIndex = 5;
             this.Start_Video__Button.Text = "Start Scanner";
             this.Start_Video__Button.UseVisualStyleBackColor = true;
@@ -155,7 +159,7 @@
             this.Display_Picture_Box.Location = new System.Drawing.Point(2, 52);
             this.Display_Picture_Box.Margin = new System.Windows.Forms.Padding(2);
             this.Display_Picture_Box.Name = "Display_Picture_Box";
-            this.Display_Picture_Box.Size = new System.Drawing.Size(245, 361);
+            this.Display_Picture_Box.Size = new System.Drawing.Size(251, 361);
             this.Display_Picture_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Display_Picture_Box.TabIndex = 6;
             this.Display_Picture_Box.TabStop = false;
@@ -170,7 +174,7 @@
             this.Preview_Label.Location = new System.Drawing.Point(2, 0);
             this.Preview_Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.Preview_Label.Name = "Preview_Label";
-            this.Preview_Label.Size = new System.Drawing.Size(245, 50);
+            this.Preview_Label.Size = new System.Drawing.Size(251, 50);
             this.Preview_Label.TabIndex = 7;
             this.Preview_Label.Text = "Card Preview";
             // 
@@ -179,7 +183,7 @@
             this.Card_Boarder.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.Card_Boarder.BackColor = System.Drawing.Color.Transparent;
             this.Card_Boarder.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Card_Boarder.Location = new System.Drawing.Point(33, 782);
+            this.Card_Boarder.Location = new System.Drawing.Point(33, 787);
             this.Card_Boarder.Margin = new System.Windows.Forms.Padding(2, 0, 2, 2);
             this.Card_Boarder.Name = "Card_Boarder";
             this.Card_Boarder.Size = new System.Drawing.Size(256, 186);
@@ -193,10 +197,10 @@
             this.Name_Header_Pic_Box.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.Name_Header_Pic_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.Name_Header_Pic_Box.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Name_Header_Pic_Box.Location = new System.Drawing.Point(2, 430);
+            this.Name_Header_Pic_Box.Location = new System.Drawing.Point(2, 528);
             this.Name_Header_Pic_Box.Margin = new System.Windows.Forms.Padding(2);
             this.Name_Header_Pic_Box.Name = "Name_Header_Pic_Box";
-            this.Name_Header_Pic_Box.Size = new System.Drawing.Size(317, 119);
+            this.Name_Header_Pic_Box.Size = new System.Drawing.Size(317, 41);
             this.Name_Header_Pic_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Name_Header_Pic_Box.TabIndex = 9;
             this.Name_Header_Pic_Box.TabStop = false;
@@ -205,12 +209,13 @@
             // button2
             // 
             this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button2.FlatAppearance.BorderSize = 0;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(3, 739);
+            this.button2.Location = new System.Drawing.Point(3, 674);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(315, 117);
+            this.button2.Size = new System.Drawing.Size(315, 157);
             this.button2.TabIndex = 10;
             this.button2.Text = "Finish Scanning";
             this.button2.UseVisualStyleBackColor = true;
@@ -239,8 +244,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 74F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(679, 76);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(673, 78);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Mana_Button
@@ -249,9 +254,9 @@
             this.Mana_Button.FlatAppearance.BorderSize = 0;
             this.Mana_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Mana_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Mana_Button.Location = new System.Drawing.Point(553, 4);
+            this.Mana_Button.Location = new System.Drawing.Point(549, 4);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(122, 68);
+            this.Mana_Button.Size = new System.Drawing.Size(120, 70);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -262,9 +267,9 @@
             this.Number_Button.FlatAppearance.BorderSize = 0;
             this.Number_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Number_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Number_Button.Location = new System.Drawing.Point(426, 4);
+            this.Number_Button.Location = new System.Drawing.Point(423, 4);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(120, 68);
+            this.Number_Button.Size = new System.Drawing.Size(119, 70);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -275,9 +280,9 @@
             this.Expansion_Button.FlatAppearance.BorderSize = 0;
             this.Expansion_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Expansion_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Expansion_Button.Location = new System.Drawing.Point(299, 4);
+            this.Expansion_Button.Location = new System.Drawing.Point(297, 4);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(120, 68);
+            this.Expansion_Button.Size = new System.Drawing.Size(119, 70);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -288,9 +293,9 @@
             this.Type_Button.FlatAppearance.BorderSize = 0;
             this.Type_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Type_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Type_Button.Location = new System.Drawing.Point(172, 4);
+            this.Type_Button.Location = new System.Drawing.Point(171, 4);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(120, 68);
+            this.Type_Button.Size = new System.Drawing.Size(119, 70);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -303,7 +308,7 @@
             this.Name_Button.ForeColor = System.Drawing.Color.Silver;
             this.Name_Button.Location = new System.Drawing.Point(45, 4);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(120, 68);
+            this.Name_Button.Size = new System.Drawing.Size(119, 70);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -318,7 +323,7 @@
             this.Inventory_Checkbox.ForeColor = System.Drawing.Color.Silver;
             this.Inventory_Checkbox.Location = new System.Drawing.Point(4, 4);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 68);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 70);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             // 
@@ -330,7 +335,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel1.Location = new System.Drawing.Point(933, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(325, 992);
+            this.panel1.Size = new System.Drawing.Size(325, 1003);
             this.panel1.TabIndex = 19;
             // 
             // tableLayoutPanel2
@@ -348,25 +353,26 @@
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
             this.tableLayoutPanel2.RowCount = 7;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.53565F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.51829F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.53565F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.53565F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 18.80347F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.53565F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.53565F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 988);
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(321, 999);
             this.tableLayoutPanel2.TabIndex = 19;
             // 
             // Cancel_Button
             // 
             this.Cancel_Button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Cancel_Button.FlatAppearance.BorderSize = 0;
             this.Cancel_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Cancel_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cancel_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Cancel_Button.Location = new System.Drawing.Point(3, 862);
+            this.Cancel_Button.Location = new System.Drawing.Point(3, 837);
             this.Cancel_Button.Name = "Cancel_Button";
-            this.Cancel_Button.Size = new System.Drawing.Size(315, 123);
+            this.Cancel_Button.Size = new System.Drawing.Size(315, 159);
             this.Cancel_Button.TabIndex = 17;
             this.Cancel_Button.Text = "Quit";
             this.Cancel_Button.UseVisualStyleBackColor = true;
@@ -394,7 +400,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(253, 992);
+            this.panel2.Size = new System.Drawing.Size(259, 1003);
             this.panel2.TabIndex = 21;
             // 
             // tableLayoutPanel1
@@ -411,7 +417,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 365F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(249, 988);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(255, 999);
             this.tableLayoutPanel1.TabIndex = 19;
             // 
             // flowLayoutPanel3
@@ -420,10 +426,12 @@
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel1);
             this.flowLayoutPanel3.Controls.Add(this.flowLayoutPanel2);
             this.flowLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel3.Location = new System.Drawing.Point(3, 418);
             this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(243, 567);
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(249, 578);
             this.flowLayoutPanel3.TabIndex = 19;
+            this.flowLayoutPanel3.WrapContents = false;
             // 
             // flowLayoutPanel1
             // 
@@ -620,13 +628,14 @@
             // 
             this.button3.AutoSize = true;
             this.button3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button3.FlatAppearance.BorderSize = 0;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Silver;
-            this.button3.Location = new System.Drawing.Point(0, 0);
+            this.button3.Location = new System.Drawing.Point(3, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(685, 51);
+            this.button3.Size = new System.Drawing.Size(665, 42);
             this.button3.TabIndex = 22;
             this.button3.Text = "Add to Inventory";
             this.button3.UseVisualStyleBackColor = true;
@@ -640,22 +649,23 @@
             this.panel3.AutoScroll = true;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel3.Controls.Add(this.Card_Table_Panel);
-            this.panel3.Location = new System.Drawing.Point(253, 50);
+            this.panel3.Location = new System.Drawing.Point(259, 50);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(683, 844);
+            this.panel3.Size = new System.Drawing.Size(677, 855);
             this.panel3.TabIndex = 23;
             // 
             // button4
             // 
             this.button4.AutoSize = true;
             this.button4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.button4.FlatAppearance.BorderSize = 0;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Silver;
-            this.button4.Location = new System.Drawing.Point(0, 51);
+            this.button4.Location = new System.Drawing.Point(3, 51);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(685, 51);
+            this.button4.Size = new System.Drawing.Size(665, 42);
             this.button4.TabIndex = 24;
             this.button4.Text = "Delete Selected";
             this.button4.UseVisualStyleBackColor = true;
@@ -666,11 +676,10 @@
             this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.button4);
-            this.panel4.Controls.Add(this.button3);
-            this.panel4.Location = new System.Drawing.Point(245, 892);
+            this.panel4.Controls.Add(this.tableLayoutPanel3);
+            this.panel4.Location = new System.Drawing.Point(259, 903);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(689, 100);
+            this.panel4.Size = new System.Drawing.Size(675, 100);
             this.panel4.TabIndex = 24;
             // 
             // contextMenuStrip1
@@ -678,12 +687,27 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 1;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.button4, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.button3, 0, 0);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 2;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(671, 96);
+            this.tableLayoutPanel3.TabIndex = 20;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1258, 992);
+            this.ClientSize = new System.Drawing.Size(1258, 1003);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
@@ -715,7 +739,8 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -765,6 +790,7 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
     }
 }
 
