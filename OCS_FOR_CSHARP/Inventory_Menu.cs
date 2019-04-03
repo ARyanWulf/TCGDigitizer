@@ -8,6 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Npgsql;
+using MtgApiManager.Lib.Service;
+using MtgApiManager.Lib.Model;
+using MtgApiManager.Lib.Core;
+using MtgApiManager.Lib.Utility;
+using MtgApiManager.Lib.Dto;
 
 namespace OCS_FOR_CSHARP
 {
@@ -21,6 +26,7 @@ namespace OCS_FOR_CSHARP
         public List<cardWrapper> id_list = new List<cardWrapper>();
         private List<cardWrapper> cards = new List<cardWrapper>();
         private TableLayoutPanel tempTable;
+        CardService service = new CardService();
 
         public Inventory_Menu()
         {
@@ -184,7 +190,7 @@ namespace OCS_FOR_CSHARP
             panel1.Visible = false;
             Size tempSize = panel1.MaximumSize;
             tempSize.Height = Height - 100;
-            tempSize.Width = Card_Table_Panel.Width;
+            //tempSize.Width = Card_Table_Panel.Width;
             panel1.MaximumSize = tempSize;
             //Card_Table_Panel.Visible = false;
             //Clear table and redraw
@@ -371,15 +377,21 @@ namespace OCS_FOR_CSHARP
         private void tempCheck_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox temp = (CheckBox)sender;
-            id_list.Add((cardWrapper)temp.Tag);
-            //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
+            if (temp.Checked)
+            {
+                id_list.Add((cardWrapper)temp.Tag);
+                //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
+            }
+            else
+            {
+                id_list.Remove((cardWrapper)temp.Tag);
+            }
             populate((cardWrapper)temp.Tag);
         }
 
         private void tempLabel_Click(object sender, EventArgs e)
         {
             Label temp = (Label)sender;
-            id_list.Add((cardWrapper)temp.Tag);
             //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
             populate((cardWrapper)temp.Tag);
         }
@@ -456,12 +468,17 @@ namespace OCS_FOR_CSHARP
                 Card_Flavor_Text_TextBox.Visible = false;
             }
 
-            //pictureBox1.Image = newForm.Display_Picture_Box.Image;
 
-            /*if (currentCard.card.ImageUrl.OriginalString != null)
+
+            try
             {
-                pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
-            }*/
+                var image = service.Where(x => x.Set, currentCard.card.setCode).Where(y => y.Number, currentCard.card.number).All().Value[0].ImageUrl.OriginalString;
+                pictureBox1.Load(image);
+            }
+            catch
+            {
+
+            }
         }
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
