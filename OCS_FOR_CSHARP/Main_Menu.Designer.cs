@@ -38,7 +38,6 @@
             this.ManualEntryButton = new System.Windows.Forms.Button();
             this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.login_button = new System.Windows.Forms.Button();
             this.login_label = new System.Windows.Forms.Label();
             this.password_label = new System.Windows.Forms.Label();
@@ -47,6 +46,7 @@
             this.login_username_textbox = new System.Windows.Forms.TextBox();
             this.CloseTextButton = new System.Windows.Forms.Button();
             this.ContactText = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.welcome_label = new System.Windows.Forms.Label();
             this.logout_link = new System.Windows.Forms.LinkLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -218,24 +218,6 @@
             this.panel2.TabIndex = 18;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Silver;
-            this.textBox1.Location = new System.Drawing.Point(295, 667);
-            this.textBox1.MaximumSize = new System.Drawing.Size(500, 300);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(323, 122);
-            this.textBox1.TabIndex = 27;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.Visible = false;
-            this.textBox1.WordWrap = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
-            // 
             // login_button
             // 
             this.login_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -256,7 +238,7 @@
             this.login_label.ForeColor = System.Drawing.Color.Silver;
             this.login_label.Location = new System.Drawing.Point(160, 59);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(184, 39);
+            this.login_label.Size = new System.Drawing.Size(234, 52);
             this.login_label.TabIndex = 25;
             this.login_label.Text = "User Login";
             this.login_label.Visible = false;
@@ -270,7 +252,7 @@
             this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.password_label.Location = new System.Drawing.Point(166, 240);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(53, 13);
+            this.password_label.Size = new System.Drawing.Size(69, 17);
             this.password_label.TabIndex = 24;
             this.password_label.Text = "Password";
             this.password_label.Visible = false;
@@ -282,7 +264,7 @@
             this.login_password_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_password_textbox.Location = new System.Drawing.Point(170, 263);
             this.login_password_textbox.Name = "login_password_textbox";
-            this.login_password_textbox.Size = new System.Drawing.Size(323, 38);
+            this.login_password_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_password_textbox.TabIndex = 23;
             this.login_password_textbox.Visible = false;
             this.login_password_textbox.TextChanged += new System.EventHandler(this.login_password_textbox_TextChanged_1);
@@ -295,7 +277,7 @@
             this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.user_name_label.Location = new System.Drawing.Point(166, 133);
             this.user_name_label.Name = "user_name_label";
-            this.user_name_label.Size = new System.Drawing.Size(55, 13);
+            this.user_name_label.Size = new System.Drawing.Size(73, 17);
             this.user_name_label.TabIndex = 22;
             this.user_name_label.Text = "Username";
             this.user_name_label.Visible = false;
@@ -307,7 +289,7 @@
             this.login_username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_username_textbox.Location = new System.Drawing.Point(170, 156);
             this.login_username_textbox.Name = "login_username_textbox";
-            this.login_username_textbox.Size = new System.Drawing.Size(323, 38);
+            this.login_username_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_username_textbox.TabIndex = 21;
             this.login_username_textbox.Visible = false;
             this.login_username_textbox.TextChanged += new System.EventHandler(this.login_username_textbox_TextChanged_1);
@@ -346,6 +328,24 @@
             this.ContactText.WordWrap = false;
             this.ContactText.TextChanged += new System.EventHandler(this.ContactText_TextChanged_1);
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.ForeColor = System.Drawing.Color.Silver;
+            this.textBox1.Location = new System.Drawing.Point(295, 667);
+            this.textBox1.MaximumSize = new System.Drawing.Size(500, 300);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(323, 122);
+            this.textBox1.TabIndex = 27;
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBox1.Visible = false;
+            this.textBox1.WordWrap = false;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
             // welcome_label
             // 
             this.welcome_label.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -366,7 +366,7 @@
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logout_link.Location = new System.Drawing.Point(889, 45);
             this.logout_link.Name = "logout_link";
-            this.logout_link.Size = new System.Drawing.Size(52, 17);
+            this.logout_link.Size = new System.Drawing.Size(60, 20);
             this.logout_link.TabIndex = 20;
             this.logout_link.TabStop = true;
             this.logout_link.Text = "Logout";
@@ -433,6 +433,7 @@
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Main_Menu";
             this.Text = "TCG Digitizer";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Menu_Load);
             this.panel1.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
