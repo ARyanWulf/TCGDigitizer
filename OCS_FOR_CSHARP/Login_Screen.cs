@@ -24,11 +24,8 @@ namespace OCS_FOR_CSHARP
         private void login_button_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
-            string pass_mask = "";
-            for (int i = 0; i < login_password_textbox.Text.Length; i++)
-            {
-                pass_mask += "*";
-            }
+            //string pass_mask = "";
+
             if (login_username_textbox.Text.Length > 0 && login_username_textbox.Text.Length <= 15)
             {
 
@@ -78,31 +75,36 @@ namespace OCS_FOR_CSHARP
                             CurrentUser.user_ID = 0;
                             CurrentUser.prvlg_lvl = 0;
                             textBox1.AppendText("Unforeseen Error - Returned Deleted");
-                            login_password_textbox.Text = pass_mask;
+                          
                         }
 
                     }
                     else
                     {
                         textBox1.AppendText("Username/Password Doesn't Match");
-                        login_password_textbox.Text = pass_mask;
+                       
                     }
 
                 }
                 else
                 {
                     textBox1.AppendText("Password Range Error");
-                    login_password_textbox.Text = pass_mask;
+                   
                 }
             }
             else
             {
                 textBox1.AppendText("Username Range Error");
-                login_password_textbox.Text = pass_mask;
+                ;
             }
         }
 
         private void Login_Screen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
         }
