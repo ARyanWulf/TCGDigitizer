@@ -249,8 +249,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 78F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(673, 80);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(673, 81);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Mana_Button
@@ -261,7 +261,7 @@
             this.Mana_Button.ForeColor = System.Drawing.Color.Silver;
             this.Mana_Button.Location = new System.Drawing.Point(549, 4);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(120, 72);
+            this.Mana_Button.Size = new System.Drawing.Size(120, 73);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -274,7 +274,7 @@
             this.Number_Button.ForeColor = System.Drawing.Color.Silver;
             this.Number_Button.Location = new System.Drawing.Point(423, 4);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(119, 72);
+            this.Number_Button.Size = new System.Drawing.Size(119, 73);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -287,7 +287,7 @@
             this.Expansion_Button.ForeColor = System.Drawing.Color.Silver;
             this.Expansion_Button.Location = new System.Drawing.Point(297, 4);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(119, 72);
+            this.Expansion_Button.Size = new System.Drawing.Size(119, 73);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -300,7 +300,7 @@
             this.Type_Button.ForeColor = System.Drawing.Color.Silver;
             this.Type_Button.Location = new System.Drawing.Point(171, 4);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(119, 72);
+            this.Type_Button.Size = new System.Drawing.Size(119, 73);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -313,10 +313,11 @@
             this.Name_Button.ForeColor = System.Drawing.Color.Silver;
             this.Name_Button.Location = new System.Drawing.Point(45, 4);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(119, 72);
+            this.Name_Button.Size = new System.Drawing.Size(119, 73);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
+            this.Name_Button.Click += new System.EventHandler(this.Name_Button_Click);
             // 
             // Inventory_Checkbox
             // 
@@ -328,7 +329,7 @@
             this.Inventory_Checkbox.ForeColor = System.Drawing.Color.Silver;
             this.Inventory_Checkbox.Location = new System.Drawing.Point(4, 4);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 72);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 73);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             this.Inventory_Checkbox.CheckedChanged += new System.EventHandler(this.Inventory_Checkbox_CheckedChanged);
