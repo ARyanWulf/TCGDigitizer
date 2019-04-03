@@ -469,6 +469,33 @@ namespace OCS_FOR_CSHARP
 
             connection.Open();
 
+            using (var cmd = new NpgsqlCommand("get_cards_containing_name", connection))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("in_name", cardName);
+                var reader = cmd.ExecuteReader();
+                int rowsAffected = 0;
+
+                while(reader.Read())
+                {
+                    rowsAffected++;
+                }
+
+                if(rowsAffected > 1)
+                {
+                    tempWrapper.cardStatus = Color.Gold;
+                }
+                else
+                {
+                    tempWrapper.cardStatus = this.BackColor;
+                }
+            }
+
+            connection.Close();
+
+            connection.Open();
+
             using (var cmd = new NpgsqlCommand("get_card_with_name", connection))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
@@ -477,15 +504,6 @@ namespace OCS_FOR_CSHARP
 
                 CardObject tempCard = new CardObject();
 
-                var rowsAffected = cmd.ExecuteNonQuery();
-                if(rowsAffected > 1)
-                {
-                    tempWrapper.cardStatus = Color.Yellow;
-                }
-                else
-                {
-                    tempWrapper.cardStatus = this.BackColor;
-                }
                 tempCard.cardID = Convert.ToInt32(cmd.ExecuteScalar());
                 returnCard.card = tempCard;
             }
