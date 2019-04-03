@@ -40,7 +40,7 @@ namespace OCS_FOR_CSHARP
         int badCard = 0;
         int numScans = 0;
         
-        public cardWrapper currentCard = new cardWrapper();
+        public cardWrapper currentCard;
         List<cardWrapper> cards = new List<cardWrapper>();
         List<cardWrapper> databaseList = new List<cardWrapper>();
         List<Bitmap> cardImages = new List<Bitmap>();
@@ -55,6 +55,11 @@ namespace OCS_FOR_CSHARP
             searchTimer.Interval = 3000;
             searchTimer.Enabled = true;
             searchTimer.Stop();
+            flowLayoutPanel3.AutoScroll = false;
+            flowLayoutPanel3.HorizontalScroll.Enabled = false;
+            flowLayoutPanel3.HorizontalScroll.Visible = false;
+            flowLayoutPanel3.HorizontalScroll.Maximum = 0;
+            flowLayoutPanel3.AutoScroll = true;
             //var position = this.PointToScreen(Card_Boarder.Location);
             //position = Cam_Picture_Box.PointToClient(position);
             //Card_Boarder.Parent = Cam_Picture_Box;
@@ -348,14 +353,29 @@ namespace OCS_FOR_CSHARP
 
             var tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus, Tag = sentCard };
             tempCheck.CheckStateChanged += new EventHandler(cardCheckChanged);
-
             Card_Table_Panel.Controls.Add(tempCheck, 0, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 1, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 2, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 3, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.multiverseId.ToString(), AutoSize = true, Anchor = AnchorStyles.None, AutoEllipsis = true, BackColor = sentCard.cardStatus, Tag = sentCard }, 4, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard }, 5, rowOffset);
-            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true, BackColor = sentCard.cardStatus, Tag = sentCard }, 6, rowOffset);
+
+            var tempLabel = new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 1, rowOffset);
+
+            tempLabel = new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 2, rowOffset);
+
+            tempLabel = new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 3, rowOffset);
+
+
+            tempLabel = new Label() { Text = sentCard.card.number, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 4, rowOffset);
+
+            tempLabel = new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel.Click += new EventHandler(Label_Clicked);
+            Card_Table_Panel.Controls.Add(tempLabel, 5, rowOffset);
+
             Card_Table_Panel.Visible = true;
         }
 
@@ -373,14 +393,62 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        private void Label_Clicked(Object sender, EventArgs eventArgs)
+        {
+            var returnCard = (sender as Label).Tag as cardWrapper;
+
+            CardName.Text = returnCard.card.name;
+            Card_Set_Combobox.Text = returnCard.card.setCode;
+            Card_Type_TextBox.Text = returnCard.card.type;
+            if (returnCard.card.text != "n/a")
+            {
+                cardTextTextbox.Visible = true;
+                cardTextLabel.Visible = true;
+                cardTextTextbox.Text = returnCard.card.text;
+            }
+            else
+            {
+                cardTextLabel.Visible = false;
+                cardTextTextbox.Visible = false;
+            }
+
+            if (returnCard.card.flavorText != "n/a")
+            {
+                cardFlavorLabel.Visible = true;
+                cardFlavorTextbox.Visible = true;
+                cardFlavorTextbox.Text = returnCard.card.flavorText;
+            }
+            else
+            {
+                cardFlavorLabel.Visible = false;
+                cardFlavorTextbox.Visible = false;
+            }
+
+            if (returnCard.card.loyalty != "n/a")
+            {
+                cardLoyaltyLabel.Visible = true;
+                cardPTLabel.Visible = false;
+                cardPTLTextbox.Visible = true;
+                cardPTLTextbox.Text = returnCard.card.loyalty;
+            }
+            else if (returnCard.card.power != "n/a")
+            {
+                cardPTLabel.Visible = true;
+                cardPTLTextbox.Visible = true;
+                cardLoyaltyLabel.Visible = false;
+                cardPTLTextbox.Text = returnCard.card.power + "/" + returnCard.card.toughness;
+            }
+            else
+            {
+                cardPTLabel.Visible = false;
+                cardPTLTextbox.Visible = false;
+                cardLoyaltyLabel.Visible = false;
+            }
+        }
+
         private void Name_Header_Pic_Box_Click(object sender, EventArgs e)
         {
 
-        }
-
-        public cardWrapper getCard()
-        {
-            return currentCard;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -653,7 +721,7 @@ namespace OCS_FOR_CSHARP
 
             for(int i = 0; i < cards.Count; i++)
             {
-
+                addToList(cards[i]);
             }
         }
 

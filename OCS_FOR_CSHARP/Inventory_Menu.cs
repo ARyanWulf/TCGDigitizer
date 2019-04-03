@@ -57,7 +57,7 @@ namespace OCS_FOR_CSHARP
             display_lower = 0;
             display_upper = 0;
             Page_Back_Button.Enabled = false;
-            
+
         }
 
         private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
@@ -101,12 +101,12 @@ namespace OCS_FOR_CSHARP
             string cmdhold = "";
             for (int i = 0; i < cards.Count; i++)
             {
-                if(cards[i].count <= 0)
+                if (cards[i].count <= 0)
                 {
                     cards.RemoveAt(i);
                     i--;
                 }
-                else if(i != 0)
+                else if (i != 0)
                 {
                     cmdhold += "OR card_id = " + cards[i].card_ID;
                 }
@@ -119,7 +119,7 @@ namespace OCS_FOR_CSHARP
 
             // TO DO:
             // add ability to grab card expansion
-            if(cards.Count != 0)
+            if (cards.Count != 0)
             {
                 connection.Open();
 
@@ -127,7 +127,7 @@ namespace OCS_FOR_CSHARP
                 {
                     NpgsqlDataReader reader = cmd.ExecuteReader();
 
-                    while(reader.Read())
+                    while (reader.Read())
                     {
                         string temp;
                         CardObject tempCard = new CardObject();
@@ -158,9 +158,9 @@ namespace OCS_FOR_CSHARP
                         tempCard.artist = reader[21].ToString();
                         tempCard.number = reader[24].ToString();
 
-                        for(int i = 0; i < cards.Count; i++)
+                        for (int i = 0; i < cards.Count; i++)
                         {
-                            if(cards[i].card_ID == tempCard.cardID)
+                            if (cards[i].card_ID == tempCard.cardID)
                             {
                                 cards[i].card = tempCard;
                             }
@@ -168,10 +168,10 @@ namespace OCS_FOR_CSHARP
                     }
                 }
                 connection.Close();
-                
+
 
             }
-           
+
 
             return cards;
         }
@@ -182,6 +182,7 @@ namespace OCS_FOR_CSHARP
             panel1.Visible = false;
             Size tempSize = panel1.MaximumSize;
             tempSize.Height = Height - 100;
+            tempSize.Width = Card_Table_Panel.Width;
             panel1.MaximumSize = tempSize;
             //Card_Table_Panel.Visible = false;
             //Clear table and redraw
@@ -203,16 +204,16 @@ namespace OCS_FOR_CSHARP
 
             cards = Get_Inventory();
             int cardCount = 0;
-            for(int i = 0; i < cards.Count; i++)
+            for (int i = 0; i < cards.Count; i++)
             {
-                for(int j = 0; j < cards[i].count; j++)
+                for (int j = 0; j < cards[i].count; j++)
                 {
                     cardCount++;
                 }
             }
             InventoryCountLabel.Text = "Cards in inventory: " + cardCount;
             // initialize table to zero rows to be empty
-            if(cards.Count - display_lower < 20) //If the amount of cards to be displayed on refresh is less than 20
+            if (cards.Count - display_lower < 20) //If the amount of cards to be displayed on refresh is less than 20
             {
                 display_upper = cards.Count;
             }
@@ -228,11 +229,11 @@ namespace OCS_FOR_CSHARP
              * subtract 20 from the card count if the card count is greater than 20
              */
 
-                // TO DO:
-                // Cards remaining should also be re-initialized
+            // TO DO:
+            // Cards remaining should also be re-initialized
 
 
-                /* begin populating table, start at second row so the first row containing buttons is not overwritten */
+            /* begin populating table, start at second row so the first row containing buttons is not overwritten */
             for (int i = 0; i < displayRange; i++)
             {
                 //Card_Table_Panel.RowStyles[0].Height = 200;
@@ -288,7 +289,7 @@ namespace OCS_FOR_CSHARP
             //Card_Table_Panel.Visible = true;
             panel1.Visible = true;
             //panel2.Visible = true;
-            if(cards.Count() > 20 && display_upper < cards.Count())
+            if (cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
             }
@@ -297,7 +298,7 @@ namespace OCS_FOR_CSHARP
                 Page_Forward_Button.Enabled = false;
             }
 
-            if(display_lower >= 20)
+            if (display_lower >= 20)
             {
                 Page_Back_Button.Enabled = true;
             }
@@ -372,18 +373,18 @@ namespace OCS_FOR_CSHARP
 
         private void tempCheck_CheckedChanged(object sender, EventArgs e)
         {
-            CheckBox temp = (CheckBox) sender;
-            id_list.Add((cardWrapper) temp.Tag);
+            CheckBox temp = (CheckBox)sender;
+            id_list.Add((cardWrapper)temp.Tag);
             //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
-            populate((cardWrapper) temp.Tag);
+            populate((cardWrapper)temp.Tag);
         }
 
         private void tempLabel_Click(object sender, EventArgs e)
         {
-            Label temp = (Label) sender;
-            id_list.Add((cardWrapper) temp.Tag);
+            Label temp = (Label)sender;
+            id_list.Add((cardWrapper)temp.Tag);
             //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
-            populate((cardWrapper) temp.Tag);
+            populate((cardWrapper)temp.Tag);
         }
 
         public void populate(cardWrapper input)
