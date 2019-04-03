@@ -725,6 +725,7 @@
             this.checkBox2.TabIndex = 35;
             this.checkBox2.Text = "Foil";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.Visible = false;
             // 
             // pictureBox1
             // 
