@@ -131,6 +131,8 @@ namespace OCS_FOR_CSHARP
         //Creates database by downloading JSON files, parcing them and inserting them into POSTGRES DATABASE.
         private void Load_Card_Button_Click(object sender, EventArgs e)
         {
+            downloadLabel.Visible = true;
+
             using (var webc = new WebClient())
             {
                 //string containing set list json from URL
@@ -143,6 +145,7 @@ namespace OCS_FOR_CSHARP
                 string mtgCardjson;
 
                 //for every set
+
                 for (int i = 0; i < setList.Count; i++)
                 {
                     using (var wc = new WebClient())
@@ -293,7 +296,15 @@ namespace OCS_FOR_CSHARP
                                     {
                                         cmd.Parameters.AddWithValue("in_loyalty", "n/a");
                                     }
-                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+
+                                    if (currentCardList.cards[j].artist != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", "unknown");
+                                    }
                                     cmd.Parameters.AddWithValue("in_foil", 'y');
                                     cmd.Parameters.AddWithValue("in_prerelease", 'n');
                                     cmd.Parameters.AddWithValue("in_location", "n/a");
@@ -415,7 +426,15 @@ namespace OCS_FOR_CSHARP
                                     {
                                         cmd.Parameters.AddWithValue("in_loyalty", "n/a");
                                     }
-                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+
+                                    if (currentCardList.cards[j].artist != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", "unknown");
+                                    }
                                     cmd.Parameters.AddWithValue("in_foil", 'y');
                                     cmd.Parameters.AddWithValue("in_prerelease", 'n');
                                     cmd.Parameters.AddWithValue("in_location", "n/a");
@@ -537,7 +556,15 @@ namespace OCS_FOR_CSHARP
                                     {
                                         cmd.Parameters.AddWithValue("in_loyalty", "n/a");
                                     }
-                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+
+                                    if(currentCardList.cards[j].artist != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", "unknown");
+                                    }
                                     cmd.Parameters.AddWithValue("in_foil", 'y');
                                     cmd.Parameters.AddWithValue("in_prerelease", 'n');
                                     cmd.Parameters.AddWithValue("in_location", "n/a");
@@ -660,7 +687,15 @@ namespace OCS_FOR_CSHARP
                                     {
                                         cmd.Parameters.AddWithValue("in_loyalty", "n/a");
                                     }
-                                    cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+
+                                    if (currentCardList.cards[j].artist != null)
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
+                                    }
+                                    else
+                                    {
+                                        cmd.Parameters.AddWithValue("in_artist", "unknown");
+                                    }
                                     cmd.Parameters.AddWithValue("in_foil", 'n');
                                     cmd.Parameters.AddWithValue("in_prerelease", 'n');
                                     cmd.Parameters.AddWithValue("in_location", "n/a");
@@ -674,6 +709,8 @@ namespace OCS_FOR_CSHARP
                         connection.Close();
                     }
                 }
+                
+                downloadLabel.Visible = false;
             }   
             
         }
@@ -692,7 +729,15 @@ namespace OCS_FOR_CSHARP
 
         }
 
-    
+        private void login_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 
     public class userWrapper

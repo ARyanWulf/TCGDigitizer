@@ -479,6 +479,7 @@ namespace OCS_FOR_CSHARP
 
                 while(reader.Read())
                 {
+                    if(reader[2].ToString().Contains("FOIL") || reader[2].ToString().Contains("PRERELEASE"))
                     rowsAffected++;
                 }
 
@@ -507,6 +508,10 @@ namespace OCS_FOR_CSHARP
                 tempCard.cardID = Convert.ToInt32(cmd.ExecuteScalar());
                 returnCard.card = tempCard;
             }
+
+            connection.Close();
+
+            connection.Open();
 
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_id = " + returnCard.card.cardID, connection))
             {
@@ -551,7 +556,7 @@ namespace OCS_FOR_CSHARP
             }
             connection.Close();
 
-            if(returnCard.card.cardID != -1)
+            if (returnCard.card != null)
             {
                 textBox1.Text += " Success!";
             }

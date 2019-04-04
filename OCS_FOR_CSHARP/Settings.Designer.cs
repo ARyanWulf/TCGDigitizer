@@ -45,6 +45,7 @@
             this.Header = new System.Windows.Forms.Label();
             this.user_text_box = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.downloadLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -274,11 +275,27 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(680, 33);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
+            // downloadLabel
+            // 
+            this.downloadLabel.AutoSize = true;
+            this.downloadLabel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.downloadLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 26F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.downloadLabel.ForeColor = System.Drawing.Color.Silver;
+            this.downloadLabel.Location = new System.Drawing.Point(111, 206);
+            this.downloadLabel.Name = "downloadLabel";
+            this.downloadLabel.Size = new System.Drawing.Size(514, 80);
+            this.downloadLabel.TabIndex = 26;
+            this.downloadLabel.Text = "Downloading Card Database\r\n(This may take several minutes)\r\n";
+            this.downloadLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.downloadLabel.Visible = false;
+            this.downloadLabel.Click += new System.EventHandler(this.login_label_Click);
+            // 
             // Settings
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(713, 511);
+            this.Controls.Add(this.downloadLabel);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.user_text_box);
             this.Controls.Add(this.Header);
@@ -322,5 +339,6 @@
         private System.Windows.Forms.Label Header;
         private System.Windows.Forms.Label user_text_box;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Label downloadLabel;
     }
 }
