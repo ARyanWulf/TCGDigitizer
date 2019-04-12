@@ -53,28 +53,40 @@
             this.Card_Description_TextBox = new System.Windows.Forms.TextBox();
             this.Card_Flavor_Text_TextBox = new System.Windows.Forms.TextBox();
             this.Card_Power_TextBox = new System.Windows.Forms.TextBox();
-            this.Card_Toughness_TextBox = new System.Windows.Forms.TextBox();
             this.Card_Type_TextBox = new System.Windows.Forms.TextBox();
-            this.Card_Additional_TextBox = new System.Windows.Forms.TextBox();
-            this.Card_Toughness_Label = new System.Windows.Forms.Label();
             this.Card_Power_Label = new System.Windows.Forms.Label();
             this.Card_Flavor_Text_Label = new System.Windows.Forms.Label();
             this.Card_Description_Label = new System.Windows.Forms.Label();
             this.Card_Expansion_Label = new System.Windows.Forms.Label();
             this.Card_Mana_Cost_Label = new System.Windows.Forms.Label();
-            this.Card_Additional_Label = new System.Windows.Forms.Label();
             this.Card_Type_Label = new System.Windows.Forms.Label();
             this.Card_Name_Label = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.LeftIneerPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ArrowPanel = new System.Windows.Forms.TableLayoutPanel();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.card_loyalty_label = new System.Windows.Forms.Label();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.Preview_Label = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tableLayoutPanel1.SuspendLayout();
             this.CardPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.LeftPanel.SuspendLayout();
             this.LeftIneerPanel.SuspendLayout();
             this.ArrowPanel.SuspendLayout();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanel2.SuspendLayout();
+            this.flowLayoutPanel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.flowLayoutPanel5.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // Card_Table_Panel
@@ -100,8 +112,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Card_Table_Panel.Size = new System.Drawing.Size(664, 2);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 75F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(969, 77);
             this.Card_Table_Panel.TabIndex = 6;
             // 
             // InventoryCountLabel
@@ -110,10 +122,10 @@
             this.InventoryCountLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.InventoryCountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryCountLabel.ForeColor = System.Drawing.Color.Silver;
-            this.InventoryCountLabel.Location = new System.Drawing.Point(2, 636);
+            this.InventoryCountLabel.Location = new System.Drawing.Point(2, 797);
             this.InventoryCountLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.InventoryCountLabel.Name = "InventoryCountLabel";
-            this.InventoryCountLabel.Size = new System.Drawing.Size(660, 40);
+            this.InventoryCountLabel.Size = new System.Drawing.Size(965, 40);
             this.InventoryCountLabel.TabIndex = 7;
             this.InventoryCountLabel.Text = "Cards in inventory: 4000";
             this.InventoryCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -130,7 +142,7 @@
             this.Page_Back_Button.Location = new System.Drawing.Point(2, 2);
             this.Page_Back_Button.Margin = new System.Windows.Forms.Padding(2);
             this.Page_Back_Button.Name = "Page_Back_Button";
-            this.Page_Back_Button.Size = new System.Drawing.Size(328, 96);
+            this.Page_Back_Button.Size = new System.Drawing.Size(480, 96);
             this.Page_Back_Button.TabIndex = 9;
             this.Page_Back_Button.Text = "<";
             this.Page_Back_Button.UseVisualStyleBackColor = false;
@@ -144,10 +156,10 @@
             this.Page_Forward_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.Page_Forward_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Page_Forward_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Page_Forward_Button.Location = new System.Drawing.Point(334, 2);
+            this.Page_Forward_Button.Location = new System.Drawing.Point(486, 2);
             this.Page_Forward_Button.Margin = new System.Windows.Forms.Padding(2);
             this.Page_Forward_Button.Name = "Page_Forward_Button";
-            this.Page_Forward_Button.Size = new System.Drawing.Size(328, 96);
+            this.Page_Forward_Button.Size = new System.Drawing.Size(481, 96);
             this.Page_Forward_Button.TabIndex = 10;
             this.Page_Forward_Button.Text = ">";
             this.Page_Forward_Button.UseVisualStyleBackColor = false;
@@ -181,7 +193,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 76F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(664, 40);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(969, 40);
             this.tableLayoutPanel1.TabIndex = 11;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
@@ -194,7 +206,7 @@
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(560, 4);
+            this.button1.Location = new System.Drawing.Point(815, 4);
             this.button1.MaximumSize = new System.Drawing.Size(94, 32);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(94, 32);
@@ -210,10 +222,10 @@
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Silver;
-            this.button2.Location = new System.Drawing.Point(455, 4);
+            this.button2.Location = new System.Drawing.Point(659, 4);
             this.button2.MaximumSize = new System.Drawing.Size(0, 32);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(98, 32);
+            this.button2.Size = new System.Drawing.Size(149, 32);
             this.button2.TabIndex = 11;
             this.button2.Text = "Mana";
             this.button2.UseVisualStyleBackColor = false;
@@ -226,10 +238,10 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.Silver;
-            this.button3.Location = new System.Drawing.Point(350, 4);
+            this.button3.Location = new System.Drawing.Point(503, 4);
             this.button3.MaximumSize = new System.Drawing.Size(0, 32);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(98, 32);
+            this.button3.Size = new System.Drawing.Size(149, 32);
             this.button3.TabIndex = 10;
             this.button3.Text = "#";
             this.button3.UseVisualStyleBackColor = false;
@@ -242,10 +254,10 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Silver;
-            this.button4.Location = new System.Drawing.Point(245, 4);
+            this.button4.Location = new System.Drawing.Point(347, 4);
             this.button4.MaximumSize = new System.Drawing.Size(0, 32);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(98, 32);
+            this.button4.Size = new System.Drawing.Size(149, 32);
             this.button4.TabIndex = 9;
             this.button4.Text = "Expansion";
             this.button4.UseVisualStyleBackColor = false;
@@ -258,10 +270,10 @@
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.Color.Silver;
-            this.button5.Location = new System.Drawing.Point(140, 4);
+            this.button5.Location = new System.Drawing.Point(191, 4);
             this.button5.MaximumSize = new System.Drawing.Size(0, 32);
             this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(98, 32);
+            this.button5.Size = new System.Drawing.Size(149, 32);
             this.button5.TabIndex = 8;
             this.button5.Text = "Type";
             this.button5.UseVisualStyleBackColor = false;
@@ -278,7 +290,7 @@
             this.button6.Location = new System.Drawing.Point(35, 4);
             this.button6.MaximumSize = new System.Drawing.Size(0, 32);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(98, 32);
+            this.button6.Size = new System.Drawing.Size(149, 32);
             this.button6.TabIndex = 7;
             this.button6.Text = "Name";
             this.button6.UseVisualStyleBackColor = false;
@@ -350,30 +362,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CardPanel.AutoScroll = true;
             this.CardPanel.AutoSize = true;
-            this.CardPanel.Controls.Add(this.Name_Textbox);
-            this.CardPanel.Controls.Add(this.textBox2);
-            this.CardPanel.Controls.Add(this.Card_Nmbr_Label);
-            this.CardPanel.Controls.Add(this.Card_Mana_Cost_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Expansion_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Description_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Flavor_Text_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Power_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Toughness_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Type_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Additional_TextBox);
-            this.CardPanel.Controls.Add(this.Card_Toughness_Label);
-            this.CardPanel.Controls.Add(this.Card_Power_Label);
-            this.CardPanel.Controls.Add(this.Card_Flavor_Text_Label);
-            this.CardPanel.Controls.Add(this.Card_Description_Label);
-            this.CardPanel.Controls.Add(this.Card_Expansion_Label);
-            this.CardPanel.Controls.Add(this.Card_Mana_Cost_Label);
-            this.CardPanel.Controls.Add(this.Card_Additional_Label);
-            this.CardPanel.Controls.Add(this.Card_Type_Label);
-            this.CardPanel.Controls.Add(this.Card_Name_Label);
-            this.CardPanel.Controls.Add(this.pictureBox1);
-            this.CardPanel.Location = new System.Drawing.Point(668, 0);
+            this.CardPanel.Controls.Add(this.tableLayoutPanel2);
+            this.CardPanel.Location = new System.Drawing.Point(976, 0);
             this.CardPanel.Name = "CardPanel";
-            this.CardPanel.Size = new System.Drawing.Size(736, 774);
+            this.CardPanel.Size = new System.Drawing.Size(280, 935);
             this.CardPanel.TabIndex = 16;
             // 
             // Name_Textbox
@@ -381,9 +373,9 @@
             this.Name_Textbox.BackColor = System.Drawing.Color.SlateGray;
             this.Name_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Name_Textbox.ForeColor = System.Drawing.Color.Silver;
-            this.Name_Textbox.Location = new System.Drawing.Point(464, 39);
+            this.Name_Textbox.Location = new System.Drawing.Point(3, 23);
             this.Name_Textbox.Name = "Name_Textbox";
-            this.Name_Textbox.Size = new System.Drawing.Size(200, 26);
+            this.Name_Textbox.Size = new System.Drawing.Size(234, 26);
             this.Name_Textbox.TabIndex = 57;
             // 
             // textBox2
@@ -391,10 +383,10 @@
             this.textBox2.BackColor = System.Drawing.Color.SlateGray;
             this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.textBox2.ForeColor = System.Drawing.Color.Silver;
-            this.textBox2.Location = new System.Drawing.Point(464, 449);
+            this.textBox2.Location = new System.Drawing.Point(3, 23);
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(40, 26);
+            this.textBox2.Size = new System.Drawing.Size(75, 26);
             this.textBox2.TabIndex = 56;
             // 
             // Card_Nmbr_Label
@@ -402,7 +394,7 @@
             this.Card_Nmbr_Label.AutoSize = true;
             this.Card_Nmbr_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Nmbr_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Nmbr_Label.Location = new System.Drawing.Point(364, 452);
+            this.Card_Nmbr_Label.Location = new System.Drawing.Point(3, 0);
             this.Card_Nmbr_Label.Name = "Card_Nmbr_Label";
             this.Card_Nmbr_Label.Size = new System.Drawing.Size(69, 20);
             this.Card_Nmbr_Label.TabIndex = 55;
@@ -413,10 +405,10 @@
             this.Card_Mana_Cost_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Mana_Cost_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Mana_Cost_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Mana_Cost_TextBox.Location = new System.Drawing.Point(464, 130);
+            this.Card_Mana_Cost_TextBox.Location = new System.Drawing.Point(3, 127);
             this.Card_Mana_Cost_TextBox.Name = "Card_Mana_Cost_TextBox";
             this.Card_Mana_Cost_TextBox.ReadOnly = true;
-            this.Card_Mana_Cost_TextBox.Size = new System.Drawing.Size(200, 26);
+            this.Card_Mana_Cost_TextBox.Size = new System.Drawing.Size(234, 26);
             this.Card_Mana_Cost_TextBox.TabIndex = 54;
             // 
             // Card_Expansion_TextBox
@@ -424,10 +416,10 @@
             this.Card_Expansion_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Expansion_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Expansion_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Expansion_TextBox.Location = new System.Drawing.Point(464, 160);
+            this.Card_Expansion_TextBox.Location = new System.Drawing.Point(3, 23);
             this.Card_Expansion_TextBox.Name = "Card_Expansion_TextBox";
             this.Card_Expansion_TextBox.ReadOnly = true;
-            this.Card_Expansion_TextBox.Size = new System.Drawing.Size(200, 26);
+            this.Card_Expansion_TextBox.Size = new System.Drawing.Size(90, 26);
             this.Card_Expansion_TextBox.TabIndex = 53;
             // 
             // Card_Description_TextBox
@@ -435,11 +427,11 @@
             this.Card_Description_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Description_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Description_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Description_TextBox.Location = new System.Drawing.Point(464, 190);
+            this.Card_Description_TextBox.Location = new System.Drawing.Point(3, 231);
             this.Card_Description_TextBox.Multiline = true;
             this.Card_Description_TextBox.Name = "Card_Description_TextBox";
             this.Card_Description_TextBox.ReadOnly = true;
-            this.Card_Description_TextBox.Size = new System.Drawing.Size(200, 114);
+            this.Card_Description_TextBox.Size = new System.Drawing.Size(234, 74);
             this.Card_Description_TextBox.TabIndex = 52;
             // 
             // Card_Flavor_Text_TextBox
@@ -447,11 +439,11 @@
             this.Card_Flavor_Text_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Flavor_Text_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Flavor_Text_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Flavor_Text_TextBox.Location = new System.Drawing.Point(464, 310);
+            this.Card_Flavor_Text_TextBox.Location = new System.Drawing.Point(3, 331);
             this.Card_Flavor_Text_TextBox.Multiline = true;
             this.Card_Flavor_Text_TextBox.Name = "Card_Flavor_Text_TextBox";
             this.Card_Flavor_Text_TextBox.ReadOnly = true;
-            this.Card_Flavor_Text_TextBox.Size = new System.Drawing.Size(200, 74);
+            this.Card_Flavor_Text_TextBox.Size = new System.Drawing.Size(234, 74);
             this.Card_Flavor_Text_TextBox.TabIndex = 51;
             // 
             // Card_Power_TextBox
@@ -459,73 +451,40 @@
             this.Card_Power_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Power_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Power_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Power_TextBox.Location = new System.Drawing.Point(464, 390);
+            this.Card_Power_TextBox.Location = new System.Drawing.Point(3, 63);
             this.Card_Power_TextBox.Name = "Card_Power_TextBox";
             this.Card_Power_TextBox.ReadOnly = true;
-            this.Card_Power_TextBox.Size = new System.Drawing.Size(40, 26);
+            this.Card_Power_TextBox.Size = new System.Drawing.Size(99, 26);
             this.Card_Power_TextBox.TabIndex = 50;
-            // 
-            // Card_Toughness_TextBox
-            // 
-            this.Card_Toughness_TextBox.BackColor = System.Drawing.Color.SlateGray;
-            this.Card_Toughness_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Card_Toughness_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Toughness_TextBox.Location = new System.Drawing.Point(464, 420);
-            this.Card_Toughness_TextBox.Name = "Card_Toughness_TextBox";
-            this.Card_Toughness_TextBox.ReadOnly = true;
-            this.Card_Toughness_TextBox.Size = new System.Drawing.Size(40, 26);
-            this.Card_Toughness_TextBox.TabIndex = 49;
             // 
             // Card_Type_TextBox
             // 
             this.Card_Type_TextBox.BackColor = System.Drawing.Color.SlateGray;
             this.Card_Type_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.Card_Type_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Type_TextBox.Location = new System.Drawing.Point(464, 69);
+            this.Card_Type_TextBox.Location = new System.Drawing.Point(3, 75);
             this.Card_Type_TextBox.Name = "Card_Type_TextBox";
             this.Card_Type_TextBox.ReadOnly = true;
-            this.Card_Type_TextBox.Size = new System.Drawing.Size(200, 26);
+            this.Card_Type_TextBox.Size = new System.Drawing.Size(234, 26);
             this.Card_Type_TextBox.TabIndex = 48;
-            // 
-            // Card_Additional_TextBox
-            // 
-            this.Card_Additional_TextBox.BackColor = System.Drawing.Color.SlateGray;
-            this.Card_Additional_TextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.Card_Additional_TextBox.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Additional_TextBox.Location = new System.Drawing.Point(464, 100);
-            this.Card_Additional_TextBox.Name = "Card_Additional_TextBox";
-            this.Card_Additional_TextBox.ReadOnly = true;
-            this.Card_Additional_TextBox.Size = new System.Drawing.Size(200, 26);
-            this.Card_Additional_TextBox.TabIndex = 47;
-            // 
-            // Card_Toughness_Label
-            // 
-            this.Card_Toughness_Label.AutoSize = true;
-            this.Card_Toughness_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Card_Toughness_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Toughness_Label.Location = new System.Drawing.Point(364, 423);
-            this.Card_Toughness_Label.Name = "Card_Toughness_Label";
-            this.Card_Toughness_Label.Size = new System.Drawing.Size(92, 20);
-            this.Card_Toughness_Label.TabIndex = 46;
-            this.Card_Toughness_Label.Text = "Toughness:";
             // 
             // Card_Power_Label
             // 
             this.Card_Power_Label.AutoSize = true;
             this.Card_Power_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Power_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Power_Label.Location = new System.Drawing.Point(364, 393);
+            this.Card_Power_Label.Location = new System.Drawing.Point(3, 0);
             this.Card_Power_Label.Name = "Card_Power_Label";
-            this.Card_Power_Label.Size = new System.Drawing.Size(57, 20);
+            this.Card_Power_Label.Size = new System.Drawing.Size(92, 40);
             this.Card_Power_Label.TabIndex = 45;
-            this.Card_Power_Label.Text = "Power:";
+            this.Card_Power_Label.Text = "Power/\r\nToughness:";
             // 
             // Card_Flavor_Text_Label
             // 
             this.Card_Flavor_Text_Label.AutoSize = true;
             this.Card_Flavor_Text_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Flavor_Text_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Flavor_Text_Label.Location = new System.Drawing.Point(364, 313);
+            this.Card_Flavor_Text_Label.Location = new System.Drawing.Point(3, 308);
             this.Card_Flavor_Text_Label.Name = "Card_Flavor_Text_Label";
             this.Card_Flavor_Text_Label.Size = new System.Drawing.Size(90, 20);
             this.Card_Flavor_Text_Label.TabIndex = 44;
@@ -536,7 +495,7 @@
             this.Card_Description_Label.AutoSize = true;
             this.Card_Description_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Description_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Description_Label.Location = new System.Drawing.Point(364, 192);
+            this.Card_Description_Label.Location = new System.Drawing.Point(3, 208);
             this.Card_Description_Label.Name = "Card_Description_Label";
             this.Card_Description_Label.Size = new System.Drawing.Size(93, 20);
             this.Card_Description_Label.TabIndex = 43;
@@ -547,40 +506,29 @@
             this.Card_Expansion_Label.AutoSize = true;
             this.Card_Expansion_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Expansion_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Expansion_Label.Location = new System.Drawing.Point(364, 163);
+            this.Card_Expansion_Label.Location = new System.Drawing.Point(3, 0);
             this.Card_Expansion_Label.Name = "Card_Expansion_Label";
-            this.Card_Expansion_Label.Size = new System.Drawing.Size(87, 20);
+            this.Card_Expansion_Label.Size = new System.Drawing.Size(38, 20);
             this.Card_Expansion_Label.TabIndex = 42;
-            this.Card_Expansion_Label.Text = "Expansion:";
+            this.Card_Expansion_Label.Text = "Set:";
             // 
             // Card_Mana_Cost_Label
             // 
             this.Card_Mana_Cost_Label.AutoSize = true;
             this.Card_Mana_Cost_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Mana_Cost_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Mana_Cost_Label.Location = new System.Drawing.Point(364, 133);
+            this.Card_Mana_Cost_Label.Location = new System.Drawing.Point(3, 104);
             this.Card_Mana_Cost_Label.Name = "Card_Mana_Cost_Label";
             this.Card_Mana_Cost_Label.Size = new System.Drawing.Size(90, 20);
             this.Card_Mana_Cost_Label.TabIndex = 41;
             this.Card_Mana_Cost_Label.Text = "Mana Cost:";
-            // 
-            // Card_Additional_Label
-            // 
-            this.Card_Additional_Label.AutoSize = true;
-            this.Card_Additional_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Card_Additional_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Additional_Label.Location = new System.Drawing.Point(365, 106);
-            this.Card_Additional_Label.Name = "Card_Additional_Label";
-            this.Card_Additional_Label.Size = new System.Drawing.Size(81, 20);
-            this.Card_Additional_Label.TabIndex = 40;
-            this.Card_Additional_Label.Text = "-SubType:";
             // 
             // Card_Type_Label
             // 
             this.Card_Type_Label.AutoSize = true;
             this.Card_Type_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Type_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Type_Label.Location = new System.Drawing.Point(364, 75);
+            this.Card_Type_Label.Location = new System.Drawing.Point(3, 52);
             this.Card_Type_Label.Name = "Card_Type_Label";
             this.Card_Type_Label.Size = new System.Drawing.Size(47, 20);
             this.Card_Type_Label.TabIndex = 39;
@@ -591,7 +539,7 @@
             this.Card_Name_Label.AutoSize = true;
             this.Card_Name_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Card_Name_Label.ForeColor = System.Drawing.Color.Silver;
-            this.Card_Name_Label.Location = new System.Drawing.Point(364, 43);
+            this.Card_Name_Label.Location = new System.Drawing.Point(3, 0);
             this.Card_Name_Label.Name = "Card_Name_Label";
             this.Card_Name_Label.Size = new System.Drawing.Size(55, 20);
             this.Card_Name_Label.TabIndex = 38;
@@ -599,13 +547,16 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(14, 13);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 53);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(326, 462);
+            this.pictureBox1.Size = new System.Drawing.Size(274, 359);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
@@ -618,7 +569,7 @@
             this.LeftPanel.Controls.Add(this.LeftIneerPanel);
             this.LeftPanel.Location = new System.Drawing.Point(1, 0);
             this.LeftPanel.Name = "LeftPanel";
-            this.LeftPanel.Size = new System.Drawing.Size(664, 776);
+            this.LeftPanel.Size = new System.Drawing.Size(969, 937);
             this.LeftPanel.TabIndex = 17;
             // 
             // LeftIneerPanel
@@ -637,7 +588,7 @@
             this.LeftIneerPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.LeftIneerPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.LeftIneerPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.LeftIneerPanel.Size = new System.Drawing.Size(664, 776);
+            this.LeftIneerPanel.Size = new System.Drawing.Size(969, 937);
             this.LeftIneerPanel.TabIndex = 18;
             // 
             // ArrowPanel
@@ -648,20 +599,150 @@
             this.ArrowPanel.Controls.Add(this.Page_Back_Button, 0, 0);
             this.ArrowPanel.Controls.Add(this.Page_Forward_Button, 1, 0);
             this.ArrowPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ArrowPanel.Location = new System.Drawing.Point(0, 676);
+            this.ArrowPanel.Location = new System.Drawing.Point(0, 837);
             this.ArrowPanel.Margin = new System.Windows.Forms.Padding(0);
             this.ArrowPanel.Name = "ArrowPanel";
             this.ArrowPanel.RowCount = 1;
             this.ArrowPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.ArrowPanel.Size = new System.Drawing.Size(664, 100);
+            this.ArrowPanel.Size = new System.Drawing.Size(969, 100);
             this.ArrowPanel.TabIndex = 19;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel1.Controls.Add(this.Card_Name_Label);
+            this.flowLayoutPanel1.Controls.Add(this.Name_Textbox);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Type_Label);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Type_TextBox);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Mana_Cost_Label);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Mana_Cost_TextBox);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Description_Label);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Description_TextBox);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Flavor_Text_Label);
+            this.flowLayoutPanel1.Controls.Add(this.Card_Flavor_Text_TextBox);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel5);
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(274, 514);
+            this.flowLayoutPanel1.TabIndex = 58;
+            this.flowLayoutPanel1.WrapContents = false;
+            // 
+            // flowLayoutPanel2
+            // 
+            this.flowLayoutPanel2.AutoSize = true;
+            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel3);
+            this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel4);
+            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 156);
+            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
+            this.flowLayoutPanel2.Size = new System.Drawing.Size(183, 52);
+            this.flowLayoutPanel2.TabIndex = 59;
+            this.flowLayoutPanel2.WrapContents = false;
+            // 
+            // flowLayoutPanel3
+            // 
+            this.flowLayoutPanel3.AutoSize = true;
+            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel3.Controls.Add(this.Card_Expansion_Label);
+            this.flowLayoutPanel3.Controls.Add(this.Card_Expansion_TextBox);
+            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
+            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
+            this.flowLayoutPanel3.Size = new System.Drawing.Size(96, 52);
+            this.flowLayoutPanel3.TabIndex = 60;
+            this.flowLayoutPanel3.WrapContents = false;
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.AutoSize = true;
+            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel4.Controls.Add(this.Card_Nmbr_Label);
+            this.flowLayoutPanel4.Controls.Add(this.textBox2);
+            this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(99, 0);
+            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(81, 52);
+            this.flowLayoutPanel4.TabIndex = 61;
+            // 
+            // flowLayoutPanel5
+            // 
+            this.flowLayoutPanel5.AutoSize = true;
+            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.flowLayoutPanel5.Controls.Add(this.Card_Power_Label);
+            this.flowLayoutPanel5.Controls.Add(this.card_loyalty_label);
+            this.flowLayoutPanel5.Controls.Add(this.Card_Power_TextBox);
+            this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 411);
+            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
+            this.flowLayoutPanel5.Size = new System.Drawing.Size(105, 92);
+            this.flowLayoutPanel5.TabIndex = 59;
+            this.flowLayoutPanel5.WrapContents = false;
+            // 
+            // card_loyalty_label
+            // 
+            this.card_loyalty_label.AutoSize = true;
+            this.card_loyalty_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.card_loyalty_label.ForeColor = System.Drawing.Color.Silver;
+            this.card_loyalty_label.Location = new System.Drawing.Point(3, 40);
+            this.card_loyalty_label.Name = "card_loyalty_label";
+            this.card_loyalty_label.Size = new System.Drawing.Size(62, 20);
+            this.card_loyalty_label.TabIndex = 60;
+            this.card_loyalty_label.Text = "Loyalty:";
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.Preview_Label, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.pictureBox1, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 365F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(280, 935);
+            this.tableLayoutPanel2.TabIndex = 59;
+            // 
+            // Preview_Label
+            // 
+            this.Preview_Label.AutoSize = true;
+            this.Preview_Label.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Preview_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Preview_Label.ForeColor = System.Drawing.Color.Silver;
+            this.Preview_Label.Location = new System.Drawing.Point(2, 0);
+            this.Preview_Label.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.Preview_Label.Name = "Preview_Label";
+            this.Preview_Label.Size = new System.Drawing.Size(276, 50);
+            this.Preview_Label.TabIndex = 18;
+            this.Preview_Label.Text = "Card Preview";
+            this.Preview_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.flowLayoutPanel1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(3, 418);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(274, 514);
+            this.panel1.TabIndex = 59;
             // 
             // Inventory_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(1403, 775);
+            this.ClientSize = new System.Drawing.Size(1255, 936);
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.CardPanel);
             this.Controls.Add(this.RefreshButton);
@@ -674,12 +755,25 @@
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.CardPanel.ResumeLayout(false);
-            this.CardPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.LeftPanel.ResumeLayout(false);
             this.LeftIneerPanel.ResumeLayout(false);
             this.LeftIneerPanel.PerformLayout();
             this.ArrowPanel.ResumeLayout(false);
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanel1.PerformLayout();
+            this.flowLayoutPanel2.ResumeLayout(false);
+            this.flowLayoutPanel2.PerformLayout();
+            this.flowLayoutPanel3.ResumeLayout(false);
+            this.flowLayoutPanel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.flowLayoutPanel5.ResumeLayout(false);
+            this.flowLayoutPanel5.PerformLayout();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -710,21 +804,26 @@
         private System.Windows.Forms.TextBox Card_Description_TextBox;
         private System.Windows.Forms.TextBox Card_Flavor_Text_TextBox;
         private System.Windows.Forms.TextBox Card_Power_TextBox;
-        private System.Windows.Forms.TextBox Card_Toughness_TextBox;
         private System.Windows.Forms.TextBox Card_Type_TextBox;
-        private System.Windows.Forms.TextBox Card_Additional_TextBox;
-        private System.Windows.Forms.Label Card_Toughness_Label;
         private System.Windows.Forms.Label Card_Power_Label;
         private System.Windows.Forms.Label Card_Flavor_Text_Label;
         private System.Windows.Forms.Label Card_Description_Label;
         private System.Windows.Forms.Label Card_Expansion_Label;
         private System.Windows.Forms.Label Card_Mana_Cost_Label;
-        private System.Windows.Forms.Label Card_Additional_Label;
         private System.Windows.Forms.Label Card_Type_Label;
         private System.Windows.Forms.Label Card_Name_Label;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel LeftPanel;
         private System.Windows.Forms.TableLayoutPanel LeftIneerPanel;
         private System.Windows.Forms.TableLayoutPanel ArrowPanel;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.Label card_loyalty_label;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label Preview_Label;
     }
 }

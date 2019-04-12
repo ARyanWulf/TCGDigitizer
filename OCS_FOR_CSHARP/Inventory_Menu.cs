@@ -238,7 +238,7 @@ namespace OCS_FOR_CSHARP
             }
             int displayRange = display_upper - display_lower;
             int cardIndex = display_lower;
-            Card_Table_Panel.RowCount += displayRange;
+            Card_Table_Panel.RowCount += displayRange - 1;
             /*
              * display count will be max 20 for the display limit
              * subtract 20 from the card count if the card count is greater than 20
@@ -422,42 +422,23 @@ namespace OCS_FOR_CSHARP
             Card_Expansion_TextBox.Text = currentCard.card.setCode;
             textBox2.Text = currentCard.card.number;
 
-            if (currentCard.card.subtypes != null)
-            {
-                Card_Additional_Label.Visible = true;
-                Card_Additional_TextBox.Visible = true;
-                for (int i = 0; i < currentCard.card.subtypes.Count; i++)
-                    Card_Additional_TextBox.Text += currentCard.card.subtypes[i] + " ";
-
-            }
-            else
-            {
-                Card_Additional_Label.Visible = false;
-                Card_Additional_TextBox.Visible = false;
-            }
-
-            if (currentCard.card.power != null)
+            if (currentCard.card.power != null && currentCard.card.power != "n/a")
             {
                 Card_Power_Label.Visible = true;
+                card_loyalty_label.Visible = false;
                 Card_Power_TextBox.Visible = true;
-                Card_Power_TextBox.Text = currentCard.card.power;
+                Card_Power_TextBox.Text = currentCard.card.power + "/" + currentCard.card.toughness;
+            }
+            else if (currentCard.card.loyalty != null && currentCard.card.loyalty != "n/a")
+            {
+                Card_Power_Label.Visible = false;
+                card_loyalty_label.Visible = true;
+                Card_Power_TextBox.Visible = true;
+                Card_Power_TextBox.Text = currentCard.card.loyalty;
             }
             else
             {
                 Card_Power_Label.Visible = false;
-                Card_Power_TextBox.Visible = false;
-            }
-
-            if (currentCard.card.toughness != null)
-            {
-                Card_Toughness_Label.Visible = true;
-                Card_Toughness_TextBox.Visible = true;
-                Card_Toughness_TextBox.Text = currentCard.card.toughness;
-            }
-            else
-            {
-                Card_Toughness_Label.Visible = false;
-                Card_Toughness_TextBox.Visible = false;
             }
 
             if (currentCard.card.text != null)
