@@ -27,6 +27,7 @@ namespace OCS_FOR_CSHARP
         private List<cardWrapper> cards = new List<cardWrapper>();
         private TableLayoutPanel tempTable;
         CardService service = new CardService();
+        Timer resizeTimer = new Timer();
 
         public Inventory_Menu()
         {
@@ -34,6 +35,16 @@ namespace OCS_FOR_CSHARP
             pictureBox1.WaitOnLoad = false;
             pictureBox1.Image = pictureBox1.InitialImage;
             refreshTable();
+            resizeTimer.Tick += new EventHandler(resizeEventHandler);
+            resizeTimer.Interval = 1000;
+            resizeTimer.Enabled = true;
+            resizeTimer.Stop();
+        }
+
+        private void resizeEventHandler(object sender, EventArgs e)
+        {
+            resizeTimer.Stop();
+            Card_Table_Panel.Visible = true;
         }
 
         private void Scan_Card_Button_Click(object sender, EventArgs e)
@@ -187,24 +198,15 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
-            panel1.Visible = false;
-            Size tempSize = panel1.MaximumSize;
-            tempSize.Height = Height - 100;
-            panel1.MaximumSize = tempSize;
-            CardPanel.Visible = false;
-            tempSize = CardPanel.MaximumSize;
-            tempSize.Height = Height - TopPanel.Height;
-            tempSize.Width = Width - CardPanel.Location.X;
-            CardPanel.MaximumSize = tempSize;
-            CardPanel.Visible = true;
+            Card_Table_Panel.Visible = false;
 
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
             //Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
-            Card_Table_Panel.RowCount = 0;
-            Card_Table_Panel.Dock = DockStyle.None;
-            Card_Table_Panel.AutoSize = true;
-            Card_Table_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            //Card_Table_Panel.RowCount = 0;
+            //Card_Table_Panel.Dock = DockStyle.None;
+            //Card_Table_Panel.AutoSize = true;
+            //Card_Table_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             //Card_Table_Panel.AutoScroll = true;
             /*Card_Table_Panel.Controls.Add(new CheckBox { Name = "Inventory_Checkbox", CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Name_Button", Text = "Name", Dock = DockStyle.Fill }, 1, 0);
@@ -292,15 +294,8 @@ namespace OCS_FOR_CSHARP
                 cardIndex++;
             }
 
-
-            panel1.AutoScroll = false;
-            panel1.HorizontalScroll.Enabled = false;
-            panel1.HorizontalScroll.Visible = false;
-            panel1.HorizontalScroll.Maximum = 0;
-            panel1.AutoScroll = true;
-
-            //Card_Table_Panel.Visible = true;
-            panel1.Visible = true;
+            
+            
             //panel2.Visible = true;
             if (cards.Count() > 20 && display_upper < cards.Count())
             {
@@ -319,6 +314,8 @@ namespace OCS_FOR_CSHARP
             {
                 Page_Back_Button.Enabled = false;
             }
+
+            Card_Table_Panel.Visible = true;
         }
 
         public void addToInventory(cardWrapper newEntry)
@@ -376,7 +373,7 @@ namespace OCS_FOR_CSHARP
 
         private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
         {
-            refreshTable();
+            //refreshTable();
         }
 
         private void tempCheck_CheckedChanged(object sender, EventArgs e)
@@ -494,7 +491,24 @@ namespace OCS_FOR_CSHARP
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
         {
-            refreshTable();
+            //refreshTable();
+        }
+
+        private void Inventory_Menu_ResizeBegin(object sender, EventArgs e)
+        {
+            Card_Table_Panel.Visible = false;
+        }
+
+        private void Inventory_Menu_ResizeEnd(object sender, EventArgs e)
+        {
+            Card_Table_Panel.Visible = true;
+        }
+
+        private void Inventory_Menu_SizeChanged_1(object sender, EventArgs e)
+        {
+            Card_Table_Panel.Visible = false;
+            resizeTimer.Stop();
+            resizeTimer.Start();
         }
     }
 }
