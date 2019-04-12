@@ -63,10 +63,10 @@
             this.QuitButton.FlatAppearance.BorderSize = 0;
             this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QuitButton.Location = new System.Drawing.Point(2, 410);
+            this.QuitButton.Location = new System.Drawing.Point(2, 666);
             this.QuitButton.Margin = new System.Windows.Forms.Padding(2);
             this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(265, 99);
+            this.QuitButton.Size = new System.Drawing.Size(357, 165);
             this.QuitButton.TabIndex = 5;
             this.QuitButton.Text = "Back";
             this.QuitButton.UseVisualStyleBackColor = true;
@@ -79,10 +79,10 @@
             this.DefualtButton.FlatAppearance.BorderSize = 0;
             this.DefualtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DefualtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DefualtButton.Location = new System.Drawing.Point(2, 308);
+            this.DefualtButton.Location = new System.Drawing.Point(2, 500);
             this.DefualtButton.Margin = new System.Windows.Forms.Padding(2);
             this.DefualtButton.Name = "DefualtButton";
-            this.DefualtButton.Size = new System.Drawing.Size(265, 98);
+            this.DefualtButton.Size = new System.Drawing.Size(357, 162);
             this.DefualtButton.TabIndex = 6;
             this.DefualtButton.Text = "Restore Defaults";
             this.DefualtButton.UseVisualStyleBackColor = true;
@@ -95,49 +95,51 @@
             this.DeleteAllButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.DeleteAllButton.Enabled = false;
             this.DeleteAllButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DeleteAllButton.Location = new System.Drawing.Point(11, 465);
+            this.DeleteAllButton.Location = new System.Drawing.Point(11, 787);
             this.DeleteAllButton.Margin = new System.Windows.Forms.Padding(2);
             this.DeleteAllButton.Name = "DeleteAllButton";
             this.DeleteAllButton.Size = new System.Drawing.Size(96, 35);
             this.DeleteAllButton.TabIndex = 7;
             this.DeleteAllButton.Text = "Erase Inventory";
             this.DeleteAllButton.UseVisualStyleBackColor = false;
+            this.DeleteAllButton.Visible = false;
             this.DeleteAllButton.Click += new System.EventHandler(this.DeleteAllButton_Click);
             // 
             // Load_Card_Button
             // 
             this.Load_Card_Button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.Load_Card_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Load_Card_Button.Location = new System.Drawing.Point(111, 465);
+            this.Load_Card_Button.Location = new System.Drawing.Point(111, 787);
             this.Load_Card_Button.Margin = new System.Windows.Forms.Padding(2);
             this.Load_Card_Button.Name = "Load_Card_Button";
             this.Load_Card_Button.Size = new System.Drawing.Size(103, 35);
             this.Load_Card_Button.TabIndex = 9;
             this.Load_Card_Button.Text = "Load Card Data";
             this.Load_Card_Button.UseVisualStyleBackColor = true;
+            this.Load_Card_Button.Visible = false;
             this.Load_Card_Button.Click += new System.EventHandler(this.Load_Card_Button_Click);
             // 
             // Users_Panel
             // 
+            this.Users_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.Users_Panel.AutoScroll = true;
             this.Users_Panel.AutoSize = true;
+            this.Users_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Users_Panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.Users_Panel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.Users_Panel.ColumnCount = 4;
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.Users_Panel.Dock = System.Windows.Forms.DockStyle.Top;
             this.Users_Panel.ForeColor = System.Drawing.Color.Silver;
-            this.Users_Panel.Location = new System.Drawing.Point(0, 100);
+            this.Users_Panel.Location = new System.Drawing.Point(0, 94);
             this.Users_Panel.Margin = new System.Windows.Forms.Padding(0);
-            this.Users_Panel.MaximumSize = new System.Drawing.Size(680, 0);
-            this.Users_Panel.MinimumSize = new System.Drawing.Size(680, 0);
             this.Users_Panel.Name = "Users_Panel";
             this.Users_Panel.RowCount = 1;
             this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Users_Panel.Size = new System.Drawing.Size(680, 2);
+            this.Users_Panel.Size = new System.Drawing.Size(730, 2);
             this.Users_Panel.TabIndex = 12;
             this.Users_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.users_panel);
             // 
@@ -164,7 +166,7 @@
             this.user_first_name_sort.Location = new System.Drawing.Point(34, 3);
             this.user_first_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_first_name_sort.Name = "user_first_name_sort";
-            this.user_first_name_sort.Size = new System.Drawing.Size(217, 38);
+            this.user_first_name_sort.Size = new System.Drawing.Size(227, 38);
             this.user_first_name_sort.TabIndex = 0;
             this.user_first_name_sort.Text = "First Name";
             this.user_first_name_sort.UseVisualStyleBackColor = true;
@@ -175,10 +177,10 @@
             this.user_last_name_sort.FlatAppearance.BorderSize = 0;
             this.user_last_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_last_name_sort.ForeColor = System.Drawing.Color.Silver;
-            this.user_last_name_sort.Location = new System.Drawing.Point(256, 3);
+            this.user_last_name_sort.Location = new System.Drawing.Point(266, 3);
             this.user_last_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_last_name_sort.Name = "user_last_name_sort";
-            this.user_last_name_sort.Size = new System.Drawing.Size(217, 38);
+            this.user_last_name_sort.Size = new System.Drawing.Size(227, 38);
             this.user_last_name_sort.TabIndex = 1;
             this.user_last_name_sort.Text = "Last Name";
             this.user_last_name_sort.UseVisualStyleBackColor = true;
@@ -189,10 +191,10 @@
             this.authority_sort_button.FlatAppearance.BorderSize = 0;
             this.authority_sort_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.authority_sort_button.ForeColor = System.Drawing.Color.Silver;
-            this.authority_sort_button.Location = new System.Drawing.Point(478, 3);
+            this.authority_sort_button.Location = new System.Drawing.Point(498, 3);
             this.authority_sort_button.Margin = new System.Windows.Forms.Padding(2);
             this.authority_sort_button.Name = "authority_sort_button";
-            this.authority_sort_button.Size = new System.Drawing.Size(218, 38);
+            this.authority_sort_button.Size = new System.Drawing.Size(229, 38);
             this.authority_sort_button.TabIndex = 15;
             this.authority_sort_button.Text = "Authority";
             this.authority_sort_button.UseVisualStyleBackColor = true;
@@ -201,7 +203,7 @@
             // progressBar1
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.progressBar1.Location = new System.Drawing.Point(11, 442);
+            this.progressBar1.Location = new System.Drawing.Point(11, 764);
             this.progressBar1.Margin = new System.Windows.Forms.Padding(2);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(203, 19);
@@ -212,7 +214,7 @@
             // 
             this.progress_textbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.progress_textbox.BackColor = System.Drawing.Color.SlateGray;
-            this.progress_textbox.Location = new System.Drawing.Point(10, 377);
+            this.progress_textbox.Location = new System.Drawing.Point(10, 699);
             this.progress_textbox.Margin = new System.Windows.Forms.Padding(2);
             this.progress_textbox.Multiline = true;
             this.progress_textbox.Name = "progress_textbox";
@@ -228,7 +230,7 @@
             this.newUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newUserButton.Location = new System.Drawing.Point(3, 3);
             this.newUserButton.Name = "newUserButton";
-            this.newUserButton.Size = new System.Drawing.Size(263, 96);
+            this.newUserButton.Size = new System.Drawing.Size(355, 160);
             this.newUserButton.TabIndex = 17;
             this.newUserButton.Text = "Add User";
             this.newUserButton.UseVisualStyleBackColor = true;
@@ -240,9 +242,9 @@
             this.dropUser.FlatAppearance.BorderSize = 0;
             this.dropUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dropUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dropUser.Location = new System.Drawing.Point(3, 207);
+            this.dropUser.Location = new System.Drawing.Point(3, 335);
             this.dropUser.Name = "dropUser";
-            this.dropUser.Size = new System.Drawing.Size(263, 96);
+            this.dropUser.Size = new System.Drawing.Size(355, 160);
             this.dropUser.TabIndex = 18;
             this.dropUser.Text = "Delete User";
             this.dropUser.UseVisualStyleBackColor = true;
@@ -253,9 +255,9 @@
             this.editUserButton.FlatAppearance.BorderSize = 0;
             this.editUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editUserButton.Location = new System.Drawing.Point(3, 105);
+            this.editUserButton.Location = new System.Drawing.Point(3, 169);
             this.editUserButton.Name = "editUserButton";
-            this.editUserButton.Size = new System.Drawing.Size(263, 96);
+            this.editUserButton.Size = new System.Drawing.Size(355, 160);
             this.editUserButton.TabIndex = 19;
             this.editUserButton.Text = "Edit User";
             this.editUserButton.UseVisualStyleBackColor = true;
@@ -269,13 +271,15 @@
             this.Header.ForeColor = System.Drawing.Color.Silver;
             this.Header.Location = new System.Drawing.Point(3, 0);
             this.Header.Name = "Header";
-            this.Header.Size = new System.Drawing.Size(699, 50);
+            this.Header.Size = new System.Drawing.Size(724, 50);
             this.Header.TabIndex = 20;
             this.Header.Text = "Users";
+            this.Header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.AutoSize = true;
+            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel1.ColumnCount = 4;
@@ -289,11 +293,12 @@
             this.tableLayoutPanel1.Controls.Add(this.authority_sort_button, 3, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 53);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 50);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(699, 44);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(730, 44);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
             // downloadLabel
@@ -317,9 +322,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.user_settings_buttons_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.user_settings_buttons_panel.Controls.Add(this.tableLayoutPanel2);
-            this.user_settings_buttons_panel.Location = new System.Drawing.Point(710, -1);
+            this.user_settings_buttons_panel.Location = new System.Drawing.Point(734, -1);
             this.user_settings_buttons_panel.Name = "user_settings_buttons_panel";
-            this.user_settings_buttons_panel.Size = new System.Drawing.Size(273, 515);
+            this.user_settings_buttons_panel.Size = new System.Drawing.Size(365, 837);
             this.user_settings_buttons_panel.TabIndex = 27;
             // 
             // tableLayoutPanel2
@@ -340,7 +345,7 @@
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(269, 511);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(361, 833);
             this.tableLayoutPanel2.TabIndex = 28;
             // 
             // user_table_panel
@@ -352,7 +357,7 @@
             this.user_table_panel.Controls.Add(this.tableLayoutPanel3);
             this.user_table_panel.Location = new System.Drawing.Point(0, -1);
             this.user_table_panel.Name = "user_table_panel";
-            this.user_table_panel.Size = new System.Drawing.Size(709, 373);
+            this.user_table_panel.Size = new System.Drawing.Size(734, 833);
             this.user_table_panel.TabIndex = 28;
             // 
             // tableLayoutPanel3
@@ -369,7 +374,7 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(705, 369);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(730, 829);
             this.tableLayoutPanel3.TabIndex = 29;
             this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
@@ -377,7 +382,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.ClientSize = new System.Drawing.Size(982, 511);
+            this.ClientSize = new System.Drawing.Size(1098, 833);
             this.Controls.Add(this.downloadLabel);
             this.Controls.Add(this.user_table_panel);
             this.Controls.Add(this.user_settings_buttons_panel);
