@@ -252,7 +252,6 @@ namespace OCS_FOR_CSHARP
             {
                 cardExists = true;
                 button2.Enabled = true;
-                textBox1.Text = "";
                 Name_Textbox.ReadOnly = true;
                 populate(databaseList[0]);
             }
@@ -283,7 +282,6 @@ namespace OCS_FOR_CSHARP
             Card_Power_TextBox.Clear();
             Card_Toughness_TextBox.Clear();
             textBox2.Clear();
-            textBox1.Clear();
             Name_Textbox.ReadOnly = false;
         }
 
@@ -465,7 +463,7 @@ namespace OCS_FOR_CSHARP
 
         private void SearchBox_TextChanged(object sender, EventArgs e)
         {
-            if ((SearchBox.Text != textBox1.Text) && (SearchBox.Text != "") && (SearchBox.Text.Length >= 3) && (SearchBox.SelectedText != SearchBox.Text))
+            if ((SearchBox.Text != "") && (SearchBox.Text.Length >= 3) && (SearchBox.SelectedText != SearchBox.Text))
             {
                 searchTimer.Stop();
                 searchTimer.Start();
