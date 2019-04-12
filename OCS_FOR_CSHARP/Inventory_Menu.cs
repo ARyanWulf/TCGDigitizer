@@ -187,14 +187,17 @@ namespace OCS_FOR_CSHARP
 
         public void refreshTable()
         {
-            //yes
-            //panel2.Visible = false;
             panel1.Visible = false;
             Size tempSize = panel1.MaximumSize;
             tempSize.Height = Height - 100;
-            //tempSize.Width = Card_Table_Panel.Width;
             panel1.MaximumSize = tempSize;
-            //Card_Table_Panel.Visible = false;
+            CardPanel.Visible = false;
+            tempSize = CardPanel.MaximumSize;
+            tempSize.Height = Height - TopPanel.Height;
+            tempSize.Width = Width - CardPanel.Location.X;
+            CardPanel.MaximumSize = tempSize;
+            CardPanel.Visible = true;
+
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
             //Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);

@@ -27,16 +27,10 @@ namespace OCS_FOR_CSHARP
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
         List<cardWrapper> databaseList = new List<cardWrapper>();
         private bool cardExists = false;
-        Timer searchTimer = new Timer();
-        List<cardWrapper> foundCards = new List<cardWrapper>();
 
         public Edit_Card_Form()
         {
             InitializeComponent();
-            searchTimer.Tick += new EventHandler(searchEventHandler);
-            searchTimer.Interval = 3000;
-            searchTimer.Enabled = true;
-            searchTimer.Stop();
         }
 
         private void Scan_Card_Button(object sender, EventArgs e)
@@ -137,8 +131,8 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                Card_Power_Label.Visible = false;
-                Card_Power_TextBox.Visible = false;
+                //Card_Power_Label.Visible = false;
+                //Card_Power_TextBox.Visible = false;
             }
 
             if (currentCard.card.toughness != null)
@@ -252,7 +246,6 @@ namespace OCS_FOR_CSHARP
             {
                 cardExists = true;
                 button2.Enabled = true;
-                textBox1.Text = "";
                 Name_Textbox.ReadOnly = true;
                 populate(databaseList[0]);
             }
@@ -283,7 +276,6 @@ namespace OCS_FOR_CSHARP
             Card_Power_TextBox.Clear();
             Card_Toughness_TextBox.Clear();
             textBox2.Clear();
-            textBox1.Clear();
             Name_Textbox.ReadOnly = false;
         }
 
@@ -374,83 +366,6 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        private void searchEventHandler(Object myObject, EventArgs eventArgs)
-        {
-            searchTimer.Stop();
-            foundCards.Clear();
-            foundCards = findCardsWithName(SearchBox.Text);
-
-            SearchBox.Items.Clear();
-
-            for (int i = 0; i < foundCards.Count; i++)
-            {
-                SearchBox.Items.Add(foundCards[i].card.name + " " + foundCards[i].card.setCode);
-            }
-
-        }
-
-        private List<cardWrapper> findCardsWithName(string cardName)
-        {
-            List<cardWrapper> returnList = new List<cardWrapper>();
-
-            List<int> tempIDs = new List<int>();
-
-            connection.Open();
-
-            using (var cmd = new NpgsqlCommand("get_cards_containing_name", connection))
-            {
-                cmd.CommandType = CommandType.StoredProcedure;
-
-                cmd.Parameters.AddWithValue("in_name", cardName);
-
-                //tempID = 
-                var reader = cmd.ExecuteReader();
-
-                //if(reader.HasRows)
-
-                while (reader.Read())
-                {
-                    string temp;
-                    cardWrapper tempWrapper = new cardWrapper();
-                    CardObject tempCard = new CardObject();
-                    tempCard.cardID = Convert.ToInt32(reader[0].ToString());
-                    tempCard.name = reader[2].ToString();
-                    tempCard.type = reader[3].ToString();
-                    tempCard.manaCost = reader[4].ToString();
-                    tempCard.setCode = reader[5].ToString();
-                    tempCard.multiverseId = Convert.ToInt32(reader[9].ToString());
-                    tempCard.power = reader[10].ToString();
-                    tempCard.toughness = reader[11].ToString();
-
-                    temp = reader[13].ToString().TrimEnd('}');
-                    temp = temp.TrimStart('{');
-                    tempCard.colors = temp.Split(',').ToList<string>();
-
-                    temp = reader[14].ToString().TrimEnd('}');
-                    temp = temp.TrimStart('{');
-                    tempCard.colorIdentity = temp.Split(',').ToList<string>();
-
-                    tempCard.text = reader[15].ToString();
-                    tempCard.convertedManaCost = float.Parse(reader[16].ToString());
-
-                    tempCard.flavorText = reader[17].ToString();
-                    tempCard.rarity = reader[18].ToString();
-                    tempCard.borderColor = reader[19].ToString();
-                    tempCard.loyalty = reader[20].ToString();
-                    tempCard.artist = reader[21].ToString();
-                    tempCard.number = reader[24].ToString();
-
-                    tempWrapper.card = tempCard;
-
-                    returnList.Add(tempWrapper);
-                }
-            }
-
-            connection.Close();
-
-            return returnList;
-        }
-
         private void Name_Textbox_TextChanged(object sender, EventArgs e)
         {
             /*if (textBox1.Text.Length == 0)
@@ -463,16 +378,11 @@ namespace OCS_FOR_CSHARP
             }*/
         }
 
-        private void SearchBox_TextChanged(object sender, EventArgs e)
+        private void Name_Textbox_Click(object sender, EventArgs e)
         {
-            if ((SearchBox.Text != textBox1.Text) && (SearchBox.Text != "") && (SearchBox.Text.Length >= 3) && (SearchBox.SelectedText != SearchBox.Text))
+            if (!button2.Enabled)
             {
-                searchTimer.Stop();
-                searchTimer.Start();
-            }
-            else
-            {
-                searchTimer.Stop();
+                Name_Textbox.Text = "";
             }
         }
     }
