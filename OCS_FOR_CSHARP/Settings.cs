@@ -738,6 +738,11 @@ namespace OCS_FOR_CSHARP
         {
 
         }
+
+        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
     public class userWrapper
