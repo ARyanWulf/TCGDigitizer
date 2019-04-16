@@ -53,13 +53,13 @@ namespace OCS_FOR_CSHARP
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
-            if(!addToInventory())
+            if(!addToInventory(1))
             {
                 MessageBox.Show("ERROR! Insufficient permissions.");
             }
             else
             {
-                Close();
+                // Close();
             }
         }
 
@@ -295,12 +295,12 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        public bool addToInventory()
+        public bool addToInventory(int transType)
         {
 
             if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
             {
-                cardWrapper card = databaseList[0];
+                cardWrapper card = currentCard;
                 bool exists = false;
                 int inv_id;
 
@@ -313,7 +313,7 @@ namespace OCS_FOR_CSHARP
                     cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
                     cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
                     cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
-                    cmd.Parameters.AddWithValue("in_trans_type", 1);
+                    cmd.Parameters.AddWithValue("in_trans_type", transType);
 
                     cmd.ExecuteScalar();
                 }
@@ -343,7 +343,7 @@ namespace OCS_FOR_CSHARP
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
-                        cmd.Parameters.AddWithValue("in_new_count", 1);
+                        cmd.Parameters.AddWithValue("in_new_count", transType);
 
                         cmd.ExecuteScalar();
                     }
@@ -358,7 +358,7 @@ namespace OCS_FOR_CSHARP
                         cmd.CommandType = System.Data.CommandType.StoredProcedure;
 
                         cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
-                        cmd.Parameters.AddWithValue("in_new_count", 1);
+                        cmd.Parameters.AddWithValue("in_new_count", transType);
 
                         cmd.ExecuteScalar();
                     }
@@ -471,6 +471,93 @@ namespace OCS_FOR_CSHARP
             else
             {
                 searchTimer.Stop();
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (!addToInventory(-1))
+            {
+                MessageBox.Show("ERROR! Insufficient permissions.");
+            }
+            else
+            {
+                // Close();
+            }
+        }
+
+        private void SearchBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            button1.Enabled = true;
+            button2.Enabled = true;
+            currentCard = foundCards[SearchBox.SelectedIndex];
+
+            Name_Textbox.Text = currentCard.card.name;
+            Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
+            Card_Type_TextBox.Text = currentCard.card.type;
+            Card_Expansion_TextBox.Text = currentCard.card.setCode;
+            textBox2.Text = currentCard.card.number;
+
+            if (currentCard.card.subtypes != null)
+            {
+                Card_Additional_Label.Visible = true;
+                Card_Additional_TextBox.Visible = true;
+                for (int i = 0; i < currentCard.card.subtypes.Count; i++)
+                    Card_Additional_TextBox.Text += currentCard.card.subtypes[i] + " ";
+
+            }
+            else
+            {
+                Card_Additional_Label.Visible = false;
+                Card_Additional_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.power != null)
+            {
+                Card_Power_Label.Visible = true;
+                Card_Power_TextBox.Visible = true;
+                Card_Power_TextBox.Text = currentCard.card.power;
+            }
+            else
+            {
+                Card_Power_Label.Visible = false;
+                Card_Power_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.toughness != null)
+            {
+                Card_Toughness_Label.Visible = true;
+                Card_Toughness_TextBox.Visible = true;
+                Card_Toughness_TextBox.Text = currentCard.card.toughness;
+            }
+            else
+            {
+                Card_Toughness_Label.Visible = false;
+                Card_Toughness_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.text != null)
+            {
+                Card_Description_Label.Visible = true;
+                Card_Description_TextBox.Visible = true;
+                Card_Description_TextBox.Text = currentCard.card.text;
+            }
+            else
+            {
+                Card_Description_Label.Visible = false;
+                Card_Description_TextBox.Visible = false;
+            }
+
+            if (currentCard.card.flavorText != null)
+            {
+                Card_Flavor_Text_Label.Visible = true;
+                Card_Flavor_Text_TextBox.Visible = true;
+                Card_Flavor_Text_TextBox.Text = currentCard.card.flavorText;
+            }
+            else
+            {
+                Card_Flavor_Text_Label.Visible = false;
+                Card_Flavor_Text_TextBox.Visible = false;
             }
         }
     }

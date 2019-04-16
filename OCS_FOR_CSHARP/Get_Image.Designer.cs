@@ -249,8 +249,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 84F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(673, 86);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 85F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(673, 87);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Mana_Button
@@ -261,7 +261,7 @@
             this.Mana_Button.ForeColor = System.Drawing.Color.Silver;
             this.Mana_Button.Location = new System.Drawing.Point(549, 4);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(120, 78);
+            this.Mana_Button.Size = new System.Drawing.Size(120, 79);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -274,7 +274,7 @@
             this.Number_Button.ForeColor = System.Drawing.Color.Silver;
             this.Number_Button.Location = new System.Drawing.Point(423, 4);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(119, 78);
+            this.Number_Button.Size = new System.Drawing.Size(119, 79);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -287,7 +287,7 @@
             this.Expansion_Button.ForeColor = System.Drawing.Color.Silver;
             this.Expansion_Button.Location = new System.Drawing.Point(297, 4);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(119, 78);
+            this.Expansion_Button.Size = new System.Drawing.Size(119, 79);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -300,7 +300,7 @@
             this.Type_Button.ForeColor = System.Drawing.Color.Silver;
             this.Type_Button.Location = new System.Drawing.Point(171, 4);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(119, 78);
+            this.Type_Button.Size = new System.Drawing.Size(119, 79);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -313,7 +313,7 @@
             this.Name_Button.ForeColor = System.Drawing.Color.Silver;
             this.Name_Button.Location = new System.Drawing.Point(45, 4);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(119, 78);
+            this.Name_Button.Size = new System.Drawing.Size(119, 79);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -329,7 +329,7 @@
             this.Inventory_Checkbox.ForeColor = System.Drawing.Color.Silver;
             this.Inventory_Checkbox.Location = new System.Drawing.Point(4, 4);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 78);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(34, 79);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             this.Inventory_Checkbox.CheckedChanged += new System.EventHandler(this.Inventory_Checkbox_CheckedChanged);
@@ -645,7 +645,7 @@
             this.button3.ForeColor = System.Drawing.Color.Silver;
             this.button3.Location = new System.Drawing.Point(3, 3);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(657, 64);
+            this.button3.Size = new System.Drawing.Size(663, 67);
             this.button3.TabIndex = 22;
             this.button3.Text = "Add to Inventory";
             this.button3.UseVisualStyleBackColor = true;
@@ -688,7 +688,6 @@
             this.tableLayoutPanel5.AutoScroll = true;
             this.tableLayoutPanel5.AutoSize = true;
             this.tableLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel5.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tableLayoutPanel5.ColumnCount = 6;
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -697,12 +696,12 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 136);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 137);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel5.Size = new System.Drawing.Size(673, 2);
+            this.tableLayoutPanel5.Size = new System.Drawing.Size(673, 0);
             this.tableLayoutPanel5.TabIndex = 25;
             // 
             // panel4
@@ -711,9 +710,10 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel4.Controls.Add(this.tableLayoutPanel3);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(3, 795);
+            this.panel4.Location = new System.Drawing.Point(0, 792);
+            this.panel4.Margin = new System.Windows.Forms.Padding(0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(667, 144);
+            this.panel4.Size = new System.Drawing.Size(673, 150);
             this.panel4.TabIndex = 24;
             // 
             // tableLayoutPanel3
@@ -728,7 +728,7 @@
             this.tableLayoutPanel3.RowCount = 2;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(663, 140);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(669, 146);
             this.tableLayoutPanel3.TabIndex = 20;
             // 
             // button4
@@ -739,9 +739,9 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.Silver;
-            this.button4.Location = new System.Drawing.Point(3, 73);
+            this.button4.Location = new System.Drawing.Point(3, 76);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(657, 64);
+            this.button4.Size = new System.Drawing.Size(663, 67);
             this.button4.TabIndex = 24;
             this.button4.Text = "Delete Selected";
             this.button4.UseVisualStyleBackColor = true;
