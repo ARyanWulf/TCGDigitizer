@@ -28,6 +28,8 @@ namespace OCS_FOR_CSHARP
         private TableLayoutPanel tempTable;
         CardService service = new CardService();
         Timer resizeTimer = new Timer();
+        cardWrapper currentCard;
+        List<cardWrapper> selectedCards = new List<cardWrapper>();
 
         public Inventory_Menu()
         {
@@ -45,6 +47,7 @@ namespace OCS_FOR_CSHARP
         {
             resizeTimer.Stop();
             Card_Table_Panel.Visible = true;
+            refreshTable();
         }
 
         private void Scan_Card_Button_Click(object sender, EventArgs e)
@@ -202,12 +205,12 @@ namespace OCS_FOR_CSHARP
 
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
-            //Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
-            //Card_Table_Panel.RowCount = 0;
+            Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
+            Card_Table_Panel.RowCount = 0;
             //Card_Table_Panel.Dock = DockStyle.None;
-            //Card_Table_Panel.AutoSize = true;
-            //Card_Table_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            //Card_Table_Panel.AutoScroll = true;
+            Card_Table_Panel.AutoSize = true;
+            Card_Table_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
+            Card_Table_Panel.AutoScroll = true;
             /*Card_Table_Panel.Controls.Add(new CheckBox { Name = "Inventory_Checkbox", CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Name_Button", Text = "Name", Dock = DockStyle.Fill }, 1, 0);
             Card_Table_Panel.Controls.Add(new Button { Name = "Type_Button", Text = "Type", Dock = DockStyle.Fill }, 2, 0);
@@ -259,38 +262,35 @@ namespace OCS_FOR_CSHARP
                 //Card_Table_Panel.RowCount++;
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
 
-                CheckBox tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
-                tempCheck.CheckedChanged += new EventHandler(tempCheck_CheckedChanged);
-                Card_Table_Panel.Controls.Add(tempCheck, 0, i);
                 // card name
                 Label tempLabel = new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
-                Card_Table_Panel.Controls.Add(tempLabel, 1, i);
+                Card_Table_Panel.Controls.Add(tempLabel, 0, i);
 
                 // database card type
                 tempLabel = new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
-                Card_Table_Panel.Controls.Add(tempLabel, 2, i);
+                Card_Table_Panel.Controls.Add(tempLabel, 1, i);
 
                 // database card set expansion
                 tempLabel = new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
-                Card_Table_Panel.Controls.Add(tempLabel, 3, i);
+                Card_Table_Panel.Controls.Add(tempLabel, 2, i);
 
                 // database card number/multiverse ID
                 tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
-                Card_Table_Panel.Controls.Add(tempLabel, 4, i);
+                Card_Table_Panel.Controls.Add(tempLabel, 3, i);
 
                 // database card mana
                 tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
-                Card_Table_Panel.Controls.Add(tempLabel, 5, i);
+                Card_Table_Panel.Controls.Add(tempLabel, 4, i);
 
                 // database card date added
                 tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
-                Card_Table_Panel.Controls.Add(tempLabel, 6, i);
+                Card_Table_Panel.Controls.Add(tempLabel, 5, i);
                 cardIndex++;
             }
 
@@ -358,7 +358,30 @@ namespace OCS_FOR_CSHARP
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
+            var temp = sender as CheckBox;
 
+            if (temp.Checked)
+            {
+                selectedCards.Clear();
+                for (int i = 0; i < cards.Count; i++)
+                {
+                    selectedCards.Add(cards[i]);
+                }
+
+                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                {
+                    cb.Checked = true;
+                }
+            }
+            else
+            {
+                selectedCards.Clear();
+
+                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                {
+                    cb.Checked = false;
+                }
+            }
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -395,6 +418,7 @@ namespace OCS_FOR_CSHARP
         {
             Label temp = (Label)sender;
             //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
+            currentCard = (cardWrapper)temp.Tag;
             populate((cardWrapper)temp.Tag);
         }
 
@@ -491,6 +515,97 @@ namespace OCS_FOR_CSHARP
             resizeTimer.Stop();
             resizeTimer.Start();
         }
+
+        public bool addToInventory(int transType)
+        {
+
+            if (CurrentUser.prvlg_lvl > 0 && CurrentUser.prvlg_lvl < 5)
+            {
+                cardWrapper card = currentCard;
+                bool exists = false;
+                int inv_id;
+
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("new_trans_event", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                    cmd.Parameters.AddWithValue("in_foreign_user_id", CurrentUser.user_ID);
+                    cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
+                    cmd.Parameters.AddWithValue("in_trans_type", transType);
+
+                    cmd.ExecuteScalar();
+                }
+
+                connection.Close();
+
+
+                connection.Open();
+                using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory WHERE card_id = " + card.card.cardID, connection))
+                {
+                    NpgsqlDataReader reader = cmd.ExecuteReader();
+
+
+                    if (reader.HasRows)
+                    {
+                        exists = true;
+                    }
+                }
+                connection.Close();
+
+                if (exists)
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("update_inv_count", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", transType);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
+                else
+                {
+
+                    connection.Open();
+                    using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                    {
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        cmd.Parameters.AddWithValue("in_foreign_card_id", card.card.cardID);
+                        cmd.Parameters.AddWithValue("in_new_count", transType);
+
+                        cmd.ExecuteScalar();
+                    }
+                    connection.Close();
+                }
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void PlusButton_Click(object sender, EventArgs e)
+        {
+            addToInventory(1);
+            refreshTable();
+        }
+
+        private void MinusButton_Click(object sender, EventArgs e)
+        {
+            addToInventory(-1);
+            refreshTable();
+        }
+
+
     }
 }
 

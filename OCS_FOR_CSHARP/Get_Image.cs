@@ -908,6 +908,11 @@ namespace OCS_FOR_CSHARP
         private void Form1_Resize(object sender, EventArgs e)
         {
         }
+
+        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 
     public class cardWrapper
