@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.QuitButton = new System.Windows.Forms.Button();
             this.DefualtButton = new System.Windows.Forms.Button();
             this.DeleteAllButton = new System.Windows.Forms.Button();
             this.Load_Card_Button = new System.Windows.Forms.Button();
@@ -55,22 +54,6 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // QuitButton
-            // 
-            this.QuitButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.QuitButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QuitButton.FlatAppearance.BorderSize = 0;
-            this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QuitButton.Location = new System.Drawing.Point(2, 666);
-            this.QuitButton.Margin = new System.Windows.Forms.Padding(2);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(357, 165);
-            this.QuitButton.TabIndex = 5;
-            this.QuitButton.Text = "Back";
-            this.QuitButton.UseVisualStyleBackColor = true;
-            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
-            // 
             // DefualtButton
             // 
             this.DefualtButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -78,10 +61,10 @@
             this.DefualtButton.FlatAppearance.BorderSize = 0;
             this.DefualtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DefualtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DefualtButton.Location = new System.Drawing.Point(2, 500);
+            this.DefualtButton.Location = new System.Drawing.Point(2, 626);
             this.DefualtButton.Margin = new System.Windows.Forms.Padding(2);
             this.DefualtButton.Name = "DefualtButton";
-            this.DefualtButton.Size = new System.Drawing.Size(357, 162);
+            this.DefualtButton.Size = new System.Drawing.Size(357, 205);
             this.DefualtButton.TabIndex = 6;
             this.DefualtButton.Text = "Restore Defaults";
             this.DefualtButton.UseVisualStyleBackColor = true;
@@ -213,7 +196,7 @@
             this.newUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newUserButton.Location = new System.Drawing.Point(3, 3);
             this.newUserButton.Name = "newUserButton";
-            this.newUserButton.Size = new System.Drawing.Size(355, 160);
+            this.newUserButton.Size = new System.Drawing.Size(355, 202);
             this.newUserButton.TabIndex = 17;
             this.newUserButton.Text = "Add User";
             this.newUserButton.UseVisualStyleBackColor = true;
@@ -225,9 +208,9 @@
             this.dropUser.FlatAppearance.BorderSize = 0;
             this.dropUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dropUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dropUser.Location = new System.Drawing.Point(3, 335);
+            this.dropUser.Location = new System.Drawing.Point(3, 419);
             this.dropUser.Name = "dropUser";
-            this.dropUser.Size = new System.Drawing.Size(355, 160);
+            this.dropUser.Size = new System.Drawing.Size(355, 202);
             this.dropUser.TabIndex = 18;
             this.dropUser.Text = "Delete User";
             this.dropUser.UseVisualStyleBackColor = true;
@@ -239,9 +222,9 @@
             this.editUserButton.FlatAppearance.BorderSize = 0;
             this.editUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editUserButton.Location = new System.Drawing.Point(3, 169);
+            this.editUserButton.Location = new System.Drawing.Point(3, 211);
             this.editUserButton.Name = "editUserButton";
-            this.editUserButton.Size = new System.Drawing.Size(355, 160);
+            this.editUserButton.Size = new System.Drawing.Size(355, 202);
             this.editUserButton.TabIndex = 19;
             this.editUserButton.Text = "Edit User";
             this.editUserButton.UseVisualStyleBackColor = true;
@@ -317,12 +300,11 @@
             this.tableLayoutPanel2.Controls.Add(this.newUserButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.editUserButton, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.dropUser, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.QuitButton, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.DefualtButton, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -390,7 +372,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button DefualtButton;
         private System.Windows.Forms.Button DeleteAllButton;
         private System.Windows.Forms.Button Load_Card_Button;

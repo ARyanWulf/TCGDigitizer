@@ -39,10 +39,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        private void QuitButton_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
+        
 
         private void DefualtButton_Click(object sender, EventArgs e)
         {
@@ -756,23 +753,21 @@ namespace OCS_FOR_CSHARP
 
         private void tempLabel_Click(object sender, EventArgs e)
         {
-            //Populate_Settings_List();
             Label temp = (Label)sender;
             currentUser = (userWrapper) temp.Tag;
             int rowNumber = Users_Panel.GetRow((Label)sender);
-            //Header.Text = currentUser.first;
-            for (int i = 0; i < Users_Panel.RowCount; i++)
+            for (int i = 0; i < Users_Panel.RowCount; i++) // Cycle through rows
             {
                 if (i == rowNumber)
                 {
-                    for (int j = 0; j < 3; j++)
+                    for (int j = 0; j < 3; j++) // Cycle through columns of selected row
                     {
                         Users_Panel.GetControlFromPosition(j, rowNumber).BackColor = Color.FromArgb(65, 70, 78);
                     }
                 }
                 else
                 {
-                    for (int j = 0; j < 3; j++)
+                    for (int j = 0; j < 3; j++) // Cycle through columns of other rows
                     {
                         Users_Panel.GetControlFromPosition(j, i).BackColor = Color.FromArgb(45, 49, 57);
                     }
