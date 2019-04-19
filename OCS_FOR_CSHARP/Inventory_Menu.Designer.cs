@@ -69,12 +69,12 @@
             this.Card_Power_TextBox = new System.Windows.Forms.TextBox();
             this.Preview_Label = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Plus_minus_Table = new System.Windows.Forms.TableLayoutPanel();
+            this.PlusButton = new System.Windows.Forms.Button();
+            this.MinusButton = new System.Windows.Forms.Button();
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.LeftIneerPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ArrowPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.Plus_minus_Table = new System.Windows.Forms.TableLayoutPanel();
-            this.MinusButton = new System.Windows.Forms.Button();
-            this.PlusButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.CardPanel.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -85,10 +85,10 @@
             this.flowLayoutPanel4.SuspendLayout();
             this.flowLayoutPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.Plus_minus_Table.SuspendLayout();
             this.LeftPanel.SuspendLayout();
             this.LeftIneerPanel.SuspendLayout();
             this.ArrowPanel.SuspendLayout();
-            this.Plus_minus_Table.SuspendLayout();
             this.SuspendLayout();
             // 
             // Card_Table_Panel
@@ -192,7 +192,7 @@
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 79F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
             this.tableLayoutPanel1.Size = new System.Drawing.Size(968, 40);
             this.tableLayoutPanel1.TabIndex = 11;
             this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
@@ -666,6 +666,56 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 34;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Move += new System.EventHandler(this.pictureBox1_Move);
+            // 
+            // Plus_minus_Table
+            // 
+            this.Plus_minus_Table.ColumnCount = 2;
+            this.Plus_minus_Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Plus_minus_Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Plus_minus_Table.Controls.Add(this.PlusButton, 1, 0);
+            this.Plus_minus_Table.Controls.Add(this.MinusButton, 0, 0);
+            this.Plus_minus_Table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Plus_minus_Table.Location = new System.Drawing.Point(3, 876);
+            this.Plus_minus_Table.Name = "Plus_minus_Table";
+            this.Plus_minus_Table.RowCount = 1;
+            this.Plus_minus_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.Plus_minus_Table.Size = new System.Drawing.Size(274, 54);
+            this.Plus_minus_Table.TabIndex = 60;
+            // 
+            // PlusButton
+            // 
+            this.PlusButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.PlusButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.PlusButton.FlatAppearance.BorderSize = 0;
+            this.PlusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PlusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PlusButton.ForeColor = System.Drawing.Color.Silver;
+            this.PlusButton.Location = new System.Drawing.Point(137, 0);
+            this.PlusButton.Margin = new System.Windows.Forms.Padding(0);
+            this.PlusButton.Name = "PlusButton";
+            this.PlusButton.Size = new System.Drawing.Size(137, 54);
+            this.PlusButton.TabIndex = 12;
+            this.PlusButton.Text = "+";
+            this.PlusButton.UseVisualStyleBackColor = false;
+            this.PlusButton.Click += new System.EventHandler(this.PlusButton_Click);
+            // 
+            // MinusButton
+            // 
+            this.MinusButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.MinusButton.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MinusButton.FlatAppearance.BorderSize = 0;
+            this.MinusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.MinusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MinusButton.ForeColor = System.Drawing.Color.Silver;
+            this.MinusButton.Location = new System.Drawing.Point(0, 0);
+            this.MinusButton.Margin = new System.Windows.Forms.Padding(0);
+            this.MinusButton.Name = "MinusButton";
+            this.MinusButton.Size = new System.Drawing.Size(137, 54);
+            this.MinusButton.TabIndex = 11;
+            this.MinusButton.Text = "-";
+            this.MinusButton.UseVisualStyleBackColor = false;
+            this.MinusButton.Click += new System.EventHandler(this.MinusButton_Click);
             // 
             // LeftPanel
             // 
@@ -713,55 +763,6 @@
             this.ArrowPanel.Size = new System.Drawing.Size(968, 60);
             this.ArrowPanel.TabIndex = 19;
             // 
-            // Plus_minus_Table
-            // 
-            this.Plus_minus_Table.ColumnCount = 2;
-            this.Plus_minus_Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.Plus_minus_Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.Plus_minus_Table.Controls.Add(this.PlusButton, 1, 0);
-            this.Plus_minus_Table.Controls.Add(this.MinusButton, 0, 0);
-            this.Plus_minus_Table.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Plus_minus_Table.Location = new System.Drawing.Point(3, 876);
-            this.Plus_minus_Table.Name = "Plus_minus_Table";
-            this.Plus_minus_Table.RowCount = 1;
-            this.Plus_minus_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.Plus_minus_Table.Size = new System.Drawing.Size(274, 54);
-            this.Plus_minus_Table.TabIndex = 60;
-            // 
-            // MinusButton
-            // 
-            this.MinusButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.MinusButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MinusButton.FlatAppearance.BorderSize = 0;
-            this.MinusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.MinusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MinusButton.ForeColor = System.Drawing.Color.Silver;
-            this.MinusButton.Location = new System.Drawing.Point(0, 0);
-            this.MinusButton.Margin = new System.Windows.Forms.Padding(0);
-            this.MinusButton.Name = "MinusButton";
-            this.MinusButton.Size = new System.Drawing.Size(137, 54);
-            this.MinusButton.TabIndex = 11;
-            this.MinusButton.Text = "-";
-            this.MinusButton.UseVisualStyleBackColor = false;
-            this.MinusButton.Click += new System.EventHandler(this.MinusButton_Click);
-            // 
-            // PlusButton
-            // 
-            this.PlusButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.PlusButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PlusButton.FlatAppearance.BorderSize = 0;
-            this.PlusButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlusButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PlusButton.ForeColor = System.Drawing.Color.Silver;
-            this.PlusButton.Location = new System.Drawing.Point(137, 0);
-            this.PlusButton.Margin = new System.Windows.Forms.Padding(0);
-            this.PlusButton.Name = "PlusButton";
-            this.PlusButton.Size = new System.Drawing.Size(137, 54);
-            this.PlusButton.TabIndex = 12;
-            this.PlusButton.Text = "+";
-            this.PlusButton.UseVisualStyleBackColor = false;
-            this.PlusButton.Click += new System.EventHandler(this.PlusButton_Click);
-            // 
             // Inventory_Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -793,11 +794,11 @@
             this.flowLayoutPanel5.ResumeLayout(false);
             this.flowLayoutPanel5.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.Plus_minus_Table.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
             this.LeftIneerPanel.ResumeLayout(false);
             this.LeftIneerPanel.PerformLayout();
             this.ArrowPanel.ResumeLayout(false);
-            this.Plus_minus_Table.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }

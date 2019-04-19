@@ -605,7 +605,10 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
+        private void pictureBox1_Move(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 
