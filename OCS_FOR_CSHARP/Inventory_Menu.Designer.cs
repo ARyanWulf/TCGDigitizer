@@ -192,7 +192,7 @@
             this.Inventory_Table_Header.Margin = new System.Windows.Forms.Padding(0);
             this.Inventory_Table_Header.Name = "Inventory_Table_Header";
             this.Inventory_Table_Header.RowCount = 1;
-            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
+            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
             this.Inventory_Table_Header.Size = new System.Drawing.Size(968, 40);
             this.Inventory_Table_Header.TabIndex = 11;
             this.Inventory_Table_Header.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
