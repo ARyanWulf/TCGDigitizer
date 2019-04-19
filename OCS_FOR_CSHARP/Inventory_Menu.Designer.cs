@@ -52,18 +52,18 @@
             this.Card_Type_TextBox = new System.Windows.Forms.TextBox();
             this.Card_Mana_Cost_Label = new System.Windows.Forms.Label();
             this.Card_Mana_Cost_TextBox = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
-            this.flowLayoutPanel3 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Set_Num_Flow_Panel = new System.Windows.Forms.FlowLayoutPanel();
+            this.Setcode_Flow_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.Card_Expansion_Label = new System.Windows.Forms.Label();
             this.Card_Expansion_TextBox = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Number_Flow_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.Card_Nmbr_Label = new System.Windows.Forms.Label();
             this.Card_Number_Textbox = new System.Windows.Forms.TextBox();
             this.Card_Description_Label = new System.Windows.Forms.Label();
             this.Card_Description_TextBox = new System.Windows.Forms.TextBox();
             this.Card_Flavor_Text_Label = new System.Windows.Forms.Label();
             this.Card_Flavor_Text_TextBox = new System.Windows.Forms.TextBox();
-            this.flowLayoutPanel5 = new System.Windows.Forms.FlowLayoutPanel();
+            this.PTL_Flow_Panel = new System.Windows.Forms.FlowLayoutPanel();
             this.Card_Power_Label = new System.Windows.Forms.Label();
             this.card_loyalty_label = new System.Windows.Forms.Label();
             this.Card_Power_TextBox = new System.Windows.Forms.TextBox();
@@ -80,10 +80,10 @@
             this.Card_Panel_Table.SuspendLayout();
             this.panel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
-            this.flowLayoutPanel2.SuspendLayout();
-            this.flowLayoutPanel3.SuspendLayout();
-            this.flowLayoutPanel4.SuspendLayout();
-            this.flowLayoutPanel5.SuspendLayout();
+            this.Set_Num_Flow_Panel.SuspendLayout();
+            this.Setcode_Flow_Panel.SuspendLayout();
+            this.Number_Flow_Panel.SuspendLayout();
+            this.PTL_Flow_Panel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Image_Box)).BeginInit();
             this.Plus_minus_Table.SuspendLayout();
             this.LeftPanel.SuspendLayout();
@@ -192,7 +192,7 @@
             this.Inventory_Table_Header.Margin = new System.Windows.Forms.Padding(0);
             this.Inventory_Table_Header.Name = "Inventory_Table_Header";
             this.Inventory_Table_Header.RowCount = 1;
-            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 81F));
             this.Inventory_Table_Header.Size = new System.Drawing.Size(968, 40);
             this.Inventory_Table_Header.TabIndex = 11;
             this.Inventory_Table_Header.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
@@ -381,12 +381,12 @@
             this.flowLayoutPanel1.Controls.Add(this.Card_Type_TextBox);
             this.flowLayoutPanel1.Controls.Add(this.Card_Mana_Cost_Label);
             this.flowLayoutPanel1.Controls.Add(this.Card_Mana_Cost_TextBox);
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel2);
+            this.flowLayoutPanel1.Controls.Add(this.Set_Num_Flow_Panel);
             this.flowLayoutPanel1.Controls.Add(this.Card_Description_Label);
             this.flowLayoutPanel1.Controls.Add(this.Card_Description_TextBox);
             this.flowLayoutPanel1.Controls.Add(this.Card_Flavor_Text_Label);
             this.flowLayoutPanel1.Controls.Add(this.Card_Flavor_Text_TextBox);
-            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel5);
+            this.flowLayoutPanel1.Controls.Add(this.PTL_Flow_Panel);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
@@ -460,32 +460,32 @@
             this.Card_Mana_Cost_TextBox.Size = new System.Drawing.Size(234, 26);
             this.Card_Mana_Cost_TextBox.TabIndex = 54;
             // 
-            // flowLayoutPanel2
+            // Set_Num_Flow_Panel
             // 
-            this.flowLayoutPanel2.AutoSize = true;
-            this.flowLayoutPanel2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel3);
-            this.flowLayoutPanel2.Controls.Add(this.flowLayoutPanel4);
-            this.flowLayoutPanel2.Location = new System.Drawing.Point(0, 156);
-            this.flowLayoutPanel2.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel2.Name = "flowLayoutPanel2";
-            this.flowLayoutPanel2.Size = new System.Drawing.Size(183, 52);
-            this.flowLayoutPanel2.TabIndex = 59;
-            this.flowLayoutPanel2.WrapContents = false;
+            this.Set_Num_Flow_Panel.AutoSize = true;
+            this.Set_Num_Flow_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Set_Num_Flow_Panel.Controls.Add(this.Setcode_Flow_Panel);
+            this.Set_Num_Flow_Panel.Controls.Add(this.Number_Flow_Panel);
+            this.Set_Num_Flow_Panel.Location = new System.Drawing.Point(0, 156);
+            this.Set_Num_Flow_Panel.Margin = new System.Windows.Forms.Padding(0);
+            this.Set_Num_Flow_Panel.Name = "Set_Num_Flow_Panel";
+            this.Set_Num_Flow_Panel.Size = new System.Drawing.Size(183, 52);
+            this.Set_Num_Flow_Panel.TabIndex = 59;
+            this.Set_Num_Flow_Panel.WrapContents = false;
             // 
-            // flowLayoutPanel3
+            // Setcode_Flow_Panel
             // 
-            this.flowLayoutPanel3.AutoSize = true;
-            this.flowLayoutPanel3.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel3.Controls.Add(this.Card_Expansion_Label);
-            this.flowLayoutPanel3.Controls.Add(this.Card_Expansion_TextBox);
-            this.flowLayoutPanel3.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
-            this.flowLayoutPanel3.Name = "flowLayoutPanel3";
-            this.flowLayoutPanel3.Size = new System.Drawing.Size(96, 52);
-            this.flowLayoutPanel3.TabIndex = 60;
-            this.flowLayoutPanel3.WrapContents = false;
+            this.Setcode_Flow_Panel.AutoSize = true;
+            this.Setcode_Flow_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Setcode_Flow_Panel.Controls.Add(this.Card_Expansion_Label);
+            this.Setcode_Flow_Panel.Controls.Add(this.Card_Expansion_TextBox);
+            this.Setcode_Flow_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.Setcode_Flow_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Setcode_Flow_Panel.Margin = new System.Windows.Forms.Padding(0);
+            this.Setcode_Flow_Panel.Name = "Setcode_Flow_Panel";
+            this.Setcode_Flow_Panel.Size = new System.Drawing.Size(96, 52);
+            this.Setcode_Flow_Panel.TabIndex = 60;
+            this.Setcode_Flow_Panel.WrapContents = false;
             // 
             // Card_Expansion_Label
             // 
@@ -509,18 +509,18 @@
             this.Card_Expansion_TextBox.Size = new System.Drawing.Size(90, 26);
             this.Card_Expansion_TextBox.TabIndex = 53;
             // 
-            // flowLayoutPanel4
+            // Number_Flow_Panel
             // 
-            this.flowLayoutPanel4.AutoSize = true;
-            this.flowLayoutPanel4.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel4.Controls.Add(this.Card_Nmbr_Label);
-            this.flowLayoutPanel4.Controls.Add(this.Card_Number_Textbox);
-            this.flowLayoutPanel4.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel4.Location = new System.Drawing.Point(99, 0);
-            this.flowLayoutPanel4.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
-            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
-            this.flowLayoutPanel4.Size = new System.Drawing.Size(81, 52);
-            this.flowLayoutPanel4.TabIndex = 61;
+            this.Number_Flow_Panel.AutoSize = true;
+            this.Number_Flow_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Number_Flow_Panel.Controls.Add(this.Card_Nmbr_Label);
+            this.Number_Flow_Panel.Controls.Add(this.Card_Number_Textbox);
+            this.Number_Flow_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.Number_Flow_Panel.Location = new System.Drawing.Point(99, 0);
+            this.Number_Flow_Panel.Margin = new System.Windows.Forms.Padding(3, 0, 3, 0);
+            this.Number_Flow_Panel.Name = "Number_Flow_Panel";
+            this.Number_Flow_Panel.Size = new System.Drawing.Size(81, 52);
+            this.Number_Flow_Panel.TabIndex = 61;
             // 
             // Card_Nmbr_Label
             // 
@@ -590,19 +590,19 @@
             this.Card_Flavor_Text_TextBox.Size = new System.Drawing.Size(234, 74);
             this.Card_Flavor_Text_TextBox.TabIndex = 51;
             // 
-            // flowLayoutPanel5
+            // PTL_Flow_Panel
             // 
-            this.flowLayoutPanel5.AutoSize = true;
-            this.flowLayoutPanel5.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.flowLayoutPanel5.Controls.Add(this.Card_Power_Label);
-            this.flowLayoutPanel5.Controls.Add(this.card_loyalty_label);
-            this.flowLayoutPanel5.Controls.Add(this.Card_Power_TextBox);
-            this.flowLayoutPanel5.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel5.Location = new System.Drawing.Point(3, 411);
-            this.flowLayoutPanel5.Name = "flowLayoutPanel5";
-            this.flowLayoutPanel5.Size = new System.Drawing.Size(105, 92);
-            this.flowLayoutPanel5.TabIndex = 59;
-            this.flowLayoutPanel5.WrapContents = false;
+            this.PTL_Flow_Panel.AutoSize = true;
+            this.PTL_Flow_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.PTL_Flow_Panel.Controls.Add(this.Card_Power_Label);
+            this.PTL_Flow_Panel.Controls.Add(this.card_loyalty_label);
+            this.PTL_Flow_Panel.Controls.Add(this.Card_Power_TextBox);
+            this.PTL_Flow_Panel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.PTL_Flow_Panel.Location = new System.Drawing.Point(3, 411);
+            this.PTL_Flow_Panel.Name = "PTL_Flow_Panel";
+            this.PTL_Flow_Panel.Size = new System.Drawing.Size(105, 92);
+            this.PTL_Flow_Panel.TabIndex = 59;
+            this.PTL_Flow_Panel.WrapContents = false;
             // 
             // Card_Power_Label
             // 
@@ -785,14 +785,14 @@
             this.panel1.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.flowLayoutPanel1.PerformLayout();
-            this.flowLayoutPanel2.ResumeLayout(false);
-            this.flowLayoutPanel2.PerformLayout();
-            this.flowLayoutPanel3.ResumeLayout(false);
-            this.flowLayoutPanel3.PerformLayout();
-            this.flowLayoutPanel4.ResumeLayout(false);
-            this.flowLayoutPanel4.PerformLayout();
-            this.flowLayoutPanel5.ResumeLayout(false);
-            this.flowLayoutPanel5.PerformLayout();
+            this.Set_Num_Flow_Panel.ResumeLayout(false);
+            this.Set_Num_Flow_Panel.PerformLayout();
+            this.Setcode_Flow_Panel.ResumeLayout(false);
+            this.Setcode_Flow_Panel.PerformLayout();
+            this.Number_Flow_Panel.ResumeLayout(false);
+            this.Number_Flow_Panel.PerformLayout();
+            this.PTL_Flow_Panel.ResumeLayout(false);
+            this.PTL_Flow_Panel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Card_Image_Box)).EndInit();
             this.Plus_minus_Table.ResumeLayout(false);
             this.LeftPanel.ResumeLayout(false);
@@ -840,10 +840,10 @@
         private System.Windows.Forms.TableLayoutPanel ArrowPanel;
         private System.Windows.Forms.TableLayoutPanel Card_Panel_Table;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel3;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel5;
+        private System.Windows.Forms.FlowLayoutPanel Set_Num_Flow_Panel;
+        private System.Windows.Forms.FlowLayoutPanel Setcode_Flow_Panel;
+        private System.Windows.Forms.FlowLayoutPanel Number_Flow_Panel;
+        private System.Windows.Forms.FlowLayoutPanel PTL_Flow_Panel;
         private System.Windows.Forms.Label card_loyalty_label;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label Preview_Label;

@@ -91,6 +91,7 @@ namespace OCS_FOR_CSHARP
         public bool? starter { get; set; }//not currently being used
         public int cardID;
         public string setCode;
+        public string imageURL;
     }
 
     //not currently being used

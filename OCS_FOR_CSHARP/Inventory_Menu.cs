@@ -22,12 +22,12 @@ namespace OCS_FOR_CSHARP
 
         public int display_lower;
         public int display_upper;
-        public bool hold = false;
-        public List<cardWrapper> id_list = new List<cardWrapper>();
-        private List<cardWrapper> cards = new List<cardWrapper>();
+        private List<cardWrapper> cards = new List<cardWrapper>(); //holds cards in inventory
+        private List<cardWrapper> needImageQueue = new List<cardWrapper>(); //holds cards that need images
         private TableLayoutPanel tempTable;
         CardService service = new CardService();
         Timer resizeTimer = new Timer();
+        Timer cardImageTimer = new Timer();
         cardWrapper currentCard;
         List<cardWrapper> selectedCards = new List<cardWrapper>();
 
@@ -37,10 +37,24 @@ namespace OCS_FOR_CSHARP
             Card_Image_Box.WaitOnLoad = false;
             Card_Image_Box.Image = Card_Image_Box.InitialImage;
             refreshTable();
+
+            for(int i = 0; i < cards.Count; i++)
+            {
+                if(cards[i].card.imageURL == null || cards[i].card.imageURL == "")
+                {
+                    needImageQueue.Add(cards[i]);
+                }
+            }
+
             resizeTimer.Tick += new EventHandler(resizeEventHandler);
             resizeTimer.Interval = 1000;
             resizeTimer.Enabled = true;
             resizeTimer.Stop();
+
+            cardImageTimer.Tick += new EventHandler(getCardImage);
+            cardImageTimer.Interval = 5000;
+            cardImageTimer.Enabled = true;
+            cardImageTimer.Start();
         }
 
         private void resizeEventHandler(object sender, EventArgs e)
@@ -48,6 +62,30 @@ namespace OCS_FOR_CSHARP
             resizeTimer.Stop();
             Card_Table_Panel.Visible = true;
             refreshTable();
+        }
+
+        private void getCardImage(object sender, EventArgs e)
+        {
+            cardImageTimer.Stop();
+            if(needImageQueue.Count > 0)
+            {
+                var tempCard = needImageQueue[0];
+                needImageQueue.RemoveAt(0);
+                var imageURL = service.
+                    Where(x => x.Set, tempCard.card.setCode).
+                    Where(y => y.Number, tempCard.card.number).
+                    All().Value[0].ImageUrl.OriginalString;
+                try
+                {
+                    add_image(tempCard.card_ID, imageURL);
+                    tempCard.card.imageURL = imageURL;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.ToString());
+                }
+                cardImageTimer.Start();
+            }
         }
 
         private void Scan_Card_Button_Click(object sender, EventArgs e)
@@ -92,6 +130,23 @@ namespace OCS_FOR_CSHARP
         List of variables returned:
             *
         */
+
+        private void add_image(int in_id, string in_url)
+        {
+            connection.Open();
+
+            using (var cmd = new NpgsqlCommand("add_card_image", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("in_id", in_id);
+                cmd.Parameters.AddWithValue("in_url", in_url);
+
+                cmd.ExecuteScalar();
+            }
+            connection.Close();
+        }
+
         private List<cardWrapper> Get_Inventory()
         {
             // create list of cards
@@ -180,6 +235,7 @@ namespace OCS_FOR_CSHARP
                         tempCard.loyalty = reader[20].ToString();
                         tempCard.artist = reader[21].ToString();
                         tempCard.number = reader[24].ToString();
+                        tempCard.imageURL = reader[25].ToString();
 
                         for (int i = 0; i < cards.Count; i++)
                         {
@@ -399,21 +455,6 @@ namespace OCS_FOR_CSHARP
             //refreshTable();
         }
 
-        private void tempCheck_CheckedChanged(object sender, EventArgs e)
-        {
-            CheckBox temp = (CheckBox)sender;
-            if (temp.Checked)
-            {
-                id_list.Add((cardWrapper)temp.Tag);
-                //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
-            }
-            else
-            {
-                id_list.Remove((cardWrapper)temp.Tag);
-            }
-            populate((cardWrapper)temp.Tag);
-        }
-
         private void tempLabel_Click(object sender, EventArgs e)
         {
             Label temp = (Label)sender;
@@ -429,15 +470,11 @@ namespace OCS_FOR_CSHARP
 
             try
             {
-                var image = service.Where(x => x.Set, currentCard.card.setCode).Where(y => y.Number, currentCard.card.number).All().Value[0].ImageUrl.OriginalString;
-                System.Net.WebRequest req = System.Net.WebRequest.Create(image);
-                System.Net.WebResponse response = req.GetResponse();
-                var stream = response.GetResponseStream();
-                Card_Image_Box.Image = Image.FromStream(stream);
-                stream.Close();
+                Card_Image_Box.Load(currentCard.card.imageURL);
             }
             catch
             {
+                Card_Image_Box.Image = Card_Image_Box.InitialImage;
             }
 
             Name_Textbox.Text = currentCard.card.name;
