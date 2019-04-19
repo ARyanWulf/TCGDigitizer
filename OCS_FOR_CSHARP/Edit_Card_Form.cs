@@ -113,7 +113,7 @@ namespace OCS_FOR_CSHARP
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
             Card_Expansion_TextBox.Text = currentCard.card.setCode;
-            textBox2.Text = currentCard.card.number;
+            Card_Number_Textbox.Text = currentCard.card.number;
 
             if (currentCard.card.subtypes != null)
             {
@@ -251,7 +251,7 @@ namespace OCS_FOR_CSHARP
             if(databaseList.Count != 0)
             {
                 cardExists = true;
-                button2.Enabled = true;
+                Add_Card_Button.Enabled = true;
                 Name_Textbox.ReadOnly = true;
                 populate(databaseList[0]);
             }
@@ -271,7 +271,7 @@ namespace OCS_FOR_CSHARP
             /*Edit_Card_Form newEditForm = new Edit_Card_Form();
             newEditForm.Show();
             this.Dispose(false);*/
-            button2.Enabled = false;
+            Add_Card_Button.Enabled = false;
             Name_Textbox.Clear();
             Card_Type_TextBox.Clear();
             Card_Additional_TextBox.Clear();
@@ -281,7 +281,7 @@ namespace OCS_FOR_CSHARP
             Card_Flavor_Text_TextBox.Clear();
             Card_Power_TextBox.Clear();
             Card_Toughness_TextBox.Clear();
-            textBox2.Clear();
+            Card_Number_Textbox.Clear();
             Name_Textbox.ReadOnly = false;
         }
 
@@ -488,15 +488,15 @@ namespace OCS_FOR_CSHARP
 
         private void SearchBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            button1.Enabled = true;
-            button2.Enabled = true;
+            Remove_Card_Button.Enabled = true;
+            Add_Card_Button.Enabled = true;
             currentCard = foundCards[SearchBox.SelectedIndex];
 
             Name_Textbox.Text = currentCard.card.name;
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
             Card_Expansion_TextBox.Text = currentCard.card.setCode;
-            textBox2.Text = currentCard.card.number;
+            Card_Number_Textbox.Text = currentCard.card.number;
 
             if (currentCard.card.subtypes != null)
             {

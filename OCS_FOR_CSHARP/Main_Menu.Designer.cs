@@ -52,14 +52,14 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
-            this.alphaGradientPanel1 = new System.Windows.Forms.AlphaGradientPanel();
+            this.Top_Gradient_Panel = new System.Windows.Forms.AlphaGradientPanel();
             this.colorWithAlpha2 = new System.Windows.Forms.ColorWithAlpha();
             this.colorWithAlpha1 = new System.Windows.Forms.ColorWithAlpha();
             this.panel1.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).BeginInit();
             this.panel2.SuspendLayout();
-            this.alphaGradientPanel1.SuspendLayout();
+            this.Top_Gradient_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // ScanButton
@@ -393,49 +393,49 @@
             this.logout_link.VisitedLinkColor = System.Drawing.Color.Blue;
             this.logout_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logout_link_LinkClicked_1);
             // 
-            // alphaGradientPanel1
+            // Top_Gradient_Panel
             // 
-            this.alphaGradientPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.Top_Gradient_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.alphaGradientPanel1.BackColor = System.Drawing.Color.Transparent;
-            this.alphaGradientPanel1.Border = false;
-            this.alphaGradientPanel1.BorderColor = System.Drawing.SystemColors.ActiveBorder;
-            this.alphaGradientPanel1.Colors.Add(this.colorWithAlpha2);
-            this.alphaGradientPanel1.Colors.Add(this.colorWithAlpha1);
-            this.alphaGradientPanel1.ContentPadding = new System.Windows.Forms.Padding(0);
-            this.alphaGradientPanel1.Controls.Add(this.welcome_label);
-            this.alphaGradientPanel1.Controls.Add(this.LogoPicture);
-            this.alphaGradientPanel1.Controls.Add(this.logout_link);
-            this.alphaGradientPanel1.CornerRadius = 20;
-            this.alphaGradientPanel1.Corners = System.Windows.Forms.Corner.None;
-            this.alphaGradientPanel1.Gradient = true;
-            this.alphaGradientPanel1.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
-            this.alphaGradientPanel1.GradientOffset = 1F;
-            this.alphaGradientPanel1.GradientSize = new System.Drawing.Size(0, 0);
-            this.alphaGradientPanel1.GradientWrapMode = System.Drawing.Drawing2D.WrapMode.Tile;
-            this.alphaGradientPanel1.Grayscale = false;
-            this.alphaGradientPanel1.Image = null;
-            this.alphaGradientPanel1.ImageAlpha = 75;
-            this.alphaGradientPanel1.ImagePadding = new System.Windows.Forms.Padding(5);
-            this.alphaGradientPanel1.ImagePosition = System.Windows.Forms.ImagePosition.BottomRight;
-            this.alphaGradientPanel1.ImageSize = new System.Drawing.Size(48, 48);
-            this.alphaGradientPanel1.Location = new System.Drawing.Point(321, 0);
-            this.alphaGradientPanel1.Name = "alphaGradientPanel1";
-            this.alphaGradientPanel1.Rounded = true;
-            this.alphaGradientPanel1.Size = new System.Drawing.Size(956, 175);
-            this.alphaGradientPanel1.TabIndex = 19;
+            this.Top_Gradient_Panel.BackColor = System.Drawing.Color.Transparent;
+            this.Top_Gradient_Panel.Border = false;
+            this.Top_Gradient_Panel.BorderColor = System.Drawing.SystemColors.ActiveBorder;
+            this.Top_Gradient_Panel.Colors.Add(this.colorWithAlpha2);
+            this.Top_Gradient_Panel.Colors.Add(this.colorWithAlpha1);
+            this.Top_Gradient_Panel.ContentPadding = new System.Windows.Forms.Padding(0);
+            this.Top_Gradient_Panel.Controls.Add(this.welcome_label);
+            this.Top_Gradient_Panel.Controls.Add(this.LogoPicture);
+            this.Top_Gradient_Panel.Controls.Add(this.logout_link);
+            this.Top_Gradient_Panel.CornerRadius = 20;
+            this.Top_Gradient_Panel.Corners = System.Windows.Forms.Corner.None;
+            this.Top_Gradient_Panel.Gradient = true;
+            this.Top_Gradient_Panel.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.Top_Gradient_Panel.GradientOffset = 1F;
+            this.Top_Gradient_Panel.GradientSize = new System.Drawing.Size(0, 0);
+            this.Top_Gradient_Panel.GradientWrapMode = System.Drawing.Drawing2D.WrapMode.Tile;
+            this.Top_Gradient_Panel.Grayscale = false;
+            this.Top_Gradient_Panel.Image = null;
+            this.Top_Gradient_Panel.ImageAlpha = 75;
+            this.Top_Gradient_Panel.ImagePadding = new System.Windows.Forms.Padding(5);
+            this.Top_Gradient_Panel.ImagePosition = System.Windows.Forms.ImagePosition.BottomRight;
+            this.Top_Gradient_Panel.ImageSize = new System.Drawing.Size(48, 48);
+            this.Top_Gradient_Panel.Location = new System.Drawing.Point(321, 0);
+            this.Top_Gradient_Panel.Name = "Top_Gradient_Panel";
+            this.Top_Gradient_Panel.Rounded = true;
+            this.Top_Gradient_Panel.Size = new System.Drawing.Size(956, 175);
+            this.Top_Gradient_Panel.TabIndex = 19;
             // 
             // colorWithAlpha2
             // 
             this.colorWithAlpha2.Alpha = 255;
             this.colorWithAlpha2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(65)))), ((int)(((byte)(70)))), ((int)(((byte)(78)))));
-            this.colorWithAlpha2.Parent = this.alphaGradientPanel1;
+            this.colorWithAlpha2.Parent = this.Top_Gradient_Panel;
             // 
             // colorWithAlpha1
             // 
             this.colorWithAlpha1.Alpha = 255;
             this.colorWithAlpha1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.colorWithAlpha1.Parent = this.alphaGradientPanel1;
+            this.colorWithAlpha1.Parent = this.Top_Gradient_Panel;
             // 
             // Main_Menu
             // 
@@ -443,7 +443,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1274, 749);
-            this.Controls.Add(this.alphaGradientPanel1);
+            this.Controls.Add(this.Top_Gradient_Panel);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.ForeColor = System.Drawing.Color.Transparent;
@@ -456,8 +456,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.alphaGradientPanel1.ResumeLayout(false);
-            this.alphaGradientPanel1.PerformLayout();
+            this.Top_Gradient_Panel.ResumeLayout(false);
+            this.Top_Gradient_Panel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -485,7 +485,7 @@
         private System.Windows.Forms.TextBox ContactText;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
-        private System.Windows.Forms.AlphaGradientPanel alphaGradientPanel1;
+        private System.Windows.Forms.AlphaGradientPanel Top_Gradient_Panel;
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha1;
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha2;
