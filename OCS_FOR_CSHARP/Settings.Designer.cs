@@ -28,12 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.QuitButton = new System.Windows.Forms.Button();
             this.DefualtButton = new System.Windows.Forms.Button();
             this.DeleteAllButton = new System.Windows.Forms.Button();
             this.Load_Card_Button = new System.Windows.Forms.Button();
             this.Users_Panel = new System.Windows.Forms.TableLayoutPanel();
-            this.selectAllCheckBox = new System.Windows.Forms.CheckBox();
             this.user_first_name_sort = new System.Windows.Forms.Button();
             this.user_last_name_sort = new System.Windows.Forms.Button();
             this.authority_sort_button = new System.Windows.Forms.Button();
@@ -56,22 +54,6 @@
             this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
-            // QuitButton
-            // 
-            this.QuitButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.QuitButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.QuitButton.FlatAppearance.BorderSize = 0;
-            this.QuitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.QuitButton.Location = new System.Drawing.Point(2, 666);
-            this.QuitButton.Margin = new System.Windows.Forms.Padding(2);
-            this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(357, 165);
-            this.QuitButton.TabIndex = 5;
-            this.QuitButton.Text = "Back";
-            this.QuitButton.UseVisualStyleBackColor = true;
-            this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
-            // 
             // DefualtButton
             // 
             this.DefualtButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -79,10 +61,10 @@
             this.DefualtButton.FlatAppearance.BorderSize = 0;
             this.DefualtButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.DefualtButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DefualtButton.Location = new System.Drawing.Point(2, 500);
+            this.DefualtButton.Location = new System.Drawing.Point(2, 626);
             this.DefualtButton.Margin = new System.Windows.Forms.Padding(2);
             this.DefualtButton.Name = "DefualtButton";
-            this.DefualtButton.Size = new System.Drawing.Size(357, 162);
+            this.DefualtButton.Size = new System.Drawing.Size(357, 205);
             this.DefualtButton.TabIndex = 6;
             this.DefualtButton.Text = "Restore Defaults";
             this.DefualtButton.UseVisualStyleBackColor = true;
@@ -127,9 +109,7 @@
             this.Users_Panel.AutoSize = true;
             this.Users_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.Users_Panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Users_Panel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.Users_Panel.ColumnCount = 4;
-            this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.Users_Panel.ColumnCount = 3;
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
@@ -138,24 +118,10 @@
             this.Users_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Users_Panel.Name = "Users_Panel";
             this.Users_Panel.RowCount = 1;
-            this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.Users_Panel.Size = new System.Drawing.Size(730, 2);
+            this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.Users_Panel.Size = new System.Drawing.Size(730, 50);
             this.Users_Panel.TabIndex = 12;
             this.Users_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.users_panel);
-            // 
-            // selectAllCheckBox
-            // 
-            this.selectAllCheckBox.AutoSize = true;
-            this.selectAllCheckBox.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.selectAllCheckBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.selectAllCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.selectAllCheckBox.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.selectAllCheckBox.Location = new System.Drawing.Point(3, 3);
-            this.selectAllCheckBox.Margin = new System.Windows.Forms.Padding(2);
-            this.selectAllCheckBox.Name = "selectAllCheckBox";
-            this.selectAllCheckBox.Size = new System.Drawing.Size(26, 38);
-            this.selectAllCheckBox.TabIndex = 17;
-            this.selectAllCheckBox.UseVisualStyleBackColor = true;
             // 
             // user_first_name_sort
             // 
@@ -163,10 +129,10 @@
             this.user_first_name_sort.FlatAppearance.BorderSize = 0;
             this.user_first_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_first_name_sort.ForeColor = System.Drawing.Color.Silver;
-            this.user_first_name_sort.Location = new System.Drawing.Point(34, 3);
+            this.user_first_name_sort.Location = new System.Drawing.Point(3, 3);
             this.user_first_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_first_name_sort.Name = "user_first_name_sort";
-            this.user_first_name_sort.Size = new System.Drawing.Size(227, 38);
+            this.user_first_name_sort.Size = new System.Drawing.Size(238, 38);
             this.user_first_name_sort.TabIndex = 0;
             this.user_first_name_sort.Text = "First Name";
             this.user_first_name_sort.UseVisualStyleBackColor = true;
@@ -177,10 +143,10 @@
             this.user_last_name_sort.FlatAppearance.BorderSize = 0;
             this.user_last_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.user_last_name_sort.ForeColor = System.Drawing.Color.Silver;
-            this.user_last_name_sort.Location = new System.Drawing.Point(266, 3);
+            this.user_last_name_sort.Location = new System.Drawing.Point(246, 3);
             this.user_last_name_sort.Margin = new System.Windows.Forms.Padding(2);
             this.user_last_name_sort.Name = "user_last_name_sort";
-            this.user_last_name_sort.Size = new System.Drawing.Size(227, 38);
+            this.user_last_name_sort.Size = new System.Drawing.Size(238, 38);
             this.user_last_name_sort.TabIndex = 1;
             this.user_last_name_sort.Text = "Last Name";
             this.user_last_name_sort.UseVisualStyleBackColor = true;
@@ -191,10 +157,10 @@
             this.authority_sort_button.FlatAppearance.BorderSize = 0;
             this.authority_sort_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.authority_sort_button.ForeColor = System.Drawing.Color.Silver;
-            this.authority_sort_button.Location = new System.Drawing.Point(498, 3);
+            this.authority_sort_button.Location = new System.Drawing.Point(489, 3);
             this.authority_sort_button.Margin = new System.Windows.Forms.Padding(2);
             this.authority_sort_button.Name = "authority_sort_button";
-            this.authority_sort_button.Size = new System.Drawing.Size(229, 38);
+            this.authority_sort_button.Size = new System.Drawing.Size(238, 38);
             this.authority_sort_button.TabIndex = 15;
             this.authority_sort_button.Text = "Authority";
             this.authority_sort_button.UseVisualStyleBackColor = true;
@@ -230,7 +196,7 @@
             this.newUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.newUserButton.Location = new System.Drawing.Point(3, 3);
             this.newUserButton.Name = "newUserButton";
-            this.newUserButton.Size = new System.Drawing.Size(355, 160);
+            this.newUserButton.Size = new System.Drawing.Size(355, 202);
             this.newUserButton.TabIndex = 17;
             this.newUserButton.Text = "Add User";
             this.newUserButton.UseVisualStyleBackColor = true;
@@ -242,12 +208,13 @@
             this.dropUser.FlatAppearance.BorderSize = 0;
             this.dropUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.dropUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dropUser.Location = new System.Drawing.Point(3, 335);
+            this.dropUser.Location = new System.Drawing.Point(3, 419);
             this.dropUser.Name = "dropUser";
-            this.dropUser.Size = new System.Drawing.Size(355, 160);
+            this.dropUser.Size = new System.Drawing.Size(355, 202);
             this.dropUser.TabIndex = 18;
             this.dropUser.Text = "Delete User";
             this.dropUser.UseVisualStyleBackColor = true;
+            this.dropUser.Click += new System.EventHandler(this.dropUser_Click);
             // 
             // editUserButton
             // 
@@ -255,9 +222,9 @@
             this.editUserButton.FlatAppearance.BorderSize = 0;
             this.editUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.editUserButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 24.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.editUserButton.Location = new System.Drawing.Point(3, 169);
+            this.editUserButton.Location = new System.Drawing.Point(3, 211);
             this.editUserButton.Name = "editUserButton";
-            this.editUserButton.Size = new System.Drawing.Size(355, 160);
+            this.editUserButton.Size = new System.Drawing.Size(355, 202);
             this.editUserButton.TabIndex = 19;
             this.editUserButton.Text = "Edit User";
             this.editUserButton.UseVisualStyleBackColor = true;
@@ -282,15 +249,14 @@
             this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 30F));
+            this.tableLayoutPanel1.ColumnCount = 3;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.Controls.Add(this.selectAllCheckBox, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.user_last_name_sort, 2, 0);
-            this.tableLayoutPanel1.Controls.Add(this.user_first_name_sort, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.authority_sort_button, 3, 0);
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.user_last_name_sort, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.user_first_name_sort, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.authority_sort_button, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 50);
@@ -334,12 +300,11 @@
             this.tableLayoutPanel2.Controls.Add(this.newUserButton, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.editUserButton, 0, 1);
             this.tableLayoutPanel2.Controls.Add(this.dropUser, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.QuitButton, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.DefualtButton, 0, 3);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 5;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
@@ -396,7 +361,6 @@
             this.Text = "TCGDigitizer - Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
             this.user_settings_buttons_panel.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.user_table_panel.ResumeLayout(false);
@@ -408,7 +372,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button QuitButton;
         private System.Windows.Forms.Button DefualtButton;
         private System.Windows.Forms.Button DeleteAllButton;
         private System.Windows.Forms.Button Load_Card_Button;
@@ -416,7 +379,6 @@
         private System.Windows.Forms.Button user_first_name_sort;
         private System.Windows.Forms.Button user_last_name_sort;
         private System.Windows.Forms.Button authority_sort_button;
-        private System.Windows.Forms.CheckBox selectAllCheckBox;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.TextBox progress_textbox;
         private System.Windows.Forms.Button newUserButton;
