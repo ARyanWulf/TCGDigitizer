@@ -84,15 +84,15 @@ namespace OCS_FOR_CSHARP
                 Users_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 50 });
                 //Users_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.None }, 0, i); //No onger need checkboxes for user management table
 
-                Label tempLabel = new Label() { Text = users[i].first, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag =  users[i]};
+                Label tempLabel = new Label() { Text = users[i].first, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag =  users[i]};
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Users_Panel.Controls.Add(tempLabel, 0, i);
 
-                tempLabel = new Label() { Text = users[i].last, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = users[i] };
+                tempLabel = new Label() { Text = users[i].last, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = users[i] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Users_Panel.Controls.Add(tempLabel , 1, i);
 
-                tempLabel = new Label() { Text = users[i].prvlg, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = users[i] };
+                tempLabel = new Label() { Text = users[i].prvlg, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = users[i] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Users_Panel.Controls.Add(tempLabel , 2, i);
             }
@@ -756,13 +756,27 @@ namespace OCS_FOR_CSHARP
 
         private void tempLabel_Click(object sender, EventArgs e)
         {
+            //Populate_Settings_List();
             Label temp = (Label)sender;
             currentUser = (userWrapper) temp.Tag;
             int rowNumber = Users_Panel.GetRow((Label)sender);
             //Header.Text = currentUser.first;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < Users_Panel.RowCount; i++)
             {
-                Users_Panel.GetControlFromPosition(i, rowNumber).BackColor = Color.Black;
+                if (i == rowNumber)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Users_Panel.GetControlFromPosition(j, rowNumber).BackColor = Color.FromArgb(65, 70, 78);
+                    }
+                }
+                else
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        Users_Panel.GetControlFromPosition(j, i).BackColor = Color.FromArgb(45, 49, 57);
+                    }
+                }
             }
             Users_Panel.Refresh();
         }
