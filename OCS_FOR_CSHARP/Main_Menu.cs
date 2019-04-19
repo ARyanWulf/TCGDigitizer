@@ -190,6 +190,7 @@ namespace OCS_FOR_CSHARP
             inventory_form.Size = new Size(panel2.Width, panel2.Height);
             inventory_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             inventory_form.Show();
+            inventory_form.refreshTable();
         }
 
         private void SettingsButton_Click(object sender, EventArgs e)

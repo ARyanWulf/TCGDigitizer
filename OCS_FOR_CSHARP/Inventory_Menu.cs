@@ -34,8 +34,8 @@ namespace OCS_FOR_CSHARP
         public Inventory_Menu()
         {
             InitializeComponent();
-            pictureBox1.WaitOnLoad = false;
-            pictureBox1.Image = pictureBox1.InitialImage;
+            Card_Image_Box.WaitOnLoad = false;
+            Card_Image_Box.Image = Card_Image_Box.InitialImage;
             refreshTable();
             resizeTimer.Tick += new EventHandler(resizeEventHandler);
             resizeTimer.Interval = 1000;
@@ -263,32 +263,32 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
 
                 // card name
-                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
+                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 0, i);
 
                 // database card type
-                tempLabel = new Label() { Text = cards[cardIndex].card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.type, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 1, i);
 
                 // database card set expansion
-                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 2, i);
 
                 // database card number/multiverse ID
-                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 3, i);
 
                 // database card mana
-                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 4, i);
 
                 // database card date added
-                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 5, i);
                 cardIndex++;
@@ -425,7 +425,7 @@ namespace OCS_FOR_CSHARP
         public void populate(cardWrapper input)
         {
             cardWrapper currentCard = input;
-            pictureBox1.Image = null;
+            Card_Image_Box.Image = null;
 
             try
             {
@@ -433,7 +433,7 @@ namespace OCS_FOR_CSHARP
                 System.Net.WebRequest req = System.Net.WebRequest.Create(image);
                 System.Net.WebResponse response = req.GetResponse();
                 var stream = response.GetResponseStream();
-                pictureBox1.Image = Image.FromStream(stream);
+                Card_Image_Box.Image = Image.FromStream(stream);
                 stream.Close();
             }
             catch
@@ -444,7 +444,7 @@ namespace OCS_FOR_CSHARP
             Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
             Card_Type_TextBox.Text = currentCard.card.type;
             Card_Expansion_TextBox.Text = currentCard.card.setCode;
-            textBox2.Text = currentCard.card.number;
+            Card_Number_Textbox.Text = currentCard.card.number;
 
             if (currentCard.card.power != null && currentCard.card.power != "n/a")
             {

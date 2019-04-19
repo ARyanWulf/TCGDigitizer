@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Edit_Card_Form));
-            this.button2 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.Add_Card_Button = new System.Windows.Forms.Button();
+            this.Card_Image_Box = new System.Windows.Forms.PictureBox();
             this.Card_Name_Label = new System.Windows.Forms.Label();
             this.Card_Type_Label = new System.Windows.Forms.Label();
             this.Card_Additional_Label = new System.Windows.Forms.Label();
@@ -50,51 +50,51 @@
             this.Card_Expansion_TextBox = new System.Windows.Forms.TextBox();
             this.Card_Mana_Cost_TextBox = new System.Windows.Forms.TextBox();
             this.Card_Nmbr_Label = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button5 = new System.Windows.Forms.Button();
+            this.Card_Number_Textbox = new System.Windows.Forms.TextBox();
+            this.Cancel = new System.Windows.Forms.Button();
             this.Name_Textbox = new System.Windows.Forms.TextBox();
             this.SearchBox = new System.Windows.Forms.ComboBox();
             this.TopPanel = new System.Windows.Forms.Panel();
             this.TopButtonTable = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Remove_Card_Button = new System.Windows.Forms.Button();
             this.fileSystemWatcher1 = new System.IO.FileSystemWatcher();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Card_Image_Box)).BeginInit();
             this.TopPanel.SuspendLayout();
             this.TopButtonTable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // Add_Card_Button
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Enabled = false;
-            this.button2.FlatAppearance.BorderSize = 0;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.Transparent;
-            this.button2.Location = new System.Drawing.Point(3, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(239, 71);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Add to Inventory";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Save_Button);
+            this.Add_Card_Button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Add_Card_Button.Enabled = false;
+            this.Add_Card_Button.FlatAppearance.BorderSize = 0;
+            this.Add_Card_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Add_Card_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Add_Card_Button.ForeColor = System.Drawing.Color.Transparent;
+            this.Add_Card_Button.Location = new System.Drawing.Point(3, 3);
+            this.Add_Card_Button.Name = "Add_Card_Button";
+            this.Add_Card_Button.Size = new System.Drawing.Size(239, 71);
+            this.Add_Card_Button.TabIndex = 1;
+            this.Add_Card_Button.Text = "Add to Inventory";
+            this.Add_Card_Button.UseVisualStyleBackColor = true;
+            this.Add_Card_Button.Click += new System.EventHandler(this.Save_Button);
             // 
-            // pictureBox1
+            // Card_Image_Box
             // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(71, 89);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(278, 399);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 4;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.Card_Display_PictureBox);
+            this.Card_Image_Box.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Card_Image_Box.BackColor = System.Drawing.Color.Transparent;
+            this.Card_Image_Box.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.Card_Image_Box.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.Card_Image_Box.Image = ((System.Drawing.Image)(resources.GetObject("Card_Image_Box.Image")));
+            this.Card_Image_Box.InitialImage = ((System.Drawing.Image)(resources.GetObject("Card_Image_Box.InitialImage")));
+            this.Card_Image_Box.Location = new System.Drawing.Point(71, 89);
+            this.Card_Image_Box.Name = "Card_Image_Box";
+            this.Card_Image_Box.Size = new System.Drawing.Size(278, 399);
+            this.Card_Image_Box.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Card_Image_Box.TabIndex = 4;
+            this.Card_Image_Box.TabStop = false;
+            this.Card_Image_Box.Click += new System.EventHandler(this.Card_Display_PictureBox);
             // 
             // Card_Name_Label
             // 
@@ -317,32 +317,32 @@
             this.Card_Nmbr_Label.Text = "Number:";
             this.Card_Nmbr_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBox2
+            // Card_Number_Textbox
             // 
-            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.textBox2.BackColor = System.Drawing.Color.SlateGray;
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.ForeColor = System.Drawing.Color.Silver;
-            this.textBox2.Location = new System.Drawing.Point(470, 529);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(40, 29);
-            this.textBox2.TabIndex = 30;
+            this.Card_Number_Textbox.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.Card_Number_Textbox.BackColor = System.Drawing.Color.SlateGray;
+            this.Card_Number_Textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Card_Number_Textbox.ForeColor = System.Drawing.Color.Silver;
+            this.Card_Number_Textbox.Location = new System.Drawing.Point(470, 529);
+            this.Card_Number_Textbox.Name = "Card_Number_Textbox";
+            this.Card_Number_Textbox.ReadOnly = true;
+            this.Card_Number_Textbox.Size = new System.Drawing.Size(40, 29);
+            this.Card_Number_Textbox.TabIndex = 30;
             // 
-            // button5
+            // Cancel
             // 
-            this.button5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button5.FlatAppearance.BorderSize = 0;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.Transparent;
-            this.button5.Location = new System.Drawing.Point(493, 3);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(240, 71);
-            this.button5.TabIndex = 32;
-            this.button5.Text = "Cancel";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.Cancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Cancel.FlatAppearance.BorderSize = 0;
+            this.Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Cancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cancel.ForeColor = System.Drawing.Color.Transparent;
+            this.Cancel.Location = new System.Drawing.Point(493, 3);
+            this.Cancel.Name = "Cancel";
+            this.Cancel.Size = new System.Drawing.Size(240, 71);
+            this.Cancel.TabIndex = 32;
+            this.Cancel.Text = "Cancel";
+            this.Cancel.UseVisualStyleBackColor = true;
+            this.Cancel.Click += new System.EventHandler(this.button5_Click);
             // 
             // Name_Textbox
             // 
@@ -389,9 +389,9 @@
             this.TopButtonTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TopButtonTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.TopButtonTable.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.TopButtonTable.Controls.Add(this.button1, 1, 0);
-            this.TopButtonTable.Controls.Add(this.button5, 2, 0);
-            this.TopButtonTable.Controls.Add(this.button2, 0, 0);
+            this.TopButtonTable.Controls.Add(this.Remove_Card_Button, 1, 0);
+            this.TopButtonTable.Controls.Add(this.Cancel, 2, 0);
+            this.TopButtonTable.Controls.Add(this.Add_Card_Button, 0, 0);
             this.TopButtonTable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.TopButtonTable.Location = new System.Drawing.Point(0, 0);
             this.TopButtonTable.Margin = new System.Windows.Forms.Padding(0);
@@ -401,21 +401,21 @@
             this.TopButtonTable.Size = new System.Drawing.Size(736, 77);
             this.TopButtonTable.TabIndex = 0;
             // 
-            // button1
+            // Remove_Card_Button
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Enabled = false;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Transparent;
-            this.button1.Location = new System.Drawing.Point(248, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(239, 71);
-            this.button1.TabIndex = 36;
-            this.button1.Text = "Remove from Inventory";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Remove_Card_Button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Remove_Card_Button.Enabled = false;
+            this.Remove_Card_Button.FlatAppearance.BorderSize = 0;
+            this.Remove_Card_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Remove_Card_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Remove_Card_Button.ForeColor = System.Drawing.Color.Transparent;
+            this.Remove_Card_Button.Location = new System.Drawing.Point(248, 3);
+            this.Remove_Card_Button.Name = "Remove_Card_Button";
+            this.Remove_Card_Button.Size = new System.Drawing.Size(239, 71);
+            this.Remove_Card_Button.TabIndex = 36;
+            this.Remove_Card_Button.Text = "Remove from Inventory";
+            this.Remove_Card_Button.UseVisualStyleBackColor = true;
+            this.Remove_Card_Button.Click += new System.EventHandler(this.button1_Click);
             // 
             // fileSystemWatcher1
             // 
@@ -432,7 +432,7 @@
             this.Controls.Add(this.TopPanel);
             this.Controls.Add(this.SearchBox);
             this.Controls.Add(this.Name_Textbox);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.Card_Number_Textbox);
             this.Controls.Add(this.Card_Nmbr_Label);
             this.Controls.Add(this.Card_Mana_Cost_TextBox);
             this.Controls.Add(this.Card_Expansion_TextBox);
@@ -451,13 +451,13 @@
             this.Controls.Add(this.Card_Additional_Label);
             this.Controls.Add(this.Card_Type_Label);
             this.Controls.Add(this.Card_Name_Label);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.Card_Image_Box);
             this.ForeColor = System.Drawing.Color.Silver;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Edit_Card_Form";
             this.Text = "TCGDigitizer - Review Card";
             this.Load += new System.EventHandler(this.Edit_Card_Form_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Card_Image_Box)).EndInit();
             this.TopPanel.ResumeLayout(false);
             this.TopButtonTable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.fileSystemWatcher1)).EndInit();
@@ -467,8 +467,8 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button Add_Card_Button;
+        private System.Windows.Forms.PictureBox Card_Image_Box;
         private System.Windows.Forms.Label Card_Name_Label;
         private System.Windows.Forms.Label Card_Type_Label;
         private System.Windows.Forms.Label Card_Additional_Label;
@@ -487,14 +487,14 @@
         private System.Windows.Forms.TextBox Card_Expansion_TextBox;
         private System.Windows.Forms.TextBox Card_Mana_Cost_TextBox;
         private System.Windows.Forms.Label Card_Nmbr_Label;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.TextBox Card_Number_Textbox;
+        private System.Windows.Forms.Button Cancel;
         private System.Windows.Forms.TextBox Name_Textbox;
         private System.Windows.Forms.TextBox Card_Description_TextBox;
         private System.Windows.Forms.ComboBox SearchBox;
         private System.Windows.Forms.Panel TopPanel;
         private System.Windows.Forms.TableLayoutPanel TopButtonTable;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Remove_Card_Button;
         private System.IO.FileSystemWatcher fileSystemWatcher1;
     }
 }
