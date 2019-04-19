@@ -41,17 +41,17 @@
             this.dropUser = new System.Windows.Forms.Button();
             this.editUserButton = new System.Windows.Forms.Button();
             this.Header = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.users_header_panel = new System.Windows.Forms.TableLayoutPanel();
             this.downloadLabel = new System.Windows.Forms.Label();
             this.user_settings_buttons_panel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.Buttons_Table = new System.Windows.Forms.TableLayoutPanel();
             this.user_table_panel = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.Users_Left_Panel = new System.Windows.Forms.TableLayoutPanel();
+            this.users_header_panel.SuspendLayout();
             this.user_settings_buttons_panel.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
+            this.Buttons_Table.SuspendLayout();
             this.user_table_panel.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
+            this.Users_Left_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
             // DefualtButton
@@ -243,29 +243,29 @@
             this.Header.Text = "Users";
             this.Header.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tableLayoutPanel1
+            // users_header_panel
             // 
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.tableLayoutPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.user_last_name_sort, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.user_first_name_sort, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.authority_sort_button, 2, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 50);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(730, 44);
-            this.tableLayoutPanel1.TabIndex = 22;
+            this.users_header_panel.AutoSize = true;
+            this.users_header_panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.users_header_panel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.users_header_panel.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
+            this.users_header_panel.ColumnCount = 3;
+            this.users_header_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.users_header_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.users_header_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.users_header_panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.users_header_panel.Controls.Add(this.user_last_name_sort, 1, 0);
+            this.users_header_panel.Controls.Add(this.user_first_name_sort, 0, 0);
+            this.users_header_panel.Controls.Add(this.authority_sort_button, 2, 0);
+            this.users_header_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.users_header_panel.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.users_header_panel.Location = new System.Drawing.Point(0, 50);
+            this.users_header_panel.Margin = new System.Windows.Forms.Padding(0);
+            this.users_header_panel.Name = "users_header_panel";
+            this.users_header_panel.RowCount = 1;
+            this.users_header_panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.users_header_panel.Size = new System.Drawing.Size(730, 44);
+            this.users_header_panel.TabIndex = 22;
             // 
             // downloadLabel
             // 
@@ -287,31 +287,31 @@
             this.user_settings_buttons_panel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.user_settings_buttons_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.user_settings_buttons_panel.Controls.Add(this.tableLayoutPanel2);
+            this.user_settings_buttons_panel.Controls.Add(this.Buttons_Table);
             this.user_settings_buttons_panel.Location = new System.Drawing.Point(734, -1);
             this.user_settings_buttons_panel.Name = "user_settings_buttons_panel";
             this.user_settings_buttons_panel.Size = new System.Drawing.Size(365, 837);
             this.user_settings_buttons_panel.TabIndex = 27;
             // 
-            // tableLayoutPanel2
+            // Buttons_Table
             // 
-            this.tableLayoutPanel2.ColumnCount = 1;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Controls.Add(this.newUserButton, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.editUserButton, 0, 1);
-            this.tableLayoutPanel2.Controls.Add(this.dropUser, 0, 2);
-            this.tableLayoutPanel2.Controls.Add(this.DefualtButton, 0, 3);
-            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 4;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(361, 833);
-            this.tableLayoutPanel2.TabIndex = 28;
+            this.Buttons_Table.ColumnCount = 1;
+            this.Buttons_Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Buttons_Table.Controls.Add(this.newUserButton, 0, 0);
+            this.Buttons_Table.Controls.Add(this.editUserButton, 0, 1);
+            this.Buttons_Table.Controls.Add(this.dropUser, 0, 2);
+            this.Buttons_Table.Controls.Add(this.DefualtButton, 0, 3);
+            this.Buttons_Table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Buttons_Table.Location = new System.Drawing.Point(0, 0);
+            this.Buttons_Table.Name = "Buttons_Table";
+            this.Buttons_Table.RowCount = 4;
+            this.Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Buttons_Table.Size = new System.Drawing.Size(361, 833);
+            this.Buttons_Table.TabIndex = 28;
             // 
             // user_table_panel
             // 
@@ -319,29 +319,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.user_table_panel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.user_table_panel.Controls.Add(this.tableLayoutPanel3);
+            this.user_table_panel.Controls.Add(this.Users_Left_Panel);
             this.user_table_panel.Location = new System.Drawing.Point(0, -1);
             this.user_table_panel.Name = "user_table_panel";
             this.user_table_panel.Size = new System.Drawing.Size(734, 833);
             this.user_table_panel.TabIndex = 28;
             // 
-            // tableLayoutPanel3
+            // Users_Left_Panel
             // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel1, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.Header, 0, 0);
-            this.tableLayoutPanel3.Controls.Add(this.Users_Panel, 0, 2);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 3;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(730, 829);
-            this.tableLayoutPanel3.TabIndex = 29;
-            this.tableLayoutPanel3.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
+            this.Users_Left_Panel.ColumnCount = 1;
+            this.Users_Left_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Users_Left_Panel.Controls.Add(this.users_header_panel, 0, 1);
+            this.Users_Left_Panel.Controls.Add(this.Header, 0, 0);
+            this.Users_Left_Panel.Controls.Add(this.Users_Panel, 0, 2);
+            this.Users_Left_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Users_Left_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Users_Left_Panel.Name = "Users_Left_Panel";
+            this.Users_Left_Panel.RowCount = 3;
+            this.Users_Left_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.Users_Left_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.Users_Left_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Users_Left_Panel.Size = new System.Drawing.Size(730, 829);
+            this.Users_Left_Panel.TabIndex = 29;
+            this.Users_Left_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // Settings
             // 
@@ -360,12 +360,12 @@
             this.Name = "Settings";
             this.Text = "TCGDigitizer - Settings";
             this.Load += new System.EventHandler(this.Settings_Load);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.users_header_panel.ResumeLayout(false);
             this.user_settings_buttons_panel.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
+            this.Buttons_Table.ResumeLayout(false);
             this.user_table_panel.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.Users_Left_Panel.ResumeLayout(false);
+            this.Users_Left_Panel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,11 +385,11 @@
         private System.Windows.Forms.Button dropUser;
         private System.Windows.Forms.Button editUserButton;
         private System.Windows.Forms.Label Header;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel users_header_panel;
         private System.Windows.Forms.Label downloadLabel;
         private System.Windows.Forms.Panel user_settings_buttons_panel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.TableLayoutPanel Buttons_Table;
         private System.Windows.Forms.Panel user_table_panel;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private System.Windows.Forms.TableLayoutPanel Users_Left_Panel;
     }
 }

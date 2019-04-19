@@ -33,11 +33,11 @@
             this.SettingsButton = new System.Windows.Forms.Button();
             this.ContactButton = new System.Windows.Forms.Button();
             this.QuitButton = new System.Windows.Forms.Button();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.Main_Menu_Buttons_Panel = new System.Windows.Forms.Panel();
+            this.Main_Menu_Buttons_Table = new System.Windows.Forms.TableLayoutPanel();
             this.ManualEntryButton = new System.Windows.Forms.Button();
             this.LogoPicture = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
+            this.Slot_Panel = new System.Windows.Forms.Panel();
             this.login_button = new System.Windows.Forms.Button();
             this.login_label = new System.Windows.Forms.Label();
             this.password_label = new System.Windows.Forms.Label();
@@ -55,10 +55,10 @@
             this.Top_Gradient_Panel = new System.Windows.Forms.AlphaGradientPanel();
             this.colorWithAlpha2 = new System.Windows.Forms.ColorWithAlpha();
             this.colorWithAlpha1 = new System.Windows.Forms.ColorWithAlpha();
-            this.panel1.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.Main_Menu_Buttons_Panel.SuspendLayout();
+            this.Main_Menu_Buttons_Table.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).BeginInit();
-            this.panel2.SuspendLayout();
+            this.Slot_Panel.SuspendLayout();
             this.Top_Gradient_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -153,39 +153,39 @@
             this.QuitButton.UseVisualStyleBackColor = true;
             this.QuitButton.Click += new System.EventHandler(this.QuitButton_Click);
             // 
-            // panel1
+            // Main_Menu_Buttons_Panel
             // 
-            this.panel1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
-            this.panel1.Controls.Add(this.tableLayoutPanel1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(318, 749);
-            this.panel1.TabIndex = 17;
+            this.Main_Menu_Buttons_Panel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.Main_Menu_Buttons_Panel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(44)))), ((int)(((byte)(52)))));
+            this.Main_Menu_Buttons_Panel.Controls.Add(this.Main_Menu_Buttons_Table);
+            this.Main_Menu_Buttons_Panel.Dock = System.Windows.Forms.DockStyle.Left;
+            this.Main_Menu_Buttons_Panel.Location = new System.Drawing.Point(0, 0);
+            this.Main_Menu_Buttons_Panel.Name = "Main_Menu_Buttons_Panel";
+            this.Main_Menu_Buttons_Panel.Size = new System.Drawing.Size(318, 749);
+            this.Main_Menu_Buttons_Panel.TabIndex = 17;
             // 
-            // tableLayoutPanel1
+            // Main_Menu_Buttons_Table
             // 
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.QuitButton, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.ContactButton, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.ScanButton, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.ManualEntryButton, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.SettingsButton, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.InventoryButton, 0, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(318, 749);
-            this.tableLayoutPanel1.TabIndex = 5;
+            this.Main_Menu_Buttons_Table.ColumnCount = 1;
+            this.Main_Menu_Buttons_Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.Main_Menu_Buttons_Table.Controls.Add(this.QuitButton, 0, 5);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.ContactButton, 0, 4);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.ScanButton, 0, 0);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.ManualEntryButton, 0, 1);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.SettingsButton, 0, 3);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.InventoryButton, 0, 2);
+            this.Main_Menu_Buttons_Table.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Main_Menu_Buttons_Table.Location = new System.Drawing.Point(0, 0);
+            this.Main_Menu_Buttons_Table.Name = "Main_Menu_Buttons_Table";
+            this.Main_Menu_Buttons_Table.RowCount = 6;
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.Main_Menu_Buttons_Table.Size = new System.Drawing.Size(318, 749);
+            this.Main_Menu_Buttons_Table.TabIndex = 5;
             // 
             // ManualEntryButton
             // 
@@ -219,24 +219,24 @@
             this.LogoPicture.TabStop = false;
             this.LogoPicture.Click += new System.EventHandler(this.LogoPicture_Click);
             // 
-            // panel2
+            // Slot_Panel
             // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.Slot_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.Controls.Add(this.login_button);
-            this.panel2.Controls.Add(this.login_label);
-            this.panel2.Controls.Add(this.password_label);
-            this.panel2.Controls.Add(this.login_password_textbox);
-            this.panel2.Controls.Add(this.user_name_label);
-            this.panel2.Controls.Add(this.login_username_textbox);
-            this.panel2.Controls.Add(this.CloseTextButton);
-            this.panel2.Controls.Add(this.ContactText);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Location = new System.Drawing.Point(321, 176);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(951, 573);
-            this.panel2.TabIndex = 18;
+            this.Slot_Panel.Controls.Add(this.login_button);
+            this.Slot_Panel.Controls.Add(this.login_label);
+            this.Slot_Panel.Controls.Add(this.password_label);
+            this.Slot_Panel.Controls.Add(this.login_password_textbox);
+            this.Slot_Panel.Controls.Add(this.user_name_label);
+            this.Slot_Panel.Controls.Add(this.login_username_textbox);
+            this.Slot_Panel.Controls.Add(this.CloseTextButton);
+            this.Slot_Panel.Controls.Add(this.ContactText);
+            this.Slot_Panel.Controls.Add(this.textBox1);
+            this.Slot_Panel.Location = new System.Drawing.Point(321, 176);
+            this.Slot_Panel.Name = "Slot_Panel";
+            this.Slot_Panel.Size = new System.Drawing.Size(951, 573);
+            this.Slot_Panel.TabIndex = 18;
             // 
             // login_button
             // 
@@ -444,18 +444,18 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(1274, 749);
             this.Controls.Add(this.Top_Gradient_Panel);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.Main_Menu_Buttons_Panel);
+            this.Controls.Add(this.Slot_Panel);
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Main_Menu";
             this.Text = "TCG Digitizer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Main_Menu_Load);
-            this.panel1.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.Main_Menu_Buttons_Panel.ResumeLayout(false);
+            this.Main_Menu_Buttons_Table.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
+            this.Slot_Panel.ResumeLayout(false);
+            this.Slot_Panel.PerformLayout();
             this.Top_Gradient_Panel.ResumeLayout(false);
             this.Top_Gradient_Panel.PerformLayout();
             this.ResumeLayout(false);
@@ -469,8 +469,8 @@
         private System.Windows.Forms.Button SettingsButton;
         private System.Windows.Forms.Button ContactButton;
         private System.Windows.Forms.Button QuitButton;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel Main_Menu_Buttons_Panel;
+        private System.Windows.Forms.Panel Slot_Panel;
         private System.Windows.Forms.Label welcome_label;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button login_button;
@@ -490,6 +490,6 @@
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha1;
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha2;
         private System.Windows.Forms.Button ManualEntryButton;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel Main_Menu_Buttons_Table;
     }
 }

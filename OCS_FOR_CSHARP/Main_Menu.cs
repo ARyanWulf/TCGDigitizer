@@ -102,21 +102,21 @@ namespace OCS_FOR_CSHARP
 
         private void Login_Screen()
         {
-            panel2.Controls.Clear();
+            Slot_Panel.Controls.Clear();
             Login_Screen login_prompt = new Login_Screen();
             login_prompt.evtFrm += new ShowFrm(logged_in);
             login_prompt.TopLevel = false;
-            panel2.Controls.Add(login_prompt);
+            Slot_Panel.Controls.Add(login_prompt);
             login_prompt.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             login_prompt.Dock = DockStyle.Fill;
-            login_prompt.Size = new Size(panel2.Width, panel2.Height);
+            login_prompt.Size = new Size(Slot_Panel.Width, Slot_Panel.Height);
             login_prompt.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             login_prompt.Show();
         }
 
         void logged_in()
         {
-            panel2.Controls.Clear();
+            Slot_Panel.Controls.Clear();
 
             ScanButton.Enabled = true;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_silver_64;
@@ -154,16 +154,16 @@ namespace OCS_FOR_CSHARP
             ResetButtonColors();
             ScanButton.BackColor = Color.FromArgb(65, 70, 78);
 
-            panel2.Controls.Clear();
+            Slot_Panel.Controls.Clear();
             if (scan_form == null|| scan_form.IsDisposed)
             {
                 scan_form = new Form1();
             }
             scan_form.TopLevel = false;
-            panel2.Controls.Add(scan_form);
+            Slot_Panel.Controls.Add(scan_form);
             scan_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             scan_form.Dock = DockStyle.Fill;
-            scan_form.Size = new Size(panel2.Width, panel2.Height);
+            scan_form.Size = new Size(Slot_Panel.Width, Slot_Panel.Height);
             scan_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             scan_form.Show();
         }
@@ -177,17 +177,17 @@ namespace OCS_FOR_CSHARP
             ResetButtonColors();
             InventoryButton.BackColor = Color.FromArgb(65, 70, 78);
 
-            panel2.Controls.Clear();
+            Slot_Panel.Controls.Clear();
             if(inventory_form == null || inventory_form.IsDisposed)
             {
                 inventory_form = new Inventory_Menu();
             }
 
             inventory_form.TopLevel = false;
-            panel2.Controls.Add(inventory_form);
+            Slot_Panel.Controls.Add(inventory_form);
             inventory_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             inventory_form.Dock = DockStyle.Fill;
-            inventory_form.Size = new Size(panel2.Width, panel2.Height);
+            inventory_form.Size = new Size(Slot_Panel.Width, Slot_Panel.Height);
             inventory_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             inventory_form.Show();
             inventory_form.refreshTable();
@@ -202,17 +202,17 @@ namespace OCS_FOR_CSHARP
             ResetButtonColors();
             SettingsButton.BackColor = Color.FromArgb(65, 70, 78);
 
-            panel2.Controls.Clear();
+            Slot_Panel.Controls.Clear();
             if(settings_form == null || settings_form.IsDisposed)
             {
                 settings_form = new Settings();
             }
 
             settings_form.TopLevel = false;
-            panel2.Controls.Add(settings_form);
+            Slot_Panel.Controls.Add(settings_form);
             settings_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             settings_form.Dock = DockStyle.Fill;
-            settings_form.Size = new Size(panel2.Width, panel2.Height);
+            settings_form.Size = new Size(Slot_Panel.Width, Slot_Panel.Height);
             settings_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             settings_form.Show();
 
@@ -223,7 +223,7 @@ namespace OCS_FOR_CSHARP
             ResetButtonColors();
             ContactButton.BackColor = Color.FromArgb(65, 70, 78);
             product_info_clicked = !product_info_clicked;
-            panel2.Controls.Clear();
+            Slot_Panel.Controls.Clear();
             if (product_info_clicked || CurrentUser.user_ID != 0)
             {
                 if (product_info == null || product_info.IsDisposed)
@@ -232,10 +232,10 @@ namespace OCS_FOR_CSHARP
                 }
 
                 product_info.TopLevel = false;
-                panel2.Controls.Add(product_info);
+                Slot_Panel.Controls.Add(product_info);
                 product_info.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
                 product_info.Dock = DockStyle.Fill;
-                product_info.Size = new Size(panel2.Width, panel2.Height);
+                product_info.Size = new Size(Slot_Panel.Width, Slot_Panel.Height);
                 product_info.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
                 product_info.Show();
             }
@@ -546,17 +546,17 @@ namespace OCS_FOR_CSHARP
         {
             ResetButtonColors();
             ManualEntryButton.BackColor = Color.FromArgb(65, 70, 78);
-            panel2.Controls.Clear();
+            Slot_Panel.Controls.Clear();
             if(edit_form == null || edit_form.IsDisposed)
             {
                 edit_form = new Edit_Card_Form();
             }
 
             edit_form.TopLevel = false;
-            panel2.Controls.Add(edit_form);
+            Slot_Panel.Controls.Add(edit_form);
             edit_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             edit_form.Dock = DockStyle.Fill;
-            edit_form.Size = new Size(panel2.Width, panel2.Height);
+            edit_form.Size = new Size(Slot_Panel.Width, Slot_Panel.Height);
             edit_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
             edit_form.Show();
         }
