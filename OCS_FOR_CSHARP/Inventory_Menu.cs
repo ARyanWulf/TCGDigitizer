@@ -702,26 +702,26 @@ namespace OCS_FOR_CSHARP
 
         private void Inventory_Menu_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.ControlKey)
+            /*if(e.KeyCode == Keys.ControlKey)
             {
                 ctrlPressed = true;
             }
             if (e.KeyCode == Keys.ShiftKey)
             {
                 shiftPressed = true;
-            }
+            }*/
         }
 
         private void Inventory_Menu_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.ControlKey)
+            /*if (e.KeyCode == Keys.ControlKey)
             {
                 ctrlPressed = false;
             }
             if (e.KeyCode == Keys.ShiftKey)
             {
                 shiftPressed = false;
-            }
+            }*/
         }
 
         
