@@ -164,7 +164,6 @@
             this.authority_sort_button.TabIndex = 15;
             this.authority_sort_button.Text = "Authority";
             this.authority_sort_button.UseVisualStyleBackColor = true;
-            this.authority_sort_button.Click += new System.EventHandler(this.button1_Click);
             // 
             // progressBar1
             // 
@@ -280,7 +279,6 @@
             this.downloadLabel.Text = "Downloading Card Database\r\n(This may take several minutes)\r\n";
             this.downloadLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.downloadLabel.Visible = false;
-            this.downloadLabel.Click += new System.EventHandler(this.login_label_Click);
             // 
             // user_settings_buttons_panel
             // 
@@ -341,7 +339,6 @@
             this.Users_Left_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.Users_Left_Panel.Size = new System.Drawing.Size(730, 829);
             this.Users_Left_Panel.TabIndex = 29;
-            this.Users_Left_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel3_Paint);
             // 
             // Settings
             // 

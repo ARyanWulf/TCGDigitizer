@@ -152,8 +152,24 @@ namespace OCS_FOR_CSHARP
         public string releaseDate { get; set; }
     }
     //=======================================================================
+    
 
+    //Holds user data from database
+    public class userWrapper
+    {
+        public string first, last, prvlg;
 
+        //constructor
+        public userWrapper()
+        {
+            first = "";
+            last = "";
+            prvlg = "";
+        }
 
-
+        //deconstructor
+        ~userWrapper()
+        {
+        }
+    };
 }

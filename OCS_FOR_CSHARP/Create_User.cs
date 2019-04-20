@@ -13,44 +13,13 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Create_User : Form
     {
+        //initializes form on creation
         public Create_User()
         {
             InitializeComponent();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-                        /*
-             comboBox1.Items.Add("apple");
-             comboBox1.Items.Add("oraange")
-             comboBox1.DropDownStyle = ???*/
-        }
-
-        private void fname_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lname_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void username_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pass_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void passconf_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
+        //checks that user data is valid and adds it to the database
         private void OK_Button_Click(object sender, EventArgs e)
         {
             int privilege = -1;
@@ -214,11 +183,6 @@ namespace OCS_FOR_CSHARP
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void error_textbox_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

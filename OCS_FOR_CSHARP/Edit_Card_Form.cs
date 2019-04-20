@@ -18,41 +18,26 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Edit_Card_Form : Form
     {
-        public cardWrapper currentCard = new cardWrapper();
-        List<cardWrapper> cards = new List<cardWrapper>();
-        Form1 getImageForm;
-        CardService service = new CardService();
-        string cardData;
-        List<Card> middleMan;
-        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
-        List<cardWrapper> databaseList = new List<cardWrapper>();
-        private bool cardExists = false;
-        Timer searchTimer = new Timer();
-        List<cardWrapper> foundCards = new List<cardWrapper>();
+        public cardWrapper currentCard = new cardWrapper(); //holds currently displayed card
+        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer"); //creates connection to postreSQL database
+        Timer searchTimer = new Timer(); //time to wait before searching after searchbox textchanged
+        List<cardWrapper> foundCards = new List<cardWrapper>(); //list of cards found from search
 
         public Edit_Card_Form()
         {
             InitializeComponent();
+
+            //initialize searchtimer properties
             searchTimer.Tick += new EventHandler(searchEventHandler);
-            searchTimer.Interval = 3000;
+            searchTimer.Interval = 1000;
             searchTimer.Enabled = true;
             searchTimer.Stop();
-        }
-
-        private void Scan_Card_Button(object sender, EventArgs e)
-        {
-            // Will have to change the name for "Form1" here if we change the name of it elsewhere
-            
-            getImageForm = new Form1();
-
-            getImageForm.Show();
-            //getImageForm.callingForm = this;
-            //getImageForm = new Form1();
         }
 
         // The save button is also binded to the enter key for the user
         private void Save_Button(object sender, EventArgs e)
         {
+            //add current card to inventory
             if(!addToInventory(1))
             {
                 MessageBox.Show("ERROR! Insufficient permissions.");
@@ -104,7 +89,7 @@ namespace OCS_FOR_CSHARP
         }
 
         
-
+        //populates data fields with card information
         public void populate(cardWrapper input)
         {
             currentCard = input;
@@ -183,87 +168,6 @@ namespace OCS_FOR_CSHARP
             {
                 pictureBox1.Load(currentCard.card.ImageUrl.OriginalString);
             }*/
-        }
-
-        private void Enter()
-        {
-            databaseList.Clear();
-            if (Name_Textbox.Text.Length != 0)
-            {
-                connection.Open();
-
-                var str = "SELECT * FROM public.card WHERE card_name ILIKE '%" + Name_Textbox.Text + "%'";
-
-                /*if(Card_Type_TextBox.Text != null)
-                {
-                    str += "AND card_type ILIKE '%" + Card_Type_TextBox.Text + "%'";
-                }*/
-                
-                var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE card_name ILIKE '%" + Name_Textbox.Text + "%'", connection);
-                
-                NpgsqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
-                {
-                    string temp;
-                    cardWrapper tempWrapper = new cardWrapper();
-                    CardObject tempCard = new CardObject();
-                    tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
-                    tempCard.name = reader[2].ToString();
-                    tempCard.type = reader[3].ToString();
-                    tempCard.manaCost = reader[4].ToString();
-                    tempCard.setCode = reader[5].ToString();
-                    tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
-                    tempCard.power = reader[10].ToString();
-                    tempCard.toughness = reader[11].ToString();
-
-                    temp = reader[13].ToString().TrimEnd('}');
-                    temp = temp.TrimStart('{');
-                    tempCard.colors = temp.Split(',').ToList<string>();
-
-                    temp = reader[14].ToString().TrimEnd('}');
-                    temp = temp.TrimStart('{');
-                    tempCard.colorIdentity = temp.Split(',').ToList<string>();
-
-                    tempCard.text = reader[15].ToString();
-                    tempCard.convertedManaCost = float.Parse(reader[16].ToString());
-
-                    tempCard.flavorText = reader[17].ToString();
-                    tempCard.rarity = reader[18].ToString();
-                    tempCard.borderColor = reader[19].ToString();
-                    tempCard.loyalty = reader[20].ToString();
-                    tempCard.artist = reader[21].ToString();
-                    tempCard.number = reader[24].ToString();
-
-                    tempWrapper.card = tempCard;
-
-                    databaseList.Add(tempWrapper);
-                }
-
-                
-                connection.Close();
-            }
-            else
-            {
-                cardExists = false;
-            }
-
-            if(databaseList.Count != 0)
-            {
-                cardExists = true;
-                Add_Card_Button.Enabled = true;
-                Name_Textbox.ReadOnly = true;
-                populate(databaseList[0]);
-            }
-            else
-            {
-                Name_Textbox.Text = "Card not valid";
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            Enter();
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -485,80 +389,18 @@ namespace OCS_FOR_CSHARP
                 // Close();
             }
         }
-
+        
+        //called when a card is selected in searchbox
         private void SearchBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //shows delete button
             Remove_Card_Button.Enabled = true;
+
+            //shows add button
             Add_Card_Button.Enabled = true;
-            currentCard = foundCards[SearchBox.SelectedIndex];
 
-            Name_Textbox.Text = currentCard.card.name;
-            Card_Mana_Cost_TextBox.Text = currentCard.card.manaCost;
-            Card_Type_TextBox.Text = currentCard.card.type;
-            Card_Expansion_TextBox.Text = currentCard.card.setCode;
-            Card_Number_Textbox.Text = currentCard.card.number;
-
-            if (currentCard.card.subtypes != null)
-            {
-                Card_Additional_Label.Visible = true;
-                Card_Additional_TextBox.Visible = true;
-                for (int i = 0; i < currentCard.card.subtypes.Count; i++)
-                    Card_Additional_TextBox.Text += currentCard.card.subtypes[i] + " ";
-
-            }
-            else
-            {
-                Card_Additional_Label.Visible = false;
-                Card_Additional_TextBox.Visible = false;
-            }
-
-            if (currentCard.card.power != null)
-            {
-                Card_Power_Label.Visible = true;
-                Card_Power_TextBox.Visible = true;
-                Card_Power_TextBox.Text = currentCard.card.power;
-            }
-            else
-            {
-                Card_Power_Label.Visible = false;
-                Card_Power_TextBox.Visible = false;
-            }
-
-            if (currentCard.card.toughness != null)
-            {
-                Card_Toughness_Label.Visible = true;
-                Card_Toughness_TextBox.Visible = true;
-                Card_Toughness_TextBox.Text = currentCard.card.toughness;
-            }
-            else
-            {
-                Card_Toughness_Label.Visible = false;
-                Card_Toughness_TextBox.Visible = false;
-            }
-
-            if (currentCard.card.text != null)
-            {
-                Card_Description_Label.Visible = true;
-                Card_Description_TextBox.Visible = true;
-                Card_Description_TextBox.Text = currentCard.card.text;
-            }
-            else
-            {
-                Card_Description_Label.Visible = false;
-                Card_Description_TextBox.Visible = false;
-            }
-
-            if (currentCard.card.flavorText != null)
-            {
-                Card_Flavor_Text_Label.Visible = true;
-                Card_Flavor_Text_TextBox.Visible = true;
-                Card_Flavor_Text_TextBox.Text = currentCard.card.flavorText;
-            }
-            else
-            {
-                Card_Flavor_Text_Label.Visible = false;
-                Card_Flavor_Text_TextBox.Visible = false;
-            }
+            //populates card data
+            populate(foundCards[SearchBox.SelectedIndex]);
         }
     }
 }

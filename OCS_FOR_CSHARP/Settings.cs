@@ -15,31 +15,17 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Settings : Form
     {
-        // the list of users that will be used to populate the table
-        private List<userWrapper> users = new List<userWrapper>();
-        private userWrapper currentUser = new userWrapper();
-        Color[,] bgColors = new Color[3, 100];
+        private List<userWrapper> users = new List<userWrapper>(); //list of users that will be used to populate the table
+        private userWrapper currentUser = new userWrapper(); //currently selected user used for editing/deleting users
+        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer"); //creates connection to local postgreSQL database
 
+        //runs at form creation
         public Settings()
         {
             InitializeComponent();
             Populate_Settings_List();
-            //var position = this.PointToScreen(user_text_box.Location);
-            //position = user_settings_backpanel.PointToClient(position);
-            //user_text_box.Parent = user_settings_backpanel;
-            //user_text_box.Location = position;
-            //user_text_box.Visible = true;
-
         }
 
-        NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        
 
         private void DefualtButton_Click(object sender, EventArgs e)
         {
@@ -58,37 +44,46 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        // Autopopulate with a list of current users that exist in the system
+        /* Autopopulates users table a list of current users that exist in the system
+         * resets table size
+         * gets list of users
+         * sets length that the table should be displaying
+         * creates and populates a row for each user  in the table
+         */
         public void Populate_Settings_List()
         {
             //Users_Panel.Visible = false;
-            //Clear table and redraw
+            //Clears table and redraws it
             Users_Panel.Controls.Clear();
-            //Users_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
             Users_Panel.RowCount = 0;
             Users_Panel.Dock = DockStyle.None;
             Users_Panel.AutoSize = true;
             Users_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
 
+            //retrieves list of users from database
             users = Get_Users();
 
-            int displayRange = users.Count;
-
+            //sets length that the table should be displaying
+            int displayRange = users.Count; //holds 
             Users_Panel.RowCount = displayRange;
 
+            //iterates through list of users and creates new rows for them
             for (int i = 0; i < displayRange; i++)
             {
+                //adds a new row to the users panel
                 Users_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 50 });
-                //Users_Panel.Controls.Add(new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.None }, 0, i); //No onger need checkboxes for user management table
 
+                //populates first name of user
                 Label tempLabel = new Label() { Text = users[i].first, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag =  users[i]};
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Users_Panel.Controls.Add(tempLabel, 0, i);
 
+                //populates last name of user
                 tempLabel = new Label() { Text = users[i].last, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = users[i] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Users_Panel.Controls.Add(tempLabel , 1, i);
 
+                //populates priveledge level of user
                 tempLabel = new Label() { Text = users[i].prvlg, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = users[i] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Users_Panel.Controls.Add(tempLabel , 2, i);
@@ -97,6 +92,11 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        /*
+         * retrieves all users from the database using npgsql
+         * populates list with row data
+         * returns list
+         */
         private List<userWrapper> Get_Users()
         {
             List<userWrapper> users = new List<userWrapper>();
@@ -124,22 +124,27 @@ namespace OCS_FOR_CSHARP
 
             return users;
         }
-        
-        private void button1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void Settings_Load(object sender, EventArgs e)
         {
 
         }
 
-        //Creates database by downloading JSON files, parcing them and inserting them into POSTGRES DATABASE.
+        /*Populates card table with all cards from online JSON files
+         * lets user know that download is in progress
+         * creates web client and gets json files
+         * iterates through list of sets
+         * parses JSON file of each set for cards in set
+         * opens connection to the database
+         * iterates through list of cards and creates one or more tuples for each card
+         * closes database connection
+         */
         private void Load_Card_Button_Click(object sender, EventArgs e)
         {
+            //shows that download is in progress
             downloadLabel.Visible = true;
 
+            //creates webclient
             using (var webc = new WebClient())
             {
                 //string containing set list json from URL
@@ -188,9 +193,10 @@ namespace OCS_FOR_CSHARP
                             //  - Chris                                                                                          //
                             /////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-
+                            //if card is from a promo set 
                             if(currentCardList.type == "promo")
                             {
+                                //creates newcard command
                                 using (var cmd = new NpgsqlCommand("newCard", connection))
                                 {
                                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -319,8 +325,10 @@ namespace OCS_FOR_CSHARP
                                     cmd.ExecuteScalar();
                                 }
                             }
+                            //if card is from a masterpiece set
                             else if(currentCardList.type == "masterpiece")
                             {
+                                //creates newcard command
                                 using (var cmd = new NpgsqlCommand("newCard", connection))
                                 {
                                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -449,8 +457,10 @@ namespace OCS_FOR_CSHARP
                                     cmd.ExecuteScalar();
                                 }
                             }
+                            //if card can be a foil
                             else if(currentCardList.cards[j].hasFoil)
                             {
+                                //creates newcard command
                                 using (var cmd = new NpgsqlCommand("newCard", connection))
                                 {
                                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -580,8 +590,10 @@ namespace OCS_FOR_CSHARP
                                 }
                             }
 
+                            //if card can be non-foil
                             if(currentCardList.cards[j].hasNonFoil)
                             {
+                                //creates newcard command
                                 using (var cmd = new NpgsqlCommand("newCard", connection))
                                 {
                                     cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -717,11 +729,13 @@ namespace OCS_FOR_CSHARP
                     }
                 }
                 
+                //hides status panel
                 downloadLabel.Visible = false;
             }   
             
         }
 
+        //opens the create user dialogue
         private void newUserButton_Click(object sender, EventArgs e)
         {
             var newForm = new Create_User();
@@ -730,71 +744,52 @@ namespace OCS_FOR_CSHARP
 
         private void editUserButton_Click(object sender, EventArgs e)
         {
-
-
-            
-
+            ////////////////////ADD EDIT USER FUNCTIONALITY///////////////////////////
         }
 
-        private void login_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel3_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        /*Click event to select users from table
+         */
         private void tempLabel_Click(object sender, EventArgs e)
         {
+            //create temporary value to hold sender
             Label temp = (Label)sender;
+
+            //set current user
             currentUser = (userWrapper) temp.Tag;
+
+            //gets row number of user in table
             int rowNumber = Users_Panel.GetRow((Label)sender);
-            for (int i = 0; i < Users_Panel.RowCount; i++) // Cycle through rows
+
+            // Cycle through rows
+            for (int i = 0; i < Users_Panel.RowCount; i++) 
             {
                 if (i == rowNumber)
                 {
-                    for (int j = 0; j < 3; j++) // Cycle through columns of selected row
+                    // Cycle through columns of selected row
+                    for (int j = 0; j < Users_Panel.ColumnCount; j++) 
                     {
+                        //set color to selected color
                         Users_Panel.GetControlFromPosition(j, rowNumber).BackColor = Color.FromArgb(65, 70, 78);
                     }
                 }
                 else
                 {
-                    for (int j = 0; j < 3; j++) // Cycle through columns of other rows
+                    // Cycle through columns of other rows
+                    for (int j = 0; j < Users_Panel.ColumnCount; j++) 
                     {
+                        //reset color
                         Users_Panel.GetControlFromPosition(j, i).BackColor = Color.FromArgb(45, 49, 57);
                     }
                 }
             }
+
+            //refreshes table
             Users_Panel.Refresh();
         }
 
         private void dropUser_Click(object sender, EventArgs e)
         {
-
+            /////////////////////////ADD DELETE USER FUNCTIONALITY////////////////////////////////
         }
     }
-
-    public class userWrapper
-    {
-        public string first, last, prvlg;
-
-        public userWrapper()
-        {
-            first = "";
-            last = "";
-            prvlg = "";
-        }
-
-        ~userWrapper()
-        {
-        }
-    };
 }

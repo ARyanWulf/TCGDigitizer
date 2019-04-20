@@ -126,7 +126,6 @@
             this.fname_textbox.Name = "fname_textbox";
             this.fname_textbox.Size = new System.Drawing.Size(413, 26);
             this.fname_textbox.TabIndex = 6;
-            this.fname_textbox.TextChanged += new System.EventHandler(this.fname_textbox_TextChanged);
             // 
             // lname_textbox
             // 
@@ -137,7 +136,6 @@
             this.lname_textbox.Name = "lname_textbox";
             this.lname_textbox.Size = new System.Drawing.Size(413, 26);
             this.lname_textbox.TabIndex = 7;
-            this.lname_textbox.TextChanged += new System.EventHandler(this.lname_textbox_TextChanged);
             // 
             // passconf_textbox
             // 
@@ -148,7 +146,6 @@
             this.passconf_textbox.Name = "passconf_textbox";
             this.passconf_textbox.Size = new System.Drawing.Size(413, 26);
             this.passconf_textbox.TabIndex = 11;
-            this.passconf_textbox.TextChanged += new System.EventHandler(this.passconf_textbox_TextChanged);
             // 
             // pass_textbox
             // 
@@ -159,7 +156,6 @@
             this.pass_textbox.Name = "pass_textbox";
             this.pass_textbox.Size = new System.Drawing.Size(413, 26);
             this.pass_textbox.TabIndex = 10;
-            this.pass_textbox.TextChanged += new System.EventHandler(this.pass_textbox_TextChanged);
             // 
             // username_textbox
             // 
@@ -170,7 +166,6 @@
             this.username_textbox.Name = "username_textbox";
             this.username_textbox.Size = new System.Drawing.Size(413, 26);
             this.username_textbox.TabIndex = 9;
-            this.username_textbox.TextChanged += new System.EventHandler(this.username_textbox_TextChanged);
             // 
             // Cancel_Button
             // 
@@ -213,7 +208,6 @@
             this.privilege_dropdown.Name = "privilege_dropdown";
             this.privilege_dropdown.Size = new System.Drawing.Size(396, 24);
             this.privilege_dropdown.TabIndex = 14;
-            this.privilege_dropdown.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // error_textbox
             // 
@@ -229,7 +223,6 @@
             this.error_textbox.Size = new System.Drawing.Size(497, 44);
             this.error_textbox.TabIndex = 15;
             this.error_textbox.Visible = false;
-            this.error_textbox.TextChanged += new System.EventHandler(this.error_textbox_TextChanged);
             // 
             // Create_User
             // 
