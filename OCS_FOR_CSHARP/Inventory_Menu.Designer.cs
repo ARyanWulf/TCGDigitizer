@@ -192,7 +192,7 @@
             this.Inventory_Table_Header.Margin = new System.Windows.Forms.Padding(0);
             this.Inventory_Table_Header.Name = "Inventory_Table_Header";
             this.Inventory_Table_Header.RowCount = 1;
-            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 83F));
+            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 86F));
             this.Inventory_Table_Header.Size = new System.Drawing.Size(968, 40);
             this.Inventory_Table_Header.TabIndex = 11;
             this.Inventory_Table_Header.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
@@ -773,10 +773,13 @@
             this.Controls.Add(this.CardPanel);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.Add_Card_Button);
+            this.KeyPreview = true;
             this.Name = "Inventory_Menu";
             this.Text = "TCG Digitizer - Inventory";
             this.Load += new System.EventHandler(this.Inventory_Menu_Load);
             this.SizeChanged += new System.EventHandler(this.Inventory_Menu_SizeChanged_1);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Inventory_Menu_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Inventory_Menu_KeyUp);
             this.Inventory_Table_Header.ResumeLayout(false);
             this.CardPanel.ResumeLayout(false);
             this.Card_Panel_Table.ResumeLayout(false);
