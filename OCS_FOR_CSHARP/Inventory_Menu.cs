@@ -22,6 +22,8 @@ namespace OCS_FOR_CSHARP
 
         public int display_lower;
         public int display_upper;
+        public bool ctrlPressed = false;
+        public bool shiftPressed = false;
         private List<cardWrapper> cards = new List<cardWrapper>(); //holds cards in inventory
         private List<cardWrapper> needImageQueue = new List<cardWrapper>(); //holds cards that need images
         private TableLayoutPanel tempTable;
@@ -319,32 +321,32 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
 
                 // card name
-                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
+                Label tempLabel = new Label() { Text = cards[cardIndex].card.name, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 0, i);
 
                 // database card type
-                tempLabel = new Label() { Text = cards[cardIndex].card.type, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.type, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 1, i);
 
                 // database card set expansion
-                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.setCode, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 2, i);
 
                 // database card number/multiverse ID
-                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.number.ToString(), TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 3, i);
 
                 // database card mana
-                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].card.manaCost, TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 4, i);
 
                 // database card date added
-                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Tag = cards[cardIndex] };
+                tempLabel = new Label() { Text = cards[cardIndex].count.ToString(), TextAlign = ContentAlignment.MiddleCenter, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), Tag = cards[cardIndex] };
                 tempLabel.Click += new EventHandler(tempLabel_Click);
                 Card_Table_Panel.Controls.Add(tempLabel, 5, i);
                 cardIndex++;
@@ -412,7 +414,7 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        /*private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             var temp = sender as CheckBox;
 
@@ -438,7 +440,7 @@ namespace OCS_FOR_CSHARP
                     cb.Checked = false;
                 }
             }
-        }
+        }*/
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -461,6 +463,57 @@ namespace OCS_FOR_CSHARP
             //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
             currentCard = (cardWrapper)temp.Tag;
             populate((cardWrapper)temp.Tag);
+            int rowNumber = Card_Table_Panel.GetRow((Label)sender);
+            if (ctrlPressed)
+            {
+                for (int i = 0; i < Card_Table_Panel.RowCount; i++) // Cycle through rows
+                {
+                    if (i == rowNumber && Card_Table_Panel.GetControlFromPosition(0, i).BackColor == Color.FromArgb(45, 49, 57))
+                    {
+                        for (int j = 0; j < Card_Table_Panel.ColumnCount; j++) // Cycle through columns of selected row
+                        {
+                            Card_Table_Panel.GetControlFromPosition(j, rowNumber).BackColor = Color.FromArgb(65, 70, 78);
+                        }
+                        selectedCards.Add(currentCard);
+                        i = Card_Table_Panel.RowCount - 1;
+                    }
+                    else if (i == rowNumber && Card_Table_Panel.GetControlFromPosition(0, i).BackColor == Color.FromArgb(65, 70, 78))
+                    {
+                        for (int j = 0; j < Card_Table_Panel.ColumnCount; j++) // Cycle through columns of selected row
+                        {
+                            Card_Table_Panel.GetControlFromPosition(j, rowNumber).BackColor = Color.FromArgb(45, 49, 57);
+                        }
+                        if (selectedCards.Contains(currentCard))
+                        {
+                            selectedCards.Remove(currentCard);
+                        }
+                        i = Card_Table_Panel.RowCount - 1;
+                    }
+                }
+            }
+            else
+            {
+                selectedCards.Clear();
+                for (int i = 0; i < Card_Table_Panel.RowCount; i++) // Cycle through rows
+                {
+                    if (i == rowNumber)
+                    {
+                        for (int j = 0; j < Card_Table_Panel.ColumnCount; j++) // Cycle through columns of selected row
+                        {
+                            Card_Table_Panel.GetControlFromPosition(j, rowNumber).BackColor = Color.FromArgb(65, 70, 78);
+                        }
+                        selectedCards.Add(currentCard);
+                    }
+                    else
+                    {
+                        for (int j = 0; j < Card_Table_Panel.ColumnCount; j++) // Cycle through columns of other rows
+                        {
+                            Card_Table_Panel.GetControlFromPosition(j, i).BackColor = Color.FromArgb(45, 49, 57);
+                        }
+                    }
+                }
+            }
+            Card_Table_Panel.Refresh();
         }
 
         public void populate(cardWrapper input)
@@ -646,6 +699,32 @@ namespace OCS_FOR_CSHARP
         {
 
         }
+
+        private void Inventory_Menu_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode == Keys.ControlKey)
+            {
+                ctrlPressed = true;
+            }
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                shiftPressed = true;
+            }
+        }
+
+        private void Inventory_Menu_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+            {
+                ctrlPressed = false;
+            }
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+                shiftPressed = false;
+            }
+        }
+
+        
     }
 }
 
