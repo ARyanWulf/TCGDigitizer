@@ -1,5 +1,6 @@
 ﻿using AForge.Video;
 using AForge.Video.DirectShow;
+using AForge.Imaging;
 
 using System;
 using System.Collections.Generic;
@@ -19,11 +20,7 @@ using MtgApiManager.Lib.Model;
 using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Utility;
 using MtgApiManager.Lib.Dto;
-
-
-
-
-
+using AForge.Imaging.Filters;
 
 namespace OCS_FOR_CSHARP
 {
@@ -58,6 +55,7 @@ namespace OCS_FOR_CSHARP
             flowLayoutPanel3.HorizontalScroll.Visible = false;
             flowLayoutPanel3.HorizontalScroll.Maximum = 0;
             flowLayoutPanel3.AutoScroll = true;
+            
             //var position = this.PointToScreen(Card_Boarder.Location);
             //position = Cam_Picture_Box.PointToClient(position);
             //Card_Boarder.Parent = Cam_Picture_Box;
@@ -98,7 +96,7 @@ namespace OCS_FOR_CSHARP
         {
             try
             {
-                Cam_Picture_Box.Image = (Image)e.Frame.Clone();
+                Cam_Picture_Box.Image = (System.Drawing.Image)e.Frame.Clone();
             }
             catch (Exception ex) { }
         }
@@ -236,7 +234,48 @@ namespace OCS_FOR_CSHARP
                     Bitmap originalImg = (Bitmap)Cam_Picture_Box.Image.Clone();
                     //rotate 90 degrees
                     originalImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
-    
+
+                    Bitmap bmp = originalImg;
+                    Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
+                    Invert ifilter = new Invert();
+                    BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
+                    bmp = gfilter.Apply(bmp);
+                    thfilter.ApplyInPlace(bmp);
+                    ifilter.ApplyInPlace(bmp);
+
+
+                    BlobCounter bc = new BlobCounter();
+
+                    bc.FilterBlobs = true;
+                    bc.MinHeight = (int)(originalImg.Height *.50);
+                    bc.MinWidth = (int)(originalImg.Width * .50);
+                    
+                    bc.ProcessImage(bmp);
+
+                    Rectangle[] rect = bc.GetObjectsRectangles();
+                    int largestRect = 0;
+                    int curLargestSize = 0;
+                    if (rect != null)
+                    {
+                        for (int curRect = 0; curRect < rect.Count(); curRect++)
+                        {
+                            if (rect[curRect].Width * rect[curRect].Height > curLargestSize && rect[curRect].Width < originalImg.Width*.97 && rect[curRect].Height < originalImg.Height*.97)
+                            {
+                                curLargestSize = rect[curRect].Width * rect[curRect].Height;
+                                largestRect = curRect;
+                            }
+                        }
+                    }
+
+                    //Bitmap that will store altered image (width,height)
+                    Bitmap rectImage = new Bitmap(rect[largestRect].Width, rect[largestRect].Height);
+
+                    //blank bitmap to graphics object. ready for changes
+                    Graphics graphicImage = Graphics.FromImage(rectImage);
+
+                    //original image cropped to two different images
+                    graphicImage.DrawImage(originalImg, rect[largestRect].X, rect[largestRect].Y, rect[largestRect], GraphicsUnit.Pixel);
+
                     //Dim of saved image
                     int xStart = 1;
                     int yStart = 1;
@@ -244,6 +283,8 @@ namespace OCS_FOR_CSHARP
                     int yEnd = originalImg.Height - yStart;
                     int xWidth = (xEnd - xStart);
                     int yHeight = (yEnd - yStart);
+                    
+
 
                     //Establishing size of crop area based off original image (x,y,width,height)
                     //All percents are measured/calulated ratios based off card dimensions
@@ -262,7 +303,7 @@ namespace OCS_FOR_CSHARP
                     Adjust_Tesseract_Img(15, nameHeaderBitmap);
 
                     //displays original image in picture preview box
-                    Display_Picture_Box.Image = originalImg;
+                    Display_Picture_Box.Image = rectImage;//originalImg;
                     //displays name header image in name header picture box
                     Name_Header_Pic_Box.Image = nameHeaderBitmap;
 
