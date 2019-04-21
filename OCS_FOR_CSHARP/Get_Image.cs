@@ -310,8 +310,14 @@ namespace OCS_FOR_CSHARP
                     graphicIBWImage.DrawImage(invertBWImg, new Rectangle(0, 0, rectImage.Width, rectImage.Height), rect[largestRect], GraphicsUnit.Pixel);
 
                     
-                    int[,,] edgePoints = new int[2,3,2];
-                    Display_Picture_Box.Image = bmpOutline;
+                    ////////////////////////////////////
+                    // CARD EDGE DETECTION ALOGORITHM //
+                    ////////////////////////////////////
+
+                    int[,,] edgePoints = new int[4,3,2];
+                    Display_Picture_Box.Image = bmpOutline;//TEMP
+
+                    //Side Edge Detection Algorithm
                     for (int yIndex = 0; yIndex < 3; yIndex++)
                     {
                         int y = ((yIndex + 1) * (int)(rectIBWImage.Height / 4));
@@ -319,19 +325,21 @@ namespace OCS_FOR_CSHARP
                         bool edgeFound = false;
                         int x = 0;
                         int curColor = 0;
+
+                        //Left side edge detection
                         while (!edgeFound && x < rectIBWImage.Width-1)
                         {
                             Color pixel = rectIBWImage.GetPixel(x, y);
                             curColor = pixel.R + pixel.G + pixel.B;
-                            if (curColor > 600)
+                            if (curColor > 600)//White
                             {
                                 edgePoints[0, yIndex, 0] = x;
-                                edgePoints[0, yIndex, 1] = y;
+                                edgePoints[0, yIndex, 1] = -y;
                                 edgeFound = true;
                             }
-                            else
+                            else//Black
                             {
-                                x += 2;
+                                x += 1;
                             }
 
                         }
@@ -339,17 +347,19 @@ namespace OCS_FOR_CSHARP
                         edgeFound = false;
                         x = rectIBWImage.Width - 1;
                         curColor = 0;
+
+                        //Right side edge detection
                         while (!edgeFound && x > 0)
                         {
                             Color pixel = rectIBWImage.GetPixel(x, y);
                             curColor = pixel.R + pixel.G + pixel.B;
-                            if (curColor > 600)
+                            if (curColor > 600)//White
                             {
                                 edgePoints[1, yIndex, 0] = x;
-                                edgePoints[1, yIndex, 1] = y;
+                                edgePoints[1, yIndex, 1] = -y;
                                 edgeFound = true;
                             }
-                            else
+                            else//Black
                             {
                                 x -= 1;
                             }
@@ -358,23 +368,134 @@ namespace OCS_FOR_CSHARP
 
                     }
 
-                    double avgAngle = 0.0;
-                    bool clockwise = false;
-                    for (int i = 0; i < 2; i++)
+                    //Top/Bottom Edge Detection Algorithm
+                    for (int xIndex = 0; xIndex < 3; xIndex++)
+                    {
+                        int x = ((xIndex + 1) * (int)(rectIBWImage.Width / 4));
+
+                        bool edgeFound = false;
+                        int y = 0;
+                        int curColor = 0;
+
+                        //Top edge detection
+                        while (!edgeFound && x < rectIBWImage.Height - 1)
+                        {
+                            Color pixel = rectIBWImage.GetPixel(x, y);
+                            curColor = pixel.R + pixel.G + pixel.B;
+                            if (curColor > 600)//White
+                            {
+                                edgePoints[2, xIndex, 0] = x;
+                                edgePoints[2, xIndex, 1] = -y;
+                                edgeFound = true;
+                            }
+                            else//Black
+                            {
+                                y += 1;
+                            }
+
+                        }
+
+                        edgeFound = false;
+                        y = rectIBWImage.Height - 1;
+                        curColor = 0;
+
+                        //Bottom edge detection
+                        while (!edgeFound && y > 0)
+                        {
+                            Color pixel = rectIBWImage.GetPixel(x, y);
+                            curColor = pixel.R + pixel.G + pixel.B;
+                            if (curColor > 600)//White
+                            {
+                                edgePoints[3, xIndex, 0] = x;
+                                edgePoints[3, xIndex, 1] = -y;
+                                edgeFound = true;
+                            }
+                            else//Black
+                            {
+                                y -= 1;
+                            }
+
+                        }
+
+                    }
+
+                    //0:left, 1:Right, 2:Top, 3:Bottom
+                    double[] avgAngle = new double[4];//REMOVE?
+                    double[] avgSlope = new double[4];
+                    double[] yIntercept = new double[4];
+
+                    //Will be TL, TR, BR, BL
+                    List<AForge.IntPoint> cardCorners = new List<AForge.IntPoint>();
+
+
+                    for (int i = 0; i < 4; i++)
                     {
                         for (int j = 0; j < 2; j++)
                         {
-                            double slope = (edgePoints[i, j, 1]-edgePoints[i, j+1, 1])/(edgePoints[i, j, 0]-edgePoints[i, j+1, 0]);
-                            avgAngle = avgAngle + Math.Atan(Math.Abs(slope));
-                            if (i == 0 && slope > 0.0)
-                            {
-                                clockwise = true;
-                            }
+                            double slope = ((double)edgePoints[i, j, 1]- (double)edgePoints[i, j+1, 1])/((double)edgePoints[i, j, 0]- (double)edgePoints[i, j+1, 0]);
+                            avgAngle[i] = avgAngle[i] + Math.Atan(slope);//REMOVE?
+                            avgSlope[i] = avgSlope[i] + slope;
+ 
+                        }
+                        avgAngle[i] /= 2.0;
+                        avgSlope[i] /= 2.0;
+                        //  b = y - (m * x)
+                        yIntercept[i] = (double)edgePoints[i, 1, 1] - (avgSlope[i] * (double)edgePoints[i, 1, 0]);
+                    }
+
+                    //02, 12, 13, 03
+                    int virtEdge = 0;
+                    for (int horzEdge = 2; horzEdge < 4;)
+                    {
+                        double xDub = ((yIntercept[horzEdge]-yIntercept[virtEdge])/(avgSlope[virtEdge]-avgSlope[horzEdge]));
+                        int yCorner = (int)(-((avgSlope[horzEdge] * xDub) + yIntercept[horzEdge]));
+                        int xCorner = (int)xDub;
+
+                        if (yCorner >= 0 && xCorner >= 0)//Check for too large
+                        {
+                            cardCorners.Add(new AForge.IntPoint(xCorner, yCorner));
+                        }
+
+                        //even
+                        if ((virtEdge + horzEdge)% 2 == 0)
+                        {
+                            virtEdge = (virtEdge + 1) % 2;
+                        }
+                        else//odd
+                        {
+                            horzEdge += 1;
                         }
                     }
+
+                    Bitmap trans_Inbw_img;
+                    Bitmap trans_Color_img;
+                    if (cardCorners.Count == 4)
+                    {
+                        QuadrilateralTransformation filter = new QuadrilateralTransformation(cardCorners, rectImage.Width, rectImage.Height);
+                        trans_Inbw_img = filter.Apply(rectIBWImage);
+                        trans_Color_img = filter.Apply(rectImage);
+                    }
+                    else
+                    {
+                        trans_Inbw_img = rectIBWImage;
+                        trans_Color_img = rectImage;
+                    }
+
+
+
+
+
+
+
+
+
+
+
+                    /*
+
                     avgAngle = avgAngle / 4;
-                    if (clockwise ==  false)
-                        avgAngle *= -1;
+
+                    avgAngle *= -1;
 
                     Bitmap tiltFixedIBWImg = new Bitmap(rectIBWImage.Width, rectIBWImage.Height);
                     using (Graphics g = Graphics.FromImage(tiltFixedIBWImg))
@@ -388,7 +509,7 @@ namespace OCS_FOR_CSHARP
                         // Draw the image on the bitmap
                         g.DrawImage(rectIBWImage, new System.Drawing.Point(0, 0));
                     }
-
+                    */
                     
 
 
@@ -401,8 +522,8 @@ namespace OCS_FOR_CSHARP
                     //Dim of saved image
                     int xStart = 1;
                     int yStart = 1;
-                    int xEnd = originalImg.Width - xStart;
-                    int yEnd = originalImg.Height - yStart;
+                    int xEnd = trans_Color_img.Width - xStart;
+                    int yEnd = trans_Color_img.Height - yStart;
                     int xWidth = (xEnd - xStart);
                     int yHeight = (yEnd - yStart);
                     
@@ -410,7 +531,7 @@ namespace OCS_FOR_CSHARP
 
                     //Establishing size of crop area based off original image (x,y,width,height)
                     //All percents are measured/calulated ratios based off card dimensions
-                    Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.055/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.06/*0.05037037*/));
+                    Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.050/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.045/*0.05037037*/));
                     
                     //Bitmap that will store altered image (width,height)
                     Bitmap nameHeaderBitmap = new Bitmap(nameHeaderCropRect.Width, nameHeaderCropRect.Height);
@@ -419,13 +540,13 @@ namespace OCS_FOR_CSHARP
                     Graphics nameHeadGraphics = Graphics.FromImage(nameHeaderBitmap);
                     
                     //original image cropped to two different images
-                    nameHeadGraphics.DrawImage(originalImg, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
+                    nameHeadGraphics.DrawImage(trans_Color_img, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
 
                     //calls picture alteration function to increase contrast and adjust image color
                     Adjust_Tesseract_Img(15, nameHeaderBitmap);
 
                     //displays original image in picture preview box
-                    Display_Picture_Box.Image = tiltFixedIBWImg;//bmpOutline;//bmp;//rectImage;//originalImg;//<-------------------------------------------------------------------------------
+                    Display_Picture_Box.Image = trans_Inbw_img;//bmpOutline;//bmp;//rectImage;//originalImg;//<-------------------------------------------------------------------------------
                     //Display_Picture_Box.Image = tiltFixedIBWImg;
                     //displays name header image in name header picture box
                     Name_Header_Pic_Box.Image = nameHeaderBitmap;
