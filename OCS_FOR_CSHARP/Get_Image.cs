@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -235,30 +236,57 @@ namespace OCS_FOR_CSHARP
                     //rotate 90 degrees
                     originalImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
-                    Bitmap bmp = originalImg;
+                    Bitmap invertBWImg = originalImg;
                     Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
                     Invert ifilter = new Invert();
                     BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
-                    bmp = gfilter.Apply(bmp);
-                    thfilter.ApplyInPlace(bmp);
-                    ifilter.ApplyInPlace(bmp);
+                    invertBWImg = gfilter.Apply(invertBWImg);
+                    thfilter.ApplyInPlace(invertBWImg);
+                    ifilter.ApplyInPlace(invertBWImg);
 
 
                     BlobCounter bc = new BlobCounter();
+                    BlobCounter textBC = new BlobCounter();
 
                     bc.FilterBlobs = true;
-                    bc.MinHeight = (int)(originalImg.Height *.50);
-                    bc.MinWidth = (int)(originalImg.Width * .50);
+                    bc.MinHeight = (int)(originalImg.Height *.25);
+                    bc.MinWidth = (int)(originalImg.Width * .25);
                     
-                    bc.ProcessImage(bmp);
+                    bc.ProcessImage(invertBWImg);
+                    textBC.ProcessImage(invertBWImg);
 
+                    Blob[] blobs = bc.GetObjectsInformation();
+                    List<List<AForge.IntPoint>> iPointList = new List<List<AForge.IntPoint>>();
+                    for (int i = 0; i < blobs.Count(); i++)
+                    {
+                        iPointList.Add(bc.GetBlobsEdgePoints(blobs[i]));
+                    }
                     Rectangle[] rect = bc.GetObjectsRectangles();
+                    Rectangle[] textRect = textBC.GetObjectsRectangles();
+                    
                     int largestRect = 0;
                     int curLargestSize = 0;
+                    Pen pen = new Pen(Color.Red, 2);
+                    pen.Alignment = PenAlignment.Inset;
+
+                    Bitmap bmpOutline = new Bitmap(invertBWImg.Width, invertBWImg.Height);
+                    Graphics bwGraphic = Graphics.FromImage(bmpOutline);
+                    Rectangle bwrect = new Rectangle(0, 0, invertBWImg.Width, invertBWImg.Height);
+                    bwGraphic.DrawImage(invertBWImg, bwrect.X, bwrect.Y, bwrect, GraphicsUnit.Pixel);
+
+                    if (textRect != null)
+                    {
+                        for (int curRect = 0; curRect < textRect.Count(); curRect++)
+                        {
+                            bwGraphic.DrawRectangle(pen, textRect[curRect]);
+
+                        }
+                    }
                     if (rect != null)
                     {
                         for (int curRect = 0; curRect < rect.Count(); curRect++)
                         {
+                            //bwGraphic.DrawRectangle(pen, rect[curRect]);
                             if (rect[curRect].Width * rect[curRect].Height > curLargestSize && rect[curRect].Width < originalImg.Width*.97 && rect[curRect].Height < originalImg.Height*.97)
                             {
                                 curLargestSize = rect[curRect].Width * rect[curRect].Height;
@@ -267,14 +295,108 @@ namespace OCS_FOR_CSHARP
                         }
                     }
 
+
+
                     //Bitmap that will store altered image (width,height)
                     Bitmap rectImage = new Bitmap(rect[largestRect].Width, rect[largestRect].Height);
+                    Bitmap rectIBWImage = new Bitmap(rect[largestRect].Width, rect[largestRect].Height);
 
                     //blank bitmap to graphics object. ready for changes
                     Graphics graphicImage = Graphics.FromImage(rectImage);
+                    Graphics graphicIBWImage = Graphics.FromImage(rectIBWImage);
 
                     //original image cropped to two different images
-                    graphicImage.DrawImage(originalImg, rect[largestRect].X, rect[largestRect].Y, rect[largestRect], GraphicsUnit.Pixel);
+                    graphicImage.DrawImage(originalImg, new Rectangle(0, 0, rectImage.Width, rectImage.Height), rect[largestRect], GraphicsUnit.Pixel);
+                    graphicIBWImage.DrawImage(invertBWImg, new Rectangle(0, 0, rectImage.Width, rectImage.Height), rect[largestRect], GraphicsUnit.Pixel);
+
+                    
+                    int[,,] edgePoints = new int[2,3,2];
+                    Display_Picture_Box.Image = bmpOutline;
+                    for (int yIndex = 0; yIndex < 3; yIndex++)
+                    {
+                        int y = ((yIndex + 1) * (int)(rectIBWImage.Height / 4));
+
+                        bool edgeFound = false;
+                        int x = 0;
+                        int curColor = 0;
+                        while (!edgeFound && x < rectIBWImage.Width-1)
+                        {
+                            Color pixel = rectIBWImage.GetPixel(x, y);
+                            curColor = pixel.R + pixel.G + pixel.B;
+                            if (curColor > 600)
+                            {
+                                edgePoints[0, yIndex, 0] = x;
+                                edgePoints[0, yIndex, 1] = y;
+                                edgeFound = true;
+                            }
+                            else
+                            {
+                                x += 2;
+                            }
+
+                        }
+
+                        edgeFound = false;
+                        x = rectIBWImage.Width - 1;
+                        curColor = 0;
+                        while (!edgeFound && x > 0)
+                        {
+                            Color pixel = rectIBWImage.GetPixel(x, y);
+                            curColor = pixel.R + pixel.G + pixel.B;
+                            if (curColor > 600)
+                            {
+                                edgePoints[1, yIndex, 0] = x;
+                                edgePoints[1, yIndex, 1] = y;
+                                edgeFound = true;
+                            }
+                            else
+                            {
+                                x -= 1;
+                            }
+
+                        }
+
+                    }
+
+                    double avgAngle = 0.0;
+                    bool clockwise = false;
+                    for (int i = 0; i < 2; i++)
+                    {
+                        for (int j = 0; j < 2; j++)
+                        {
+                            double slope = (edgePoints[i, j, 1]-edgePoints[i, j+1, 1])/(edgePoints[i, j, 0]-edgePoints[i, j+1, 0]);
+                            avgAngle = avgAngle + Math.Atan(Math.Abs(slope));
+                            if (i == 0 && slope > 0.0)
+                            {
+                                clockwise = true;
+                            }
+                        }
+                    }
+                    avgAngle = avgAngle / 4;
+                    if (clockwise ==  false)
+                        avgAngle *= -1;
+
+                    Bitmap tiltFixedIBWImg = new Bitmap(rectIBWImage.Width, rectIBWImage.Height);
+                    using (Graphics g = Graphics.FromImage(tiltFixedIBWImg))
+                    {
+                        // Set the rotation point to the center in the matrix
+                        g.TranslateTransform(rectIBWImage.Width / 2, rectIBWImage.Height / 2);
+                        // Rotate
+                        g.RotateTransform((float)avgAngle);
+                        // Restore rotation point in the matrix
+                        g.TranslateTransform(-rectIBWImage.Width / 2, -rectIBWImage.Height / 2);
+                        // Draw the image on the bitmap
+                        g.DrawImage(rectIBWImage, new System.Drawing.Point(0, 0));
+                    }
+
+                    
+
+
+
+
+
+
+
 
                     //Dim of saved image
                     int xStart = 1;
@@ -303,7 +425,8 @@ namespace OCS_FOR_CSHARP
                     Adjust_Tesseract_Img(15, nameHeaderBitmap);
 
                     //displays original image in picture preview box
-                    Display_Picture_Box.Image = rectImage;//originalImg;
+                    Display_Picture_Box.Image = tiltFixedIBWImg;//bmpOutline;//bmp;//rectImage;//originalImg;//<-------------------------------------------------------------------------------
+                    //Display_Picture_Box.Image = tiltFixedIBWImg;
                     //displays name header image in name header picture box
                     Name_Header_Pic_Box.Image = nameHeaderBitmap;
 

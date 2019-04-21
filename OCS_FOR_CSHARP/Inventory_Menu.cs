@@ -202,7 +202,7 @@ namespace OCS_FOR_CSHARP
         public void refreshTable()
         {
             Card_Table_Panel.Visible = false;
-
+            
             //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
             Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
