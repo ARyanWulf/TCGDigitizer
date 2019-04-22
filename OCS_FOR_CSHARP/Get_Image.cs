@@ -22,6 +22,7 @@ using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Utility;
 using MtgApiManager.Lib.Dto;
 using AForge.Imaging.Filters;
+using System.IO;
 
 namespace OCS_FOR_CSHARP
 {
@@ -689,14 +690,19 @@ namespace OCS_FOR_CSHARP
 
                     //will hold tesseract return string
                     string textBoxString;
-                    TesseractEngine ocr = new TesseractEngine("./tessdata", "eng", EngineMode.TesseractAndCube);
+
+                    string tesseractPath = Path.GetFullPath(Path.Combine(System.IO.Directory.GetCurrentDirectory(), @"..\..\"))+"Tesseract\\tessdata"; 
+                    TesseractEngine ocr = new TesseractEngine(tesseractPath, "eng", EngineMode.TesseractAndCube);
                     var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
                     textBoxString = page.GetText();//gets tesseract text
+
+
                     textBox1.Text = textBoxString;
                     textBoxString = textBoxString.Replace("â€”", "-");//removes endline characters
                     textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
                     textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                     textBoxString = textBoxString.Trim(' ');//removes spaces
+
                     textBox1.Text = textBoxString;
                     CardName.Text = textBoxString;
 
