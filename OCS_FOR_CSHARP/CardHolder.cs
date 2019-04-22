@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,7 +27,17 @@ namespace OCS_FOR_CSHARP
     enum DBinvent { id, card_id, inv_count};
     //=======================================================================
 
+    public class CharColor
+    {
+        public char colorChar { get; set; }
+        public Color cardColor { get; set; }
 
+        public CharColor(char ch, Color c)
+        {
+            colorChar = ch;
+            cardColor = Color.FromArgb(c.A, c.R, c.G, c.B);
+        }
+    }
 
 
     //=======================================================================

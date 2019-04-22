@@ -89,6 +89,7 @@ namespace OCS_FOR_CSHARP
             else
             {
                 frame.NewFrame += new AForge.Video.NewFrameEventHandler(NewFrame_event);
+                
                 frame.Start();
             }
         }
@@ -97,6 +98,7 @@ namespace OCS_FOR_CSHARP
         {
             try
             {
+                e.Frame.RotateFlip(RotateFlipType.Rotate90FlipNone);
                 Cam_Picture_Box.Image = (System.Drawing.Image)e.Frame.Clone();
             }
             catch (Exception ex) { }
@@ -234,7 +236,7 @@ namespace OCS_FOR_CSHARP
                     //picture from web cam
                     Bitmap originalImg = (Bitmap)Cam_Picture_Box.Image.Clone();
                     //rotate 90 degrees
-                    originalImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    //originalImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
                     Bitmap invertBWImg = originalImg;
                     Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
@@ -432,6 +434,7 @@ namespace OCS_FOR_CSHARP
                     {
                         for (int j = 0; j < 2; j++)
                         {
+
                             double slope = ((double)edgePoints[i, j, 1]- (double)edgePoints[i, j+1, 1])/((double)edgePoints[i, j, 0]- (double)edgePoints[i, j+1, 0]);
                             avgAngle[i] = avgAngle[i] + Math.Atan(slope);//REMOVE?
                             avgSlope[i] = avgSlope[i] + slope;
@@ -447,9 +450,29 @@ namespace OCS_FOR_CSHARP
                     int virtEdge = 0;
                     for (int horzEdge = 2; horzEdge < 4;)
                     {
-                        double xDub = ((yIntercept[horzEdge]-yIntercept[virtEdge])/(avgSlope[virtEdge]-avgSlope[horzEdge]));
-                        int yCorner = (int)(-((avgSlope[horzEdge] * xDub) + yIntercept[horzEdge]));
-                        int xCorner = (int)xDub;
+                        double xDub = 0.0;
+                        int yCorner = 0;
+                        int xCorner = 0;
+
+                        if (Double.IsInfinity(avgSlope[virtEdge]))
+                        {
+                            xCorner = edgePoints[virtEdge, 0, 0];
+                            yCorner = (int)(-((avgSlope[horzEdge] * xCorner) + yIntercept[horzEdge]));
+                            if (yCorner < 0)
+                            {
+                                yCorner = 0;
+                            }
+                            else if (yCorner > (rectIBWImage.Height))
+                            {
+                                yCorner = (-rectIBWImage.Height);
+                            }
+                         }
+                        else
+                        {
+                            xDub = ((yIntercept[horzEdge] - yIntercept[virtEdge]) / (avgSlope[virtEdge] - avgSlope[horzEdge]));
+                            yCorner = (int)(-((avgSlope[horzEdge] * xDub) + yIntercept[horzEdge]));
+                            xCorner = (int)xDub;
+                        }
 
                         if (yCorner >= 0 && xCorner >= 0)//Check for too large
                         {
@@ -531,29 +554,142 @@ namespace OCS_FOR_CSHARP
 
                     //Establishing size of crop area based off original image (x,y,width,height)
                     //All percents are measured/calulated ratios based off card dimensions
-                    Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.050/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.045/*0.05037037*/));
-                    
+                    Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.050/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.045/*0.05037037*/));
+                    Rectangle colorHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.024/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.015/*0.05037037*/));
+
                     //Bitmap that will store altered image (width,height)
                     Bitmap nameHeaderBitmap = new Bitmap(nameHeaderCropRect.Width, nameHeaderCropRect.Height);
-                    
+                    Bitmap colorHeaderBitmap = new Bitmap(colorHeaderCropRect.Width, colorHeaderCropRect.Height);
+
                     //blank bitmap to graphics object. ready for changes
                     Graphics nameHeadGraphics = Graphics.FromImage(nameHeaderBitmap);
-                    
+                    Graphics colorHeadGraphics = Graphics.FromImage(colorHeaderBitmap);
+
                     //original image cropped to two different images
                     nameHeadGraphics.DrawImage(trans_Color_img, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
+                    colorHeadGraphics.DrawImage(trans_Color_img, 0, 0, colorHeaderCropRect, GraphicsUnit.Pixel);
 
                     //calls picture alteration function to increase contrast and adjust image color
                     Adjust_Tesseract_Img(15, nameHeaderBitmap);
 
                     //displays original image in picture preview box
-                    Display_Picture_Box.Image = trans_Inbw_img;//bmpOutline;//bmp;//rectImage;//originalImg;//<-------------------------------------------------------------------------------
+                    Display_Picture_Box.Image = trans_Color_img;//bmpOutline;//bmp;//rectImage;//originalImg;//<-------------------------------------------------------------------------------
                     //Display_Picture_Box.Image = tiltFixedIBWImg;
+
+
+
                     //displays name header image in name header picture box
-                    Name_Header_Pic_Box.Image = nameHeaderBitmap;
+                    Name_Header_Pic_Box.Image = nameHeaderBitmap;//nameHeaderBitmap;
+
+                    double[] avgCardColor = new double[3];
+                    double count = 0;
+                    for (int x = 0; x < colorHeaderBitmap.Width; x += 2)
+                    {
+                        for (int y = 0; y < colorHeaderBitmap.Height; y += 2)
+                        {
+                            Color pixel = colorHeaderBitmap.GetPixel(x, y);
+                            avgCardColor[0] += pixel.R;
+                            avgCardColor[1] += pixel.G;
+                            avgCardColor[2] += pixel.B;
+                            count++;
+                        }
+                    }
+
+                    Color cardColor = Color.FromArgb(0, (int)(avgCardColor[0] / count), (int)(avgCardColor[1] / count), (int)(avgCardColor[2] / count));
+
+                    List<char>[] cardColorList = new List<char>[3];
+                    cardColorList[0] = new List<char>();
+                    cardColorList[1] = new List<char>();
+                    cardColorList[2] = new List<char>();
+
+                    //Average RGB values based on testing (Multi was not tested)
+
+                    CharColor[] avgTestedRGB = new CharColor[7];
+                    avgTestedRGB[0] = new CharColor('R', Color.FromArgb(0, 118, 70, 74));//Red
+                    avgTestedRGB[1] = new CharColor('G', Color.FromArgb(0, 100, 113, 113));//Green
+                    avgTestedRGB[2] = new CharColor('U', Color.FromArgb(0, 78, 107, 142));//Blue
+                    avgTestedRGB[3] = new CharColor('B', Color.FromArgb(0, 70, 63, 72));//Black
+                    avgTestedRGB[4] = new CharColor('W', Color.FromArgb(0, 134, 125, 116));//White
+                    avgTestedRGB[5] = new CharColor('N', Color.FromArgb(0, 125, 133, 142));//None
+                    avgTestedRGB[6] = new CharColor('M', Color.FromArgb(0, 194, 177, 93));//Multi (not confirmed)
+                    
+
+                    int range = 10;
+                    bool colorFound = false;
+                    bool rangeTooBig = false;
+                    bool lastLoop = false;
+                    List<char> theCardColor = new List<char>();
+
+                    while (!colorFound)
+                    {
+                        cardColorList[0].Clear();
+                        cardColorList[1].Clear();
+                        cardColorList[2].Clear();
+                        for (int colorDex = 0; colorDex < avgTestedRGB.Count(); colorDex++)
+                        {
+                            //Checks if average R is within range of tested colors
+                            if (avgTestedRGB[colorDex].cardColor.R - range < cardColor.R && avgTestedRGB[colorDex].cardColor.R + range > cardColor.R)
+                            {
+                                cardColorList[0].Add(avgTestedRGB[colorDex].colorChar);
+                            }
+                            //Checks if average G is within range of tested colors
+                            if (avgTestedRGB[colorDex].cardColor.G - range < cardColor.G && avgTestedRGB[colorDex].cardColor.G + range > cardColor.G)
+                            {
+                                cardColorList[1].Add(avgTestedRGB[colorDex].colorChar);
+                            }
+                            //Checks if average B is within range of tested colors
+                            if (avgTestedRGB[colorDex].cardColor.B - range < cardColor.B && avgTestedRGB[colorDex].cardColor.B + range > cardColor.B)
+                            {
+                                cardColorList[2].Add(avgTestedRGB[colorDex].colorChar);
+                            }
+                        }
+                        theCardColor = cardColorList[0].Intersect(cardColorList[1].Intersect(cardColorList[2].ToList())).ToList();
+                        if (theCardColor.Contains('N'))
+                        {
+
+                        }
+                        if (theCardColor.Count() == 1)
+                        {
+                            colorFound = true;
+                        }
+                        else if (theCardColor.Count() == 0)
+                        {
+                            if (!rangeTooBig)
+                            {
+                                range += 5;
+                            }
+                            else
+                            {
+                                range += 1;
+                                lastLoop = true;
+                            }
+                        }
+                        else if (lastLoop == true)
+                        {
+                            colorFound = true;
+                        }
+                        else
+                        {
+                            range -= 1;
+                            rangeTooBig = true;
+                        }
+
+                    }
+
+                    //Cards with no color and cards that are green are too close on RGB spectrum
+                    if (theCardColor.Contains('N') && !theCardColor.Contains('W'))
+                    {
+                        theCardColor.Add('W');
+                    }
+                    else if (theCardColor.Contains('W') && !theCardColor.Contains('N'))
+                    {
+                        theCardColor.Add('N');
+                    }
+
 
                     //will hold tesseract return string
                     string textBoxString;
-                    var ocr = new TesseractEngine("./tessdata", "eng", EngineMode.TesseractAndCube);
+                    TesseractEngine ocr = new TesseractEngine("./tessdata", "eng", EngineMode.TesseractAndCube);
                     var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
                     textBoxString = page.GetText();//gets tesseract text
                     textBox1.Text = textBoxString;
