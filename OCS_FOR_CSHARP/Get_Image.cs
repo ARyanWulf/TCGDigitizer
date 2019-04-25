@@ -696,7 +696,6 @@ namespace OCS_FOR_CSHARP
                     var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
                     textBoxString = page.GetText();//gets tesseract text
 
-
                     textBox1.Text = textBoxString;
                     textBoxString = textBoxString.Replace("â€”", "-");//removes endline characters
                     textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
@@ -707,10 +706,10 @@ namespace OCS_FOR_CSHARP
                     CardName.Text = textBoxString;
 
                     addToList(findCardWithName(textBoxString));
-                    currentCard.tempImg = originalImg;
                 }
                 catch (Exception ex)
                 {
+                    System.Windows.MessageBox.Show(ex.ToString());
                     cardWrapper tempCard = new cardWrapper();
                     if(CardName.Text != "Name" && CardName.Text != "")
                     {
@@ -773,28 +772,28 @@ namespace OCS_FOR_CSHARP
             // begin popluating rows with cards
             // populate each row with a checkbox
 
-            var tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus, Tag = sentCard };
+            var tempCheck = new CheckBox() { CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill, BackColor = sentCard.cardStatus, Tag = sentCard, Margin = new Padding(0, 0, 0, 0) };
             tempCheck.CheckStateChanged += new EventHandler(cardCheckChanged);
             tableLayoutPanel5.Controls.Add(tempCheck, 0, tableLayoutPanel5.RowCount - 1);
 
-            var tempLabel = new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            var tempLabel = new Label() { Text = sentCard.card.name, AutoEllipsis = true, AutoSize = true, TextAlign = ContentAlignment.MiddleCenter, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
             tableLayoutPanel5.Controls.Add(tempLabel, 1, rowOffset);
 
-            tempLabel = new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel = new Label() { Text = sentCard.card.type, AutoEllipsis = true, AutoSize = true, TextAlign = ContentAlignment.MiddleCenter, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
             tableLayoutPanel5.Controls.Add(tempLabel, 2, rowOffset);
 
-            tempLabel = new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel = new Label() { Text = sentCard.card.setCode, AutoEllipsis = true, AutoSize = true, TextAlign = ContentAlignment.MiddleCenter, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
             tableLayoutPanel5.Controls.Add(tempLabel, 3, rowOffset);
 
 
-            tempLabel = new Label() { Text = sentCard.card.number, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel = new Label() { Text = sentCard.card.number, AutoEllipsis = true, AutoSize = true, TextAlign = ContentAlignment.MiddleCenter, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
             tableLayoutPanel5.Controls.Add(tempLabel, 4, rowOffset);
 
-            tempLabel = new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, Anchor = AnchorStyles.None, BackColor = sentCard.cardStatus, Tag = sentCard };
+            tempLabel = new Label() { Text = sentCard.card.manaCost, AutoEllipsis = true, AutoSize = true, TextAlign = ContentAlignment.MiddleCenter, Anchor = AnchorStyles.None, Dock = DockStyle.Fill, Margin = new Padding(0, 0, 0, 0), BackColor = sentCard.cardStatus, Tag = sentCard };
             tempLabel.Click += new EventHandler(Label_Clicked);
             tableLayoutPanel5.Controls.Add(tempLabel, 5, rowOffset);
 
@@ -820,6 +819,7 @@ namespace OCS_FOR_CSHARP
             var returnCard = (sender as Label).Tag as cardWrapper;
             currentCard = returnCard;
 
+            Display_Picture_Box.Image = currentCard.tempImg;
             CardName.Text = returnCard.card.name;
             Card_Set_Combobox.Text = returnCard.card.setCode;
             Card_Type_TextBox.Text = returnCard.card.type;
@@ -1039,7 +1039,10 @@ namespace OCS_FOR_CSHARP
                 cardPTLTextbox.Visible = false;
                 cardLoyaltyLabel.Visible = false;
             }
-            
+
+            returnCard.tempImg = (Bitmap)Display_Picture_Box.Image.Clone();
+
+
             currentCard = returnCard;
 
             return returnCard;
@@ -1187,7 +1190,7 @@ namespace OCS_FOR_CSHARP
         private void CardName_SelectedIndexChanged(object sender, EventArgs e)
         {
             searchTimer.Stop();
-            if (currentCard != null)
+            if (currentCard != null && foundCards.Count > 0)
             {
                 var selectedCard = foundCards[CardName.SelectedIndex];
                 currentCard.card = selectedCard.card;

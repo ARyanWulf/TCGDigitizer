@@ -103,17 +103,7 @@ namespace OCS_FOR_CSHARP
             getEditCardForm.ShowDialog();
         }
 
-        // TODO:
-        // When OK button is pressed, if current changes are not saved
-        // prompt user to save changes
-        // else, close
-        private void OK_Button_Click(object sender, EventArgs e) => Close();
-
-        private void Cancel_Button_Click(object sender, EventArgs e) => Close();
-
-        // TODO:
-        // Use the cards List<cardWrapper> to
-        // populate the inventory list for the user.
+        //called on form initialization
         private void Inventory_Menu_Load(object sender, EventArgs e)
         {
             tempTable = Card_Table_Panel;
@@ -122,16 +112,6 @@ namespace OCS_FOR_CSHARP
             Page_Back_Button.Enabled = false;
 
         }
-
-        private void Card_Table_Panel_Paint_1(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        /*
-        List of variables returned:
-            *
-        */
 
         private void add_image(int in_id, string in_url)
         {
@@ -157,12 +137,13 @@ namespace OCS_FOR_CSHARP
             // open connection to server
             connection.Open();
 
-            // return entire inventory table, go through it,
-            // populate cards inside list with their card IDs,
-            // check for duplicates
-            // query the database again, looking for those same card IDs within the database
-            // go back to the system so it can read all the return data from the database so
-            // it can be returned to the calling function
+            /* return entire inventory table, go through it,
+            * populate cards inside list with their card IDs,
+            * check for duplicates
+            * query the database again, looking for those same card IDs within the database
+            * go back to the system so it can read all the return data from the database so
+            * it can be returned to the calling function
+            */
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
             {
                 NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -178,6 +159,7 @@ namespace OCS_FOR_CSHARP
             }
             connection.Close();
 
+            //adjust query for all cards
             string cmdhold = "";
             for (int i = 0; i < cards.Count; i++)
             {
@@ -195,10 +177,8 @@ namespace OCS_FOR_CSHARP
                     cmdhold = "card_id = " + cards[i].card_ID;
                 }
             }
-
-
-            // TO DO:
-            // add ability to grab card expansion
+            
+            //check that inventory has cards
             if (cards.Count != 0)
             {
                 connection.Open();
@@ -265,19 +245,11 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Controls.Clear();
             Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
             Card_Table_Panel.RowCount = 0;
-            //Card_Table_Panel.Dock = DockStyle.None;
             Card_Table_Panel.AutoSize = true;
             Card_Table_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Card_Table_Panel.AutoScroll = true;
-            /*Card_Table_Panel.Controls.Add(new CheckBox { Name = "Inventory_Checkbox", CheckAlign = ContentAlignment.MiddleCenter, Dock = DockStyle.Fill }, 0, 0);
-            Card_Table_Panel.Controls.Add(new Button { Name = "Name_Button", Text = "Name", Dock = DockStyle.Fill }, 1, 0);
-            Card_Table_Panel.Controls.Add(new Button { Name = "Type_Button", Text = "Type", Dock = DockStyle.Fill }, 2, 0);
-            Card_Table_Panel.Controls.Add(new Button { Name = "Expansion_Button", Text = "Expansion", Dock = DockStyle.Fill }, 3, 0);
-            Card_Table_Panel.Controls.Add(new Button { Name = "Number_Button", Text = "Number", Dock = DockStyle.Fill }, 4, 0);
-            Card_Table_Panel.Controls.Add(new Button { Name = "Mana_Button", Text = "Mana", Dock = DockStyle.Fill }, 5, 0);
-            Card_Table_Panel.Controls.Add(new Button { Name = "Date_Button", Text = "Date", Dock = DockStyle.Fill }, 6, 0);*/
 
-
+            //get list of cards
             cards = Get_Inventory();
             int cardCount = 0;
             for (int i = 0; i < cards.Count; i++)
@@ -287,7 +259,9 @@ namespace OCS_FOR_CSHARP
                     cardCount++;
                 }
             }
+
             InventoryCountLabel.Text = "Cards in inventory: " + cardCount;
+
             // initialize table to zero rows to be empty
             if (cards.Count - display_lower < 20) //If the amount of cards to be displayed on refresh is less than 20
             {
@@ -297,6 +271,7 @@ namespace OCS_FOR_CSHARP
             {
                 display_upper = display_lower + 20;
             }
+
             int displayRange = display_upper - display_lower;
             int cardIndex = display_lower;
             Card_Table_Panel.RowCount += displayRange - 1;
@@ -305,19 +280,12 @@ namespace OCS_FOR_CSHARP
              * subtract 20 from the card count if the card count is greater than 20
              */
 
-            // TO DO:
-            // Cards remaining should also be re-initialized
-
-
-            /* begin populating table, start at second row so the first row containing buttons is not overwritten */
+            // begin populating table, start at second row so the first row containing buttons is not overwritten
             for (int i = 0; i < displayRange; i++)
             {
-                //Card_Table_Panel.RowStyles[0].Height = 200;
                 // create a new row for each card
-                /* begin popluating rows with cards */
+                // begin popluating rows with cards 
                 // populate each row with a checkbox
-                /* Currently not working, inventory table auto formats the column to be wider than it should be*/
-                //Card_Table_Panel.RowCount++;
                 Card_Table_Panel.RowStyles.Add(new RowStyle() { SizeType = SizeType.Absolute, Height = 75 });
 
                 // card name
@@ -724,7 +692,10 @@ namespace OCS_FOR_CSHARP
             }*/
         }
 
-        
+        private void LeftIneerPanel_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
 
