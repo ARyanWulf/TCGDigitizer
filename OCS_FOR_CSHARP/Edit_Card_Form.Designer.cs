@@ -216,7 +216,6 @@
             this.Card_Additional_TextBox.ReadOnly = true;
             this.Card_Additional_TextBox.Size = new System.Drawing.Size(200, 29);
             this.Card_Additional_TextBox.TabIndex = 20;
-            this.Card_Additional_TextBox.TextChanged += new System.EventHandler(this.Card_Additional_TextBox_TextChanged);
             // 
             // Card_Type_TextBox
             // 
@@ -279,7 +278,6 @@
             this.Card_Description_TextBox.ReadOnly = true;
             this.Card_Description_TextBox.Size = new System.Drawing.Size(200, 114);
             this.Card_Description_TextBox.TabIndex = 26;
-            this.Card_Description_TextBox.TextChanged += new System.EventHandler(this.Card_Description_TextBox_TextChanged);
             // 
             // Card_Expansion_TextBox
             // 
@@ -355,7 +353,6 @@
             this.Name_Textbox.ReadOnly = true;
             this.Name_Textbox.Size = new System.Drawing.Size(200, 29);
             this.Name_Textbox.TabIndex = 33;
-            this.Name_Textbox.TextChanged += new System.EventHandler(this.Name_Textbox_TextChanged);
             // 
             // SearchBox
             // 
@@ -415,7 +412,7 @@
             this.Remove_Card_Button.TabIndex = 36;
             this.Remove_Card_Button.Text = "Remove from Inventory";
             this.Remove_Card_Button.UseVisualStyleBackColor = true;
-            this.Remove_Card_Button.Click += new System.EventHandler(this.button1_Click);
+            this.Remove_Card_Button.Click += new System.EventHandler(this.Remove_Card_Button_Click);
             // 
             // fileSystemWatcher1
             // 
