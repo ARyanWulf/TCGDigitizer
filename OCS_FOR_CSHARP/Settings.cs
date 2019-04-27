@@ -52,7 +52,6 @@ namespace OCS_FOR_CSHARP
          */
         public void Populate_Settings_List()
         {
-            //Users_Panel.Visible = false;
             //Clears table and redraws it
             Users_Panel.Controls.Clear();
             Users_Panel.RowCount = 0;
@@ -170,8 +169,6 @@ namespace OCS_FOR_CSHARP
                         }
                         //parced card list. will contain an array of every card contained in the set setList[i].name
                         CardRootObject currentCardList = (CardRootObject)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(CardRootObject));
-
-                        //List<CardRootObject> currentCardList = (List<CardRootObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(List<CardRootObject>));
 
                         //Open connection to local database
                         connection.Open();
