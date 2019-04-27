@@ -44,6 +44,7 @@
             this.Add_Card_Button = new System.Windows.Forms.Button();
             this.CardPanel = new System.Windows.Forms.Panel();
             this.Card_Panel_Table = new System.Windows.Forms.TableLayoutPanel();
+            this.Transactions_Button = new System.Windows.Forms.Button();
             this.Card_Details_Panel = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.Card_Name_Label = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.LeftPanel = new System.Windows.Forms.Panel();
             this.LeftIneerPanel = new System.Windows.Forms.TableLayoutPanel();
             this.ArrowPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.Transactions_Button = new System.Windows.Forms.Button();
             this.Inventory_Table_Header.SuspendLayout();
             this.CardPanel.SuspendLayout();
             this.Card_Panel_Table.SuspendLayout();
@@ -193,7 +193,7 @@
             this.Inventory_Table_Header.Margin = new System.Windows.Forms.Padding(0);
             this.Inventory_Table_Header.Name = "Inventory_Table_Header";
             this.Inventory_Table_Header.RowCount = 1;
-            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 87F));
+            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 89F));
             this.Inventory_Table_Header.Size = new System.Drawing.Size(952, 40);
             this.Inventory_Table_Header.TabIndex = 11;
             this.Inventory_Table_Header.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
@@ -362,6 +362,22 @@
             this.Card_Panel_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.Card_Panel_Table.Size = new System.Drawing.Size(280, 933);
             this.Card_Panel_Table.TabIndex = 59;
+            // 
+            // Transactions_Button
+            // 
+            this.Transactions_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.Transactions_Button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Transactions_Button.FlatAppearance.BorderSize = 0;
+            this.Transactions_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Transactions_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Transactions_Button.ForeColor = System.Drawing.Color.Silver;
+            this.Transactions_Button.Location = new System.Drawing.Point(0, 913);
+            this.Transactions_Button.Margin = new System.Windows.Forms.Padding(0);
+            this.Transactions_Button.Name = "Transactions_Button";
+            this.Transactions_Button.Size = new System.Drawing.Size(280, 20);
+            this.Transactions_Button.TabIndex = 61;
+            this.Transactions_Button.Text = "Show Transactions";
+            this.Transactions_Button.UseVisualStyleBackColor = false;
             // 
             // Card_Details_Panel
             // 
@@ -766,22 +782,6 @@
             this.ArrowPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.ArrowPanel.Size = new System.Drawing.Size(952, 60);
             this.ArrowPanel.TabIndex = 19;
-            // 
-            // Transactions_Button
-            // 
-            this.Transactions_Button.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.Transactions_Button.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Transactions_Button.FlatAppearance.BorderSize = 0;
-            this.Transactions_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Transactions_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Transactions_Button.ForeColor = System.Drawing.Color.Silver;
-            this.Transactions_Button.Location = new System.Drawing.Point(0, 913);
-            this.Transactions_Button.Margin = new System.Windows.Forms.Padding(0);
-            this.Transactions_Button.Name = "Transactions_Button";
-            this.Transactions_Button.Size = new System.Drawing.Size(280, 20);
-            this.Transactions_Button.TabIndex = 61;
-            this.Transactions_Button.Text = "Show Transactions";
-            this.Transactions_Button.UseVisualStyleBackColor = false;
             // 
             // Inventory_Menu
             // 
