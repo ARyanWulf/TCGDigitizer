@@ -23,7 +23,6 @@ namespace OCS_FOR_CSHARP
         public int display_lower;
         public int display_upper;
         public bool ctrlPressed = false;
-        public bool shiftPressed = false;
         private List<cardWrapper> cards = new List<cardWrapper>(); //holds cards in inventory
         private List<cardWrapper> needImageQueue = new List<cardWrapper>(); //holds cards that need images
         private TableLayoutPanel tempTable;
@@ -662,45 +661,5 @@ namespace OCS_FOR_CSHARP
             addToInventory(-1);
             refreshTable();
         }
-
-        private void pictureBox1_Move(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Inventory_Menu_KeyDown(object sender, KeyEventArgs e)
-        {
-            /*if(e.KeyCode == Keys.ControlKey)
-            {
-                ctrlPressed = true;
-            }
-            if (e.KeyCode == Keys.ShiftKey)
-            {
-                shiftPressed = true;
-            }*/
-        }
-
-        private void Inventory_Menu_KeyUp(object sender, KeyEventArgs e)
-        {
-            /*if (e.KeyCode == Keys.ControlKey)
-            {
-                ctrlPressed = false;
-            }
-            if (e.KeyCode == Keys.ShiftKey)
-            {
-                shiftPressed = false;
-            }*/
-        }
-
-        private void LeftIneerPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
-
-
-/*
-
-     
-*/
