@@ -23,7 +23,6 @@ namespace OCS_FOR_CSHARP
         public int display_lower;
         public int display_upper;
         public bool ctrlPressed = false;
-        public bool shiftPressed = false;
         private List<cardWrapper> cards = new List<cardWrapper>(); //holds cards in inventory
         private List<cardWrapper> needImageQueue = new List<cardWrapper>(); //holds cards that need images
         private TableLayoutPanel tempTable;
@@ -40,8 +39,6 @@ namespace OCS_FOR_CSHARP
             Card_Image_Box.Image = Card_Image_Box.InitialImage;
             refreshTable();
 
-            // Iterate through each existing card and add to a queue
-            // to assign each card an image URL
             for(int i = 0; i < cards.Count; i++)
             {
                 if(cards[i].card.imageURL == null || cards[i].card.imageURL == "")
@@ -50,7 +47,6 @@ namespace OCS_FOR_CSHARP
                 }
             }
 
-            // Allows the window to be resized dynamically during runtime
             resizeTimer.Tick += new EventHandler(resizeEventHandler);
             resizeTimer.Interval = 1000;
             resizeTimer.Enabled = true;
@@ -69,7 +65,6 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
-        // Go through the queue of cards that need a URL and assign one to them
         private void getCardImage(object sender, EventArgs e)
         {
             cardImageTimer.Stop();
@@ -103,6 +98,7 @@ namespace OCS_FOR_CSHARP
         private void Add_Card_Button_Click(object sender, EventArgs e)
         {
             var getEditCardForm = new Edit_Card_Form();
+            //getEditCardForm.inv_menu = this;
             getEditCardForm.ShowDialog();
         }
 
@@ -140,14 +136,13 @@ namespace OCS_FOR_CSHARP
             // open connection to server
             connection.Open();
 
-            /*
-             * Return entire inventory table, go through it,
-             * populate cards inside list with their card IDs,
-             * check for duplicates
-             * query the database again, looking for those same card IDs within the database
-             * go back to the system so it can read all the return data from the database so
-             * it can be returned to the calling function
-             */
+            /* return entire inventory table, go through it,
+            * populate cards inside list with their card IDs,
+            * check for duplicates
+            * query the database again, looking for those same card IDs within the database
+            * go back to the system so it can read all the return data from the database so
+            * it can be returned to the calling function
+            */
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
             {
                 NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -163,7 +158,7 @@ namespace OCS_FOR_CSHARP
             }
             connection.Close();
 
-            // Adjust query for all cards
+            //adjust query for all cards
             string cmdhold = "";
             for (int i = 0; i < cards.Count; i++)
             {
@@ -182,7 +177,7 @@ namespace OCS_FOR_CSHARP
                 }
             }
             
-            // Check that inventory has cards
+            //check that inventory has cards
             if (cards.Count != 0)
             {
                 connection.Open();
@@ -232,19 +227,20 @@ namespace OCS_FOR_CSHARP
                         }
                     }
                 }
-
                 connection.Close();
+
+
             }
+
 
             return cards;
         }
 
-        // Redraws the entire inventory display to update any new data
         public void refreshTable()
         {
             Card_Table_Panel.Visible = false;
             
-            // Clear table and redraw
+            //Clear table and redraw
             Card_Table_Panel.Controls.Clear();
             Card_Table_Panel.Padding = new Padding(0, 0, System.Windows.Forms.SystemInformation.VerticalScrollBarWidth, 0);
             Card_Table_Panel.RowCount = 0;
@@ -252,7 +248,7 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
             Card_Table_Panel.AutoScroll = true;
 
-            // Get list of cards
+            //get list of cards
             cards = Get_Inventory();
             int cardCount = 0;
             for (int i = 0; i < cards.Count; i++)
@@ -283,7 +279,7 @@ namespace OCS_FOR_CSHARP
              * subtract 20 from the card count if the card count is greater than 20
              */
 
-            // Begin populating table, start at second row so the first row containing buttons is not overwritten
+            // begin populating table, start at second row so the first row containing buttons is not overwritten
             for (int i = 0; i < displayRange; i++)
             {
                 // create a new row for each card
@@ -322,9 +318,10 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(tempLabel, 5, i);
                 cardIndex++;
             }
+
             
-            // Each page has a threshhold of 20 unique cards per page.
-            // Check to see if a second page needs to be added
+            
+            //panel2.Visible = true;
             if (cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
@@ -365,9 +362,11 @@ namespace OCS_FOR_CSHARP
 
         private void RefreshButton_Click(object sender, EventArgs e)
         {
+            //TopPanel.Visible = false;
             RefreshButton.Enabled = false;
             refreshTable();
             RefreshButton.Enabled = true;
+            //TopPanel.Visible = true;
         }
 
         private void Page_Forward_Button_Click(object sender, EventArgs e)
@@ -381,6 +380,34 @@ namespace OCS_FOR_CSHARP
             display_lower -= 20;
             refreshTable();
         }
+
+        /*private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            var temp = sender as CheckBox;
+
+            if (temp.Checked)
+            {
+                selectedCards.Clear();
+                for (int i = 0; i < cards.Count; i++)
+                {
+                    selectedCards.Add(cards[i]);
+                }
+
+                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                {
+                    cb.Checked = true;
+                }
+            }
+            else
+            {
+                selectedCards.Clear();
+
+                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
+                {
+                    cb.Checked = false;
+                }
+            }
+        }*/
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -634,45 +661,5 @@ namespace OCS_FOR_CSHARP
             addToInventory(-1);
             refreshTable();
         }
-        //
-        private void pictureBox1_Move(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Inventory_Menu_KeyDown(object sender, KeyEventArgs e)
-        {
-            /*if(e.KeyCode == Keys.ControlKey)
-            {
-                ctrlPressed = true;
-            }
-            if (e.KeyCode == Keys.ShiftKey)
-            {
-                shiftPressed = true;
-            }*/
-        }
-
-        private void Inventory_Menu_KeyUp(object sender, KeyEventArgs e)
-        {
-            /*if (e.KeyCode == Keys.ControlKey)
-            {
-                ctrlPressed = false;
-            }
-            if (e.KeyCode == Keys.ShiftKey)
-            {
-                shiftPressed = false;
-            }*/
-        }
-
-        private void LeftIneerPanel_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
     }
 }
-
-
-/*
-
-     
-*/
