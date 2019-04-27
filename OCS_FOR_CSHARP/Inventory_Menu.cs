@@ -39,6 +39,7 @@ namespace OCS_FOR_CSHARP
             Card_Image_Box.Image = Card_Image_Box.InitialImage;
             refreshTable();
 
+            // Scan through every card and add each one to a queue if it needs a display image
             for(int i = 0; i < cards.Count; i++)
             {
                 if(cards[i].card.imageURL == null || cards[i].card.imageURL == "")
@@ -47,11 +48,13 @@ namespace OCS_FOR_CSHARP
                 }
             }
 
+            // Set the time delay between each time the inventory page is updated
             resizeTimer.Tick += new EventHandler(resizeEventHandler);
             resizeTimer.Interval = 1000;
             resizeTimer.Enabled = true;
             resizeTimer.Stop();
 
+            // Set the time delay between each time a card image is pulled from the website
             cardImageTimer.Tick += new EventHandler(getCardImage);
             cardImageTimer.Interval = 5000;
             cardImageTimer.Enabled = true;
@@ -65,6 +68,7 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
+        // Give an image preview to every card that was put into the needImageQueue
         private void getCardImage(object sender, EventArgs e)
         {
             cardImageTimer.Stop();
@@ -91,7 +95,7 @@ namespace OCS_FOR_CSHARP
 
         private void Scan_Card_Button_Click(object sender, EventArgs e)
         {
-            var getImageForm = new Form1();//Change to the Inventory viewer form
+            var getImageForm = new Form1(); // Change to the Inventory viewer form
             getImageForm.ShowDialog();
         }
 
@@ -101,7 +105,7 @@ namespace OCS_FOR_CSHARP
             getEditCardForm.ShowDialog();
         }
 
-        //called on form initialization
+        // Called on form initialization
         private void Inventory_Menu_Load(object sender, EventArgs e)
         {
             tempTable = Card_Table_Panel;
@@ -111,6 +115,8 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        // Helper function for getCardImage. Queries the website to grab the official
+        // preview image for each MTG card
         private void add_image(int in_id, string in_url)
         {
             connection.Open();
@@ -127,6 +133,8 @@ namespace OCS_FOR_CSHARP
             connection.Close();
         }
 
+        // Helper function for refresh_table().
+        // Grabs the inventory of cards from the local database
         private List<cardWrapper> Get_Inventory()
         {
             // create list of cards
@@ -135,13 +143,14 @@ namespace OCS_FOR_CSHARP
             // open connection to server
             connection.Open();
 
-            /* return entire inventory table, go through it,
-            * populate cards inside list with their card IDs,
-            * check for duplicates
-            * query the database again, looking for those same card IDs within the database
-            * go back to the system so it can read all the return data from the database so
-            * it can be returned to the calling function
-            */
+            /*
+             * return entire inventory table, go through it,
+             * populate cards inside list with their card IDs,
+             * check for duplicates
+             * query the database again, looking for those same card IDs within the database
+             * go back to the system so it can read all the return data from the database so
+             * it can be returned to the calling function
+             */
             using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
             {
                 NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -157,7 +166,7 @@ namespace OCS_FOR_CSHARP
             }
             connection.Close();
 
-            //adjust query for all cards
+            // Adjust query for all cards
             string cmdhold = "";
             for (int i = 0; i < cards.Count; i++)
             {
@@ -176,7 +185,7 @@ namespace OCS_FOR_CSHARP
                 }
             }
             
-            //check that inventory has cards
+            // Check that inventory has cards
             if (cards.Count != 0)
             {
                 connection.Open();
@@ -228,9 +237,7 @@ namespace OCS_FOR_CSHARP
                 }
                 connection.Close();
 
-
             }
-
 
             return cards;
         }
@@ -317,7 +324,9 @@ namespace OCS_FOR_CSHARP
                 Card_Table_Panel.Controls.Add(tempLabel, 5, i);
                 cardIndex++;
             }
-
+            
+            // Each page of the inventory displays only 20 unique cards per page.
+            // Check to see if a new page needs to be created if there are more than 20 unique cards
             if (cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
@@ -351,6 +360,11 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
         }
 
+        private void InventoryCountLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             RefreshButton.Enabled = false;
@@ -370,6 +384,22 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
+        {
+            //refreshTable();
+        }
+
+        // Populate the right side of the panel
         private void tempLabel_Click(object sender, EventArgs e)
         {
             Label temp = (Label)sender;
@@ -428,6 +458,7 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Refresh();
         }
 
+        // Populate the inventory table
         public void populate(cardWrapper input)
         {
             cardWrapper currentCard = input;
@@ -498,9 +529,7 @@ namespace OCS_FOR_CSHARP
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
         {
-            Card_Table_Panel.Visible = false;
-            resizeTimer.Stop();
-            resizeTimer.Start();
+            //refreshTable();
         }
 
         private void Inventory_Menu_ResizeBegin(object sender, EventArgs e)
@@ -513,6 +542,13 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Visible = true;
         }
 
+        private void Inventory_Menu_SizeChanged_1(object sender, EventArgs e)
+        {
+            Card_Table_Panel.Visible = false;
+            resizeTimer.Stop();
+            resizeTimer.Start();
+        }
+
         public bool addToInventory(int transType)
         {
 
@@ -520,6 +556,7 @@ namespace OCS_FOR_CSHARP
             {
                 cardWrapper card = currentCard;
                 bool exists = false;
+                int inv_id;
 
                 connection.Open();
 
