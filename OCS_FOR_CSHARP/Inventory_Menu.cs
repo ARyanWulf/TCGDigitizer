@@ -360,11 +360,6 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
         }
 
-        private void InventoryCountLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RefreshButton_Click(object sender, EventArgs e)
         {
             RefreshButton.Enabled = false;
@@ -382,21 +377,6 @@ namespace OCS_FOR_CSHARP
         {
             display_lower -= 20;
             refreshTable();
-        }
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
-        {
-            //refreshTable();
         }
 
         // Populate the right side of the panel
@@ -529,7 +509,9 @@ namespace OCS_FOR_CSHARP
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
         {
-            //refreshTable();
+            Card_Table_Panel.Visible = false;
+            resizeTimer.Stop();
+            resizeTimer.Start();
         }
 
         private void Inventory_Menu_ResizeBegin(object sender, EventArgs e)
@@ -542,13 +524,6 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Visible = true;
         }
 
-        private void Inventory_Menu_SizeChanged_1(object sender, EventArgs e)
-        {
-            Card_Table_Panel.Visible = false;
-            resizeTimer.Stop();
-            resizeTimer.Start();
-        }
-
         public bool addToInventory(int transType)
         {
 
@@ -556,7 +531,6 @@ namespace OCS_FOR_CSHARP
             {
                 cardWrapper card = currentCard;
                 bool exists = false;
-                int inv_id;
 
                 connection.Open();
 

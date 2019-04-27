@@ -26,29 +26,8 @@ namespace OCS_FOR_CSHARP
         {
             InitializeComponent();
 
-            //REMOVE IF NOT USED FOR UI IMPROVEMENTS 3/12
-            //var designSize = this.ClientSize;
-            //this.FormBorderStyle = FormBorderStyle.Sizable;
-            //this.Size = designSize;
-
-            //login_label.Visible = true;
-            //login_username_textbox.Visible = true;
-            //user_name_label.Visible = true;
-            //login_password_textbox.Visible = true;
-            //password_label.Visible = true;
-            //login_button.Visible = true;
-            //logout_link.Visible = false;
-            //textBox1.Visible = true;
-
-            //REMOVE FOR FINAL PRODUCT
-            //login_username_textbox.Text = "admin";
-            //login_password_textbox.Text = "admin";
-
             login_username_textbox.GotFocus += login_username_textbox_GotFocus;
             login_password_textbox.GotFocus += login_password_textbox_GotFocus;
-
-            //welcome_label.Visible = false;
-            //welcome_label.TextAlign = ContentAlignment.MiddleRight;
 
             //Final build should change all of these to false TEMP
             ScanButton.Enabled = false;
@@ -84,21 +63,6 @@ namespace OCS_FOR_CSHARP
                 ManualEntryButton.Enabled = value;
             }
         }
-        /*REMOVE IF NOT USED FOR UI IMPROVEMENTS 3/12
-        protected override void WndProc(ref Message m)
-        {
-            switch (m.Msg)
-            {
-                case 0x84:
-                    base.WndProc(ref m);
-                    if ((int)m.Result == 0x1)
-                        m.Result = (IntPtr)0x2;
-                    return;
-            }
-
-            base.WndProc(ref m);
-        }
-        */
 
         private void Login_Screen()
         {
@@ -147,8 +111,6 @@ namespace OCS_FOR_CSHARP
 
         private void ScanButton_Click(object sender, EventArgs e)
         {
-            //var getImageForm = new Form1();
-            //getImageForm.ShowDialog();
 
             //loads Scan form into panel 2
             ResetButtonColors();
@@ -170,9 +132,6 @@ namespace OCS_FOR_CSHARP
 
         private void InventoryButton_Click(object sender, EventArgs e)
         {
-            //var getImageForm = new Inventory_Menu();//Change to the Inventory viewer form
-            //getImageForm.ShowDialog();
-
             //loads Inventory form into panel 2
             ResetButtonColors();
             InventoryButton.BackColor = Color.FromArgb(65, 70, 78);
@@ -195,9 +154,6 @@ namespace OCS_FOR_CSHARP
 
         private void SettingsButton_Click(object sender, EventArgs e)
         {
-            //var getImageForm = new Settings();
-            //getImageForm.ShowDialog();
-
             //loads Inventory form into panel 2
             ResetButtonColors();
             SettingsButton.BackColor = Color.FromArgb(65, 70, 78);
@@ -244,38 +200,6 @@ namespace OCS_FOR_CSHARP
                 ResetButtonColors();
                 Login_Screen();
             }
-            /*if (ContactText.Visible == true)
-            {
-                ContactText.Visible = false;
-                CloseTextButton.Visible = false;
-
-                if (CurrentUser.user_ID == 0)
-                {
-                    login_label.Visible = true;
-                    login_username_textbox.Visible = true;
-                    user_name_label.Visible = true;
-                    login_password_textbox.Visible = true;
-                    password_label.Visible = true;
-                    login_button.Visible = true;
-                    textBox1.Visible = true;
-                }
-            }
-            else
-            {
-                ContactText.Visible = true;
-                CloseTextButton.Visible = true;
-
-                if (CurrentUser.user_ID == 0)
-                {
-                    login_label.Visible = false;
-                    login_username_textbox.Visible = false;
-                    user_name_label.Visible = false;
-                    login_password_textbox.Visible = false;
-                    password_label.Visible = false;
-                    login_button.Visible = false;
-                    textBox1.Visible = false;
-                }
-            }    */
         }
 
         private void QuitButton_Click(object sender, EventArgs e)
@@ -400,10 +324,6 @@ namespace OCS_FOR_CSHARP
                             welcome_label.Text = "Welcome " + username;
                             welcome_label.Visible = true;
 
-                            //ScanButton.Enabled = true;
-                            //InventoryButton.Enabled = true;
-                            //SettingsButton.Enabled = true;
-
                             login_username_textbox.Text = "";
                             login_password_textbox.Text = "";
                         }
@@ -434,46 +354,6 @@ namespace OCS_FOR_CSHARP
                 textBox1.AppendText("Username Range Error");
                 login_password_textbox.Text = pass_mask;
             }
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Main_Menu_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tcgdigitizer_logo_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_password_textbox_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_button_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_label_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LogoPicture_Click(object sender, EventArgs e)
-        {
-
-        }
-        /**/
-        private void user_name_label_Click_1(object sender, EventArgs e)
-        {
 
         }
 
@@ -509,15 +389,6 @@ namespace OCS_FOR_CSHARP
 
         private void logout_link_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            /*login_label.Visible = true;
-            login_username_textbox.Visible = true;
-            user_name_label.Visible = true;
-            login_password_textbox.Visible = true;
-            password_label.Visible = true;
-            login_button.Visible = true;
-            logout_link.Visible = false;
-            textBox1.Visible = true;
-            welcome_label.Visible = false;*/
             ResetButtonColors();
             Login_Screen();
 
