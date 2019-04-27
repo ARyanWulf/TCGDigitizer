@@ -98,7 +98,6 @@ namespace OCS_FOR_CSHARP
         private void Add_Card_Button_Click(object sender, EventArgs e)
         {
             var getEditCardForm = new Edit_Card_Form();
-            //getEditCardForm.inv_menu = this;
             getEditCardForm.ShowDialog();
         }
 
@@ -319,9 +318,6 @@ namespace OCS_FOR_CSHARP
                 cardIndex++;
             }
 
-            
-            
-            //panel2.Visible = true;
             if (cards.Count() > 20 && display_upper < cards.Count())
             {
                 Page_Forward_Button.Enabled = true;
@@ -355,18 +351,11 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
         }
 
-        private void InventoryCountLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void RefreshButton_Click(object sender, EventArgs e)
         {
-            //TopPanel.Visible = false;
             RefreshButton.Enabled = false;
             refreshTable();
             RefreshButton.Enabled = true;
-            //TopPanel.Visible = true;
         }
 
         private void Page_Forward_Button_Click(object sender, EventArgs e)
@@ -381,53 +370,9 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
-        /*private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            var temp = sender as CheckBox;
-
-            if (temp.Checked)
-            {
-                selectedCards.Clear();
-                for (int i = 0; i < cards.Count; i++)
-                {
-                    selectedCards.Add(cards[i]);
-                }
-
-                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
-                {
-                    cb.Checked = true;
-                }
-            }
-            else
-            {
-                selectedCards.Clear();
-
-                foreach (var cb in Card_Table_Panel.Controls.OfType<CheckBox>())
-                {
-                    cb.Checked = false;
-                }
-            }
-        }*/
-
-        private void button5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void Inventory_Menu_VisibleChanged(object sender, EventArgs e)
-        {
-            //refreshTable();
-        }
-
         private void tempLabel_Click(object sender, EventArgs e)
         {
             Label temp = (Label)sender;
-            //InventoryCountLabel.Text = id_list[id_list.Count - 1].card_ID.ToString();
             currentCard = (cardWrapper)temp.Tag;
             populate((cardWrapper)temp.Tag);
             int rowNumber = Card_Table_Panel.GetRow((Label)sender);
@@ -553,7 +498,9 @@ namespace OCS_FOR_CSHARP
 
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
         {
-            //refreshTable();
+            Card_Table_Panel.Visible = false;
+            resizeTimer.Stop();
+            resizeTimer.Start();
         }
 
         private void Inventory_Menu_ResizeBegin(object sender, EventArgs e)
@@ -566,13 +513,6 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Visible = true;
         }
 
-        private void Inventory_Menu_SizeChanged_1(object sender, EventArgs e)
-        {
-            Card_Table_Panel.Visible = false;
-            resizeTimer.Stop();
-            resizeTimer.Start();
-        }
-
         public bool addToInventory(int transType)
         {
 
@@ -580,7 +520,6 @@ namespace OCS_FOR_CSHARP
             {
                 cardWrapper card = currentCard;
                 bool exists = false;
-                int inv_id;
 
                 connection.Open();
 

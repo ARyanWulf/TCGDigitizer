@@ -130,7 +130,6 @@
             this.InventoryCountLabel.TabIndex = 7;
             this.InventoryCountLabel.Text = "Cards in inventory: 4000";
             this.InventoryCountLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.InventoryCountLabel.Click += new System.EventHandler(this.InventoryCountLabel_Click);
             // 
             // Page_Back_Button
             // 
@@ -192,10 +191,9 @@
             this.Inventory_Table_Header.Margin = new System.Windows.Forms.Padding(0);
             this.Inventory_Table_Header.Name = "Inventory_Table_Header";
             this.Inventory_Table_Header.RowCount = 1;
-            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 109F));
+            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 113F));
             this.Inventory_Table_Header.Size = new System.Drawing.Size(1269, 49);
             this.Inventory_Table_Header.TabIndex = 11;
-            this.Inventory_Table_Header.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // Quantity_Button
             // 
@@ -246,7 +244,7 @@
             this.Number_Button.Name = "Number_Button";
             this.Number_Button.Size = new System.Drawing.Size(202, 39);
             this.Number_Button.TabIndex = 10;
-            this.Number_Button.Text = "#";
+            this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = false;
             // 
             // Expansion_Button
@@ -282,7 +280,6 @@
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = false;
-            this.Type_Button.Click += new System.EventHandler(this.button5_Click);
             // 
             // Name_Button
             // 
@@ -826,7 +823,7 @@
             this.Name = "Inventory_Menu";
             this.Text = "TCG Digitizer - Inventory";
             this.Load += new System.EventHandler(this.Inventory_Menu_Load);
-            this.SizeChanged += new System.EventHandler(this.Inventory_Menu_SizeChanged_1);
+            this.SizeChanged += new System.EventHandler(this.Inventory_Menu_SizeChanged);
             this.Inventory_Table_Header.ResumeLayout(false);
             this.CardPanel.ResumeLayout(false);
             this.Card_Panel_Table.ResumeLayout(false);
