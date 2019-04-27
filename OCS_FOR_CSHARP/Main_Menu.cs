@@ -207,11 +207,6 @@ namespace OCS_FOR_CSHARP
             Close();
         }
 
-        private void ContactText_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-
         private void CloseTextButton_Click(object sender, EventArgs e)
         {
             ContactText.Visible = false;
@@ -227,31 +222,6 @@ namespace OCS_FOR_CSHARP
                 login_button.Visible = true;
                 textBox1.Visible = true;
             }
-        }
-
-        private void login_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_username_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void user_name_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_password_textbox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void password_label_Click(object sender, EventArgs e)
-        {
-
         }
 
         // broken one, use the logout_link_LinkClicked1 further below
@@ -354,36 +324,6 @@ namespace OCS_FOR_CSHARP
                 textBox1.AppendText("Username Range Error");
                 login_password_textbox.Text = pass_mask;
             }
-
-        }
-
-        private void password_label_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void login_username_textbox_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void ContactText_TextChanged_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void CloseTextButton_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void welcome_label_Click(object sender, EventArgs e)
-        {
 
         }
 

@@ -306,7 +306,6 @@
             this.login_username_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_username_textbox.TabIndex = 21;
             this.login_username_textbox.Visible = false;
-            this.login_username_textbox.TextChanged += new System.EventHandler(this.login_username_textbox_TextChanged_1);
             // 
             // CloseTextButton
             // 
@@ -320,7 +319,6 @@
             this.CloseTextButton.Text = "Close";
             this.CloseTextButton.UseVisualStyleBackColor = true;
             this.CloseTextButton.Visible = false;
-            this.CloseTextButton.Click += new System.EventHandler(this.CloseTextButton_Click_1);
             // 
             // ContactText
             // 
@@ -340,7 +338,6 @@
             this.ContactText.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.ContactText.Visible = false;
             this.ContactText.WordWrap = false;
-            this.ContactText.TextChanged += new System.EventHandler(this.ContactText_TextChanged_1);
             // 
             // textBox1
             // 
@@ -358,7 +355,6 @@
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox1.Visible = false;
             this.textBox1.WordWrap = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
             // 
             // welcome_label
             // 
@@ -371,7 +367,6 @@
             this.welcome_label.Text = "Welcome Guest";
             this.welcome_label.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.welcome_label.Visible = false;
-            this.welcome_label.Click += new System.EventHandler(this.welcome_label_Click);
             // 
             // logout_link
             // 
