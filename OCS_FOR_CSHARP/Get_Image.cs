@@ -9,6 +9,7 @@ using System.Data;
 
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -223,11 +224,11 @@ namespace OCS_FOR_CSHARP
             if (webCamState != 2)
             {
                 Bitmap ibwWebCam = new Bitmap(bframe);
-                Black_White_Conversion(ref ibwWebCam);
+                Black_White_Conversion(ref ibwWebCam, true);
                 if (bwWebCam)
                 {
 
-                    Black_White_Conversion(ref bframe);
+                    Black_White_Conversion(ref bframe, true);
                     Bitmap dframe = bframe;
                     bframe = new Bitmap((Bitmap)bframe);
                     dframe.Dispose();
@@ -410,7 +411,7 @@ namespace OCS_FOR_CSHARP
         {
             if (!already_Black_White)
             {
-                Black_White_Conversion(ref image);
+                Black_White_Conversion(ref image, true);
             }
             float maxImgPercent = (float)0.99;
             BlobCounter blobCounter = new BlobCounter();
@@ -442,14 +443,17 @@ namespace OCS_FOR_CSHARP
             }
         }
  
-        private void Black_White_Conversion(ref Bitmap image)
+        private void Black_White_Conversion(ref Bitmap image, bool invert)
         {
             Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
-            Invert ifilter = new Invert();
             BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
             image = gfilter.Apply(image);
             thfilter.ApplyInPlace(image); //To greyscale then to black and white
-            ifilter.ApplyInPlace(image);//invert image for white blob detection
+            if (invert)
+            {
+                Invert ifilter = new Invert();
+                ifilter.ApplyInPlace(image);//invert image for white blob detection
+            }
             return;
         }
 
@@ -465,7 +469,7 @@ namespace OCS_FOR_CSHARP
                         //picture from web cam
                         Bitmap originalImg = new Bitmap(currentCamFrame);
                         Bitmap invertBWImg = new Bitmap(originalImg);
-                        Black_White_Conversion(ref invertBWImg);
+                        Black_White_Conversion(ref invertBWImg, true);
                         //Display_Picture_Box.Image = invertBWImg;
                         Rectangle rect = Blob_Detector(invertBWImg, true, 0.25, 0.25);
 
@@ -514,7 +518,7 @@ namespace OCS_FOR_CSHARP
                         int yHeight = (yEnd - yStart);
 
                         int xheader = Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart);
-                        int yheader = Convert.ToInt32((yHeight * 0.050/*0.040481481*/) + yStart);
+                        int yheader = Convert.ToInt32((yHeight * 0.052/*0.040481481*/) + yStart);
                         int headerWidth = Convert.ToInt32(xWidth * 0.69753086);
                         int headerHeight = Convert.ToInt32(yHeight * 0.041/*0.05037037*/);
 
@@ -522,8 +526,9 @@ namespace OCS_FOR_CSHARP
                         int yColor = Convert.ToInt32((yHeight * 0.026/*0.040481481*/) + yStart);
                         int colorWidth = Convert.ToInt32(xWidth * 0.69753086);
                         int colorHeight = Convert.ToInt32(yHeight * 0.015/*0.05037037*/);
+                        /////////////////////////////
 
-
+                        /////////////////////////////
                         //Establishing size of crop area based off original image (x,y,width,height)
                         //All percents are measured/calulated ratios based off card dimensions
                         //Rectangle nameHeaderCropRect = new Rectangle(xheader, yheader, headerWidth, headerHeight);
@@ -531,6 +536,7 @@ namespace OCS_FOR_CSHARP
                         Bitmap colorHeaderBitmap = new Bitmap(colorHeaderCropRect.Width, colorHeaderCropRect.Height);
                         Graphics colorHeadGraphics = Graphics.FromImage(colorHeaderBitmap);
                         colorHeadGraphics.DrawImage(trans_Color_img, 0, 0, colorHeaderCropRect, GraphicsUnit.Pixel);
+
 
                         //Bitmap that will store altered image (width,height)
                         Bitmap nameHeaderBitmap = new Bitmap(headerWidth * 4, headerHeight * 4);
@@ -540,14 +546,19 @@ namespace OCS_FOR_CSHARP
 
 
                         Adjust_Tesseract_Img(15, ref nameHeaderBitmap);
-                        Black_White_Conversion(ref nameHeaderBitmap);
+                        Black_White_Conversion(ref nameHeaderBitmap, false);
+                        //AdaptiveSmoothing noiseFilter = new AdaptiveSmoothing();
+                        //noiseFilter.ApplyInPlace(nameHeaderBitmap);
+                        //Sharpen sharpFilter = new Sharpen();
+                        //sharpFilter.ApplyInPlace(nameHeaderBitmap);
 
                         Bitmap blk_wht_header = new Bitmap((int)(nameHeaderBitmap.Width * 1.5), (int)(nameHeaderBitmap.Height * 2.5));
                         Rectangle blk_wht_hRect = new Rectangle(0, 0, blk_wht_header.Width, blk_wht_header.Height);
                         Rectangle name_hRect = new Rectangle(0, 0, nameHeaderBitmap.Width, nameHeaderBitmap.Height);
                         Graphics blk_wht_hGraphics = Graphics.FromImage(blk_wht_header);
-                        blk_wht_hGraphics.FillRectangle(Brushes.Black, blk_wht_hRect);
+                        blk_wht_hGraphics.FillRectangle(Brushes.White, blk_wht_hRect);
                         blk_wht_hGraphics.DrawImage(nameHeaderBitmap, (int)((blk_wht_header.Width - nameHeaderBitmap.Width) / 2), (int)((blk_wht_header.Height - nameHeaderBitmap.Height) / 2), name_hRect,GraphicsUnit.Pixel);
+
 
                         //colorHeaderBitmap = headFilter.Apply(trans_Color_img);
 
@@ -563,7 +574,7 @@ namespace OCS_FOR_CSHARP
 
 
 
-                        
+
 
                         //calls picture alteration function to increase contrast and adjust image color
 
@@ -691,17 +702,141 @@ namespace OCS_FOR_CSHARP
                         var page = ocr.Process(blk_wht_header);//sends name header bitmap to tesseract
                         textBoxString = page.GetText();//gets tesseract text
 
-                        textBox1.Text = textBoxString;
+
+                        //textBox1.Text = textBoxString;
+                        textBoxString = new string(textBoxString.Where(c => !char.IsPunctuation(c)).ToArray());
                         textBoxString = textBoxString.Replace("â€”", "-");//removes endline characters
                         textBoxString = textBoxString.Replace('\n', ' ');
                         textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'', '[', '{', ']', '}');//removes spaces
                         textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                         textBoxString = textBoxString.Trim(' ');//removes spaces
-                        
+                        textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'', '[', '{', ']', '}');//removes spaces
+                        textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
+                        textBoxString = textBoxString.Trim(' ');//removes spaces
+                        TextInfo textInfo = new CultureInfo("en-US", false).TextInfo;
+                        textBoxString = textInfo.ToTitleCase(textBoxString);
+
+
+                        connection.Open();
+                        //textBoxString = "Jade Gufardian";
+                        bool foundMatch = false;
+                        string sqlQuery = "SELECT * FROM public.card WHERE LOWER(card_name) = LOWER('"+textBoxString+"')";
+                        using (var cmd = new NpgsqlCommand(sqlQuery, connection))
+                        {
+                            NpgsqlDataReader reader = cmd.ExecuteReader();
+                            while (reader.Read() && !foundMatch)
+                            {
+                                foundMatch = true;
+                            }
+                        }
+                        connection.Close();
+                        if (!foundMatch)
+                        {
+
+                            int xtext = Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart);
+                            int ytext = Convert.ToInt32((yHeight * 0.6252/*0.040481481*/) + yStart);
+                            int textWidth = Convert.ToInt32(xWidth * 0.85753086);
+                            int textHeight = Convert.ToInt32(yHeight * 0.261/*0.05037037*/);
+
+                            Bitmap textBitmap = new Bitmap(textWidth * 2, textHeight * 2);
+                            List<AForge.IntPoint> textCorners = new List<AForge.IntPoint> { new AForge.IntPoint(xtext, ytext), new AForge.IntPoint(textWidth + xtext, ytext), new AForge.IntPoint(textWidth + xtext, textHeight + ytext), new AForge.IntPoint(xtext, textHeight + ytext) };
+                            QuadrilateralTransformation textFilter = new QuadrilateralTransformation(textCorners, textBitmap.Width, textBitmap.Height);
+                            textBitmap = textFilter.Apply(trans_Color_img);
+                            Black_White_Conversion(ref textBitmap, false);
+
+                            Display_Picture_Box.Image = textBitmap;
+                            page.Dispose();
+                            page = ocr.Process(textBitmap);
+                            string text = page.GetText();
+
+                            text = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
+                            text = text.Replace("â€”", "-");//removes endline characters
+                            text = text.Replace('\n', ' ');
+                            text = text.Replace('\\',' ');
+                            text = text.Replace('|', ' ');
+                            text = text.TrimStart(' ', '-', '_', '.', ',', '\'', '[', '{', ']', '}');//removes spaces
+                            text = text.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
+                            text = text.Trim(' ');//removes spaces
+                            text = text.TrimStart(' ', '-', '_', '.', ',', '\'', '[', '{', ']', '}');//removes spaces
+                            text = text.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
+                            text = text.Trim(' ');//removes spaces
+
+
+                            connection.Open();
+                            string begQueryFuzzy = "SELECT * FROM public.card WHERE";
+                            string endQueryFuzzy = "AND foil = 'n' AND card_text % '" + text + "'";
+                            string sqlQueryFuzzy =  begQueryFuzzy + " " + "card_name % '" + textBoxString + "'" ;
+                            using (var cmd = new NpgsqlCommand(sqlQueryFuzzy, connection))
+                            {
+                                NpgsqlDataReader reader = cmd.ExecuteReader();
+                                int readCount = 0;
+                                bool sameCard = true;
+                                string tempNameReader = "";
+                                while (reader.Read() && !foundMatch)
+                                {
+                                    if (readCount == 0)
+                                    {
+                                        tempNameReader = reader[2].ToString();
+                                    }
+                                    else
+                                    {
+                                        if(tempNameReader != reader[2].ToString())
+                                        {
+                                            sameCard = false;
+                                        }
+                                    }
+                                    readCount++;
+                                }
+                                if (readCount > 0 && sameCard)
+                                {
+                                    textBoxString = tempNameReader;
+                                    foundMatch = true;
+                                }
+                            }
+                            connection.Close();
+
+                            if (!foundMatch)
+                            {
+                                connection.Open();
+                                sqlQueryFuzzy = begQueryFuzzy + " card_flavor % '"+text+"' " + endQueryFuzzy;
+                                using (var cmd = new NpgsqlCommand(sqlQueryFuzzy, connection))
+                                {
+                                    NpgsqlDataReader reader = cmd.ExecuteReader();
+                                    int readCount = 0;
+                                    bool sameCard = true;
+                                    string tempNameReader = "";
+                                    while (reader.Read() && !foundMatch)
+                                    {
+                                        if (readCount == 0)
+                                        {
+                                            tempNameReader = reader[2].ToString();
+                                        }
+                                        else
+                                        {
+                                            if (tempNameReader != reader[2].ToString())
+                                            {
+                                                sameCard = false;
+                                            }
+                                        }
+                                        readCount++;
+                                    }
+                                    if (readCount > 0 && sameCard)
+                                    {
+                                        textBoxString = tempNameReader;
+                                        foundMatch = true;
+                                    }
+                                }
+                                connection.Close();
+                            }
+                        }
+
+
+
 
                         textBox1.Text = textBoxString;
                         CardName.Text = textBoxString;
 
+                        //CREATE EXTENSION pg_trgm;
                         addToList(findCardWithName(textBoxString));
 
 
@@ -710,7 +845,7 @@ namespace OCS_FOR_CSHARP
                 }
                 catch (Exception ex)
                 {
-                    //System.Windows.MessageBox.Show(ex.ToString());
+                    System.Windows.MessageBox.Show(ex.ToString());
                     cardWrapper tempCard = new cardWrapper();
                     if (CardName.Text != "Name" && CardName.Text != "")
                     {
@@ -891,7 +1026,7 @@ namespace OCS_FOR_CSHARP
 
                 if(rowsAffected > 1)
                 {
-                    tempWrapper.cardStatus = Color.Gold;
+                    tempWrapper.cardStatus = Color.FromArgb(255, 102, 102, 70);//brown gold
                 }
                 else
                 {
@@ -1168,7 +1303,7 @@ namespace OCS_FOR_CSHARP
             searchTimer.Stop();
             if (currentCard != null && foundCards.Count > 0)
             {
-                var selectedCard = foundCards[CardName.SelectedIndex];
+                var selectedCard = foundCards[CardName.SelectedIndex];//this throws index range exception sometimes>> why?
                 currentCard.card = selectedCard.card;
                 currentCard.card_ID = selectedCard.card_ID;
                 currentCard.condition = selectedCard.condition;
