@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Take_Picture_Button = new System.Windows.Forms.Button();
             this.Cam_Picture_Box = new System.Windows.Forms.PictureBox();
             this.Start_Video__Button = new System.Windows.Forms.Button();
             this.Display_Picture_Box = new System.Windows.Forms.PictureBox();
@@ -111,21 +111,21 @@
             this.textBox1.TabIndex = 1;
             this.textBox1.TextChanged += new System.EventHandler(this.Tess_TextBox);
             // 
-            // button1
+            // Take_Picture_Button
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.Color.Silver;
-            this.button1.Location = new System.Drawing.Point(4, 693);
-            this.button1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(410, 169);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Scan Card";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Take_Picture_Button_Click);
+            this.Take_Picture_Button.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Take_Picture_Button.FlatAppearance.BorderSize = 0;
+            this.Take_Picture_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Take_Picture_Button.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Take_Picture_Button.ForeColor = System.Drawing.Color.Silver;
+            this.Take_Picture_Button.Location = new System.Drawing.Point(4, 693);
+            this.Take_Picture_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.Take_Picture_Button.Name = "Take_Picture_Button";
+            this.Take_Picture_Button.Size = new System.Drawing.Size(410, 169);
+            this.Take_Picture_Button.TabIndex = 2;
+            this.Take_Picture_Button.Text = "Scan Card";
+            this.Take_Picture_Button.UseVisualStyleBackColor = true;
+            this.Take_Picture_Button.Click += new System.EventHandler(this.Take_Picture_Button_Click);
             // 
             // Cam_Picture_Box
             // 
@@ -358,7 +358,7 @@
             this.tableLayoutPanel2.Controls.Add(this.textBox1, 0, 4);
             this.tableLayoutPanel2.Controls.Add(this.Start_Video__Button, 0, 0);
             this.tableLayoutPanel2.Controls.Add(this.Cancel_Button, 0, 6);
-            this.tableLayoutPanel2.Controls.Add(this.button1, 0, 2);
+            this.tableLayoutPanel2.Controls.Add(this.Take_Picture_Button, 0, 2);
             this.tableLayoutPanel2.Controls.Add(this.Stop_Cam, 0, 5);
             this.tableLayoutPanel2.Controls.Add(this.Name_Header_Pic_Box, 0, 3);
             this.tableLayoutPanel2.Controls.Add(this.Cam_Picture_Box, 0, 1);
@@ -828,7 +828,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Take_Picture_Button;
         private System.Windows.Forms.PictureBox Cam_Picture_Box;
         private System.Windows.Forms.Button Start_Video__Button;
         public System.Windows.Forms.PictureBox Display_Picture_Box;

@@ -581,7 +581,7 @@ namespace OCS_FOR_CSHARP
             {
                 cardWrapper card = currentCard;
                 bool exists = false;
-                int inv_id;
+                //int inv_id;
 
                 connection.Open();
 

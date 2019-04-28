@@ -35,8 +35,11 @@ namespace OCS_FOR_CSHARP
         private FilterInfoCollection Devices;
         private IVideoSource frame = null;
         Bitmap currentCamFrame;
+        bool bwWebCam;
+        bool rectWebCam;
+        bool boarderWebCam;
+        short webCamState;
 
-        String Photo_Filepath = "C:\\Users\\milee\\OneDrive\\Pictures";
         Timer searchTimer = new Timer();
         List<cardWrapper> selectedCards = new List<cardWrapper>();
         List<cardWrapper> foundCards = new List<cardWrapper>();
@@ -60,6 +63,10 @@ namespace OCS_FOR_CSHARP
             flowLayoutPanel3.HorizontalScroll.Visible = false;
             flowLayoutPanel3.HorizontalScroll.Maximum = 0;
             flowLayoutPanel3.AutoScroll = true;
+            bwWebCam = false;
+            rectWebCam = false;
+            boarderWebCam = true;
+            webCamState = 0;
 
             this.Closing += Form1_Closing;
             //var position = this.PointToScreen(Card_Boarder.Location);
@@ -122,6 +129,56 @@ namespace OCS_FOR_CSHARP
             Close();
         }
 
+        private void Webcam_Feed_Box(object sender, EventArgs e)
+        {
+            webCamState++;
+            if (webCamState == 8) { webCamState = 0; }
+
+            //States:   0 = Color,Boarder,NO_Rect
+            //          1 = Color,Boarder,Rect
+            //          2 = Color,NO_Boarder,NO_Rect
+            //          3 = Color,NO_Boarder,Rect
+            //          4 = Black&White,Boarder,NO_Rect
+            //          5 = Black&White,Boarder,Rect
+            //          6 = Black&White,NO_Boarder,NO_Rect
+            //          7 = Black&White,NO_Boarder,Rect
+
+            if (webCamState < 4)
+            {
+                bwWebCam = false;
+                if (webCamState < 2)
+                {
+                    boarderWebCam = true;
+                }
+                else
+                {
+                    boarderWebCam = false;
+                }
+
+            }
+            else
+            {
+                bwWebCam = true;
+                if (webCamState < 6)
+                {
+                    boarderWebCam = true;
+                }
+                else
+                {
+                    boarderWebCam = false;
+                }
+            }
+
+            if (webCamState % 2 == 1)
+            {
+                rectWebCam = true;
+            }
+            else
+            {
+                rectWebCam = false;
+            }
+        }
+
         void Start_cam()
         {
             Devices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
@@ -155,39 +212,61 @@ namespace OCS_FOR_CSHARP
 
         void NewFrame_event(object send,NewFrameEventArgs e)
         {
-
+            //Clones current raw frame to bitmap and rotates it 90 degrees
             Bitmap bframe = (Bitmap)e.Frame.Clone();
             bframe.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
+            //Will point to last frame for disposal after transition
             var ccfDispose = currentCamFrame;
-            currentCamFrame = new Bitmap(bframe);
+            currentCamFrame = new Bitmap(bframe);//swap
 
-            Rectangle rect = Blob_Detector(bframe, false, 0.25, 0.25);
-
-            if (!rect.IsEmpty)
+            if (webCamState != 2)
             {
-                Pen pen = new Pen(Color.RoyalBlue, 4);
-                pen.Alignment = PenAlignment.Inset;
-
-                //Bitmap bmpOutline = new Bitmap(bframe.Width, bframe.Height);
-                Graphics graphic = Graphics.FromImage(bframe);
-
-                //graphic.DrawImage(bframe, rect.X, rect.Y, rect, GraphicsUnit.Pixel);
-                graphic.DrawRectangle(pen, rect);
-
-                CardIntPoints card = new CardIntPoints(bframe, rect, 7);
-
-                if (card.CornerList.Count() == 4)
+                Bitmap ibwWebCam = new Bitmap(bframe);
+                Black_White_Conversion(ref ibwWebCam);
+                if (bwWebCam)
                 {
-                    Pen pen2 = new Pen(Color.Yellow, 3);
-                    pen2.Alignment = PenAlignment.Inset;
-                    PointF point = new PointF(3,3);
-                    graphic.DrawLine(pen2, new PointF(card.CornerList[0].X, card.CornerList[0].Y), new PointF(card.CornerList[1].X, card.CornerList[1].Y));
-                    graphic.DrawLine(pen2, new PointF(card.CornerList[1].X, card.CornerList[1].Y), new PointF(card.CornerList[2].X, card.CornerList[2].Y));
-                    graphic.DrawLine(pen2, new PointF(card.CornerList[2].X, card.CornerList[2].Y), new PointF(card.CornerList[3].X, card.CornerList[3].Y));
-                    graphic.DrawLine(pen2, new PointF(card.CornerList[3].X, card.CornerList[3].Y), new PointF(card.CornerList[0].X, card.CornerList[0].Y));
+
+                    Black_White_Conversion(ref bframe);
+                    Bitmap dframe = bframe;
+                    bframe = new Bitmap((Bitmap)bframe);
+                    dframe.Dispose();
+                }
+
+                if (boarderWebCam || rectWebCam)
+                {
+                    Rectangle rect = Blob_Detector(ibwWebCam, true, 0.25, 0.25);
+
+                    if (!rect.IsEmpty)
+                    {
+                        Graphics graphic = Graphics.FromImage(bframe);
+
+                        if (rectWebCam)
+                        {
+                            Pen pen = new Pen(Color.RoyalBlue, 4);
+                            pen.Alignment = PenAlignment.Inset;
+                            graphic.DrawRectangle(pen, rect);
+                        }
+
+                        if (boarderWebCam)
+                        {
+                            CardIntPoints card = new CardIntPoints(ibwWebCam, rect, 3);
+                            
+                            if (card.PointF_CornerList.Count() == 4 && card.closetoIsoscelesTrap)
+                            {
+                                Pen pen2 = new Pen(Color.Yellow, 3);
+                                pen2.Alignment = PenAlignment.Inset;
+
+                                graphic.DrawLine(pen2, card.PointF_CornerList[0], card.PointF_CornerList[1]);
+                                graphic.DrawLine(pen2, card.PointF_CornerList[1], card.PointF_CornerList[2]);
+                                graphic.DrawLine(pen2, card.PointF_CornerList[2], card.PointF_CornerList[3]);
+                                graphic.DrawLine(pen2, card.PointF_CornerList[3], card.PointF_CornerList[0]);
+                            }
+                        }
+                    }
                 }
             }
+
             //will hold reference to old image from picture box for disposal after new image takes it's place
             var bdispose = Cam_Picture_Box.Image;//I fix a long persisting memory leak
 
@@ -206,7 +285,7 @@ namespace OCS_FOR_CSHARP
         
         }
 
-        void Adjust_Tesseract_Img(int contrast_threshold/*{-100, 100}*/, Bitmap nameHeaderBitmap)
+        void Adjust_Tesseract_Img(int contrast_threshold/*{-100, 100}*/, ref Bitmap nameHeaderBitmap)
         {
             //width and height of tesseract image
             int nameHeadWidth = nameHeaderBitmap.Width;
@@ -263,7 +342,7 @@ namespace OCS_FOR_CSHARP
 
 
                     //nameHeaderBitmap.SetPixel(x, y, Color.FromArgb(a, pixAvg, pixAvg, pixAvg));
-                    nameHeaderBitmap.SetPixel(x, y, Color.FromArgb(pixel.A, (int)r, (int)g, (int)b)); 
+                    nameHeaderBitmap.SetPixel(x, y, Color.FromArgb(255, (int)r, (int)g, (int)b)); 
                 }
             }     
             return;
@@ -376,81 +455,24 @@ namespace OCS_FOR_CSHARP
 
         private void Take_Picture_Button_Click(object sender, EventArgs e)
         {
-            if (Photo_Filepath != null && Cam_Picture_Box.Image != null)
+            if (Cam_Picture_Box.Image != null)
             {
                 try
                 {
                     if (currentCamFrame != null)
-                    { 
+                    {
+
                         //picture from web cam
                         Bitmap originalImg = new Bitmap(currentCamFrame);
                         Bitmap invertBWImg = new Bitmap(originalImg);
                         Black_White_Conversion(ref invertBWImg);
-                        Display_Picture_Box.Image = invertBWImg;
+                        //Display_Picture_Box.Image = invertBWImg;
                         Rectangle rect = Blob_Detector(invertBWImg, true, 0.25, 0.25);
-                        //rotate 90 degrees
-                        //originalImg.RotateFlip(RotateFlipType.Rotate90FlipNone);
 
-                        //Bitmap invertBWImg = originalImg;
-                        //Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
-                        //Invert ifilter = new Invert();
-                        //BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
-                        //invertBWImg = gfilter.Apply(invertBWImg);
-                        //thfilter.ApplyInPlace(invertBWImg);
-                        //ifilter.ApplyInPlace(invertBWImg);
-
-
-                        //BlobCounter bc = new BlobCounter();
-                        //BlobCounter textBC = new BlobCounter();
-
-                        //bc.FilterBlobs = true;
-                        // bc.MinHeight = (int)(originalImg.Height *.25);
-                        // bc.MinWidth = (int)(originalImg.Width * .25);
-
-                        // bc.ProcessImage(invertBWImg);
-                        //textBC.ProcessImage(invertBWImg);
-
-                        //Blob[] blobs = bc.GetObjectsInformation();
-                        // List<List<AForge.IntPoint>> iPointList = new List<List<AForge.IntPoint>>();
-                        //for (int i = 0; i < blobs.Count(); i++)
-                        // {
-                        //     iPointList.Add(bc.GetBlobsEdgePoints(blobs[i]));
-                        // }
-                        // Rectangle[] rect = bc.GetObjectsRectangles();
-                        // Rectangle[] textRect = textBC.GetObjectsRectangles();
-
-                        // int largestRect = 0;
-                        // int curLargestSize = 0;
 
 
                         Pen pen = new Pen(Color.Red, 2);
                         pen.Alignment = PenAlignment.Inset;
-
-                        //Bitmap bmpOutline = new Bitmap(invertBWImg.Width, invertBWImg.Height);
-                        //Graphics bwGraphic = Graphics.FromImage(bmpOutline);
-                        //Rectangle bwrect = new Rectangle(0, 0, invertBWImg.Width, invertBWImg.Height);
-                        //bwGraphic.DrawImage(invertBWImg, bwrect.X, bwrect.Y, bwrect, GraphicsUnit.Pixel);
-
-                        //if (textRect != null)
-                        //{
-                         //   for (int curRect = 0; curRect < textRect.Count(); curRect++)
-                         //   {
-                        //        bwGraphic.DrawRectangle(pen, textRect[curRect]);
-
-                        //    }
-                        //}
-                        //if (rect != null)
-                       // {
-                         //   for (int curRect = 0; curRect < rect.Count(); curRect++)
-                        //    {
-                                //bwGraphic.DrawRectangle(pen, rect[curRect]);
-                      //          if (rect[curRect].Width * rect[curRect].Height > curLargestSize && rect[curRect].Width < originalImg.Width * .97 && rect[curRect].Height < originalImg.Height * .97)
-                      //          {
-                      //              curLargestSize = rect[curRect].Width * rect[curRect].Height;
-                      //              largestRect = curRect;
-                       //         }
-                        //    }
-                       // }
 
 
 
@@ -462,9 +484,6 @@ namespace OCS_FOR_CSHARP
                         Graphics graphicImage = Graphics.FromImage(trans_Inbw_img);
                         Graphics graphicIBWImage = Graphics.FromImage(trans_Color_img);
 
-                        //original image cropped to two different images
-                        //graphicImage.DrawImage(originalImg, new Rectangle(0, 0, rectImage.Width, rectImage.Height), rect, GraphicsUnit.Pixel);
-                        //graphicIBWImage.DrawImage(invertBWImg, new Rectangle(0, 0, rectImage.Width, rectImage.Height), rect, GraphicsUnit.Pixel);
 
 
                         CardIntPoints card = new CardIntPoints(invertBWImg, rect, 7);
@@ -473,9 +492,9 @@ namespace OCS_FOR_CSHARP
 
 
 
-                        if (card.CornerList.Count == 4)
+                        if (card.IntPoint_CornerList.Count == 4)
                         {
-                            QuadrilateralTransformation filter = new QuadrilateralTransformation(card.CornerList, rect.Width, rect.Height);
+                            QuadrilateralTransformation filter = new QuadrilateralTransformation(card.IntPoint_CornerList, rect.Width, rect.Height);
                             trans_Inbw_img = filter.Apply(invertBWImg);
                             trans_Color_img = filter.Apply(originalImg);
                         }
@@ -486,44 +505,6 @@ namespace OCS_FOR_CSHARP
 
                         }
 
-
-
-
-
-
-
-
-
-
-
-                        /*
-
-                        avgAngle = avgAngle / 4;
-
-                        avgAngle *= -1;
-
-                        Bitmap tiltFixedIBWImg = new Bitmap(rectIBWImage.Width, rectIBWImage.Height);
-                        using (Graphics g = Graphics.FromImage(tiltFixedIBWImg))
-                        {
-                            // Set the rotation point to the center in the matrix
-                            g.TranslateTransform(rectIBWImage.Width / 2, rectIBWImage.Height / 2);
-                            // Rotate
-                            g.RotateTransform((float)avgAngle);
-                            // Restore rotation point in the matrix
-                            g.TranslateTransform(-rectIBWImage.Width / 2, -rectIBWImage.Height / 2);
-                            // Draw the image on the bitmap
-                            g.DrawImage(rectIBWImage, new System.Drawing.Point(0, 0));
-                        }
-                        */
-
-
-
-
-
-
-
-
-
                         //Dim of saved image
                         int xStart = 1;
                         int yStart = 1;
@@ -532,27 +513,60 @@ namespace OCS_FOR_CSHARP
                         int xWidth = (xEnd - xStart);
                         int yHeight = (yEnd - yStart);
 
+                        int xheader = Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart);
+                        int yheader = Convert.ToInt32((yHeight * 0.050/*0.040481481*/) + yStart);
+                        int headerWidth = Convert.ToInt32(xWidth * 0.69753086);
+                        int headerHeight = Convert.ToInt32(yHeight * 0.041/*0.05037037*/);
+
+                        int xColor = Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart);
+                        int yColor = Convert.ToInt32((yHeight * 0.026/*0.040481481*/) + yStart);
+                        int colorWidth = Convert.ToInt32(xWidth * 0.69753086);
+                        int colorHeight = Convert.ToInt32(yHeight * 0.015/*0.05037037*/);
 
 
                         //Establishing size of crop area based off original image (x,y,width,height)
                         //All percents are measured/calulated ratios based off card dimensions
-                        Rectangle nameHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.050/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.045/*0.05037037*/));
-                        Rectangle colorHeaderCropRect = new Rectangle(Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart), Convert.ToInt32((yHeight * 0.024/*0.040481481*/) + yStart), Convert.ToInt32(xWidth * 0.69753086), Convert.ToInt32(yHeight * 0.015/*0.05037037*/));
-
-                        //Bitmap that will store altered image (width,height)
-                        Bitmap nameHeaderBitmap = new Bitmap(nameHeaderCropRect.Width, nameHeaderCropRect.Height);
+                        //Rectangle nameHeaderCropRect = new Rectangle(xheader, yheader, headerWidth, headerHeight);
+                        Rectangle colorHeaderCropRect = new Rectangle(xColor, yColor, colorWidth, colorHeight);
                         Bitmap colorHeaderBitmap = new Bitmap(colorHeaderCropRect.Width, colorHeaderCropRect.Height);
-
-                        //blank bitmap to graphics object. ready for changes
-                        Graphics nameHeadGraphics = Graphics.FromImage(nameHeaderBitmap);
                         Graphics colorHeadGraphics = Graphics.FromImage(colorHeaderBitmap);
-
-                        //original image cropped to two different images
-                        nameHeadGraphics.DrawImage(trans_Color_img, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
                         colorHeadGraphics.DrawImage(trans_Color_img, 0, 0, colorHeaderCropRect, GraphicsUnit.Pixel);
 
+                        //Bitmap that will store altered image (width,height)
+                        Bitmap nameHeaderBitmap = new Bitmap(headerWidth * 4, headerHeight * 4);
+                        List<AForge.IntPoint> headerCorners = new List<AForge.IntPoint> { new AForge.IntPoint(xheader, yheader), new AForge.IntPoint(headerWidth + xheader, yheader), new AForge.IntPoint(headerWidth+xheader, headerHeight+yheader), new AForge.IntPoint(xheader, headerHeight+yheader) };
+                        QuadrilateralTransformation headFilter = new QuadrilateralTransformation(headerCorners, nameHeaderBitmap.Width, nameHeaderBitmap.Height);
+                        nameHeaderBitmap = headFilter.Apply(trans_Color_img);
+
+
+                        Adjust_Tesseract_Img(15, ref nameHeaderBitmap);
+                        Black_White_Conversion(ref nameHeaderBitmap);
+
+                        Bitmap blk_wht_header = new Bitmap((int)(nameHeaderBitmap.Width * 1.5), (int)(nameHeaderBitmap.Height * 2.5));
+                        Rectangle blk_wht_hRect = new Rectangle(0, 0, blk_wht_header.Width, blk_wht_header.Height);
+                        Rectangle name_hRect = new Rectangle(0, 0, nameHeaderBitmap.Width, nameHeaderBitmap.Height);
+                        Graphics blk_wht_hGraphics = Graphics.FromImage(blk_wht_header);
+                        blk_wht_hGraphics.FillRectangle(Brushes.Black, blk_wht_hRect);
+                        blk_wht_hGraphics.DrawImage(nameHeaderBitmap, (int)((blk_wht_header.Width - nameHeaderBitmap.Width) / 2), (int)((blk_wht_header.Height - nameHeaderBitmap.Height) / 2), name_hRect,GraphicsUnit.Pixel);
+
+                        //colorHeaderBitmap = headFilter.Apply(trans_Color_img);
+
+                        //blank bitmap to graphics object. ready for changes
+                        //Graphics nameHeadGraphics = Graphics.FromImage(nameHeaderBitmap);
+                        //
+
+                        //original image cropped to two different images
+                        //nameHeadGraphics.DrawImage(trans_Color_img, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
+                        //
+
+
+
+
+
+                        
+
                         //calls picture alteration function to increase contrast and adjust image color
-                        Adjust_Tesseract_Img(15, nameHeaderBitmap);
+
 
                         //displays original image in picture preview box
                         Display_Picture_Box.Image = trans_Color_img;//bmpOutline;//bmp;//rectImage;//originalImg;//<-------------------------------------------------------------------------------
@@ -561,7 +575,7 @@ namespace OCS_FOR_CSHARP
 
 
                         //displays name header image in name header picture box
-                        Name_Header_Pic_Box.Image = nameHeaderBitmap;//nameHeaderBitmap;
+                        Name_Header_Pic_Box.Image = blk_wht_header;//colorHeaderBitmap;//nameHeaderBitmap;//nameHeaderBitmap;
 
                         double[] avgCardColor = new double[3];
                         double count = 0;
@@ -674,26 +688,31 @@ namespace OCS_FOR_CSHARP
 
                         string tesseractPath = Path.GetFullPath(Path.Combine(System.IO.Directory.GetCurrentDirectory(), @"..\..\")) + "Tesseract\\tessdata";
                         TesseractEngine ocr = new TesseractEngine(tesseractPath, "eng", EngineMode.TesseractAndCube);
-                        var page = ocr.Process(nameHeaderBitmap);//sends name header bitmap to tesseract
+                        var page = ocr.Process(blk_wht_header);//sends name header bitmap to tesseract
                         textBoxString = page.GetText();//gets tesseract text
 
                         textBox1.Text = textBoxString;
                         textBoxString = textBoxString.Replace("â€”", "-");//removes endline characters
-                        textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'');//removes spaces
+                        textBoxString = textBoxString.Replace('\n', ' ');
+                        textBoxString = textBoxString.TrimStart(' ', '-', '_', '.', ',', '\'', '[', '{', ']', '}');//removes spaces
                         textBoxString = textBoxString.TrimEnd('\n', '.', ',', '-', '_');//removes endline characters
                         textBoxString = textBoxString.Trim(' ');//removes spaces
+                        
 
                         textBox1.Text = textBoxString;
                         CardName.Text = textBoxString;
 
                         addToList(findCardWithName(textBoxString));
+
+
+                        
                     }
                 }
                 catch (Exception ex)
                 {
-                    System.Windows.MessageBox.Show(ex.ToString());
+                    //System.Windows.MessageBox.Show(ex.ToString());
                     cardWrapper tempCard = new cardWrapper();
-                    if(CardName.Text != "Name" && CardName.Text != "")
+                    if (CardName.Text != "Name" && CardName.Text != "")
                     {
                         tempCard.card = new CardObject { name = CardName.Text, };
                     }
@@ -701,7 +720,7 @@ namespace OCS_FOR_CSHARP
                     {
                         tempCard.card = new CardObject { name = "Unknown Card" };
                     }
-                    tempCard.cardStatus = Color.Red;
+                    tempCard.cardStatus = Color.FromArgb(255,66,49,57);
                     tempCard.tempImg = (Bitmap)Display_Picture_Box.Image.Clone();
                     addToList(tempCard);
                     if (connection.State == ConnectionState.Open) connection.Close();
@@ -711,10 +730,7 @@ namespace OCS_FOR_CSHARP
 
 
 
-        private void Webcam_Feed_Box(object sender, EventArgs e)
-        {
 
-        }
 
          private void Display_Picture_Box_Click(object sender, EventArgs e)
         {
@@ -1312,14 +1328,22 @@ namespace OCS_FOR_CSHARP
     public class CardIntPoints
     {
 
-        public List<AForge.IntPoint> CornerList { get; set; }
+        public List<AForge.IntPoint> IntPoint_CornerList { get; set; }
+        public List<PointF> PointF_CornerList { get; set; }
+        public bool closetoIsoscelesTrap;
+        public Bitmap alteredImg;
+        
 
         public CardIntPoints(Bitmap image, Rectangle rect, int iterations)
         {
             ////////////////////////////////////
             // CARD EDGE DETECTION ALOGORITHM //
             ////////////////////////////////////
-            CornerList = new List<AForge.IntPoint>();
+            IntPoint_CornerList = new List<AForge.IntPoint>();
+            PointF_CornerList = new List<PointF>();
+            closetoIsoscelesTrap = true;
+            alteredImg = new Bitmap(image);
+
             if (iterations < 3)
             {
                 iterations = 3;
@@ -1328,25 +1352,48 @@ namespace OCS_FOR_CSHARP
 
             int[,,] edgePoints = new int[4, iterations, 2];
 
+
+
+
             //Side Edge Detection Algorithm
             for (int yIndex = 0; yIndex < iterations; yIndex++)
             {
-                int y = (((yIndex + 1) * (int)(rect.Height / iterations + 1)) + rect.Y);
+                int y = (((yIndex + 1) * (int)(rect.Height / (iterations + 1))) + rect.Y);
 
                 bool edgeFound = false;
                 int x = rect.X;
+                
                 int curColor = 0;
 
                 //Left side edge detection
+                int xStart = x;
                 while (!edgeFound && x < rect.X + rect.Width - 1)
                 {
                     Color pixel = image.GetPixel(x, y);
                     curColor = pixel.R + pixel.G + pixel.B;
-                    if (curColor > 600)//White
+                    if (curColor > 400)//White
                     {
-                        edgePoints[0, yIndex, 0] = x;
-                        edgePoints[0, yIndex, 1] = -y;
-                        edgeFound = true;
+                        if (x == xStart)
+                        {
+                            if (xStart - 10 < 0)
+                            {
+                                x = 0;
+                                edgeFound = true;
+                            }
+                            else
+                            {
+                                x = xStart - 10;
+                                xStart -= 10;
+                            }
+
+                        }
+                        else
+                        {
+                            edgePoints[0, yIndex, 0] = x;
+                            edgePoints[0, yIndex, 1] = -y;
+                            edgeFound = true;
+                            alteredImg.SetPixel(x, y, Color.Red);
+                        }
                     }
                     else//Black
                     {
@@ -1360,15 +1407,34 @@ namespace OCS_FOR_CSHARP
                 curColor = 0;
 
                 //Right side edge detection
+                xStart = x;
                 while (!edgeFound && x > rect.X + 1)
                 {
                     Color pixel = image.GetPixel(x, y);
                     curColor = pixel.R + pixel.G + pixel.B;
-                    if (curColor > 600)//White
+                    if (curColor > 400)//White
                     {
-                        edgePoints[1, yIndex, 0] = x;
-                        edgePoints[1, yIndex, 1] = -y;
-                        edgeFound = true;
+                        if (x == xStart)
+                        {
+                            if (xStart + 10 > image.Width - 1)
+                            {
+                                x = image.Width - 1;
+                                edgeFound = true;
+                            }
+                            else
+                            {
+                                x = xStart + 10;
+                                xStart += 10;
+                            }
+
+                        }
+                        else
+                        {
+                            edgePoints[1, yIndex, 0] = x;
+                            edgePoints[1, yIndex, 1] = -y;
+                            edgeFound = true;
+                            alteredImg.SetPixel(x, y, Color.Red);
+                        }
                     }
                     else//Black
                     {
@@ -1382,22 +1448,42 @@ namespace OCS_FOR_CSHARP
             //Top/Bottom Edge Detection Algorithm
             for (int xIndex = 0; xIndex < iterations; xIndex++)
             {
-                int x = (((xIndex + 1) * (int)(rect.Width / iterations + 1)) + rect.X);
+                int x = (((xIndex + 1) * (int)(rect.Width / (iterations + 1))) + rect.X);
 
                 bool edgeFound = false;
                 int y = rect.Y;
                 int curColor = 0;
 
+
                 //Top edge detection
+                int yStart = y;
                 while (!edgeFound && y < rect.Y + rect.Height - 1)
                 {
                     Color pixel = image.GetPixel(x, y);
                     curColor = pixel.R + pixel.G + pixel.B;
-                    if (curColor > 600)//White
+                    if (curColor > 400)//White
                     {
-                        edgePoints[2, xIndex, 0] = x;
-                        edgePoints[2, xIndex, 1] = -y;
-                        edgeFound = true;
+                        if (y == yStart)
+                        {
+                            if (yStart - 10 < 0)
+                            {
+                                y = 0;
+                                edgeFound = true;
+                            }
+                            else
+                            {
+                                y = yStart - 10;
+                                yStart -= 10;
+                            }
+
+                        }
+                        else
+                        {
+                            edgePoints[2, xIndex, 0] = x;
+                            edgePoints[2, xIndex, 1] = -y;
+                            edgeFound = true;
+                            alteredImg.SetPixel(x, y, Color.Red);
+                        }
                     }
                     else//Black
                     {
@@ -1411,15 +1497,35 @@ namespace OCS_FOR_CSHARP
                 curColor = 0;
 
                 //Bottom edge detection
+                yStart = y;
                 while (!edgeFound && y > rect.Y + 1)
                 {
                     Color pixel = image.GetPixel(x, y);
                     curColor = pixel.R + pixel.G + pixel.B;
-                    if (curColor > 600)//White
+                    alteredImg.SetPixel(x, y, Color.Red);
+                    if (curColor > 400)//White
                     {
-                        edgePoints[3, xIndex, 0] = x;
-                        edgePoints[3, xIndex, 1] = -y;
-                        edgeFound = true;
+                        if (y == yStart)
+                        {
+                            if (yStart + 10 > image.Height - 1)
+                            {
+                                y = image.Height - 1;
+                                edgeFound = true;
+                            }
+                            else
+                            {
+                                y = yStart + 10;
+                                yStart += 10;
+                            }
+
+                        }
+                        else
+                        {
+                            edgePoints[3, xIndex, 0] = x;
+                            edgePoints[3, xIndex, 1] = -y;
+                            edgeFound = true;
+                            alteredImg.SetPixel(x, y, Color.Red);
+                        }
                     }
                     else//Black
                     {
@@ -1435,7 +1541,7 @@ namespace OCS_FOR_CSHARP
             int iterationDex = 0;
             double[] avgSlope = new double[4];
             double[] yIntercept = new double[4];
-            double deviance = 0.08;
+            double deviance = 0.02;
 
 
             //for each side
@@ -1547,7 +1653,17 @@ namespace OCS_FOR_CSHARP
 
                 if (yCorner >= 0 && xCorner >= 0)//Check for too large
                 {
-                    CornerList.Add(new AForge.IntPoint(xCorner, yCorner));
+                    this.IntPoint_CornerList.Add(new AForge.IntPoint(xCorner, yCorner));
+                    this.PointF_CornerList.Add(new PointF(xCorner, yCorner));
+                    if (closetoIsoscelesTrap)
+                    {
+                        double thetaDeg = (Math.Atan(Math.Abs((double)((avgSlope[horzEdge] - avgSlope[virtEdge]) / (1 + (avgSlope[horzEdge] * avgSlope[virtEdge]))))))/(Math.PI/180);
+                        int thetaRange = 20;
+                        if (thetaDeg < 90 - thetaRange || thetaDeg > 90 + thetaRange)
+                        {
+                            closetoIsoscelesTrap = false;
+                        }
+                    }
                 }
 
                 //even
@@ -1560,6 +1676,8 @@ namespace OCS_FOR_CSHARP
                     horzEdge += 1;
                 }
             }
+
+            
         }
         ~CardIntPoints()
         {
