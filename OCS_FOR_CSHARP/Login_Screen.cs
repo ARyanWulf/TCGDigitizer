@@ -36,7 +36,7 @@ namespace OCS_FOR_CSHARP
                     connection.Open();
 
 
-                    NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.users WHERE login_name ILIKE '" + "ccooper"/*login_username_textbox.Text*/ + "' AND login_pass ILIKE '" + "ccowner"/*login_password_textbox.Text*/ + "'AND privilege_lvl > 0", connection);
+                    NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.users WHERE login_name ILIKE '" + login_username_textbox.Text + "' AND login_pass ILIKE '" + login_password_textbox.Text + "'AND privilege_lvl > 0", connection);
                     NpgsqlDataReader reader = command.ExecuteReader();
 
 
