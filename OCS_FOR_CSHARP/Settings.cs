@@ -52,7 +52,6 @@ namespace OCS_FOR_CSHARP
          */
         public void Populate_Settings_List()
         {
-            //Users_Panel.Visible = false;
             //Clears table and redraws it
             Users_Panel.Controls.Clear();
             Users_Panel.RowCount = 0;
@@ -171,8 +170,6 @@ namespace OCS_FOR_CSHARP
                         //parced card list. will contain an array of every card contained in the set setList[i].name
                         CardRootObject currentCardList = (CardRootObject)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(CardRootObject));
 
-                        //List<CardRootObject> currentCardList = (List<CardRootObject>)Newtonsoft.Json.JsonConvert.DeserializeObject(mtgCardjson, typeof(List<CardRootObject>));
-
                         //Open connection to local database
                         connection.Open();
 
@@ -205,6 +202,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_time", DateTime.Now);
 
+                                    currentCardList.cards[j].name = currentCardList.cards[j].name.Replace("â€™", "'");
                                     cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name + " - " + currentCardList.name);
 
                                     if (currentCardList.cards[j].manaCost != null)
@@ -239,6 +237,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
 
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€™", "'");
                                     currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
                                     if (currentCardList.cards[j].types != null)
@@ -271,6 +270,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].text != null)
                                     {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€™", "'");
                                         currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
                                     }
@@ -282,6 +282,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].flavorText != null)
                                     {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€™", "'");
                                         currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
                                     }
@@ -337,6 +338,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_time", DateTime.Now);
 
+                                    currentCardList.cards[j].name = currentCardList.cards[j].name.Replace("â€™", "'");
                                     cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name + " - MASTERPIECE");
 
                                     if (currentCardList.cards[j].manaCost != null)
@@ -371,6 +373,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
 
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€™", "'");
                                     currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
                                     if (currentCardList.cards[j].types != null)
@@ -403,6 +406,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].text != null)
                                     {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€™", "'");
                                         currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
                                     }
@@ -414,6 +418,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].flavorText != null)
                                     {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€™", "'");
                                         currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
                                     }
@@ -469,6 +474,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_time", DateTime.Now);
 
+                                    currentCardList.cards[j].name = currentCardList.cards[j].name.Replace("â€™", "'");
                                     cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name + " - FOIL");
 
                                     if (currentCardList.cards[j].manaCost != null)
@@ -503,6 +509,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
 
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€™", "'");
                                     currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
                                     if (currentCardList.cards[j].types != null)
@@ -535,6 +542,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].text != null)
                                     {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€™", "'");
                                         currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
                                     }
@@ -546,6 +554,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].flavorText != null)
                                     {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€™", "'");
                                         currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
                                     }
@@ -574,7 +583,7 @@ namespace OCS_FOR_CSHARP
                                         cmd.Parameters.AddWithValue("in_loyalty", "n/a");
                                     }
 
-                                    if(currentCardList.cards[j].artist != null)
+                                    if (currentCardList.cards[j].artist != null)
                                     {
                                         cmd.Parameters.AddWithValue("in_artist", currentCardList.cards[j].artist);
                                     }
@@ -602,6 +611,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_time", DateTime.Now);
 
+                                    currentCardList.cards[j].name = currentCardList.cards[j].name.Replace("â€™", "'");
                                     cmd.Parameters.AddWithValue("in_name", currentCardList.cards[j].name);
 
                                     if (currentCardList.cards[j].manaCost != null)
@@ -636,6 +646,7 @@ namespace OCS_FOR_CSHARP
 
                                     cmd.Parameters.AddWithValue("in_multi", currentCardList.cards[j].multiverseId);
 
+                                    currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€™", "'");
                                     currentCardList.cards[j].type = currentCardList.cards[j].type.Replace("â€”", "-");
                                     cmd.Parameters.AddWithValue("in_type", currentCardList.cards[j].type);
                                     if (currentCardList.cards[j].types != null)
@@ -668,6 +679,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].text != null)
                                     {
+                                        currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€™", "'");
                                         currentCardList.cards[j].text = currentCardList.cards[j].text.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_text", currentCardList.cards[j].text);
                                     }
@@ -679,6 +691,7 @@ namespace OCS_FOR_CSHARP
 
                                     if (currentCardList.cards[j].flavorText != null)
                                     {
+                                        currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€™", "'");
                                         currentCardList.cards[j].flavorText = currentCardList.cards[j].flavorText.Replace("â€”", "-");
                                         cmd.Parameters.AddWithValue("in_flavor", currentCardList.cards[j].flavorText);
                                     }

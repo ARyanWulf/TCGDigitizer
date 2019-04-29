@@ -32,6 +32,9 @@ namespace OCS_FOR_CSHARP
             searchTimer.Interval = 1000;
             searchTimer.Enabled = true;
             searchTimer.Stop();
+
+            Add_Card_Button.Enabled = false;
+            Remove_Card_Button.Enabled = false;
         }
 
         // The save button is also binded to the enter key for the user
@@ -44,7 +47,9 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                // Close();
+                Add_Card_Button.Enabled = false;
+                Remove_Card_Button.Enabled = false;
+                Add_Card_Button.Text = "Added";
             }
         }
 
@@ -172,9 +177,6 @@ namespace OCS_FOR_CSHARP
 
         private void button5_Click(object sender, EventArgs e)
         {
-            /*Edit_Card_Form newEditForm = new Edit_Card_Form();
-            newEditForm.Show();
-            this.Dispose(false);*/
             Add_Card_Button.Enabled = false;
             Name_Textbox.Clear();
             Card_Type_TextBox.Clear();
@@ -189,16 +191,6 @@ namespace OCS_FOR_CSHARP
             Name_Textbox.ReadOnly = false;
         }
 
-        private void Card_Description_TextBox_TextChanged(object sender, EventArgs e)
-        {
-            //push test
-        }
-
-        private void Card_Additional_TextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         public bool addToInventory(int transType)
         {
 
@@ -206,7 +198,6 @@ namespace OCS_FOR_CSHARP
             {
                 cardWrapper card = currentCard;
                 bool exists = false;
-                //int inv_id;
 
                 connection.Open();
 
@@ -276,7 +267,7 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        private void searchEventHandler(Object myObject, EventArgs eventArgs)
+        private void searchEventHandler(object myObject, EventArgs eventArgs)
         {
             searchTimer.Stop();
             foundCards.Clear();
@@ -305,10 +296,7 @@ namespace OCS_FOR_CSHARP
 
                 cmd.Parameters.AddWithValue("in_name", cardName);
 
-                //tempID = 
                 var reader = cmd.ExecuteReader();
-
-                //if(reader.HasRows)
 
                 while (reader.Read())
                 {
@@ -353,20 +341,12 @@ namespace OCS_FOR_CSHARP
             return returnList;
         }
 
-        private void Name_Textbox_TextChanged(object sender, EventArgs e)
-        {
-            /*if (textBox1.Text.Length == 0)
-            {
-                button4.Enabled = false;
-            }
-            else
-            {
-                button4.Enabled = true;
-            }*/
-        }
-
         private void SearchBox_TextChanged(object sender, EventArgs e)
         {
+            Add_Card_Button.Enabled = true;
+            Remove_Card_Button.Enabled = true;
+            Add_Card_Button.Text = "Add to Inventory";
+            Remove_Card_Button.Text = "Remove from Inventory";
             if ((SearchBox.Text != "") && (SearchBox.Text.Length >= 3) && (SearchBox.SelectedText != SearchBox.Text))
             {
                 searchTimer.Stop();
@@ -375,18 +355,6 @@ namespace OCS_FOR_CSHARP
             else
             {
                 searchTimer.Stop();
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (!addToInventory(-1))
-            {
-                MessageBox.Show("ERROR! Insufficient permissions.");
-            }
-            else
-            {
-                // Close();
             }
         }
         
@@ -401,6 +369,20 @@ namespace OCS_FOR_CSHARP
 
             //populates card data
             populate(foundCards[SearchBox.SelectedIndex]);
+        }
+
+        private void Remove_Card_Button_Click(object sender, EventArgs e)
+        {
+            if (!addToInventory(-1))
+            {
+                MessageBox.Show("ERROR! Insufficient permissions.");
+            }
+            else
+            {
+                Add_Card_Button.Enabled = false;
+                Remove_Card_Button.Enabled = false;
+                Remove_Card_Button.Text = "Removed";
+            }
         }
     }
 }
