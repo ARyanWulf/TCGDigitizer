@@ -247,8 +247,8 @@
             this.Card_Table_Panel.Margin = new System.Windows.Forms.Padding(0);
             this.Card_Table_Panel.Name = "Card_Table_Panel";
             this.Card_Table_Panel.RowCount = 1;
-            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 142F));
-            this.Card_Table_Panel.Size = new System.Drawing.Size(1070, 144);
+            this.Card_Table_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 143F));
+            this.Card_Table_Panel.Size = new System.Drawing.Size(1070, 145);
             this.Card_Table_Panel.TabIndex = 18;
             // 
             // Mana_Button
@@ -260,7 +260,7 @@
             this.Mana_Button.Location = new System.Drawing.Point(870, 6);
             this.Mana_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Mana_Button.Name = "Mana_Button";
-            this.Mana_Button.Size = new System.Drawing.Size(195, 132);
+            this.Mana_Button.Size = new System.Drawing.Size(195, 133);
             this.Mana_Button.TabIndex = 11;
             this.Mana_Button.Text = "Mana";
             this.Mana_Button.UseVisualStyleBackColor = true;
@@ -274,7 +274,7 @@
             this.Number_Button.Location = new System.Drawing.Point(669, 6);
             this.Number_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Number_Button.Name = "Number_Button";
-            this.Number_Button.Size = new System.Drawing.Size(192, 132);
+            this.Number_Button.Size = new System.Drawing.Size(192, 133);
             this.Number_Button.TabIndex = 10;
             this.Number_Button.Text = "Number";
             this.Number_Button.UseVisualStyleBackColor = true;
@@ -288,7 +288,7 @@
             this.Expansion_Button.Location = new System.Drawing.Point(468, 6);
             this.Expansion_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Expansion_Button.Name = "Expansion_Button";
-            this.Expansion_Button.Size = new System.Drawing.Size(192, 132);
+            this.Expansion_Button.Size = new System.Drawing.Size(192, 133);
             this.Expansion_Button.TabIndex = 9;
             this.Expansion_Button.Text = "Expansion";
             this.Expansion_Button.UseVisualStyleBackColor = true;
@@ -302,7 +302,7 @@
             this.Type_Button.Location = new System.Drawing.Point(267, 6);
             this.Type_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Type_Button.Name = "Type_Button";
-            this.Type_Button.Size = new System.Drawing.Size(192, 132);
+            this.Type_Button.Size = new System.Drawing.Size(192, 133);
             this.Type_Button.TabIndex = 8;
             this.Type_Button.Text = "Type";
             this.Type_Button.UseVisualStyleBackColor = true;
@@ -316,7 +316,7 @@
             this.Name_Button.Location = new System.Drawing.Point(66, 6);
             this.Name_Button.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name_Button.Name = "Name_Button";
-            this.Name_Button.Size = new System.Drawing.Size(192, 132);
+            this.Name_Button.Size = new System.Drawing.Size(192, 133);
             this.Name_Button.TabIndex = 7;
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = true;
@@ -333,7 +333,7 @@
             this.Inventory_Checkbox.Location = new System.Drawing.Point(5, 6);
             this.Inventory_Checkbox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Inventory_Checkbox.Name = "Inventory_Checkbox";
-            this.Inventory_Checkbox.Size = new System.Drawing.Size(52, 132);
+            this.Inventory_Checkbox.Size = new System.Drawing.Size(52, 133);
             this.Inventory_Checkbox.TabIndex = 1;
             this.Inventory_Checkbox.UseVisualStyleBackColor = true;
             this.Inventory_Checkbox.CheckedChanged += new System.EventHandler(this.Inventory_Checkbox_CheckedChanged);
@@ -725,7 +725,7 @@
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 221);
+            this.tableLayoutPanel5.Location = new System.Drawing.Point(0, 222);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(0);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
             this.tableLayoutPanel5.RowCount = 1;
@@ -798,6 +798,7 @@
             this.Text = "TCG Digitizer - Get Image";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Enter += new System.EventHandler(this.Take_Picture_Button_Click);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.EnterCardWithCondition);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             ((System.ComponentModel.ISupportInitialize)(this.Cam_Picture_Box)).EndInit();

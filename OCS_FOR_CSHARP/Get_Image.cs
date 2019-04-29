@@ -1,29 +1,32 @@
-﻿using AForge.Video;
+﻿using AForge.Imaging;
+using AForge.Imaging.Filters;
+using AForge.Video;
 using AForge.Video.DirectShow;
-using AForge.Imaging;
 
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Globalization;
 using System.Linq;
+using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows;
+
 using Npgsql;
 using Tesseract;
+
 using MtgApiManager.Lib.Service;
 using MtgApiManager.Lib.Model;
 using MtgApiManager.Lib.Core;
 using MtgApiManager.Lib.Utility;
 using MtgApiManager.Lib.Dto;
-using AForge.Imaging.Filters;
-using System.IO;
+
 
 namespace OCS_FOR_CSHARP
 {
@@ -356,8 +359,9 @@ namespace OCS_FOR_CSHARP
         {
         }
 
-        private Rectangle Blob_Detector(Bitmap image, bool already_Black_White, double min_height_percent, double min_width_percent)
+        private Rectangle Blob_Detector(Bitmap image, bool already_Black_White, double min_width_percent, double min_height_percent)
         {
+            if (min_height_percent > 0.99 || min_width_percent > 0.99 || min_height_percent < 0 || min_width_percent < 0)
             if (!already_Black_White)
             {
                 Black_White_Conversion(ref image, true);
@@ -408,55 +412,50 @@ namespace OCS_FOR_CSHARP
 
         private void Take_Picture_Button_Click(object sender, EventArgs e)
         {
+            //If webcam feed is on
             if (Cam_Picture_Box.Image != null)
             {
 
                 //picture from web cam
-                Bitmap originalImg = new Bitmap(currentCamFrame);
-                Bitmap invertBWImg = new Bitmap(originalImg);
-                Black_White_Conversion(ref invertBWImg, true);
-                //Display_Picture_Box.Image = invertBWImg;
+                Bitmap originalImg = new Bitmap(currentCamFrame);   //color image
+                Bitmap invertBWImg = new Bitmap(originalImg);       //future black/white image
+
+                Black_White_Conversion(ref invertBWImg, true);      //make image black and white, true -> invert
+
+                //rectangle containing blob (BITMAP, BOOL Black_White_Conversion_alreadycalled, DOUBLE (0 <= MinBlobWidth < 0.99), DOUBLE (0 <= MinBlobHeight < 0.99))
                 Rectangle rect = Blob_Detector(invertBWImg, true, 0.25, 0.25);
 
+                //if blobs are detected and Blob_Detector parameters are correct
                 if (!rect.IsEmpty)
                 {
                     try
                     {
-                        if (currentCamFrame != null)
+                        //if a image of webcam is stored
+                        if (currentCamFrame != null) //FUTURE OPTIMIZE DONT STORE IMAGE UNTIL A FLAG - not implemented
                         {
 
-
-
-
-                            Pen pen = new Pen(Color.Red, 2);
-                            pen.Alignment = PenAlignment.Inset;
-
-
-
-                            //Bitmap that will store altered image (width,height)
+                            //Bitmap that will store blob rectangle (width,height)
                             Bitmap trans_Inbw_img = new Bitmap(rect.Width, rect.Height);
                             Bitmap trans_Color_img = new Bitmap(rect.Width, rect.Height);
 
-                            //blank bitmap to graphics object. ready for changes
+                            //Graphics object for blob bitmaps
                             Graphics graphicImage = Graphics.FromImage(trans_Inbw_img);
                             Graphics graphicIBWImage = Graphics.FromImage(trans_Color_img);
-
-
-
-                            CardIntPoints card = new CardIntPoints(invertBWImg, rect, 7);
-
-
-
-
-
+                                                       
+                            //Creates class and stores calculated corners (IMAGE, RECTANGLE, INT number of edge checks per side)
+                            CardIntPoints card = new CardIntPoints(invertBWImg, rect, 3);
+                                                                                 
+                            //if four corners were found
                             if (card.IntPoint_CornerList.Count == 4)
                             {
+                                //stretch quadrilateral formed by corners into blob image
                                 QuadrilateralTransformation filter = new QuadrilateralTransformation(card.IntPoint_CornerList, rect.Width, rect.Height);
                                 trans_Inbw_img = filter.Apply(invertBWImg);
                                 trans_Color_img = filter.Apply(originalImg);
                             }
                             else
-                            {
+                            {   
+                                //default unfix blob crop - no stretching
                                 graphicImage.DrawImage(originalImg, new Rectangle(0, 0, trans_Color_img.Width, trans_Color_img.Height), rect, GraphicsUnit.Pixel);
                                 graphicIBWImage.DrawImage(invertBWImg, new Rectangle(0, 0, trans_Inbw_img.Width, trans_Inbw_img.Height), rect, GraphicsUnit.Pixel);
 
@@ -470,193 +469,67 @@ namespace OCS_FOR_CSHARP
                             int xWidth = (xEnd - xStart);
                             int yHeight = (yEnd - yStart);
 
+                            //Dim of card name header by percent
                             int xheader = Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart);
-                            int yheader = Convert.ToInt32((yHeight * 0.052/*0.040481481*/) + yStart);
+                            int yheader = Convert.ToInt32((yHeight * 0.050/*0.040481481*/) + yStart);
                             int headerWidth = Convert.ToInt32(xWidth * 0.69753086);
-                            int headerHeight = Convert.ToInt32(yHeight * 0.041/*0.05037037*/);
+                            int headerHeight = Convert.ToInt32(yHeight * 0.045/*0.05037037*/);
 
+                            //Dim of card color section by percent - used to detect card color
                             int xColor = Convert.ToInt32((xWidth * 0.08/*0.063786008*/) + xStart);
                             int yColor = Convert.ToInt32((yHeight * 0.026/*0.040481481*/) + yStart);
                             int colorWidth = Convert.ToInt32(xWidth * 0.69753086);
                             int colorHeight = Convert.ToInt32(yHeight * 0.015/*0.05037037*/);
-                            /////////////////////////////
 
-                            /////////////////////////////
-                            //Establishing size of crop area based off original image (x,y,width,height)
-                            //All percents are measured/calulated ratios based off card dimensions
-                            //Rectangle nameHeaderCropRect = new Rectangle(xheader, yheader, headerWidth, headerHeight);
+                            //create color header bitmap
                             Rectangle colorHeaderCropRect = new Rectangle(xColor, yColor, colorWidth, colorHeight);
                             Bitmap colorHeaderBitmap = new Bitmap(colorHeaderCropRect.Width, colorHeaderCropRect.Height);
                             Graphics colorHeadGraphics = Graphics.FromImage(colorHeaderBitmap);
                             colorHeadGraphics.DrawImage(trans_Color_img, 0, 0, colorHeaderCropRect, GraphicsUnit.Pixel);
 
 
-                            //Bitmap that will store altered image (width,height)
+                            //create name header bitmap and increase size by -v (currently 4)
                             Bitmap nameHeaderBitmap = new Bitmap(headerWidth * 4, headerHeight * 4);
                             List<AForge.IntPoint> headerCorners = new List<AForge.IntPoint> { new AForge.IntPoint(xheader, yheader), new AForge.IntPoint(headerWidth + xheader, yheader), new AForge.IntPoint(headerWidth + xheader, headerHeight + yheader), new AForge.IntPoint(xheader, headerHeight + yheader) };
                             QuadrilateralTransformation headFilter = new QuadrilateralTransformation(headerCorners, nameHeaderBitmap.Width, nameHeaderBitmap.Height);
                             nameHeaderBitmap = headFilter.Apply(trans_Color_img);
 
-
+                            //fixes image to get better tesseract accuracy (INT contrast, BITMAP REF image)
                             Adjust_Tesseract_Img(15, ref nameHeaderBitmap);
-                            Black_White_Conversion(ref nameHeaderBitmap, false);
-                            //AdaptiveSmoothing noiseFilter = new AdaptiveSmoothing();
-                            //noiseFilter.ApplyInPlace(nameHeaderBitmap);
-                            //Sharpen sharpFilter = new Sharpen();
-                            //sharpFilter.ApplyInPlace(nameHeaderBitmap);
 
+                            //convert to black/white, dont invert
+                            Black_White_Conversion(ref nameHeaderBitmap, false);
+
+                            //put black/white header into larger image and center
+                            //tesseract work better if there is more empty space around text. Increase size here -v (currently 0.5 width increase and 1.5 height increase)
                             Bitmap blk_wht_header = new Bitmap((int)(nameHeaderBitmap.Width * 1.5), (int)(nameHeaderBitmap.Height * 2.5));
                             Rectangle blk_wht_hRect = new Rectangle(0, 0, blk_wht_header.Width, blk_wht_header.Height);
                             Rectangle name_hRect = new Rectangle(0, 0, nameHeaderBitmap.Width, nameHeaderBitmap.Height);
                             Graphics blk_wht_hGraphics = Graphics.FromImage(blk_wht_header);
                             blk_wht_hGraphics.FillRectangle(Brushes.White, blk_wht_hRect);
                             blk_wht_hGraphics.DrawImage(nameHeaderBitmap, (int)((blk_wht_header.Width - nameHeaderBitmap.Width) / 2), (int)((blk_wht_header.Height - nameHeaderBitmap.Height) / 2), name_hRect, GraphicsUnit.Pixel);
-
-
-                            //colorHeaderBitmap = headFilter.Apply(trans_Color_img);
-
-                            //blank bitmap to graphics object. ready for changes
-                            //Graphics nameHeadGraphics = Graphics.FromImage(nameHeaderBitmap);
-                            //
-
-                            //original image cropped to two different images
-                            //nameHeadGraphics.DrawImage(trans_Color_img, 0, 0, nameHeaderCropRect, GraphicsUnit.Pixel);
-                            //
-
-
-
-
-
-
-
-                            //calls picture alteration function to increase contrast and adjust image color
-
-
+                                                       
                             //displays original image in picture preview box
-                            Display_Picture_Box.Image = trans_Color_img;//bmpOutline;//bmp;//rectImage;//originalImg;//<-------------------------------------------------------------------------------
-                                                                        //Display_Picture_Box.Image = tiltFixedIBWImg;
-
-
+                            Display_Picture_Box.Image = trans_Color_img;
 
                             //displays name header image in name header picture box
-                            Name_Header_Pic_Box.Image = blk_wht_header;//colorHeaderBitmap;//nameHeaderBitmap;//nameHeaderBitmap;
+                            Name_Header_Pic_Box.Image = blk_wht_header;//black and white
 
-                            double[] avgCardColor = new double[3];
-                            double count = 0;
-                            for (int x = 0; x < colorHeaderBitmap.Width; x += 2)
-                            {
-                                for (int y = 0; y < colorHeaderBitmap.Height; y += 2)
-                                {
-                                    Color pixel = colorHeaderBitmap.GetPixel(x, y);
-                                    avgCardColor[0] += pixel.R;
-                                    avgCardColor[1] += pixel.G;
-                                    avgCardColor[2] += pixel.B;
-                                    count++;
-                                }
-                            }
-
-                            Color cardColor = Color.FromArgb(0, (int)(avgCardColor[0] / count), (int)(avgCardColor[1] / count), (int)(avgCardColor[2] / count));
-
-                            List<char>[] cardColorList = new List<char>[3];
-                            cardColorList[0] = new List<char>();
-                            cardColorList[1] = new List<char>();
-                            cardColorList[2] = new List<char>();
-
-                            //Average RGB values based on testing (Multi was not tested)
-
-                            CharColor[] avgTestedRGB = new CharColor[7];
-                            avgTestedRGB[0] = new CharColor('R', Color.FromArgb(0, 118, 70, 74));//Red
-                            avgTestedRGB[1] = new CharColor('G', Color.FromArgb(0, 100, 113, 113));//Green
-                            avgTestedRGB[2] = new CharColor('U', Color.FromArgb(0, 78, 107, 142));//Blue
-                            avgTestedRGB[3] = new CharColor('B', Color.FromArgb(0, 70, 63, 72));//Black
-                            avgTestedRGB[4] = new CharColor('W', Color.FromArgb(0, 134, 125, 116));//White
-                            avgTestedRGB[5] = new CharColor('N', Color.FromArgb(0, 125, 133, 142));//None
-                            avgTestedRGB[6] = new CharColor('M', Color.FromArgb(0, 194, 177, 93));//Multi (not confirmed)
-
-
-                            int range = 10;
-                            bool colorFound = false;
-                            bool rangeTooBig = false;
-                            bool lastLoop = false;
-                            List<char> theCardColor = new List<char>();
-
-                            while (!colorFound)
-                            {
-                                cardColorList[0].Clear();
-                                cardColorList[1].Clear();
-                                cardColorList[2].Clear();
-                                for (int colorDex = 0; colorDex < avgTestedRGB.Count(); colorDex++)
-                                {
-                                    //Checks if average R is within range of tested colors
-                                    if (avgTestedRGB[colorDex].cardColor.R - range < cardColor.R && avgTestedRGB[colorDex].cardColor.R + range > cardColor.R)
-                                    {
-                                        cardColorList[0].Add(avgTestedRGB[colorDex].colorChar);
-                                    }
-                                    //Checks if average G is within range of tested colors
-                                    if (avgTestedRGB[colorDex].cardColor.G - range < cardColor.G && avgTestedRGB[colorDex].cardColor.G + range > cardColor.G)
-                                    {
-                                        cardColorList[1].Add(avgTestedRGB[colorDex].colorChar);
-                                    }
-                                    //Checks if average B is within range of tested colors
-                                    if (avgTestedRGB[colorDex].cardColor.B - range < cardColor.B && avgTestedRGB[colorDex].cardColor.B + range > cardColor.B)
-                                    {
-                                        cardColorList[2].Add(avgTestedRGB[colorDex].colorChar);
-                                    }
-                                }
-                                theCardColor = cardColorList[0].Intersect(cardColorList[1].Intersect(cardColorList[2].ToList())).ToList();
-                                if (theCardColor.Contains('N'))
-                                {
-
-                                }
-                                if (theCardColor.Count() == 1)
-                                {
-                                    colorFound = true;
-                                }
-                                else if (theCardColor.Count() == 0)
-                                {
-                                    if (!rangeTooBig)
-                                    {
-                                        range += 5;
-                                    }
-                                    else
-                                    {
-                                        range += 1;
-                                        lastLoop = true;
-                                    }
-                                }
-                                else if (lastLoop == true)
-                                {
-                                    colorFound = true;
-                                }
-                                else
-                                {
-                                    range -= 1;
-                                    rangeTooBig = true;
-                                }
-
-                            }
-
-                            //Cards with no color and cards that are green are too close on RGB spectrum
-                            if (theCardColor.Contains('N') && !theCardColor.Contains('W'))
-                            {
-                                theCardColor.Add('W');
-                            }
-                            else if (theCardColor.Contains('W') && !theCardColor.Contains('N'))
-                            {
-                                theCardColor.Add('N');
-                            }
-
-
+                            //gets estimated card colors in char list
+                            List <char> theCardColor  = Find_Card_Color(colorHeaderBitmap);
+                            
                             //will hold tesseract return string
                             string textBoxString;
 
+                            //local tesseract directory
                             string tesseractPath = Path.GetFullPath(Path.Combine(System.IO.Directory.GetCurrentDirectory(), @"..\..\")) + "Tesseract\\tessdata";
+
+                            //instance of tesseract engine (DIR, "traindata", Type of enginemode)
                             TesseractEngine ocr = new TesseractEngine(tesseractPath, "eng", EngineMode.TesseractAndCube);
                             var page = ocr.Process(blk_wht_header);//sends name header bitmap to tesseract
                             textBoxString = page.GetText();//gets tesseract text
 
-
-                            //textBox1.Text = textBoxString;
+                            //fix punctuation issues with tesseract returned string
                             textBoxString = new string(textBoxString.Where(c => !char.IsPunctuation(c)).ToArray());
                             textBoxString = textBoxString.Replace("â€”", "-");//removes endline characters
                             textBoxString = textBoxString.Replace('\n', ' ');
@@ -700,7 +573,6 @@ namespace OCS_FOR_CSHARP
                                 textBitmap = textFilter.Apply(trans_Color_img);
                                 Black_White_Conversion(ref textBitmap, false);
 
-                                Display_Picture_Box.Image = textBitmap;
                                 page.Dispose();
                                 page = ocr.Process(textBitmap);
                                 string text = page.GetText();
@@ -801,7 +673,8 @@ namespace OCS_FOR_CSHARP
                     }
                     catch (Exception ex)
                     {
-                        System.Windows.MessageBox.Show(ex.ToString());
+                        //System.Windows.MessageBox.Show(ex.ToString());
+                        textBox1.Text = "Unknown Card";
                         cardWrapper tempCard = new cardWrapper();
                         if (CardName.Text != "Name" && CardName.Text != "")
                         {
@@ -820,8 +693,117 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        private List<char> Find_Card_Color(Bitmap colorHeaderBitmap)
+        {
+            double[] avgCardColor = new double[3];
+            double count = 0;
+            for (int x = 0; x < colorHeaderBitmap.Width; x += 2)
+            {
+                for (int y = 0; y < colorHeaderBitmap.Height; y += 2)
+                {
+                    Color pixel = colorHeaderBitmap.GetPixel(x, y);
+                    avgCardColor[0] += pixel.R;
+                    avgCardColor[1] += pixel.G;
+                    avgCardColor[2] += pixel.B;
+                    count++;
+                }
+            }
+
+            Color cardColor = Color.FromArgb(0, (int)(avgCardColor[0] / count), (int)(avgCardColor[1] / count), (int)(avgCardColor[2] / count));
+
+            List<char>[] cardColorList = new List<char>[3];
+            cardColorList[0] = new List<char>();
+            cardColorList[1] = new List<char>();
+            cardColorList[2] = new List<char>();
+
+            //Average RGB values based on testing (Multi was not tested)
+
+            CharColor[] avgTestedRGB = new CharColor[7];
+            avgTestedRGB[0] = new CharColor('R', Color.FromArgb(0, 118, 70, 74));//Red
+            avgTestedRGB[1] = new CharColor('G', Color.FromArgb(0, 100, 113, 113));//Green
+            avgTestedRGB[2] = new CharColor('U', Color.FromArgb(0, 78, 107, 142));//Blue
+            avgTestedRGB[3] = new CharColor('B', Color.FromArgb(0, 70, 63, 72));//Black
+            avgTestedRGB[4] = new CharColor('W', Color.FromArgb(0, 134, 125, 116));//White
+            avgTestedRGB[5] = new CharColor('N', Color.FromArgb(0, 125, 133, 142));//None
+            avgTestedRGB[6] = new CharColor('M', Color.FromArgb(0, 194, 177, 93));//Multi (not confirmed)
 
 
+            int range = 10;
+            bool colorFound = false;
+            bool rangeTooBig = false;
+            bool lastLoop = false;
+
+            List<char> theCardColor = new List<char>();
+
+            while (!colorFound)
+            {
+                cardColorList[0].Clear();
+                cardColorList[1].Clear();
+                cardColorList[2].Clear();
+                for (int colorDex = 0; colorDex < avgTestedRGB.Count(); colorDex++)
+                {
+                    //Checks if average R is within range of tested colors
+                    if (avgTestedRGB[colorDex].cardColor.R - range < cardColor.R && avgTestedRGB[colorDex].cardColor.R + range > cardColor.R)
+                    {
+                        cardColorList[0].Add(avgTestedRGB[colorDex].colorChar);
+                    }
+                    //Checks if average G is within range of tested colors
+                    if (avgTestedRGB[colorDex].cardColor.G - range < cardColor.G && avgTestedRGB[colorDex].cardColor.G + range > cardColor.G)
+                    {
+                        cardColorList[1].Add(avgTestedRGB[colorDex].colorChar);
+                    }
+                    //Checks if average B is within range of tested colors
+                    if (avgTestedRGB[colorDex].cardColor.B - range < cardColor.B && avgTestedRGB[colorDex].cardColor.B + range > cardColor.B)
+                    {
+                        cardColorList[2].Add(avgTestedRGB[colorDex].colorChar);
+                    }
+                }
+                theCardColor = cardColorList[0].Intersect(cardColorList[1].Intersect(cardColorList[2].ToList())).ToList();
+                if (theCardColor.Contains('N'))
+                {
+
+                }
+                if (theCardColor.Count() == 1)
+                {
+                    colorFound = true;
+                }
+                else if (theCardColor.Count() == 0)
+                {
+                    if (!rangeTooBig)
+                    {
+                        range += 5;
+                    }
+                    else
+                    {
+                        range += 1;
+                        lastLoop = true;
+                    }
+                }
+                else if (lastLoop == true)
+                {
+                    colorFound = true;
+                }
+                else
+                {
+                    range -= 1;
+                    rangeTooBig = true;
+                }
+
+                
+            }
+
+            //Cards with no color and cards that are green are too close on RGB spectrum
+            if (theCardColor.Contains('N') && !theCardColor.Contains('W'))
+            {
+                theCardColor.Add('W');
+            }
+            else if (theCardColor.Contains('W') && !theCardColor.Contains('N'))
+            {
+                theCardColor.Add('N');
+            }
+
+            return theCardColor;
+        }
 
 
          private void Display_Picture_Box_Click(object sender, EventArgs e)
