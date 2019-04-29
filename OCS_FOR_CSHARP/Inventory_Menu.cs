@@ -19,16 +19,19 @@ namespace OCS_FOR_CSHARP
     public partial class Inventory_Menu : Form
     {
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
-
+        string orderBy = "name";
         public int display_lower;
         public int display_upper;
         public bool ctrlPressed = false;
         private List<cardWrapper> cards = new List<cardWrapper>(); //holds cards in inventory
         private List<cardWrapper> needImageQueue = new List<cardWrapper>(); //holds cards that need images
         private TableLayoutPanel tempTable;
+        bool search = false;
+        bool searchAll = false;
         CardService service = new CardService();
         Timer resizeTimer = new Timer();
         Timer cardImageTimer = new Timer();
+        Timer searchTimer = new Timer(); //time to wait before searching after searchbox textchanged
         cardWrapper currentCard;
         List<cardWrapper> selectedCards = new List<cardWrapper>();
 
@@ -59,12 +62,45 @@ namespace OCS_FOR_CSHARP
             cardImageTimer.Interval = 5000;
             cardImageTimer.Enabled = true;
             cardImageTimer.Start();
+
+            //initialize searchtimer properties
+            searchTimer.Tick += new EventHandler(searchEventHandler);
+            searchTimer.Interval = 1000;
+            searchTimer.Enabled = true;
+            searchTimer.Stop();
+
+            searchBar.GotFocus += new EventHandler(cleartext);
+            searchBar.LostFocus += new EventHandler(addText);
+        }
+
+        private void cleartext(object sender, EventArgs e)
+        {
+            if(searchBar.Text == "Search")
+            {
+                searchBar.Text = "";
+            }
+        }
+
+        private void addText(object sender, EventArgs e)
+        {
+            if(string.IsNullOrWhiteSpace(searchBar.Text))
+            {
+                searchBar.Text = "Search";
+            }
         }
 
         private void resizeEventHandler(object sender, EventArgs e)
         {
             resizeTimer.Stop();
             Card_Table_Panel.Visible = true;
+            refreshTable();
+        }
+
+        private void searchEventHandler(object myObject, EventArgs eventArgs)
+        {
+            searchTimer.Stop();
+            cards.Clear();
+            search = true;
             refreshTable();
         }
 
@@ -76,18 +112,17 @@ namespace OCS_FOR_CSHARP
             {
                 var tempCard = needImageQueue[0];
                 needImageQueue.RemoveAt(0);
-                var imageURL = service.
-                    Where(x => x.Set, tempCard.card.setCode).
-                    Where(y => y.Number, tempCard.card.number).
-                    All().Value[0].ImageUrl.OriginalString;
                 try
                 {
+                    var imageURL = service.
+                        Where(x => x.Set, tempCard.card.setCode).
+                        Where(y => y.Number, tempCard.card.number).
+                        All().Value[0].ImageUrl.OriginalString;
                     add_image(tempCard.card_ID, imageURL);
                     tempCard.card.imageURL = imageURL;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.ToString());
                 }
                 cardImageTimer.Start();
             }
@@ -138,7 +173,10 @@ namespace OCS_FOR_CSHARP
         private List<cardWrapper> Get_Inventory()
         {
             // create list of cards
-            List<cardWrapper> cards = new List<cardWrapper>();
+            List<cardWrapper> Cards = new List<cardWrapper>();
+
+            List<int> cardQuantity = new List<int>();
+            List<int> cardIDs = new List<int>();
 
             // open connection to server
             connection.Open();
@@ -151,54 +189,110 @@ namespace OCS_FOR_CSHARP
              * go back to the system so it can read all the return data from the database so
              * it can be returned to the calling function
              */
-            using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
+            if (searchAll && search)
             {
-                NpgsqlDataReader reader = cmd.ExecuteReader();
-
-                while (reader.Read())
+                using (var cmd = new NpgsqlCommand("get_all_cards_containing_string", connection))
                 {
-                    cardWrapper card = new cardWrapper();
-                    card.card_ID = System.Convert.ToInt32(reader[1].ToString());
-                    card.count = System.Convert.ToInt32(reader[2].ToString());
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("in_name", searchBar.Text);
 
-                    cards.Add(card);
+                    var reader = cmd.ExecuteReader();
+
+                    while (reader.Read() && cardIDs.Count < 20)
+                    {
+                        cardIDs.Add(System.Convert.ToInt32(reader[0].ToString()));
+                        try
+                        {
+                            cardQuantity.Add(System.Convert.ToInt32(reader[1].ToString()));
+                        }
+                        catch
+                        {
+                            cardQuantity.Add(0);
+                        }
+                    }
                 }
             }
-            connection.Close();
-
-            // Adjust query for all cards
-            string cmdhold = "";
-            for (int i = 0; i < cards.Count; i++)
+            else if(search)
             {
-                if (cards[i].count <= 0)
+                using (var cmd = new NpgsqlCommand("get_inventory_cards_containing_string", connection))
                 {
-                    cards.RemoveAt(i);
-                    i--;
-                }
-                else if (i != 0)
-                {
-                    cmdhold += "OR card_id = " + cards[i].card_ID;
-                }
-                else
-                {
-                    cmdhold = "card_id = " + cards[i].card_ID;
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("in_name", searchBar.Text);
+
+                    var reader = cmd.ExecuteReader();
+
+                    while(reader.Read())
+                    {
+                        cardIDs.Add(System.Convert.ToInt32(reader[0].ToString()));
+                        cardQuantity.Add(System.Convert.ToInt32(reader[1].ToString()));
+                    }
                 }
             }
-            
-            // Check that inventory has cards
-            if (cards.Count != 0)
+            else
             {
-                connection.Open();
-
-                using (var cmd = new NpgsqlCommand("SELECT * FROM public.card WHERE " + cmdhold, connection))
+                using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
                 {
                     NpgsqlDataReader reader = cmd.ExecuteReader();
 
                     while (reader.Read())
                     {
+                        cardIDs.Add(System.Convert.ToInt32(reader[1].ToString()));
+                        cardQuantity.Add(System.Convert.ToInt32(reader[2].ToString()));
+                    }
+                }
+            }
+            connection.Close();
+
+            // Adjust query for all cards
+            if (!searchAll)
+            {
+                for (int i = 0; i < cardIDs.Count; i++)
+                {
+                    if (cardQuantity[i] <= 0)
+                    {
+                        cardIDs.RemoveAt(i);
+                        cardQuantity.RemoveAt(i);
+                        i--;
+                    }
+                }
+            }
+            
+            // Check that inventory has cards
+            if (cardIDs.Count != 0)
+            {
+                Cards = getCards(cardIDs);
+
+            }
+
+            for (int i = 0; i < Cards.Count; i++)
+            {
+                Cards[i].count = cardQuantity[cardIDs.IndexOf(Cards[i].card.cardID)];
+            }
+
+            return Cards;
+        }
+
+
+        private List<cardWrapper> getCards(List<int> cardIDs)
+        {
+            List<cardWrapper> Cards = new List<cardWrapper>();
+
+                connection.Open();
+
+                using (var cmd = new NpgsqlCommand("get_inv_by_" + orderBy, connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_ids", cardIDs);
+
+                    var reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
                         string temp;
+                        cardWrapper tempWrapper = new cardWrapper();
                         CardObject tempCard = new CardObject();
-                        tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                        tempWrapper.card_ID = tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
                         tempCard.name = reader[2].ToString();
                         tempCard.type = reader[3].ToString();
                         tempCard.manaCost = reader[4].ToString();
@@ -226,20 +320,17 @@ namespace OCS_FOR_CSHARP
                         tempCard.number = reader[24].ToString();
                         tempCard.imageURL = reader[25].ToString();
 
-                        for (int i = 0; i < cards.Count; i++)
-                        {
-                            if (cards[i].card_ID == tempCard.cardID)
-                            {
-                                cards[i].card = tempCard;
-                            }
-                        }
+                        tempWrapper.card = tempCard;
+
+                        Cards.Add(tempWrapper);
                     }
+
+
                 }
+
                 connection.Close();
 
-            }
-
-            return cards;
+            return Cards;
         }
 
         public void refreshTable()
@@ -256,6 +347,7 @@ namespace OCS_FOR_CSHARP
 
             //get list of cards
             cards = Get_Inventory();
+
             int cardCount = 0;
             for (int i = 0; i < cards.Count; i++)
             {
@@ -279,7 +371,8 @@ namespace OCS_FOR_CSHARP
 
             int displayRange = display_upper - display_lower;
             int cardIndex = display_lower;
-            Card_Table_Panel.RowCount += displayRange - 1;
+            if(displayRange != 0)
+                Card_Table_Panel.RowCount += displayRange - 1;
             /*
              * display count will be max 20 for the display limit
              * subtract 20 from the card count if the card count is greater than 20
@@ -476,6 +569,7 @@ namespace OCS_FOR_CSHARP
             else
             {
                 Card_Power_Label.Visible = false;
+                Card_Power_TextBox.Visible = false;
             }
 
             if (currentCard.card.text != null)
@@ -610,6 +704,111 @@ namespace OCS_FOR_CSHARP
         {
             addToInventory(-1);
             refreshTable();
+        }
+
+        private void Name_Button_Click(object sender, EventArgs e)
+        {
+            if (orderBy == "name")
+            {
+                orderBy = "name_desc";
+            }
+            else
+            {
+                orderBy = "name";
+            }
+            refreshTable();
+        }
+
+        private void Type_Button_Click(object sender, EventArgs e)
+        {
+            if (orderBy == "type")
+            {
+                orderBy = "type_desc";
+            }
+            else
+            {
+                orderBy = "type";
+            }
+            refreshTable();
+
+        }
+
+        private void Expansion_Button_Click(object sender, EventArgs e)
+        {
+            if (orderBy == "set")
+            {
+                orderBy = "set_desc";
+            }
+            else
+            {
+                orderBy = "set";
+            }
+            refreshTable();
+
+        }
+
+        private void Number_Button_Click(object sender, EventArgs e)
+        {
+            if (orderBy == "set_num")
+            {
+                orderBy = "set_num_desc";
+            }
+            else
+            {
+                orderBy = "set_num";
+            }
+            refreshTable();
+
+        }
+
+        private void Mana_Button_Click(object sender, EventArgs e)
+        {
+            if (orderBy == "cmc")
+            {
+                orderBy = "cmc_desc";
+            }
+            else
+            {
+                orderBy = "cmc";
+            }
+            refreshTable();
+        }
+
+        private void searchBar_TextChanged(object sender, EventArgs e)
+        {
+            if (searchBar.Text.Length > 3)
+            {
+                searchTimer.Stop();
+                searchTimer.Start();
+            }
+            else if (searchBar.Text == "" && !searchAll)
+            {
+                search = false;
+                refreshTable();
+            }
+            else
+            {
+                searchTimer.Stop();
+            }
+        }
+
+        private void Show_All_Cards_Button_Click(object sender, EventArgs e)
+        {
+            if (!searchAll)
+            {
+                Show_All_Cards_Button.Text = "Hide Cards Not In Inventory";
+                searchAll = !searchAll;
+                if (searchBar.Text.Length > 3)
+                {
+                    refreshTable();
+                }
+            }
+            else if (searchAll)
+            {
+                Show_All_Cards_Button.Text = "Show Cards Not In Inventory";
+                searchAll = !searchAll;
+                refreshTable();
+            }
         }
     }
 }

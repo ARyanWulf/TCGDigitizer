@@ -35,7 +35,6 @@
             this.QuitButton = new System.Windows.Forms.Button();
             this.Main_Menu_Buttons_Panel = new System.Windows.Forms.Panel();
             this.Main_Menu_Buttons_Table = new System.Windows.Forms.TableLayoutPanel();
-            this.ManualEntryButton = new System.Windows.Forms.Button();
             this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.Slot_Panel = new System.Windows.Forms.Panel();
             this.login_button = new System.Windows.Forms.Button();
@@ -74,7 +73,7 @@
             this.ScanButton.Location = new System.Drawing.Point(0, 0);
             this.ScanButton.Margin = new System.Windows.Forms.Padding(0);
             this.ScanButton.Name = "ScanButton";
-            this.ScanButton.Size = new System.Drawing.Size(318, 124);
+            this.ScanButton.Size = new System.Drawing.Size(318, 149);
             this.ScanButton.TabIndex = 0;
             this.ScanButton.Text = "Scan";
             this.ScanButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -89,10 +88,10 @@
             this.InventoryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.InventoryButton.ForeColor = System.Drawing.Color.Silver;
             this.InventoryButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_silver_64;
-            this.InventoryButton.Location = new System.Drawing.Point(0, 248);
+            this.InventoryButton.Location = new System.Drawing.Point(0, 149);
             this.InventoryButton.Margin = new System.Windows.Forms.Padding(0);
             this.InventoryButton.Name = "InventoryButton";
-            this.InventoryButton.Size = new System.Drawing.Size(318, 124);
+            this.InventoryButton.Size = new System.Drawing.Size(318, 149);
             this.InventoryButton.TabIndex = 1;
             this.InventoryButton.Text = "Inventory";
             this.InventoryButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -107,10 +106,10 @@
             this.SettingsButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SettingsButton.ForeColor = System.Drawing.Color.Silver;
             this.SettingsButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.settings_icon_flat_silver_64;
-            this.SettingsButton.Location = new System.Drawing.Point(0, 372);
+            this.SettingsButton.Location = new System.Drawing.Point(0, 298);
             this.SettingsButton.Margin = new System.Windows.Forms.Padding(0);
             this.SettingsButton.Name = "SettingsButton";
-            this.SettingsButton.Size = new System.Drawing.Size(318, 124);
+            this.SettingsButton.Size = new System.Drawing.Size(318, 149);
             this.SettingsButton.TabIndex = 2;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -125,10 +124,10 @@
             this.ContactButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContactButton.ForeColor = System.Drawing.Color.Silver;
             this.ContactButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.product_info_icon_flat_silver_64;
-            this.ContactButton.Location = new System.Drawing.Point(0, 496);
+            this.ContactButton.Location = new System.Drawing.Point(0, 447);
             this.ContactButton.Margin = new System.Windows.Forms.Padding(0);
             this.ContactButton.Name = "ContactButton";
-            this.ContactButton.Size = new System.Drawing.Size(318, 124);
+            this.ContactButton.Size = new System.Drawing.Size(318, 149);
             this.ContactButton.TabIndex = 3;
             this.ContactButton.Text = "Product Information";
             this.ContactButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -143,10 +142,10 @@
             this.QuitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.QuitButton.ForeColor = System.Drawing.Color.Silver;
             this.QuitButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.quit_icon_flat_silver_64;
-            this.QuitButton.Location = new System.Drawing.Point(0, 620);
+            this.QuitButton.Location = new System.Drawing.Point(0, 596);
             this.QuitButton.Margin = new System.Windows.Forms.Padding(0);
             this.QuitButton.Name = "QuitButton";
-            this.QuitButton.Size = new System.Drawing.Size(318, 129);
+            this.QuitButton.Size = new System.Drawing.Size(318, 153);
             this.QuitButton.TabIndex = 4;
             this.QuitButton.Text = "Quit";
             this.QuitButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -168,42 +167,23 @@
             // 
             this.Main_Menu_Buttons_Table.ColumnCount = 1;
             this.Main_Menu_Buttons_Table.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.Main_Menu_Buttons_Table.Controls.Add(this.QuitButton, 0, 5);
-            this.Main_Menu_Buttons_Table.Controls.Add(this.ContactButton, 0, 4);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.QuitButton, 0, 4);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.ContactButton, 0, 3);
             this.Main_Menu_Buttons_Table.Controls.Add(this.ScanButton, 0, 0);
-            this.Main_Menu_Buttons_Table.Controls.Add(this.ManualEntryButton, 0, 1);
-            this.Main_Menu_Buttons_Table.Controls.Add(this.SettingsButton, 0, 3);
-            this.Main_Menu_Buttons_Table.Controls.Add(this.InventoryButton, 0, 2);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.SettingsButton, 0, 2);
+            this.Main_Menu_Buttons_Table.Controls.Add(this.InventoryButton, 0, 1);
             this.Main_Menu_Buttons_Table.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Main_Menu_Buttons_Table.Location = new System.Drawing.Point(0, 0);
             this.Main_Menu_Buttons_Table.Name = "Main_Menu_Buttons_Table";
-            this.Main_Menu_Buttons_Table.RowCount = 6;
-            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
+            this.Main_Menu_Buttons_Table.RowCount = 5;
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
+            this.Main_Menu_Buttons_Table.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.Main_Menu_Buttons_Table.Size = new System.Drawing.Size(318, 749);
             this.Main_Menu_Buttons_Table.TabIndex = 5;
-            // 
-            // ManualEntryButton
-            // 
-            this.ManualEntryButton.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ManualEntryButton.FlatAppearance.BorderSize = 0;
-            this.ManualEntryButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ManualEntryButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ManualEntryButton.ForeColor = System.Drawing.Color.Silver;
-            this.ManualEntryButton.Image = global::OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_silver_64;
-            this.ManualEntryButton.Location = new System.Drawing.Point(0, 124);
-            this.ManualEntryButton.Margin = new System.Windows.Forms.Padding(0);
-            this.ManualEntryButton.Name = "ManualEntryButton";
-            this.ManualEntryButton.Size = new System.Drawing.Size(318, 124);
-            this.ManualEntryButton.TabIndex = 1;
-            this.ManualEntryButton.Text = "Manual Entry";
-            this.ManualEntryButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.ManualEntryButton.UseVisualStyleBackColor = true;
-            this.ManualEntryButton.Click += new System.EventHandler(this.ManualEntryButton_Click);
             // 
             // LogoPicture
             // 
@@ -256,7 +236,7 @@
             this.login_label.ForeColor = System.Drawing.Color.Silver;
             this.login_label.Location = new System.Drawing.Point(160, 59);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(234, 52);
+            this.login_label.Size = new System.Drawing.Size(184, 39);
             this.login_label.TabIndex = 25;
             this.login_label.Text = "User Login";
             this.login_label.Visible = false;
@@ -269,7 +249,7 @@
             this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.password_label.Location = new System.Drawing.Point(166, 240);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(69, 17);
+            this.password_label.Size = new System.Drawing.Size(53, 13);
             this.password_label.TabIndex = 24;
             this.password_label.Text = "Password";
             this.password_label.Visible = false;
@@ -280,7 +260,7 @@
             this.login_password_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_password_textbox.Location = new System.Drawing.Point(170, 263);
             this.login_password_textbox.Name = "login_password_textbox";
-            this.login_password_textbox.Size = new System.Drawing.Size(323, 45);
+            this.login_password_textbox.Size = new System.Drawing.Size(323, 38);
             this.login_password_textbox.TabIndex = 23;
             this.login_password_textbox.Visible = false;
             // 
@@ -292,7 +272,7 @@
             this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.user_name_label.Location = new System.Drawing.Point(166, 133);
             this.user_name_label.Name = "user_name_label";
-            this.user_name_label.Size = new System.Drawing.Size(73, 17);
+            this.user_name_label.Size = new System.Drawing.Size(55, 13);
             this.user_name_label.TabIndex = 22;
             this.user_name_label.Text = "Username";
             this.user_name_label.Visible = false;
@@ -303,7 +283,7 @@
             this.login_username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_username_textbox.Location = new System.Drawing.Point(170, 156);
             this.login_username_textbox.Name = "login_username_textbox";
-            this.login_username_textbox.Size = new System.Drawing.Size(323, 45);
+            this.login_username_textbox.Size = new System.Drawing.Size(323, 38);
             this.login_username_textbox.TabIndex = 21;
             this.login_username_textbox.Visible = false;
             // 
@@ -375,7 +355,7 @@
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logout_link.Location = new System.Drawing.Point(886, 45);
             this.logout_link.Name = "logout_link";
-            this.logout_link.Size = new System.Drawing.Size(60, 20);
+            this.logout_link.Size = new System.Drawing.Size(52, 17);
             this.logout_link.TabIndex = 20;
             this.logout_link.TabStop = true;
             this.logout_link.Text = "Logout";
@@ -477,7 +457,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker3;
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha1;
         private System.Windows.Forms.ColorWithAlpha colorWithAlpha2;
-        private System.Windows.Forms.Button ManualEntryButton;
         private System.Windows.Forms.TableLayoutPanel Main_Menu_Buttons_Table;
     }
 }

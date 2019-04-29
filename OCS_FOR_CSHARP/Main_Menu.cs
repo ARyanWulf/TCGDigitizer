@@ -32,9 +32,7 @@ namespace OCS_FOR_CSHARP
             //Final build should change all of these to false TEMP
             ScanButton.Enabled = false;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_black_64;
-
-            ManualEntryButton.Enabled = false;
-            ManualEntryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_black_64;
+            
 
             InventoryButton.Enabled = false;
             InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_black_64;
@@ -60,7 +58,6 @@ namespace OCS_FOR_CSHARP
                 ScanButton.Enabled = value;
                 InventoryButton.Enabled = value;
                 SettingsButton.Enabled = value;
-                ManualEntryButton.Enabled = value;
             }
         }
 
@@ -84,9 +81,7 @@ namespace OCS_FOR_CSHARP
 
             ScanButton.Enabled = true;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_silver_64;
-
-            ManualEntryButton.Enabled = true;
-            ManualEntryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_silver_64;
+            
 
             InventoryButton.Enabled = true;
             InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_silver_64;
@@ -337,9 +332,7 @@ namespace OCS_FOR_CSHARP
 
             ScanButton.Enabled = false;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_black_64;
-
-            ManualEntryButton.Enabled = false;
-            ManualEntryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_flat_black_64;
+            
 
             InventoryButton.Enabled = false;
             InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_black_64;
@@ -356,7 +349,6 @@ namespace OCS_FOR_CSHARP
         private void ManualEntryButton_Click(object sender, EventArgs e)
         {
             ResetButtonColors();
-            ManualEntryButton.BackColor = Color.FromArgb(65, 70, 78);
             Slot_Panel.Controls.Clear();
             if(edit_form == null || edit_form.IsDisposed)
             {
@@ -375,7 +367,6 @@ namespace OCS_FOR_CSHARP
         private void ResetButtonColors()
         {
             var defaultColor = Color.FromArgb(40, 44, 52);
-            ManualEntryButton.BackColor = defaultColor;
             ScanButton.BackColor = defaultColor;
             InventoryButton.BackColor = defaultColor;
             ContactButton.BackColor = defaultColor;

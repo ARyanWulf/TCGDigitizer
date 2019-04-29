@@ -113,6 +113,7 @@
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.Users_Panel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.Users_Panel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Users_Panel.ForeColor = System.Drawing.Color.Silver;
             this.Users_Panel.Location = new System.Drawing.Point(0, 94);
             this.Users_Panel.Margin = new System.Windows.Forms.Padding(0);
@@ -128,6 +129,7 @@
             this.user_first_name_sort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.user_first_name_sort.FlatAppearance.BorderSize = 0;
             this.user_first_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.user_first_name_sort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user_first_name_sort.ForeColor = System.Drawing.Color.Silver;
             this.user_first_name_sort.Location = new System.Drawing.Point(3, 3);
             this.user_first_name_sort.Margin = new System.Windows.Forms.Padding(2);
@@ -142,6 +144,7 @@
             this.user_last_name_sort.Dock = System.Windows.Forms.DockStyle.Fill;
             this.user_last_name_sort.FlatAppearance.BorderSize = 0;
             this.user_last_name_sort.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.user_last_name_sort.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user_last_name_sort.ForeColor = System.Drawing.Color.Silver;
             this.user_last_name_sort.Location = new System.Drawing.Point(246, 3);
             this.user_last_name_sort.Margin = new System.Windows.Forms.Padding(2);
@@ -156,6 +159,7 @@
             this.authority_sort_button.Dock = System.Windows.Forms.DockStyle.Fill;
             this.authority_sort_button.FlatAppearance.BorderSize = 0;
             this.authority_sort_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.authority_sort_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.authority_sort_button.ForeColor = System.Drawing.Color.Silver;
             this.authority_sort_button.Location = new System.Drawing.Point(489, 3);
             this.authority_sort_button.Margin = new System.Windows.Forms.Padding(2);
