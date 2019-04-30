@@ -618,7 +618,7 @@ namespace OCS_FOR_CSHARP
                                 string text = page.GetText();
 
 
-                                Display_Picture_Box.Image = textBitmap;//----------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                //Display_Picture_Box.Image = textBitmap;//----------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                 text = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
                                 text = text.Replace("â€”", "-");//removes endline characters
                                 text = text.Replace('\n', ' ');
