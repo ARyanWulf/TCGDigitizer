@@ -100,6 +100,7 @@ namespace OCS_FOR_CSHARP
         {
             searchTimer.Stop();
             cards.Clear();
+            display_lower = 0;
             search = true;
             refreshTable();
         }
@@ -776,15 +777,17 @@ namespace OCS_FOR_CSHARP
 
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
-            if (searchBar.Text.Length > 3)
-            {
-                searchTimer.Stop();
-                searchTimer.Start();
-            }
-            else if (searchBar.Text == "" && !searchAll)
+
+
+            if ((searchBar.Text == "" || searchBar.Text == "Search") && !searchAll)
             {
                 search = false;
                 refreshTable();
+            }
+            else if (searchBar.Text.Length > 3)
+            {
+                searchTimer.Stop();
+                searchTimer.Start();
             }
             else
             {
