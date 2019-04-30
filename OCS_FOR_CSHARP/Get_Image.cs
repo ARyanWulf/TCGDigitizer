@@ -37,8 +37,10 @@ namespace OCS_FOR_CSHARP
         public Edit_Card_Form sendingForm;
 
         private FilterInfoCollection Devices;
-        private IVideoSource frame = null;
+        private VideoCaptureDevice frame = null;
         Bitmap currentCamFrame;
+
+        //Changes Webcam Filters
         bool bwWebCam;
         bool rectWebCam;
         bool boarderWebCam;
@@ -47,7 +49,7 @@ namespace OCS_FOR_CSHARP
         Timer searchTimer = new Timer();
         List<cardWrapper> selectedCards = new List<cardWrapper>();
         List<cardWrapper> foundCards = new List<cardWrapper>();
-        
+
         public cardWrapper currentCard;
         List<cardWrapper> cards = new List<cardWrapper>();
         List<cardWrapper> databaseList = new List<cardWrapper>();
@@ -58,15 +60,27 @@ namespace OCS_FOR_CSHARP
         public Form1()
         {
             InitializeComponent();
+
             searchTimer.Tick += new EventHandler(searchEventHandler);
             searchTimer.Interval = 3000;
             searchTimer.Enabled = true;
             searchTimer.Stop();
+
             flowLayoutPanel3.AutoScroll = false;
             flowLayoutPanel3.HorizontalScroll.Enabled = false;
             flowLayoutPanel3.HorizontalScroll.Visible = false;
             flowLayoutPanel3.HorizontalScroll.Maximum = 0;
             flowLayoutPanel3.AutoScroll = true;
+
+            Focus_Bar.ValueChanged += new System.EventHandler(Focus_Bar_Changed);
+
+            //var position = this.PointToScreen(Focus_Bar.Location);
+            //position = Cam_Picture_Box.PointToClient(position);
+            //Focus_Bar.Parent = Cam_Picture_Box;
+            //Focus_Bar.Location = position;
+            //Focus_Bar.BackColor = Color.Transparent;
+            Focus_Bar.Visible = false;
+
             bwWebCam = false;
             rectWebCam = false;
             boarderWebCam = true;
@@ -115,11 +129,13 @@ namespace OCS_FOR_CSHARP
         private void Stop_Cam_Click(object sender, EventArgs e)
         {
             Card_Boarder.Visible = false;
+            Focus_Bar.Visible = false;
             if (frame != null)//if webcam is never opened before closing
             {
                 frame.Stop(); //I shutdown the webcam if application is closed
             }
             Cam_Picture_Box.Image = null;
+
             currentCamFrame = null;
         }
 
@@ -186,7 +202,7 @@ namespace OCS_FOR_CSHARP
         void Start_cam()
         {
             Devices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
-            for(int i = 0; i < Devices.Count; i++)
+            for (int i = 0; i < Devices.Count; i++)
             {
                 if (Devices[i].Name == "HD USB Camera")
                 {
@@ -195,10 +211,12 @@ namespace OCS_FOR_CSHARP
                 else
                 {
                     frame = new VideoCaptureDevice(Devices[0].MonikerString);//may handle lack of camera error handle
-                    //textBox1.Text = "TCG Digitizer camera not found!";
-                    //frame = null;
-                    //return;
+                                                                             //textBox1.Text = "TCG Digitizer camera not found!";
+                                                                             //frame = null;
+                                                                             //return;
+
                 }
+
             }
             if (Devices.Count == 0)
             {
@@ -207,15 +225,23 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
+
                 currentCamFrame = null;
                 frame.NewFrame += new AForge.Video.NewFrameEventHandler(NewFrame_event);
-                
+                Focus_Bar.Visible = true;
                 frame.Start();
+
             }
         }
 
-        void NewFrame_event(object send,NewFrameEventArgs e)
+        private void Focus_Bar_Changed(object sender, System.EventArgs e)
         {
+            frame.SetCameraProperty(CameraControlProperty.Focus, Focus_Bar.Value, CameraControlFlags.Manual);
+        }
+
+        void NewFrame_event(object send, NewFrameEventArgs e)
+        {
+
             //Clones current raw frame to bitmap and rotates it 90 degrees
             Bitmap bframe = (Bitmap)e.Frame.Clone();
             bframe.RotateFlip(RotateFlipType.Rotate90FlipNone);
@@ -1394,9 +1420,10 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        
+        private void Focus_Bar_Scroll(object sender, EventArgs e)
+        {
 
-
+        }
     }
 
     public class CardIntPoints
