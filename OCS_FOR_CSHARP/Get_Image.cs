@@ -569,29 +569,43 @@ namespace OCS_FOR_CSHARP
                             textBoxString = textInfo.ToTitleCase(textBoxString);
 
 
+                            //FIRST POSTGRESS CALL WITH HEADER STRING
                             connection.Open();
-                            //textBoxString = "Jade Gufardian";
                             bool foundMatch = false;
                             string sqlQuery = "SELECT card_name, similarity(card_name, '" + textBoxString + "') AS sml";//"SELECT * FROM public.card WHERE LOWER(card_name) = LOWER('" + textBoxString + "')";
                             sqlQuery += " FROM card WHERE foil = 'n' ORDER BY sml DESC, card_name";
 
+                            List<String[]> dblist = new List<string[]>();
+                            List<String[]> dbtextlist = new List<string[]>();
                             using (var cmd = new NpgsqlCommand(sqlQuery, connection))
                             {
                                 NpgsqlDataReader reader = cmd.ExecuteReader();
-                                if (reader.Read() && !foundMatch)
+                                
+                                int count = 0;
+                                while (reader.Read() && count < 10)
                                 {
-                                    foundMatch = true;
-                                    textBoxString = reader[0].ToString();
+                                    //foundMatch = true;
+                                    //textBoxString = reader[0].ToString();
+                                    dblist.Add(new string[] { reader[0].ToString(), reader[1].ToString() });
+                                    count++;
                                 }
                             }
                             connection.Close();
+
+                            if (Convert.ToDouble(dblist[0][1]) >= 0.70)
+                            {
+                                textBoxString = dblist[0][0];
+                                foundMatch = true;
+                            }
+
+                            //SECOND POSTGRESS CALL WITH TEXT STRING
                             if (!foundMatch)
                             {
 
                                 int xtext = Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart);
                                 int ytext = Convert.ToInt32((yHeight * 0.6252/*0.040481481*/) + yStart);
                                 int textWidth = Convert.ToInt32(xWidth * 0.85753086);
-                                int textHeight = Convert.ToInt32(yHeight * 0.261/*0.05037037*/);
+                                int textHeight = Convert.ToInt32(yHeight * 0.141/*0.05037037*/);
 
                                 Bitmap textBitmap = new Bitmap(textWidth * 2, textHeight * 2);
                                 List<AForge.IntPoint> textCorners = new List<AForge.IntPoint> { new AForge.IntPoint(xtext, ytext), new AForge.IntPoint(textWidth + xtext, ytext), new AForge.IntPoint(textWidth + xtext, textHeight + ytext), new AForge.IntPoint(xtext, textHeight + ytext) };
@@ -603,6 +617,8 @@ namespace OCS_FOR_CSHARP
                                 page = ocr.Process(textBitmap);
                                 string text = page.GetText();
 
+
+                                Display_Picture_Box.Image = textBitmap;//----------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
                                 text = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
                                 text = text.Replace("â€”", "-");//removes endline characters
                                 text = text.Replace('\n', ' ');
@@ -616,75 +632,58 @@ namespace OCS_FOR_CSHARP
                                 text = text.Trim(' ');//removes spaces
 
 
-                                connection.Open();
-                                string begQueryFuzzy = "SELECT * FROM public.card WHERE";
-                                string endQueryFuzzy = "AND foil = 'n' AND card_text % '" + text + "'";
-                                string sqlQueryFuzzy = begQueryFuzzy + " " + "card_name % '" + textBoxString + "'";
+                                //TEXT CHEKC
+                                connection.Open(); 
+                                string begQueryFuzzy = "SELECT card_name, 1 - ((1 - similarity(card_text, '" + text + "')) * (1 - similarity(card_name, '" + textBoxString + "'";
+                                string sqlQueryFuzzy = begQueryFuzzy + "))) AS sml FROM card WHERE foil = 'n' ORDER BY sml DESC";
                                 using (var cmd = new NpgsqlCommand(sqlQueryFuzzy, connection))
                                 {
                                     NpgsqlDataReader reader = cmd.ExecuteReader();
                                     int readCount = 0;
-                                    bool sameCard = true;
-                                    string tempNameReader = "";
-                                    while (reader.Read() && !foundMatch && sameCard)
+                                    //bool sameCard = true;
+                                    //string tempNameReader = "";
+                                    
+                                    while (reader.Read() && readCount < 10)
                                     {
-                                        if (readCount == 0)
-                                        {
-                                            tempNameReader = reader[2].ToString();
-                                        }
-                                        else
-                                        {
-                                            if (tempNameReader != reader[2].ToString())
-                                            {
-                                                sameCard = false;
-                                            }
-                                        }
+                                        dbtextlist.Add(new string[] { reader[0].ToString(), reader[1].ToString() });
                                         readCount++;
                                     }
-                                    if (readCount > 0 && sameCard)
-                                    {
-                                        textBoxString = tempNameReader;
-                                        foundMatch = true;
-                                    }
+
                                 }
                                 connection.Close();
 
-                                if (!foundMatch)
+                                //FLAVOR TEXT CHECK
+                                if (dbtextlist.Count == 0)
                                 {
                                     connection.Open();
-                                    sqlQueryFuzzy = begQueryFuzzy + " card_flavor % '" + text + "' " + endQueryFuzzy;
+
+                                    begQueryFuzzy = "SELECT card_name, 1 - ((1 - similarity(card_flavor, '" + text + "')) * (1 - similarity(card_name, '" + textBoxString + "'";
+                                    sqlQueryFuzzy = begQueryFuzzy + "))) AS sml FROM card WHERE foil = 'n' ORDER BY sml DESC";
                                     using (var cmd = new NpgsqlCommand(sqlQueryFuzzy, connection))
                                     {
                                         NpgsqlDataReader reader = cmd.ExecuteReader();
                                         int readCount = 0;
-                                        bool sameCard = true;
-                                        string tempNameReader = "";
-                                        while (reader.Read() && !foundMatch && sameCard)
+                                        //bool sameCard = true;
+                                        //string tempNameReader = "";
+
+                                        while (reader.Read() && readCount < 10)
                                         {
-                                            if (readCount == 0)
-                                            {
-                                                tempNameReader = reader[2].ToString();
-                                            }
-                                            else
-                                            {
-                                                if (tempNameReader != reader[2].ToString())
-                                                {
-                                                    sameCard = false;
-                                                }
-                                            }
+                                            dbtextlist.Add(new string[] { reader[0].ToString(), reader[1].ToString() });
                                             readCount++;
                                         }
-                                        if (readCount > 0 && sameCard)
-                                        {
-                                            textBoxString = tempNameReader;
-                                            foundMatch = true;
-                                        }
+
                                     }
                                     connection.Close();
                                 }
+                                
+                                if (dbtextlist.Count != 0 && Convert.ToDouble(dbtextlist[0][1]) >= 0.50)
+                                {
+                                    textBoxString = dbtextlist[0][0];
+                                    foundMatch = true;
+                                }
+
                             }
-
-
+                            
 
 
                             textBox1.Text = textBoxString;
@@ -693,8 +692,10 @@ namespace OCS_FOR_CSHARP
                             //CREATE EXTENSION pg_trgm;
                             addToList(findCardWithName(textBoxString));
 
-
-
+                            if (dbtextlist.Count > 0 && Convert.ToDouble(dbtextlist[0][1]) <= 0.70 && Convert.ToDouble(dbtextlist[0][1]) >= 0.50)
+                            {
+                                textBoxString += "\nProbability: " + dbtextlist[0][0];
+                            }
                         }
                     }
                     catch (Exception ex)
@@ -1146,7 +1147,7 @@ namespace OCS_FOR_CSHARP
                         cmd.Parameters.AddWithValue("in_datetime", DateTime.Now);
                         cmd.Parameters.AddWithValue("in_trans_type", 1);
 
-                        cmd.ExecuteScalar();
+                        cmd.ExecuteScalar();//does not handle exception if a 'unknown card' is not in the database. need to fix
                     }
 
                     connection.Close();
