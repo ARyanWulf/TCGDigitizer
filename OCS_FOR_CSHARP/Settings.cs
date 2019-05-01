@@ -29,7 +29,144 @@ namespace OCS_FOR_CSHARP
 
         private void DefualtButton_Click(object sender, EventArgs e)
         {
+            List<int> cardIDs = new List<int>();
+            List<int> cardQuantity = new List<int>();
+            List<cardWrapper> cards = new List<cardWrapper>();
+
             //Reset settings to default values
+            connection.Open();
+            using (var cmd = new NpgsqlCommand("SELECT * FROM public.inventory", connection))
+            {
+                NpgsqlDataReader reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    cardIDs.Add(System.Convert.ToInt32(reader[1].ToString()));
+                    cardQuantity.Add(System.Convert.ToInt32(reader[2].ToString()));
+                }
+            }
+            connection.Close();
+
+            cards = getCards(cardIDs);
+
+            for (int i = 0; i < cards.Count; i++)
+            {
+                cards[i].count = cardQuantity[cardIDs.IndexOf(cards[i].card.cardID)];
+            }
+
+            connection.Open();
+            using (var cmd = new NpgsqlCommand("DELETE FROM transactions WHERE transaction_id >= 0", connection))
+            {
+                cmd.ExecuteScalar();
+            }
+            connection.Close();
+
+            connection.Open();
+            using (var cmd = new NpgsqlCommand("DELETE FROM inventory WHERE inventory_id >= 0", connection))
+            {
+                cmd.ExecuteScalar();
+            }
+            connection.Close();
+
+            connection.Open();
+            using (var cmd = new NpgsqlCommand("DELETE FROM card WHERE card_id >= 0", connection))
+            {
+                cmd.ExecuteScalar();
+            }
+            connection.Close();
+
+            Load_Card_Button_Click(this, System.EventArgs.Empty);
+
+            cardIDs.Clear();
+            cardQuantity.Clear();
+
+            for(int i =0; i < cards.Count; i++)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand("get_card_with_name", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("in_name", cards[i].card.name);
+                    cardIDs.Add((int)cmd.ExecuteScalar());
+                    cardQuantity.Add(cards[i].count);
+                }
+                connection.Close();
+            }
+
+            for(int i = 0; i < cardIDs.Count; i++)
+            {
+                connection.Open();
+                using (var cmd = new NpgsqlCommand("new_inv_event", connection))
+                {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("in_foreign_card_id", cardIDs[i]);
+                    cmd.Parameters.AddWithValue("in_new_count", cardQuantity[i]);
+
+                    cmd.ExecuteScalar();
+                }
+                connection.Close();
+            }
+        }
+
+        public List<cardWrapper> getCards(List<int> cardIDs)
+        {
+            List<cardWrapper> Cards = new List<cardWrapper>();
+
+            connection.Open();
+
+            using (var cmd = new NpgsqlCommand("get_inv_by_name", connection))
+            {
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                cmd.Parameters.AddWithValue("in_ids", cardIDs);
+
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    string temp;
+                    cardWrapper tempWrapper = new cardWrapper();
+                    CardObject tempCard = new CardObject();
+                    tempWrapper.card_ID = tempCard.cardID = System.Convert.ToInt32(reader[0].ToString());
+                    tempCard.name = reader[2].ToString();
+                    tempCard.type = reader[3].ToString();
+                    tempCard.manaCost = reader[4].ToString();
+                    tempCard.setCode = reader[5].ToString();
+                    tempCard.multiverseId = System.Convert.ToInt32(reader[9].ToString());
+                    tempCard.power = reader[10].ToString();
+                    tempCard.toughness = reader[11].ToString();
+
+                    temp = reader[13].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colors = temp.Split(',').ToList<string>();
+
+                    temp = reader[14].ToString().TrimEnd('}');
+                    temp = temp.TrimStart('{');
+                    tempCard.colorIdentity = temp.Split(',').ToList<string>();
+
+                    tempCard.text = reader[15].ToString();
+                    tempCard.convertedManaCost = float.Parse(reader[16].ToString());
+
+                    tempCard.flavorText = reader[17].ToString();
+                    tempCard.rarity = reader[18].ToString();
+                    tempCard.borderColor = reader[19].ToString();
+                    tempCard.loyalty = reader[20].ToString();
+                    tempCard.artist = reader[21].ToString();
+                    tempCard.number = reader[24].ToString();
+                    tempCard.imageURL = reader[25].ToString();
+
+                    tempWrapper.card = tempCard;
+
+                    Cards.Add(tempWrapper);
+                }
+
+
+            }
+
+            connection.Close();
+
+            return Cards;
         }
 
         private void DeleteAllButton_Click(object sender, EventArgs e)
