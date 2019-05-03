@@ -627,8 +627,6 @@ namespace OCS_FOR_CSHARP
                 cardWrapper card = currentCard;
                 bool exists = false;
 
-                
-
 
                 connection.Open();
 
