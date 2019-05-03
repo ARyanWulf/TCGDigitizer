@@ -626,10 +626,7 @@ namespace OCS_FOR_CSHARP
             {
                 cardWrapper card = currentCard;
                 bool exists = false;
-<<<<<<< HEAD
-                //int inv_id;
-=======
->>>>>>> Innovation_Day
+
 
                 connection.Open();
 
