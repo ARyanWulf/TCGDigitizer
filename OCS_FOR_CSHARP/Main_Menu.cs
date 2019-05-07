@@ -15,7 +15,7 @@ namespace OCS_FOR_CSHARP
 {
     public partial class Main_Menu : Form
     {
-        Form1 scan_form;
+        get_image_form scan_form;
         Inventory_Menu inventory_form;
         Settings settings_form;
         Edit_Card_Form edit_form;
@@ -114,7 +114,7 @@ namespace OCS_FOR_CSHARP
             Slot_Panel.Controls.Clear();
             if (scan_form == null|| scan_form.IsDisposed)
             {
-                scan_form = new Form1();
+                scan_form = new get_image_form();
             }
             scan_form.TopLevel = false;
             Slot_Panel.Controls.Add(scan_form);
