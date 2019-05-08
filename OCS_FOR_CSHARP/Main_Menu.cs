@@ -141,6 +141,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
+
         private void ContactButton_Click(object sender, EventArgs e)
         {
             ResetButtonColors();
@@ -169,15 +170,34 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        /* -----------------------------------------------------------------------------
+        @ CLASS NAME:       private void QuitButton_Click(object sender, EventArgs e)
+        @
+        @ PURPOSE:          closes form
+        @                   
+        @ PARAM:            none
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void QuitButton_Click(object sender, EventArgs e)
         {
             Close();
         }
 
- 
 
- 
 
+
+        /* -----------------------------------------------------------------------------
+        @ CLASS NAME:       private void ResetButtonColors()
+        @
+        @ PURPOSE:          resets button colors
+        @                   
+        @ PARAM:            none
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void ResetButtonColors()
         {
             var defaultColor = Color.FromArgb(40, 44, 52);
@@ -187,6 +207,16 @@ namespace OCS_FOR_CSHARP
             SettingsButton.BackColor = defaultColor;
         }
 
+        /* -----------------------------------------------------------------------------
+        @ CLASS NAME:       private void logout_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        @
+        @ PURPOSE:          logs current user out of system and displays login screen if logout link is pressed
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void logout_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ResetButtonColors();
@@ -206,9 +236,20 @@ namespace OCS_FOR_CSHARP
             CurrentUser.prvlg_lvl = 0;
             logout_link.Enabled = false;
         }
+
+
     }
 
 
+    /* -----------------------------------------------------------------------------
+    @ CLASS NAME:       static class CurrentUser
+    @ PURPOSE:          holds the currently logged in user's information
+    @                   
+    @ PARAM:            none
+    @
+    @ RETURNS:          none
+    @ NOTES:            none
+    ----------------------------------------------------------------------------- */
     static class CurrentUser
     {
         private static int _user_ID = 0;

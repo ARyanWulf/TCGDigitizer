@@ -37,7 +37,6 @@
             this.Main_Menu_Buttons_Table = new System.Windows.Forms.TableLayoutPanel();
             this.LogoPicture = new System.Windows.Forms.PictureBox();
             this.Slot_Panel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.welcome_label = new System.Windows.Forms.Label();
             this.logout_link = new System.Windows.Forms.LinkLabel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
@@ -49,7 +48,6 @@
             this.Main_Menu_Buttons_Panel.SuspendLayout();
             this.Main_Menu_Buttons_Table.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).BeginInit();
-            this.Slot_Panel.SuspendLayout();
             this.Top_Gradient_Panel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -195,28 +193,10 @@
             this.Slot_Panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.Slot_Panel.Controls.Add(this.textBox1);
             this.Slot_Panel.Location = new System.Drawing.Point(321, 176);
             this.Slot_Panel.Name = "Slot_Panel";
             this.Slot_Panel.Size = new System.Drawing.Size(951, 573);
             this.Slot_Panel.TabIndex = 18;
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Silver;
-            this.textBox1.Location = new System.Drawing.Point(295, 667);
-            this.textBox1.MaximumSize = new System.Drawing.Size(500, 300);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(323, 122);
-            this.textBox1.TabIndex = 27;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.Visible = false;
-            this.textBox1.WordWrap = false;
             // 
             // welcome_label
             // 
@@ -304,8 +284,6 @@
             this.Main_Menu_Buttons_Panel.ResumeLayout(false);
             this.Main_Menu_Buttons_Table.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
-            this.Slot_Panel.ResumeLayout(false);
-            this.Slot_Panel.PerformLayout();
             this.Top_Gradient_Panel.ResumeLayout(false);
             this.Top_Gradient_Panel.PerformLayout();
             this.ResumeLayout(false);
@@ -322,7 +300,6 @@
         private System.Windows.Forms.Panel Main_Menu_Buttons_Panel;
         private System.Windows.Forms.Panel Slot_Panel;
         private System.Windows.Forms.Label welcome_label;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.LinkLabel logout_link;
         private System.Windows.Forms.PictureBox LogoPicture;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
