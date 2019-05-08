@@ -17,12 +17,16 @@ using Npgsql;
 
 namespace OCS_FOR_CSHARP
 {
+    /*
+     * This form is depreciated and is no longer in use
+     * It will not receive future updates but will remain in the solution as possible reference material
+     */
     public partial class Review : Form
     {
         public List<cardWrapper> reviewCards = new List<cardWrapper>();
         public List<Bitmap> reviewImages = new List<Bitmap>();
-        Form1 getImageForm;
-        public Form1 callingForm;
+        get_image_form getImageForm;
+        public get_image_form callingForm;
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
 
         public Review()
@@ -34,7 +38,7 @@ namespace OCS_FOR_CSHARP
         {
             if (getImageForm == null)
             {
-                getImageForm = new Form1();//Change to the Inventory viewer form
+                getImageForm = new get_image_form();//Change to the Inventory viewer form
                 getImageForm.callingForm = this;
                 getImageForm.Show();
             }
@@ -89,7 +93,7 @@ namespace OCS_FOR_CSHARP
 
         private void Review_Load(object sender, EventArgs e)
         {
-            getImageForm = new Form1();
+            getImageForm = new get_image_form();
             getImageForm.callingForm = this;
             getImageForm.Show();
             getImageForm.BringToFront();

@@ -16,6 +16,11 @@ using MtgApiManager.Lib.Dto;
 
 namespace OCS_FOR_CSHARP
 {
+
+    /*
+     * This form is depreciated and is no longer in use
+     * It will not receive future updates but will remain in the solution as possible reference material
+     */
     public partial class Edit_Card_Form : Form
     {
         public cardWrapper currentCard = new cardWrapper(); //holds currently displayed card

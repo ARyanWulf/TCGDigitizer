@@ -220,7 +220,7 @@
             // login_button
             // 
             this.login_button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.login_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.login_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_button.Location = new System.Drawing.Point(255, 352);
             this.login_button.Name = "login_button";
             this.login_button.Size = new System.Drawing.Size(146, 43);
@@ -245,11 +245,11 @@
             // 
             this.password_label.AutoSize = true;
             this.password_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.password_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.password_label.Location = new System.Drawing.Point(166, 240);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(53, 13);
+            this.password_label.Size = new System.Drawing.Size(78, 20);
             this.password_label.TabIndex = 24;
             this.password_label.Text = "Password";
             this.password_label.Visible = false;
@@ -268,11 +268,11 @@
             // 
             this.user_name_label.AutoSize = true;
             this.user_name_label.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.user_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.user_name_label.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.user_name_label.Location = new System.Drawing.Point(166, 133);
             this.user_name_label.Name = "user_name_label";
-            this.user_name_label.Size = new System.Drawing.Size(55, 13);
+            this.user_name_label.Size = new System.Drawing.Size(83, 20);
             this.user_name_label.TabIndex = 22;
             this.user_name_label.Text = "Username";
             this.user_name_label.Visible = false;
@@ -290,7 +290,7 @@
             // CloseTextButton
             // 
             this.CloseTextButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CloseTextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CloseTextButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.CloseTextButton.ForeColor = System.Drawing.Color.Transparent;
             this.CloseTextButton.Location = new System.Drawing.Point(712, 340);
             this.CloseTextButton.Name = "CloseTextButton";
@@ -353,7 +353,7 @@
             this.logout_link.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.logout_link.AutoSize = true;
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.logout_link.Location = new System.Drawing.Point(886, 45);
+            this.logout_link.Location = new System.Drawing.Point(889, 45);
             this.logout_link.Name = "logout_link";
             this.logout_link.Size = new System.Drawing.Size(52, 17);
             this.logout_link.TabIndex = 20;

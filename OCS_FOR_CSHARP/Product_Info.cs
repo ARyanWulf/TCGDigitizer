@@ -16,5 +16,10 @@ namespace OCS_FOR_CSHARP
         {
             InitializeComponent();
         }
+
+        private void ContactText_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
