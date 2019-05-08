@@ -109,12 +109,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CardHolder.cs" />
-    <Compile Include="Edit_Card_Form.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Edit_Card_Form.Designer.cs">
-      <DependentUpon>Edit_Card_Form.cs</DependentUpon>
-    </Compile>
     <Compile Include="Create_User.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -137,12 +131,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Review.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Review.Designer.cs">
-      <DependentUpon>Review.cs</DependentUpon>
     </Compile>
     <Compile Include="Inventory_Menu.cs">
       <SubType>Form</SubType>
@@ -173,9 +161,6 @@
     <EmbeddedResource Include="Create_User.resx">
       <DependentUpon>Create_User.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Edit_Card_Form.resx">
-      <DependentUpon>Edit_Card_Form.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Get_Image.resx">
       <DependentUpon>Get_Image.cs</DependentUpon>
     </EmbeddedResource>
@@ -184,9 +169,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Product_Info.resx">
       <DependentUpon>Product_Info.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Review.resx">
-      <DependentUpon>Review.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Inventory_Menu.resx">
       <DependentUpon>Inventory_Menu.cs</DependentUpon>

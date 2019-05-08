@@ -33,8 +33,6 @@ namespace OCS_FOR_CSHARP
     public partial class get_image_form : Form
     {
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
-        public Review callingForm;
-        public Edit_Card_Form sendingForm;
 
         private FilterInfoCollection Devices;
         private VideoCaptureDevice frame = null;
