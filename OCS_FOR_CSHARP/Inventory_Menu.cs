@@ -73,6 +73,7 @@ namespace OCS_FOR_CSHARP
             searchBar.LostFocus += new EventHandler(addText);
         }
 
+        // Called when the Search Bar is clicked on
         private void cleartext(object sender, EventArgs e)
         {
             if(searchBar.Text == "Search")
@@ -81,6 +82,7 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        // Called when the Search Bar is no longer being used
         private void addText(object sender, EventArgs e)
         {
             if(string.IsNullOrWhiteSpace(searchBar.Text))
@@ -89,6 +91,7 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        // Resizes the form to accomodate the new window size
         private void resizeEventHandler(object sender, EventArgs e)
         {
             resizeTimer.Stop();
@@ -96,6 +99,7 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
+        // Resets search parameters
         private void searchEventHandler(object myObject, EventArgs eventArgs)
         {
             searchTimer.Stop();
@@ -127,18 +131,6 @@ namespace OCS_FOR_CSHARP
                 }
                 cardImageTimer.Start();
             }
-        }
-
-        private void Scan_Card_Button_Click(object sender, EventArgs e)
-        {
-            var getImageForm = new get_image_form(); // Change to the Inventory viewer form
-            getImageForm.ShowDialog();
-        }
-
-        private void Add_Card_Button_Click(object sender, EventArgs e)
-        {
-            var getEditCardForm = new Edit_Card_Form();
-            getEditCardForm.ShowDialog();
         }
 
         // Called on form initialization
@@ -272,7 +264,6 @@ namespace OCS_FOR_CSHARP
 
             return Cards;
         }
-
 
         private List<cardWrapper> getCards(List<int> cardIDs)
         {
