@@ -34,7 +34,7 @@
             this.login_password_textbox = new System.Windows.Forms.TextBox();
             this.user_name_label = new System.Windows.Forms.Label();
             this.login_username_textbox = new System.Windows.Forms.TextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.ErrorTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // login_button
@@ -115,23 +115,22 @@
             this.login_username_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_username_textbox.TabIndex = 27;
             // 
-            // textBox1
+            // ErrorTextBox
             // 
-            this.textBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.ForeColor = System.Drawing.Color.Silver;
-            this.textBox1.Location = new System.Drawing.Point(98, 430);
-            this.textBox1.MaximumSize = new System.Drawing.Size(500, 300);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(323, 122);
-            this.textBox1.TabIndex = 33;
-            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.textBox1.WordWrap = false;
-            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.ErrorTextBox.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.ErrorTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
+            this.ErrorTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.ErrorTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ErrorTextBox.ForeColor = System.Drawing.Color.Silver;
+            this.ErrorTextBox.Location = new System.Drawing.Point(98, 430);
+            this.ErrorTextBox.MaximumSize = new System.Drawing.Size(500, 300);
+            this.ErrorTextBox.Multiline = true;
+            this.ErrorTextBox.Name = "ErrorTextBox";
+            this.ErrorTextBox.ReadOnly = true;
+            this.ErrorTextBox.Size = new System.Drawing.Size(323, 122);
+            this.ErrorTextBox.TabIndex = 33;
+            this.ErrorTextBox.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.ErrorTextBox.WordWrap = false;
             // 
             // Login_Screen
             // 
@@ -140,7 +139,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
             this.ClientSize = new System.Drawing.Size(522, 627);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ErrorTextBox);
             this.Controls.Add(this.login_button);
             this.Controls.Add(this.login_label);
             this.Controls.Add(this.password_label);
@@ -149,7 +148,6 @@
             this.Controls.Add(this.login_username_textbox);
             this.Name = "Login_Screen";
             this.Text = "Login_Screen";
-            this.Load += new System.EventHandler(this.Login_Screen_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,6 +161,6 @@
         private System.Windows.Forms.TextBox login_password_textbox;
         private System.Windows.Forms.Label user_name_label;
         private System.Windows.Forms.TextBox login_username_textbox;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox ErrorTextBox;
     }
 }
