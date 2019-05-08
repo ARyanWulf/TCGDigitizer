@@ -39,7 +39,6 @@
             this.Expansion_Button = new System.Windows.Forms.Button();
             this.Type_Button = new System.Windows.Forms.Button();
             this.Name_Button = new System.Windows.Forms.Button();
-            this.RefreshButton = new System.Windows.Forms.Button();
             this.CardPanel = new System.Windows.Forms.Panel();
             this.Card_Panel_Table = new System.Windows.Forms.TableLayoutPanel();
             this.Card_Details_Panel = new System.Windows.Forms.Panel();
@@ -167,7 +166,7 @@
             this.Inventory_Table_Header.Margin = new System.Windows.Forms.Padding(0);
             this.Inventory_Table_Header.Name = "Inventory_Table_Header";
             this.Inventory_Table_Header.RowCount = 1;
-            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
+            this.Inventory_Table_Header.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 126F));
             this.Inventory_Table_Header.Size = new System.Drawing.Size(1335, 49);
             this.Inventory_Table_Header.TabIndex = 11;
             // 
@@ -278,24 +277,6 @@
             this.Name_Button.Text = "Name";
             this.Name_Button.UseVisualStyleBackColor = false;
             this.Name_Button.Click += new System.EventHandler(this.Name_Button_Click);
-            // 
-            // RefreshButton
-            // 
-            this.RefreshButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(49)))), ((int)(((byte)(57)))));
-            this.RefreshButton.Enabled = false;
-            this.RefreshButton.FlatAppearance.BorderSize = 0;
-            this.RefreshButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.RefreshButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RefreshButton.ForeColor = System.Drawing.Color.Transparent;
-            this.RefreshButton.Location = new System.Drawing.Point(1493, 778);
-            this.RefreshButton.Margin = new System.Windows.Forms.Padding(4);
-            this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(273, 54);
-            this.RefreshButton.TabIndex = 8;
-            this.RefreshButton.Text = "Refresh Table";
-            this.RefreshButton.UseVisualStyleBackColor = false;
-            this.RefreshButton.Visible = false;
-            this.RefreshButton.Click += new System.EventHandler(this.RefreshButton_Click);
             // 
             // CardPanel
             // 
@@ -840,7 +821,6 @@
             this.ClientSize = new System.Drawing.Size(1716, 871);
             this.Controls.Add(this.LeftPanel);
             this.Controls.Add(this.CardPanel);
-            this.Controls.Add(this.RefreshButton);
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Inventory_Menu";
@@ -886,7 +866,6 @@
         private System.Windows.Forms.Button Expansion_Button;
         private System.Windows.Forms.Button Type_Button;
         private System.Windows.Forms.Button Name_Button;
-        private System.Windows.Forms.Button RefreshButton;
         private System.Windows.Forms.Panel CardPanel;
         private System.Windows.Forms.TextBox Name_Textbox;
         private System.Windows.Forms.TextBox Card_Number_Textbox;

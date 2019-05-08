@@ -132,12 +132,6 @@ namespace OCS_FOR_CSHARP
                 cardImageTimer.Start();
             }
         }
-
-        private void Scan_Card_Button_Click(object sender, EventArgs e)
-        {
-            var getImageForm = new get_image_form(); // Change to the Inventory viewer form
-            getImageForm.ShowDialog();
-        }
         
         // Called on form initialization
         private void Inventory_Menu_Load(object sender, EventArgs e)
@@ -271,6 +265,7 @@ namespace OCS_FOR_CSHARP
             return Cards;
         }
 
+        // Grabs the cards in the inventory for the PostgreSQL database
         private List<cardWrapper> getCards(List<int> cardIDs)
         {
             List<cardWrapper> Cards = new List<cardWrapper>();
@@ -331,6 +326,7 @@ namespace OCS_FOR_CSHARP
             return Cards;
         }
 
+        // Redraws the inventory table for the currently displayed page
         public void refreshTable()
         {
             Card_Table_Panel.Visible = false;
@@ -439,31 +435,14 @@ namespace OCS_FOR_CSHARP
             Card_Table_Panel.Visible = true;
         }
 
-        public void addToInventory(cardWrapper newEntry)
-        {
-            Card_Table_Panel.RowCount++;
-
-            Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.name, AutoEllipsis = true }, 1, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.type, AutoEllipsis = true }, 2, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.setCode, AutoEllipsis = true }, 3, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.multiverseId.ToString(), AutoEllipsis = true }, 4, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = newEntry.card.manaCost, AutoEllipsis = true }, 5, Card_Table_Panel.RowCount - 1);
-            Card_Table_Panel.Controls.Add(new Label() { Text = "N/A", AutoEllipsis = true }, 6, Card_Table_Panel.RowCount - 1);
-        }
-
-        private void RefreshButton_Click(object sender, EventArgs e)
-        {
-            RefreshButton.Enabled = false;
-            refreshTable();
-            RefreshButton.Enabled = true;
-        }
-
+        // Changes display to show next page
         private void Page_Forward_Button_Click(object sender, EventArgs e)
         {
             display_lower += 20;
             refreshTable();
         }
 
+        // Changes display to show previous page
         private void Page_Back_Button_Click(object sender, EventArgs e)
         {
             display_lower -= 20;
@@ -599,6 +578,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        // Handles the inventory form resizing
         private void Inventory_Menu_SizeChanged(object sender, EventArgs e)
         {
             Card_Table_Panel.Visible = false;
@@ -606,16 +586,7 @@ namespace OCS_FOR_CSHARP
             resizeTimer.Start();
         }
 
-        private void Inventory_Menu_ResizeBegin(object sender, EventArgs e)
-        {
-            Card_Table_Panel.Visible = false;
-        }
-
-        private void Inventory_Menu_ResizeEnd(object sender, EventArgs e)
-        {
-            Card_Table_Panel.Visible = true;
-        }
-
+        // Handles cards being added or removed from the database.
         public bool addToInventory(int transType)
         {
 
@@ -693,18 +664,21 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        // Plus button click handler
         private void PlusButton_Click(object sender, EventArgs e)
         {
             addToInventory(1);
             refreshTable();
         }
 
+        // Minus button click handler
         private void MinusButton_Click(object sender, EventArgs e)
         {
             addToInventory(-1);
             refreshTable();
         }
 
+        // Sets table sort value to Name
         private void Name_Button_Click(object sender, EventArgs e)
         {
             if (orderBy == "name")
@@ -718,6 +692,7 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
+        // Sets table sort value to Type
         private void Type_Button_Click(object sender, EventArgs e)
         {
             if (orderBy == "type")
@@ -732,6 +707,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        // Sets table sort value to Expansion
         private void Expansion_Button_Click(object sender, EventArgs e)
         {
             if (orderBy == "set")
@@ -746,6 +722,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        // Sets table sort value to Set Number
         private void Number_Button_Click(object sender, EventArgs e)
         {
             if (orderBy == "set_num")
@@ -760,6 +737,7 @@ namespace OCS_FOR_CSHARP
 
         }
 
+        // Sets table sort value to Mana cost
         private void Mana_Button_Click(object sender, EventArgs e)
         {
             if (orderBy == "cmc")
@@ -773,6 +751,7 @@ namespace OCS_FOR_CSHARP
             refreshTable();
         }
 
+        // Called when the text in the searchbar changes. Handles the the start and stop for the timer
         private void searchBar_TextChanged(object sender, EventArgs e)
         {
 
@@ -793,6 +772,7 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        // Swaps between displaying cards currently in inventory and displaying cards that currently aren't in inventory
         private void Show_All_Cards_Button_Click(object sender, EventArgs e)
         {
             if (!searchAll)
