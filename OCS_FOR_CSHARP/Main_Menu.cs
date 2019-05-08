@@ -25,8 +25,6 @@ namespace OCS_FOR_CSHARP
         {
             InitializeComponent();
 
-            login_username_textbox.GotFocus += login_username_textbox_GotFocus;
-            login_password_textbox.GotFocus += login_password_textbox_GotFocus;
 
             // Disable scan button, inventory button, and settings button until a valid user logs in
             ScanButton.Enabled = false;
@@ -77,17 +75,6 @@ namespace OCS_FOR_CSHARP
             logout_link.Enabled = true;
         }
 
-        // Allow for detection if the username or password is clicked on to
-        // allow user to enter their username/password
-        private void login_username_textbox_GotFocus(object sender, EventArgs e)
-        {
-            login_username_textbox.Clear();
-        }
-
-        private void login_password_textbox_GotFocus(object sender, EventArgs e)
-        {
-            login_password_textbox.Clear();
-        }
 
         // Loads the Scan form into Slot panel
         private void ScanButton_Click(object sender, EventArgs e)
@@ -187,105 +174,14 @@ namespace OCS_FOR_CSHARP
             Close();
         }
 
-        private void CloseTextButton_Click(object sender, EventArgs e)
-        {
-            ContactText.Visible = false;
-            CloseTextButton.Visible = false;
+ 
 
-            if (CurrentUser.user_ID == 0)
-            {
-                login_label.Visible = true;
-                login_username_textbox.Visible = true;
-                user_name_label.Visible = true;
-                login_password_textbox.Visible = true;
-                password_label.Visible = true;
-                login_button.Visible = true;
-                textBox1.Visible = true;
-            }
-        }
-
-        // Check the username/password that the user entered to see if it is valid
-        private void login_button_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-            string pass_mask = "";
-            for (int i = 0; i < login_password_textbox.Text.Length; i++)
-            {
-                pass_mask += "*";
-            }
-            if (login_username_textbox.Text.Length > 0 && login_username_textbox.Text.Length <= 15)
-            {
-              
-                if (login_password_textbox.Text.Length > 0 && login_password_textbox.Text.Length <= 30)
-                {
-
-                    NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
-                    connection.Open();
-
-
-                    NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.users WHERE login_name ILIKE '" + login_username_textbox.Text + "' AND login_pass ILIKE '" + login_password_textbox.Text + "'AND privilege_lvl > 0", connection);
-                    NpgsqlDataReader reader = command.ExecuteReader();
-
-                
-                    if (reader.HasRows)
-                    {
-                        reader.Read();
-                        CurrentUser.user_ID = System.Convert.ToInt32(reader[(int)DBuser.id].ToString());
-                        CurrentUser.prvlg_lvl = System.Convert.ToInt32(reader[(int)DBuser.priv_lvl].ToString());
-                        string username = reader[(int)DBuser.log_name].ToString();
-
-                        if (CurrentUser.user_ID > 0 && CurrentUser.prvlg_lvl > 0)
-                        {
-                            login_label.Visible = false;
-                            login_username_textbox.Visible = false;
-                            user_name_label.Visible = false;
-                            login_password_textbox.Visible = false;
-                            password_label.Visible = false;
-                            login_button.Visible = false;
-                            textBox1.Visible = false;
-                            welcome_label.Text = "Welcome " + username;
-                            welcome_label.Visible = true;
-
-                            login_username_textbox.Text = "";
-                            login_password_textbox.Text = "";
-                        }
-                        else
-                        {
-                            CurrentUser.user_ID = 0;
-                            CurrentUser.prvlg_lvl = 0;
-                            textBox1.AppendText("Unforeseen Error - Returned Deleted");
-                            login_password_textbox.Text = pass_mask;
-                        }
-
-                    }
-                    else
-                    {
-                        textBox1.AppendText("Username/Password Doesn't Match");
-                        login_password_textbox.Text = pass_mask;
-                    }
-                    
-                }
-                else
-                {
-                    textBox1.AppendText("Password Range Error");
-                    login_password_textbox.Text = pass_mask;
-                }
-            }
-            else
-            {
-                textBox1.AppendText("Username Range Error");
-                login_password_textbox.Text = pass_mask;
-            }
-
-        }
+ 
 
         private void logout_link_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ResetButtonColors();
             Login_Screen();
-
-            ContactText.Visible = false;
-            CloseTextButton.Visible = false;
 
             ScanButton.Enabled = false;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_black_64;
