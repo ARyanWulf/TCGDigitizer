@@ -2170,12 +2170,14 @@ namespace OCS_FOR_CSHARP
 
             //02, 12, 13, 03
             int virtEdge = 0;
+            //rearanges corner points to be clockwise from top/left corner (required for quadTrans
             for (int horzEdge = 2; horzEdge < 4;)
             {
                 double xDub = 0.0;
                 int yCorner = 0;
                 int xCorner = 0;
 
+                //if card is perfectly vertical
                 if (Double.IsInfinity(avgSlope[virtEdge]))
                 {
                     xCorner = edgePoints[virtEdge, 0, 0];
@@ -2189,7 +2191,7 @@ namespace OCS_FOR_CSHARP
                         yCorner = (-image.Height);
                     }
                 }
-                else
+                else //card slope is defined
                 {
                     xDub = ((yIntercept[horzEdge] - yIntercept[virtEdge]) / (avgSlope[virtEdge] - avgSlope[horzEdge]));
                     yCorner = (int)(-((avgSlope[horzEdge] * xDub) + yIntercept[horzEdge]));
