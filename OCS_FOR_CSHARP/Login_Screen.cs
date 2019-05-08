@@ -21,10 +21,10 @@ namespace OCS_FOR_CSHARP
             login_button.Visible = true;
         }
 
+        // When Login button is clicked, user's input is checked against user data stored in database
         private void login_button_Click(object sender, EventArgs e)
         {
-            textBox1.Text = "";
-            //string pass_mask = "";
+            ErrorTextBox.Text = "";
 
             if (login_username_textbox.Text.Length > 0 && login_username_textbox.Text.Length <= 15)
             {
@@ -49,64 +49,31 @@ namespace OCS_FOR_CSHARP
 
                         if (CurrentUser.user_ID > 0 && CurrentUser.prvlg_lvl > 0)
                         {
-                            /*login_label.Visible = false;
-                            login_username_textbox.Visible = false;
-                            user_name_label.Visible = false;
-                            login_password_textbox.Visible = false;
-                            password_label.Visible = false;
-                            login_button.Visible = false;
-                            textBox1.Visible = false;
-
-                            //logout_link.Visible = true;
-                            //welcome_label.Text = "Welcome " + username;
-                            //welcome_label.Visible = true;
-
-                            Main_Menu.ActiveUser
-                            Main_Menu.ScanButton.Enabled = true;
-                            InventoryButton.Enabled = true;
-                            SettingsButton.Enabled = true;
-                            */
-                            //login_username_textbox.Text = "";
-                            //login_password_textbox.Text = "";
                             evtFrm();
                         }
                         else
                         {
                             CurrentUser.user_ID = 0;
                             CurrentUser.prvlg_lvl = 0;
-                            textBox1.AppendText("Unforeseen Error - Returned Deleted");
-                          
+                            ErrorTextBox.AppendText("Unforeseen Error - Returned Deleted");
                         }
 
                     }
                     else
                     {
-                        textBox1.AppendText("Username/Password Doesn't Match");
-                       
+                        ErrorTextBox.AppendText("Username/Password Doesn't Match");
                     }
 
                 }
                 else
                 {
-                    textBox1.AppendText("Password Range Error");
-                   
+                    ErrorTextBox.AppendText("Password Range Error");
                 }
             }
             else
             {
-                textBox1.AppendText("Username Range Error");
-                ;
+                ErrorTextBox.AppendText("Username Range Error");
             }
-        }
-
-        private void Login_Screen_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

@@ -176,11 +176,6 @@ namespace OCS_FOR_CSHARP
             Close();
         }
 
-        private void users_panel(object sender, PaintEventArgs e)
-        {
-
-        }
-
         /* Autopopulates users table a list of current users that exist in the system
          * resets table size
          * gets list of users
@@ -259,11 +254,6 @@ namespace OCS_FOR_CSHARP
             connection.Close();
 
             return users;
-        }
-
-        private void Settings_Load(object sender, EventArgs e)
-        {
-
         }
 
         /*Populates card table with all cards from online JSON files
@@ -892,11 +882,6 @@ namespace OCS_FOR_CSHARP
             newForm.ShowDialog();
         }
 
-        private void editUserButton_Click(object sender, EventArgs e)
-        {
-            ////////////////////ADD EDIT USER FUNCTIONALITY///////////////////////////
-        }
-
         /*Click event to select users from table
          */
         private void tempLabel_Click(object sender, EventArgs e)
@@ -935,11 +920,6 @@ namespace OCS_FOR_CSHARP
 
             //refreshes table
             Users_Panel.Refresh();
-        }
-
-        private void dropUser_Click(object sender, EventArgs e)
-        {
-            /////////////////////////ADD DELETE USER FUNCTIONALITY////////////////////////////////
         }
     }
 }
