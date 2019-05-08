@@ -1,4 +1,24 @@
-﻿using AForge.Imaging;
+﻿/* -----------------------------------------------------------------------------
+@
+@ FILE NAME:         Get_Image.cs
+@
+@ DESCRIPTION:       Displays web cam and resulting card picture. Functions
+@                       process image, retrieve text from image, check database
+@                       for card, and can add card to database inventory system
+@
+@ COMPILATION:       Microsoft Visual Studio Community 2017
+@
+@ NOTES:             None
+@
+@ MODIFICATION HISTORY:
+@
+@ Author                Date           Modification(s)  Changes
+@ -------------         -----------    ---------------  ---------------------
+@ Christopher Cooper    05-06-2017     v 0.1            
+@ Ryan Fox              05-06-2017     v 0.1
+----------------------------------------------------------------------------- */
+
+using AForge.Imaging;
 using AForge.Imaging.Filters;
 using AForge.Video;
 using AForge.Video.DirectShow;
@@ -30,22 +50,38 @@ using MtgApiManager.Lib.Dto;
 
 namespace OCS_FOR_CSHARP
 {
+    /* -----------------------------------------------------------------------------
+    @ CLASS NAME:       Form1
+    @ PURPOSE:          Contains all functions to take, process, alter, and add cards
+    @                       to database.
+    @ PARAM:            none
+    @
+    @ RETURNS:          none
+    @ NOTES:            none
+    ----------------------------------------------------------------------------- */
     public partial class Form1 : Form
     {
+        //Form 1 (get_image)
+        //GLOBAL
+
+        //postgres connection creation
         NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
+
         public Review callingForm;
         public Edit_Card_Form sendingForm;
 
+        //web cam setup
         private FilterInfoCollection Devices;
         private VideoCaptureDevice frame = null;
-        Bitmap currentCamFrame;
+        Bitmap currentCamFrame;//holds current webcam frame
 
         //Changes Webcam Filters
-        bool bwWebCam;
-        bool rectWebCam;
-        bool boarderWebCam;
-        short webCamState;
+        bool bwWebCam;      //black/white
+        bool rectWebCam;    //display rectangle
+        bool boarderWebCam; //display edge lines
+        short webCamState;  //current state
 
+        //card timeout and card lists
         Timer searchTimer = new Timer();
         List<cardWrapper> selectedCards = new List<cardWrapper>();
         List<cardWrapper> foundCards = new List<cardWrapper>();
@@ -57,43 +93,59 @@ namespace OCS_FOR_CSHARP
 
         public object DisplayInformation { get; private set; }
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    Form1()
+        @ PURPOSE:          Initializes values and sets up form for display/operation
+        @                   
+        @ PARAM:            none
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         public Form1()
         {
             InitializeComponent();
 
+            //timeout timer initalization
             searchTimer.Tick += new EventHandler(searchEventHandler);
             searchTimer.Interval = 3000;
             searchTimer.Enabled = true;
             searchTimer.Stop();
 
+            //panel setup
             flowLayoutPanel3.AutoScroll = false;
             flowLayoutPanel3.HorizontalScroll.Enabled = false;
             flowLayoutPanel3.HorizontalScroll.Visible = false;
             flowLayoutPanel3.HorizontalScroll.Maximum = 0;
             flowLayoutPanel3.AutoScroll = true;
 
+            //if focus bar value changes run this function
             Focus_Bar.ValueChanged += new System.EventHandler(Focus_Bar_Changed);
 
-            //var position = this.PointToScreen(Focus_Bar.Location);
-            //position = Cam_Picture_Box.PointToClient(position);
-            //Focus_Bar.Parent = Cam_Picture_Box;
-            //Focus_Bar.Location = position;
-            //Focus_Bar.BackColor = Color.Transparent;
+            //only visible if webcam is on
             Focus_Bar.Visible = false;
 
+            //initial webcam values (color,edge boarders)
             bwWebCam = false;
             rectWebCam = false;
             boarderWebCam = true;
             webCamState = 0;
 
+            //when form closes start this function
             this.Closing += Form1_Closing;
-            //var position = this.PointToScreen(Card_Boarder.Location);
-            //position = Cam_Picture_Box.PointToClient(position);
-            //Card_Boarder.Parent = Cam_Picture_Box;
-            //Card_Boarder.Location = position;
-            //Card_Boarder.Visible = false;
+
         }
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Form1_Closing(object sender, CancelEventArgs e)
+        @
+        @ PURPOSE:          Disposes of objects and turns off webcam when form closes
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Form1_Closing(object sender, CancelEventArgs e)
         {
             if (frame != null && frame.IsRunning)//if webcam is never opened before closing
@@ -110,6 +162,16 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Form1_FormClosed(object sender, CancelEventArgs e)
+        @
+        @ PURPOSE:          Disposes of objects and turns off webcam when form closes
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (frame != null && frame.IsRunning)//if webcam is never opened before closing
@@ -126,6 +188,17 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Stop_Cam_Click(object sender, EventArgs e)
+        @
+        @ PURPOSE:          Starts once stop camera button is pressed. Shuts down camera
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Stop_Cam_Click(object sender, EventArgs e)
         {
             Card_Boarder.Visible = false;
@@ -139,33 +212,69 @@ namespace OCS_FOR_CSHARP
             currentCamFrame = null;
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Start_Video_Button_Click(object sender, EventArgs e)
+        @
+        @ PURPOSE:          Starts webcam through Start_cam() function
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Start_Video_Button_Click(object sender, EventArgs e)
         {
             Start_cam();
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Cancel_Button_Click(object sender, EventArgs e)
+        @
+        @ PURPOSE:          Closes form
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
             Close();
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Webcam_Feed_Box(object sender, EventArgs e)
+        @
+        @ PURPOSE:          Changes webcam filters when the video feed is clicked
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @
+        @ NOTES:            States: 0 = Color,Boarder,NO_Rect
+        @                           1 = Color,Boarder,Rect
+        @                           2 = Color,NO_Boarder,NO_Rect
+        @                           3 = Color,NO_Boarder,Rect
+        @                           4 = Black&White,Boarder,NO_Rect
+        @                           5 = Black&White,Boarder,Rect
+        @                           6 = Black&White,NO_Boarder,NO_Rect
+        @                           7 = Black&White,NO_Boarder,Rect
+        ----------------------------------------------------------------------------- */
         private void Webcam_Feed_Box(object sender, EventArgs e)
         {
             webCamState++;
             if (webCamState == 8) { webCamState = 0; }
 
-            //States:   0 = Color,Boarder,NO_Rect
-            //          1 = Color,Boarder,Rect
-            //          2 = Color,NO_Boarder,NO_Rect
-            //          3 = Color,NO_Boarder,Rect
-            //          4 = Black&White,Boarder,NO_Rect
-            //          5 = Black&White,Boarder,Rect
-            //          6 = Black&White,NO_Boarder,NO_Rect
-            //          7 = Black&White,NO_Boarder,Rect
 
+            //first 4 states are in color
             if (webCamState < 4)
             {
                 bwWebCam = false;
+
+                //turns on/off edge boarders every 2 state changes
                 if (webCamState < 2)
                 {
                     boarderWebCam = true;
@@ -176,9 +285,11 @@ namespace OCS_FOR_CSHARP
                 }
 
             }
-            else
+            else //last 4 states are black/white
             {
                 bwWebCam = true;
+
+                //turns on/off edge boarders every 2 state changes
                 if (webCamState < 6)
                 {
                     boarderWebCam = true;
@@ -189,19 +300,34 @@ namespace OCS_FOR_CSHARP
                 }
             }
 
+            //odd state rectangle filter on
             if (webCamState % 2 == 1)
             {
                 rectWebCam = true;
             }
-            else
+            else //even state rectangle filter is off
             {
                 rectWebCam = false;
             }
         }
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    void Start_cam()
+        @
+        @ PURPOSE:          Initilizes webcam feed parameteres and starts an instance of
+        @                       webcam feed
+        @                   
+        @ PARAM:            none
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         void Start_cam()
         {
+            //list of webcams connected
             Devices = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+
+            //looks for correct camera (laptop support)
             for (int i = 0; i < Devices.Count; i++)
             {
                 if (Devices[i].Name == "HD USB Camera")
@@ -211,13 +337,11 @@ namespace OCS_FOR_CSHARP
                 else
                 {
                     frame = new VideoCaptureDevice(Devices[0].MonikerString);//may handle lack of camera error handle
-                                                                             //textBox1.Text = "TCG Digitizer camera not found!";
-                                                                             //frame = null;
-                                                                             //return;
-
                 }
 
             }
+
+            //if no webcam
             if (Devices.Count == 0)
             {
                 textBox1.Text = "TCG Digitizer camera not found!";
@@ -227,18 +351,42 @@ namespace OCS_FOR_CSHARP
             {
 
                 currentCamFrame = null;
+
+                //initializing frame and NewFrame_event()
                 frame.NewFrame += new AForge.Video.NewFrameEventHandler(NewFrame_event);
                 Focus_Bar.Visible = true;
-                frame.Start();
+                frame.Start();//starts web cab feed loop
 
             }
         }
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Focus_Bar_Changed(object sender, System.EventArgs e)
+        @
+        @ PURPOSE:          Updates focus value to AForge API when slider bar is moved
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Focus_Bar_Changed(object sender, System.EventArgs e)
         {
+            //bar value is set as webcam focus value (1-250)
             frame.SetCameraProperty(CameraControlProperty.Focus, Focus_Bar.Value, CameraControlFlags.Manual);
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    void NewFrame_event(object send, NewFrameEventArgs e)
+        @
+        @ PURPOSE:          Processes the webcam frame and make it availible to other functions
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         void NewFrame_event(object send, NewFrameEventArgs e)
         {
 
@@ -250,13 +398,19 @@ namespace OCS_FOR_CSHARP
             var ccfDispose = currentCamFrame;
             currentCamFrame = new Bitmap(bframe);//swap
 
+            //state 2 has no processing
             if (webCamState != 2)
             {
+                //new bitmap for blk/wht pic
                 Bitmap ibwWebCam = new Bitmap(bframe);
+
+                //converts bitmap to black and white (processing)
                 Black_White_Conversion(ref ibwWebCam, true);
+
+
                 if (bwWebCam)
                 {
-
+                    //live video feed black and white conversion
                     Black_White_Conversion(ref bframe, true);
                     Bitmap dframe = bframe;
                     bframe = new Bitmap((Bitmap)bframe);
@@ -265,12 +419,15 @@ namespace OCS_FOR_CSHARP
 
                 if (boarderWebCam || rectWebCam)
                 {
+                    //Finds blobs > 25% width & height
                     Rectangle rect = Blob_Detector(ibwWebCam, true, 0.25, 0.25);
 
+                    //if a rectangle is found
                     if (!rect.IsEmpty)
                     {
                         Graphics graphic = Graphics.FromImage(bframe);
 
+                        //if displaying rectangle draw it
                         if (rectWebCam)
                         {
                             Pen pen = new Pen(Color.RoyalBlue, 4);
@@ -278,15 +435,20 @@ namespace OCS_FOR_CSHARP
                             graphic.DrawRectangle(pen, rect);
                         }
 
+                        //if displaying edge lines draw lines
                         if (boarderWebCam)
                         {
+                            //Class finds edges and corners and makes corners availible
                             CardIntPoints card = new CardIntPoints(ibwWebCam, rect, 3);
                             
+                            //if there are four corners found and the angles of those edge corners is within range 80-100 degrees
                             if (card.PointF_CornerList.Count() == 4 && card.closetoIsoscelesTrap)
                             {
+                                //draw edges
                                 Pen pen2 = new Pen(Color.Yellow, 3);
                                 pen2.Alignment = PenAlignment.Inset;
 
+                                //draw lines between pixel cords (x,y)
                                 graphic.DrawLine(pen2, card.PointF_CornerList[0], card.PointF_CornerList[1]);
                                 graphic.DrawLine(pen2, card.PointF_CornerList[1], card.PointF_CornerList[2]);
                                 graphic.DrawLine(pen2, card.PointF_CornerList[2], card.PointF_CornerList[3]);
@@ -296,6 +458,8 @@ namespace OCS_FOR_CSHARP
                     }
                 }
             }
+
+            //DISPOSAL OF IMAGES
 
             //will hold reference to old image from picture box for disposal after new image takes it's place
             var bdispose = Cam_Picture_Box.Image;//I fix a long persisting memory leak
@@ -312,9 +476,21 @@ namespace OCS_FOR_CSHARP
             {
                 ccfDispose.Dispose();
             }
-        
+
         }
 
+
+        /* -----------------------------------------------------------------------------------------------
+        @ FUNCTION NAME:    void Adjust_Tesseract_Img(int contrast_threshold, ref Bitmap nameHeaderBitmap)
+        @
+        @ PURPOSE:          Adjusts images to optimize tesseract accuracy
+        @                   
+        @ PARAM:            int contrast_threshold (sets the contrast threshold set between -100 - +100)
+        @                   ref Bitmap nameHeaderBitmap (references incoming image to adjust)
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------------------------- */
         void Adjust_Tesseract_Img(int contrast_threshold/*{-100, 100}*/, ref Bitmap nameHeaderBitmap)
         {
             //width and height of tesseract image
@@ -323,28 +499,12 @@ namespace OCS_FOR_CSHARP
 
             var contrast = Math.Pow((100.0 + contrast_threshold) / 100.0, 2);
 
-            int rAvg = 0;
-            int gAvg = 0;
-            int bAvg = 0;
-            int count = 0;
-            for (int y = Convert.ToInt32(0.25 * nameHeadHeight); y < (0.75 * nameHeadHeight); y++)
-            {
-                for (int x = Convert.ToInt32(0.65 * nameHeadWidth); x < (0.75 * nameHeadWidth); x++)
-                {
-                    Color pixel = nameHeaderBitmap.GetPixel(x, y);
-                    rAvg += pixel.R;
-                    gAvg += pixel.G;
-                    bAvg += pixel.B;
-                    count++;
-                }
-            }
-
-
-
+            //looks at each pixel and adjusts contrast
             for (int y = 0; y < nameHeadHeight; y++)
             {
                 for (int x = 0; x < nameHeadWidth; x++)
                 {
+                    //current pixel
                     Color pixel = nameHeaderBitmap.GetPixel(x, y);
 
                     //adjust contrast via threshold
@@ -370,29 +530,73 @@ namespace OCS_FOR_CSHARP
                     //g = 255 - g;
                     //b = 255 - b;
 
+                    //changes pixel values (A, R, G, B)
                     nameHeaderBitmap.SetPixel(x, y, Color.FromArgb(255, (int)r, (int)g, (int)b)); 
                 }
             }     
             return;
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    void NewFrame_event(object send, NewFrameEventArgs e)
+        @
+        @ PURPOSE:          none: future use
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Open_Button(object sender, EventArgs e)
         {
-
         }
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Tess_TextBox(object sender, EventArgs e)
+        @
+        @ PURPOSE:          none: future use
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Tess_TextBox(object sender, EventArgs e)
         {
         }
 
+        /* --------------------------------------------------------------------------------------------------------------------------------------------
+        @ FUNCTION NAME:    private Rectangle Blob_Detector(Bitmap image, bool already_Black_White, double min_width_percent, double min_height_percent)
+        @
+        @ PURPOSE:          Detects blobs in image larger than min_width_percent and min_height_percent
+        @                   
+        @ PARAM:            Bitmap image (image to find blobs in) 
+        @                   bool already_Black_White (if image is already blk/wht)
+        @                   double min_width_percent (minimum blob width in percent of image)
+        @                   double min_height_percent (minimum blob height in percent of image)
+        @
+        @ RETURNS:          Rectangle (success = blob rectangle, Failure = empty rectangle)
+        @ NOTES:            none
+        -------------------------------------------------------------------------------------------------------------------------------------------- */
         private Rectangle Blob_Detector(Bitmap image, bool already_Black_White, double min_width_percent, double min_height_percent)
         {
+            //if param are not within reasonable range return empty rect
             if (min_height_percent > 0.99 || min_width_percent > 0.99 || min_height_percent < 0 || min_width_percent < 0)
+            { 
+                return Rectangle.Empty;
+            }
+
+            //if image is in color make it blk/wht
             if (!already_Black_White)
             {
                 Black_White_Conversion(ref image, true);
             }
+
+            //limit blob to be smaller than full image
             float maxImgPercent = (float)0.99;
+
+            //blob specifications
             BlobCounter blobCounter = new BlobCounter();
             blobCounter.FilterBlobs = true;
             blobCounter.MinHeight = (int)(image.Height * min_height_percent);
@@ -401,7 +605,10 @@ namespace OCS_FOR_CSHARP
             blobCounter.MaxWidth = (int)((double)image.Width * maxImgPercent);
             blobCounter.ProcessImage(image);
 
+            //rectangle list to hold blobs detected within range
             Rectangle[] blobRectangles = blobCounter.GetObjectsRectangles();
+
+            //find largest rectangle
             int largestRect = 0;
             double areaLargestRect = 0;
             if (blobRectangles.Count() > 0)
@@ -414,20 +621,39 @@ namespace OCS_FOR_CSHARP
                         largestRect = i;
                     }
                 }
+                //return largest rectangle
                 return blobRectangles[largestRect];
             }
             else
             {
+                //no blobs found return empty rectangle
                 return Rectangle.Empty;
             }
         }
- 
+
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Black_White_Conversion(ref Bitmap image, bool invert)
+        @
+        @ PURPOSE:          converts image to blk/wht by greyscale -> blk/wht
+        @                   
+        @ PARAM:            ref Bitmap image (image to make black and white)
+        @                   bool invert (specify if the image is to be inverted as well)
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Black_White_Conversion(ref Bitmap image, bool invert)
         {
+            //filters
             Grayscale gfilter = new Grayscale(0.2125, 0.7154, 0.0721);
             BradleyLocalThresholding thfilter = new BradleyLocalThresholding();
+
+            //applying filters
             image = gfilter.Apply(image);
             thfilter.ApplyInPlace(image); //To greyscale then to black and white
+
+            //if image is to be inverted
             if (invert)
             {
                 Invert ifilter = new Invert();
@@ -436,6 +662,23 @@ namespace OCS_FOR_CSHARP
             return;
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Take_Picture_Button_Click(object sender, EventArgs e)
+        @
+        @ PURPOSE:          clones current webcam image and processes image. Processing includes
+        @                       color detection, header text refinement, text refinement, finding
+        @                       card boarders, streching skewed image to fit level and square. Image
+        @                       is sent to tesseract for OCR processing. Text is compaired to
+        @                       database. if a likely card is found the card is added to database
+        @                       inventory. If not additional proccess occurs to narrow down card
+        @                       identification.
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Take_Picture_Button_Click(object sender, EventArgs e)
         {
             //If webcam feed is on
@@ -514,7 +757,7 @@ namespace OCS_FOR_CSHARP
                             colorHeadGraphics.DrawImage(trans_Color_img, 0, 0, colorHeaderCropRect, GraphicsUnit.Pixel);
 
 
-                            //create name header bitmap and increase size by -v (currently 4)
+                            //create name header bitmap and increase size by some multiple (currently 4)
                             Bitmap nameHeaderBitmap = new Bitmap(headerWidth * 4, headerHeight * 4);
                             List<AForge.IntPoint> headerCorners = new List<AForge.IntPoint> { new AForge.IntPoint(xheader, yheader), new AForge.IntPoint(headerWidth + xheader, yheader), new AForge.IntPoint(headerWidth + xheader, headerHeight + yheader), new AForge.IntPoint(xheader, headerHeight + yheader) };
                             QuadrilateralTransformation headFilter = new QuadrilateralTransformation(headerCorners, nameHeaderBitmap.Width, nameHeaderBitmap.Height);
@@ -575,8 +818,12 @@ namespace OCS_FOR_CSHARP
                             string sqlQuery = "SELECT card_name, similarity(card_name, '" + textBoxString + "') AS sml";//"SELECT * FROM public.card WHERE LOWER(card_name) = LOWER('" + textBoxString + "')";
                             sqlQuery += " FROM card WHERE foil = 'n' ORDER BY sml DESC, card_name";
 
+                            //holds returned list of header matches and probability
                             List<String[]> dblist = new List<string[]>();
+                            //hold returned list of text matches and probability
                             List<String[]> dbtextlist = new List<string[]>();
+
+                            //Query database with header info add matches into list
                             using (var cmd = new NpgsqlCommand(sqlQuery, connection))
                             {
                                 NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -592,27 +839,33 @@ namespace OCS_FOR_CSHARP
                             }
                             connection.Close();
 
+                            //if probability of header match exceeds 70% dont chack anything else and use it
                             if (Convert.ToDouble(dblist[0][1]) >= 0.70)
                             {
                                 textBoxString = dblist[0][0];
                                 foundMatch = true;
                             }
 
+                            //if header match is less than 70% check text box
                             //SECOND POSTGRESS CALL WITH TEXT STRING
                             if (!foundMatch)
                             {
-
+                                //Dim text box by percent of card width/height
                                 int xtext = Convert.ToInt32((xWidth * 0.076/*0.063786008*/) + xStart);
                                 int ytext = Convert.ToInt32((yHeight * 0.6252/*0.040481481*/) + yStart);
                                 int textWidth = Convert.ToInt32(xWidth * 0.85753086);
                                 int textHeight = Convert.ToInt32(yHeight * 0.141/*0.05037037*/);
 
+                                //stretch text to larger size by some multiple (in this case x2)
                                 Bitmap textBitmap = new Bitmap(textWidth * 2, textHeight * 2);
                                 List<AForge.IntPoint> textCorners = new List<AForge.IntPoint> { new AForge.IntPoint(xtext, ytext), new AForge.IntPoint(textWidth + xtext, ytext), new AForge.IntPoint(textWidth + xtext, textHeight + ytext), new AForge.IntPoint(xtext, textHeight + ytext) };
                                 QuadrilateralTransformation textFilter = new QuadrilateralTransformation(textCorners, textBitmap.Width, textBitmap.Height);
                                 textBitmap = textFilter.Apply(trans_Color_img);
+
+                                //text to black and white
                                 Black_White_Conversion(ref textBitmap, false);
 
+                                //clear last tesseract page and use new immage with tesseract
                                 page.Dispose();
                                 page = ocr.Process(textBitmap);
                                 string text = page.GetText();
@@ -632,10 +885,12 @@ namespace OCS_FOR_CSHARP
                                 text = text.Trim(' ');//removes spaces
 
 
-                                //TEXT CHEKC
+                                //TEXT CHECK WITH DATABASE QUERY AGAINST TEXT COLUMN
                                 connection.Open(); 
                                 string begQueryFuzzy = "SELECT card_name, 1 - ((1 - similarity(card_text, '" + text + "')) * (1 - similarity(card_name, '" + textBoxString + "'";
                                 string sqlQueryFuzzy = begQueryFuzzy + "))) AS sml FROM card WHERE foil = 'n' ORDER BY sml DESC";
+
+                                //execute tesseract
                                 using (var cmd = new NpgsqlCommand(sqlQueryFuzzy, connection))
                                 {
                                     NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -643,6 +898,7 @@ namespace OCS_FOR_CSHARP
                                     //bool sameCard = true;
                                     //string tempNameReader = "";
                                     
+                                    //add database matches to list 
                                     while (reader.Read() && readCount < 10)
                                     {
                                         dbtextlist.Add(new string[] { reader[0].ToString(), reader[1].ToString() });
@@ -652,13 +908,15 @@ namespace OCS_FOR_CSHARP
                                 }
                                 connection.Close();
 
-                                //FLAVOR TEXT CHECK
+                                //FLAVOR TEXT CHECK if text check fails (for use in cards with no text, but have flavor text instead
                                 if (dbtextlist.Count == 0)
                                 {
                                     connection.Open();
 
                                     begQueryFuzzy = "SELECT card_name, 1 - ((1 - similarity(card_flavor, '" + text + "')) * (1 - similarity(card_name, '" + textBoxString + "'";
                                     sqlQueryFuzzy = begQueryFuzzy + "))) AS sml FROM card WHERE foil = 'n' ORDER BY sml DESC";
+
+                                    //flavor text query with database
                                     using (var cmd = new NpgsqlCommand(sqlQueryFuzzy, connection))
                                     {
                                         NpgsqlDataReader reader = cmd.ExecuteReader();
@@ -666,6 +924,7 @@ namespace OCS_FOR_CSHARP
                                         //bool sameCard = true;
                                         //string tempNameReader = "";
 
+                                        //add matches to list
                                         while (reader.Read() && readCount < 10)
                                         {
                                             dbtextlist.Add(new string[] { reader[0].ToString(), reader[1].ToString() });
@@ -676,6 +935,7 @@ namespace OCS_FOR_CSHARP
                                     connection.Close();
                                 }
                                 
+                                //if largest probablity match using header/text is greater than 50% accept
                                 if (dbtextlist.Count != 0 && Convert.ToDouble(dbtextlist[0][1]) >= 0.50)
                                 {
                                     textBoxString = dbtextlist[0][0];
@@ -685,13 +945,14 @@ namespace OCS_FOR_CSHARP
                             }
                             
 
-
+                            //will display header to user
                             textBox1.Text = textBoxString;
                             CardName.Text = textBoxString;
 
                             //CREATE EXTENSION pg_trgm;
                             addToList(findCardWithName(textBoxString));
 
+                            //if low probability display that the probability is low
                             if (dbtextlist.Count > 0 && Convert.ToDouble(dbtextlist[0][1]) <= 0.70 && Convert.ToDouble(dbtextlist[0][1]) >= 0.50)
                             {
                                 textBoxString += "\nProbability: " + dbtextlist[0][0];
@@ -701,6 +962,8 @@ namespace OCS_FOR_CSHARP
                     catch (Exception ex)
                     {
                         //System.Windows.MessageBox.Show(ex.ToString());
+
+                        //exception handling unknown card mark as red close postgres call
                         textBox1.Text = "Unknown Card";
                         cardWrapper tempCard = new cardWrapper();
                         if (CardName.Text != "Name" && CardName.Text != "")
@@ -715,11 +978,23 @@ namespace OCS_FOR_CSHARP
                         tempCard.tempImg = (Bitmap)Display_Picture_Box.Image.Clone();
                         addToList(tempCard);
                         if (connection.State == ConnectionState.Open) connection.Close();
-                    }//need to add exception functionality
+                    }
                 }
             }
         }
 
+
+        /* ----------------------------------------------------------------------------- 
+        @ FUNCTION NAME:    private List<char> Find_Card_Color(Bitmap colorHeaderBitmap)
+        @
+        @ PURPOSE:          find the color of the card
+        @                   
+        @ PARAM:            ref Bitmap image (image to make black and white)
+        @                   bool invert (specify if the image is to be inverted as well)
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private List<char> Find_Card_Color(Bitmap colorHeaderBitmap)
         {
             double[] avgCardColor = new double[3];
