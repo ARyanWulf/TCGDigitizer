@@ -46,6 +46,7 @@ namespace OCS_FOR_CSHARP
             CurrentUser.prvlg_lvl = 0;
         }
 
+        // 
         public bool ActiveUser
         {
             get
@@ -60,6 +61,7 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        // Loads Login form into Slot Panel
         private void Login_Screen()
         {
             Slot_Panel.Controls.Clear();
@@ -74,6 +76,7 @@ namespace OCS_FOR_CSHARP
             login_prompt.Show();
         }
 
+        // Unlocks tabs that require a user to be logged in to access
         void logged_in()
         {
             Slot_Panel.Controls.Clear();
@@ -103,10 +106,10 @@ namespace OCS_FOR_CSHARP
             login_password_textbox.Clear();
         }
 
+        // Loads the Scan form into Slot panel
         private void ScanButton_Click(object sender, EventArgs e)
         {
 
-            //loads Scan form into panel 2
             ResetButtonColors();
             ScanButton.BackColor = Color.FromArgb(65, 70, 78);
 
@@ -124,9 +127,9 @@ namespace OCS_FOR_CSHARP
             scan_form.Show();
         }
 
+        // Loads Inventory form into slot panel
         private void InventoryButton_Click(object sender, EventArgs e)
         {
-            //loads Inventory form into panel 2
             ResetButtonColors();
             InventoryButton.BackColor = Color.FromArgb(65, 70, 78);
 
