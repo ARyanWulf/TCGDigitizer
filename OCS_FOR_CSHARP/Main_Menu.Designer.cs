@@ -360,7 +360,7 @@
             this.logout_link.TabStop = true;
             this.logout_link.Text = "Logout";
             this.logout_link.VisitedLinkColor = System.Drawing.Color.Blue;
-            this.logout_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logout_link_LinkClicked_1);
+            this.logout_link.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.logout_link_LinkClicked);
             // 
             // Top_Gradient_Panel
             // 
