@@ -178,14 +178,23 @@ namespace OCS_FOR_CSHARP
 
  
 
-        private void logout_link_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
+        private void ResetButtonColors()
+        {
+            var defaultColor = Color.FromArgb(40, 44, 52);
+            ScanButton.BackColor = defaultColor;
+            InventoryButton.BackColor = defaultColor;
+            ContactButton.BackColor = defaultColor;
+            SettingsButton.BackColor = defaultColor;
+        }
+
+        private void logout_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             ResetButtonColors();
             Login_Screen();
 
             ScanButton.Enabled = false;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_black_64;
-            
+
 
             InventoryButton.Enabled = false;
             InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_black_64;
@@ -196,15 +205,6 @@ namespace OCS_FOR_CSHARP
             CurrentUser.user_ID = 0;
             CurrentUser.prvlg_lvl = 0;
             logout_link.Enabled = false;
-        }
-
-        private void ResetButtonColors()
-        {
-            var defaultColor = Color.FromArgb(40, 44, 52);
-            ScanButton.BackColor = defaultColor;
-            InventoryButton.BackColor = defaultColor;
-            ContactButton.BackColor = defaultColor;
-            SettingsButton.BackColor = defaultColor;
         }
     }
 
