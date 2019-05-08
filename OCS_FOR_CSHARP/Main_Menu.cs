@@ -18,7 +18,6 @@ namespace OCS_FOR_CSHARP
         get_image_form scan_form;
         Inventory_Menu inventory_form;
         Settings settings_form;
-        Edit_Card_Form edit_form;
         Product_Info product_info;
         bool product_info_clicked = false;
 
@@ -343,25 +342,6 @@ namespace OCS_FOR_CSHARP
             CurrentUser.user_ID = 0;
             CurrentUser.prvlg_lvl = 0;
             logout_link.Enabled = false;
-        }
-
-
-        private void ManualEntryButton_Click(object sender, EventArgs e)
-        {
-            ResetButtonColors();
-            Slot_Panel.Controls.Clear();
-            if(edit_form == null || edit_form.IsDisposed)
-            {
-                edit_form = new Edit_Card_Form();
-            }
-
-            edit_form.TopLevel = false;
-            Slot_Panel.Controls.Add(edit_form);
-            edit_form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            edit_form.Dock = DockStyle.Fill;
-            edit_form.Size = new Size(Slot_Panel.Width, Slot_Panel.Height);
-            edit_form.Anchor = (AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top | AnchorStyles.Bottom);
-            edit_form.Show();
         }
 
         private void ResetButtonColors()

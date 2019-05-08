@@ -135,12 +135,6 @@ namespace OCS_FOR_CSHARP
             getImageForm.ShowDialog();
         }
 
-        private void Add_Card_Button_Click(object sender, EventArgs e)
-        {
-            var getEditCardForm = new Edit_Card_Form();
-            getEditCardForm.ShowDialog();
-        }
-
         // Called on form initialization
         private void Inventory_Menu_Load(object sender, EventArgs e)
         {

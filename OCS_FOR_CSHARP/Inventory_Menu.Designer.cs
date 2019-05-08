@@ -307,7 +307,6 @@
             this.Add_Card_Button.Text = "Add Card";
             this.Add_Card_Button.UseVisualStyleBackColor = false;
             this.Add_Card_Button.Visible = false;
-            this.Add_Card_Button.Click += new System.EventHandler(this.Add_Card_Button_Click);
             // 
             // CardPanel
             // 
