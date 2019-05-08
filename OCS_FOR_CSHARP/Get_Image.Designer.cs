@@ -109,7 +109,7 @@
             this.transcribed_textbox.ReadOnly = true;
             this.transcribed_textbox.Size = new System.Drawing.Size(273, 59);
             this.transcribed_textbox.TabIndex = 1;
-            this.transcribed_textbox.TextChanged += new System.EventHandler(this.Tess_TextBox);
+
             // 
             // Take_Picture_Button
             // 

@@ -519,35 +519,7 @@ namespace OCS_FOR_CSHARP
             }     
             return;
         }
-
-
-        /* -----------------------------------------------------------------------------
-        @ FUNCTION NAME:    void NewFrame_event(object send, NewFrameEventArgs e)
-        @
-        @ PURPOSE:          none: future use
-        @                   
-        @ PARAM:            not used
-        @
-        @ RETURNS:          none
-        @ NOTES:            none
-        ----------------------------------------------------------------------------- */
-        private void Open_Button(object sender, EventArgs e)
-        {
-        }
-
-        /* -----------------------------------------------------------------------------
-        @ FUNCTION NAME:    private void Tess_TextBox(object sender, EventArgs e)
-        @
-        @ PURPOSE:          none: future use
-        @                   
-        @ PARAM:            not used
-        @
-        @ RETURNS:          none
-        @ NOTES:            none
-        ----------------------------------------------------------------------------- */
-        private void Tess_TextBox(object sender, EventArgs e)
-        {
-        }
+               
 
         /* --------------------------------------------------------------------------------------------------------------------------------------------
         @ FUNCTION NAME:    private Rectangle Blob_Detector(Bitmap image, bool already_Black_White, double min_width_percent, double min_height_percent)
