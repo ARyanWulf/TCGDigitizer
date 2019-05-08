@@ -310,11 +310,6 @@ namespace OCS_FOR_CSHARP
             ContactButton.BackColor = defaultColor;
             SettingsButton.BackColor = defaultColor;
         }
-
-        private void Main_Menu_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 
 
