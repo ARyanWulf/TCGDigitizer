@@ -122,7 +122,6 @@
             this.Users_Panel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
             this.Users_Panel.Size = new System.Drawing.Size(730, 50);
             this.Users_Panel.TabIndex = 12;
-            this.Users_Panel.Paint += new System.Windows.Forms.PaintEventHandler(this.users_panel);
             // 
             // user_first_name_sort
             // 
@@ -217,7 +216,6 @@
             this.dropUser.TabIndex = 18;
             this.dropUser.Text = "Delete User";
             this.dropUser.UseVisualStyleBackColor = true;
-            this.dropUser.Click += new System.EventHandler(this.dropUser_Click);
             // 
             // editUserButton
             // 
@@ -231,7 +229,6 @@
             this.editUserButton.TabIndex = 19;
             this.editUserButton.Text = "Edit User";
             this.editUserButton.UseVisualStyleBackColor = true;
-            this.editUserButton.Click += new System.EventHandler(this.editUserButton_Click);
             // 
             // Header
             // 
@@ -360,7 +357,6 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Settings";
             this.Text = "TCGDigitizer - Settings";
-            this.Load += new System.EventHandler(this.Settings_Load);
             this.users_header_panel.ResumeLayout(false);
             this.user_settings_buttons_panel.ResumeLayout(false);
             this.Buttons_Table.ResumeLayout(false);
