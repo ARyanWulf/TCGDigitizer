@@ -303,19 +303,6 @@ namespace OCS_FOR_CSHARP
                         //for every card in the set
                         for (int j = 0; j < currentCardList.cards.Count; j++)
                         {
-                            /*/////////////////////////////////////////////////////////////////////////////////////////////////////
-                            //                           INSERT POSTGRES/PGADMIN CALLS IN HERE!!                                 //
-                            // WILL CYCLE FOR EVERY CARD IN A SET, SWITCH SETS, AND RE-ENTER                                     //
-                            // SetObject and CardObject classes can be viewed in file CardHolder.cs                              //
-                            // additional notes on unused data and commented out data can be reviewed there                      //
-                            // make sure the database calls are removed from save button on edit card forms as well.             //
-                            // info not retrieved from currentCardList[j] CardObject                                             //
-                            // DateTime, setName (get set name from setList[i].name)                                             //
-                            // also I don't know what mtg Loyalties are and their does not seem to be a data type in CardObject. //
-                            //   it may need to be removed from database if parced json files do not contain it.                 //
-                            //                                                                                                   //
-                            //  - Chris                                                                                          //
-                            /////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
                             //if card is from a promo set 
                             if(currentCardList.type == "promo")

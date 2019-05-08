@@ -1,4 +1,22 @@
-﻿using System;
+﻿/* -----------------------------------------------------------------------------
+@
+@ FILE NAME:         Create_User.cs
+@
+@ DESCRIPTION:       Takes new user data and if within minimum requirements
+@                       and user does not already exist, creates new user
+@
+@ COMPILATION:       Microsoft Visual Studio Community 2017
+@
+@ NOTES:             None
+@
+@ MODIFICATION HISTORY:
+@
+@ Author                Date           Modification(s)  Changes
+@ -------------         -----------    ---------------  ---------------------
+@ Christopher Cooper    05-06-2017     v 0.1            
+@
+----------------------------------------------------------------------------- */
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -11,15 +29,44 @@ using Npgsql;
 
 namespace OCS_FOR_CSHARP
 {
+    /* -----------------------------------------------------------------------------
+    @ CLASS NAME:       public partial class Create_User : Form
+    @ PURPOSE:          Takes new user data and will create new user in database
+    @
+    @ PARAM:            none
+    @
+    @ RETURNS:          none
+    @ NOTES:            none
+    ----------------------------------------------------------------------------- */
     public partial class Create_User : Form
     {
-        //initializes form on creation
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    public Create_User()
+        @
+        @ PURPOSE:          Initializes values and sets up form for display/operation
+        @                   
+        @ PARAM:            none
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         public Create_User()
         {
             InitializeComponent();
         }
 
-        //checks that user data is valid and adds it to the database
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void OK_Button_Click(object sender, EventArgs e)
+        @
+        @ PURPOSE:          Checks that user data is valid and adds it to the database
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void OK_Button_Click(object sender, EventArgs e)
         {
             int privilege = -1;
@@ -134,7 +181,7 @@ namespace OCS_FOR_CSHARP
             }
             else
             {
-                //List<string> existingUsers = new List<string>();
+                //all info is valid length and setup database connection
                 NpgsqlConnection connection = new NpgsqlConnection("Host=localhost; Port=5432;User Id=postgres;Password=tcgdigitizer;Database=TCGDigitizer");
                 connection.Open();
                 
@@ -142,6 +189,7 @@ namespace OCS_FOR_CSHARP
                 NpgsqlCommand command = new NpgsqlCommand("SELECT * FROM public.users WHERE login_name ILIKE '" + username_textbox.Text + "' AND privilege_lvl > 0", connection);
                 NpgsqlDataReader reader = command.ExecuteReader();
                 
+                //if the database returns something
                 if (reader.HasRows)
                 {
                     if (creationFail == true)
@@ -180,6 +228,15 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Cancel_Button_Click(object sender, EventArgs e)
+        @ PURPOSE:          cancel all, close pop window
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Cancel_Button_Click(object sender, EventArgs e)
         {
             Close();
