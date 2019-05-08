@@ -825,8 +825,7 @@ namespace OCS_FOR_CSHARP
                                 page = ocr.Process(textBitmap);
                                 string text = page.GetText();
 
-
-                                //Display_Picture_Box.Image = textBitmap;//----------------------------------------------------------<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+                                //fix punctuation issues with tesseract returned string
                                 text = new string(text.Where(c => !char.IsPunctuation(c)).ToArray());
                                 text = text.Replace("â€”", "-");//removes endline characters
                                 text = text.Replace('\n', ' ');
@@ -1062,6 +1061,18 @@ namespace OCS_FOR_CSHARP
             return theCardColor;
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    public void addToList(cardWrapper sentCard)
+        @
+        @ PURPOSE:          Adds sentCard to list of cards
+        @                       
+        @                   
+        @ PARAM:            cardWrapper sentCard (single card to be added to list)
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         public void addToList(cardWrapper sentCard)
         {
             //hide table during row creation
@@ -1118,6 +1129,17 @@ namespace OCS_FOR_CSHARP
         }
 
 
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void cardCheckChanged(Object sender, EventArgs eventArgs)
+        @
+        @ PURPOSE:          Adds or removes cards from selected card list if check box is
+        @                       check/unchecked
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void cardCheckChanged(Object sender, EventArgs eventArgs)
         {
             var temp = sender as CheckBox; //checkbox holder
@@ -1135,6 +1157,19 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Label_Clicked(Object sender, EventArgs eventArgs)
+        @
+        @ PURPOSE:          Makes certain aspects of a card visible/invisible if the entry
+        @                       is clicked
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Label_Clicked(Object sender, EventArgs eventArgs)
         {
             //get card data from sender
@@ -1194,9 +1229,18 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        /*
-         * finds card with name in database
-         */
+
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private cardWrapper findCardWithName(string cardName)
+        @
+        @ PURPOSE:          Gets card information from database using card name string
+        @                   
+        @ PARAM:            string cardName (contains card name to be searched for)
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private cardWrapper findCardWithName(string cardName)
         {
             cardWrapper returnCard = new cardWrapper(); //card to be returned
@@ -1382,9 +1426,17 @@ namespace OCS_FOR_CSHARP
             return returnCard;
         }
 
-        /*
-         * adds the currently selected cards to the inventory
-         */
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Add_Cards_To_Inventory()
+        @
+        @ PURPOSE:          Adds the currently selected cards to the inventory
+        @                   
+        @ PARAM:            none
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void Add_Cards_To_Inventory()
         {
             bool exists = false; //holds whether or not the card is already in the inventory table
@@ -1480,12 +1532,35 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        
+
+
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void EnterCardWithCondition(object sender, KeyEventArgs e)
+        @
+        @ PURPOSE:          none yet
+        @                   
+        @ PARAM:            none
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void EnterCardWithCondition(object sender, KeyEventArgs e)
         {
             //future card condition declaration
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void Add_Cards_To_Inventory()
+        @
+        @ PURPOSE:          Adds selected cards to inventory
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void add_cards_Click(object sender, EventArgs e)
         {
             //if there are cards selected
@@ -1503,15 +1578,34 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void clear_button_Click(object sender, EventArgs e)
+        @
+        @ PURPOSE:          Deletes selected cards when clear button is clicked
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void clear_button_Click(object sender, EventArgs e)
         {
             //delete selected cards
             deleteSelected();
         }
 
-        /*
-         * removes the selected cards from the table
-         */
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void deleteSelected()
+        @
+        @ PURPOSE:          Removes the selected cards from the table
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void deleteSelected()
         {
             //removes the selected cards from list
@@ -1525,6 +1619,17 @@ namespace OCS_FOR_CSHARP
             resetList();
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void CardName_SelectedIndexChanged(object sender, EventArgs e)
+        @
+        @ PURPOSE:          Dropdown card menu item is selected and card info is updated
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void CardName_SelectedIndexChanged(object sender, EventArgs e)
         {
             //resets timer
@@ -1547,6 +1652,17 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void searchEventHandler(Object myObject, EventArgs eventArgs)
+        @
+        @ PURPOSE:          if search bar is being used, will populate searched data
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void searchEventHandler(Object myObject, EventArgs eventArgs)
         {
             //stops timer
@@ -1569,9 +1685,17 @@ namespace OCS_FOR_CSHARP
 
         }
 
-        /*
-         * resets review table
-         */
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void resetList()
+        @
+        @ PURPOSE:          Resets list and repopulates data
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void resetList()
         {
             //clears table rows and sets count to 0
@@ -1585,6 +1709,15 @@ namespace OCS_FOR_CSHARP
             }
         }
 
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private void CardName_TextChanged(object sender, EventArgs e)
+        @                   
+        @ PARAM:            not used
+        @
+        @ RETURNS:          none
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private void CardName_TextChanged(object sender, EventArgs e)
         {
             //if the new card name is valid
@@ -1603,9 +1736,18 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        /*
-         * queries the database for cards with names containing the given string
-         */
+
+        /* -----------------------------------------------------------------------------
+        @ FUNCTION NAME:    private List<cardWrapper> findCardsWithName(string cardName)
+        @
+        @ PURPOSE:          Queries the database for cards with names containing the given 
+        @                       string
+        @                   
+        @ PARAM:            string cardName (string containing cards name)
+        @
+        @ RETURNS:          List<cardWrapper> (list of cards found from database)
+        @ NOTES:            none
+        ----------------------------------------------------------------------------- */
         private List<cardWrapper> findCardsWithName(string cardName)
         {
             List<cardWrapper> returnList = new List<cardWrapper>(); //list of cards to be returned
@@ -1702,6 +1844,29 @@ namespace OCS_FOR_CSHARP
         }
     }
 
+
+
+    /* -----------------------------------------------------------------------------
+      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  CLASSES  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    ----------------------------------------------------------------------------- */
+
+
+    /* -----------------------------------------------------------------------------
+    @ CLASS NAME:       public class CardIntPoints
+    @
+    @ PURPOSE:          Takes an image, rectangle,  and int = the number of edge checks
+    @                       and calculates the corners of the detected card.
+    @                       Those corners are availible as AForge.IntPoints or
+    @                       PointFs. Both are used in program
+    @ -----------------------------------------------------------------------------                       
+    @ FUNCTION NAME:    public CardIntPoints(Bitmap image, Rectangle rect, int iterations)
+    @
+    @ PARAM:            Bitmap image (image to find card in)
+    @                   Rectangle rect (rectangle to look for card in)
+    @                   int iterations (the number of 'walk-ins' to find edge per side) default =3
+    @      
+    @ NOTES:            none
+    ----------------------------------------------------------------------------- */
     public class CardIntPoints
     {
 
@@ -1930,6 +2095,7 @@ namespace OCS_FOR_CSHARP
                 iterationDex = iterationMid;
                 while (iterationDex < iterations - 1 && !passedCorner)
                 {
+                    //slope of line between two points
                     double slope = ((double)edgePoints[i, iterationDex, 1] - (double)edgePoints[i, iterationDex + 1, 1]) / ((double)edgePoints[i, iterationDex, 0] - (double)edgePoints[i, iterationDex + 1, 0]);
                     if (avgSlope[i] == 0)
                     {
@@ -1962,8 +2128,10 @@ namespace OCS_FOR_CSHARP
                     }
                     iterationDex++;
                 }
-                passedCorner = false;
-                iterationDex = iterationMid;
+
+                passedCorner = false; //flag if iteration has passed corner
+                iterationDex = iterationMid; // iterate from mid out
+
                 while (iterationDex > 0 + 1 && !passedCorner)
                 {
                     double slope = ((double)edgePoints[i, iterationDex, 1] - (double)edgePoints[i, iterationDex - 1, 1]) / ((double)edgePoints[i, iterationDex, 0] - (double)edgePoints[i, iterationDex - 1, 0]);
@@ -2061,6 +2229,8 @@ namespace OCS_FOR_CSHARP
         }
     }
 
+    //holds card data in wrapper
+    //other CardObject can be found in CardHolder.cs
     public class cardWrapper
     {
         public CardObject card;
