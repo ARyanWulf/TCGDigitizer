@@ -28,11 +28,10 @@ namespace OCS_FOR_CSHARP
             login_username_textbox.GotFocus += login_username_textbox_GotFocus;
             login_password_textbox.GotFocus += login_password_textbox_GotFocus;
 
-            //Final build should change all of these to false TEMP
+            // Disable scan button, inventory button, and settings button until a valid user logs in
             ScanButton.Enabled = false;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_black_64;
             
-
             InventoryButton.Enabled = false;
             InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_black_64;
 
@@ -44,21 +43,6 @@ namespace OCS_FOR_CSHARP
 
             CurrentUser.user_ID = 0;
             CurrentUser.prvlg_lvl = 0;
-        }
-
-        // 
-        public bool ActiveUser
-        {
-            get
-            {
-                return ScanButton.Enabled;
-            }
-            set
-            {
-                ScanButton.Enabled = value;
-                InventoryButton.Enabled = value;
-                SettingsButton.Enabled = value;
-            }
         }
 
         // Loads Login form into Slot Panel
@@ -76,14 +60,13 @@ namespace OCS_FOR_CSHARP
             login_prompt.Show();
         }
 
-        // Unlocks tabs that require a user to be logged in to access
+        // Valid user successfully logged in; unlock the scan, inventory, and settings button
         void logged_in()
         {
             Slot_Panel.Controls.Clear();
 
             ScanButton.Enabled = true;
             ScanButton.Image = OCS_FOR_CSHARP.Properties.Resources.scan_icon_flat_silver_64;
-            
 
             InventoryButton.Enabled = true;
             InventoryButton.Image = OCS_FOR_CSHARP.Properties.Resources.manual_icon_2_flat_silver_64;
@@ -92,10 +75,10 @@ namespace OCS_FOR_CSHARP
             SettingsButton.Image = OCS_FOR_CSHARP.Properties.Resources.settings_icon_flat_silver_64;
 
             logout_link.Enabled = true;
-
-            // change button colors to silver from black to show they are enabled
         }
 
+        // Allow for detection if the username or password is clicked on to
+        // allow user to enter their username/password
         private void login_username_textbox_GotFocus(object sender, EventArgs e)
         {
             login_username_textbox.Clear();
@@ -221,35 +204,7 @@ namespace OCS_FOR_CSHARP
             }
         }
 
-        // broken one, use the logout_link_LinkClicked1 further below
-        private void logout_link_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            ResetButtonColors();
-
-            login_label.Visible = true;
-            login_username_textbox.Visible = true;
-            user_name_label.Visible = true;
-            login_password_textbox.Visible = true;
-            password_label.Visible = true;
-            login_button.Visible = true;
-            logout_link.Visible = false;
-            textBox1.Visible = true;
-            welcome_label.Visible = false;
-
-            ContactText.Visible = false;
-            CloseTextButton.Visible = false;
-
-            ScanButton.Enabled = false;
-            InventoryButton.Enabled = false;
-            SettingsButton.Enabled = false;
-
-            CurrentUser.user_ID = 0;
-            CurrentUser.prvlg_lvl = 0;
-
-
-
-        }
-
+        // Check the username/password that the user entered to see if it is valid
         private void login_button_Click(object sender, EventArgs e)
         {
             textBox1.Text = "";
@@ -354,6 +309,11 @@ namespace OCS_FOR_CSHARP
             InventoryButton.BackColor = defaultColor;
             ContactButton.BackColor = defaultColor;
             SettingsButton.BackColor = defaultColor;
+        }
+
+        private void Main_Menu_Load(object sender, EventArgs e)
+        {
+
         }
     }
 

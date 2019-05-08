@@ -419,6 +419,7 @@
             this.Name = "Main_Menu";
             this.Text = "TCG Digitizer";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Main_Menu_Load);
             this.Main_Menu_Buttons_Panel.ResumeLayout(false);
             this.Main_Menu_Buttons_Table.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.LogoPicture)).EndInit();
