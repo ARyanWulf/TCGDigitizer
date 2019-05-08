@@ -248,6 +248,7 @@
             this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Create_User";
             this.Text = "User Information";
+            this.Load += new System.EventHandler(this.Create_User_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

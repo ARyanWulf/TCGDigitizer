@@ -241,5 +241,10 @@ namespace OCS_FOR_CSHARP
         {
             Close();
         }
+
+        private void Create_User_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

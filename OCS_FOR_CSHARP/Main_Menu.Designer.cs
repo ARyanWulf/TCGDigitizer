@@ -236,7 +236,7 @@
             this.login_label.ForeColor = System.Drawing.Color.Silver;
             this.login_label.Location = new System.Drawing.Point(160, 59);
             this.login_label.Name = "login_label";
-            this.login_label.Size = new System.Drawing.Size(184, 39);
+            this.login_label.Size = new System.Drawing.Size(234, 52);
             this.login_label.TabIndex = 25;
             this.login_label.Text = "User Login";
             this.login_label.Visible = false;
@@ -249,7 +249,7 @@
             this.password_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.password_label.Location = new System.Drawing.Point(166, 240);
             this.password_label.Name = "password_label";
-            this.password_label.Size = new System.Drawing.Size(78, 20);
+            this.password_label.Size = new System.Drawing.Size(98, 25);
             this.password_label.TabIndex = 24;
             this.password_label.Text = "Password";
             this.password_label.Visible = false;
@@ -260,7 +260,7 @@
             this.login_password_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_password_textbox.Location = new System.Drawing.Point(170, 263);
             this.login_password_textbox.Name = "login_password_textbox";
-            this.login_password_textbox.Size = new System.Drawing.Size(323, 38);
+            this.login_password_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_password_textbox.TabIndex = 23;
             this.login_password_textbox.Visible = false;
             // 
@@ -272,7 +272,7 @@
             this.user_name_label.ForeColor = System.Drawing.Color.Gainsboro;
             this.user_name_label.Location = new System.Drawing.Point(166, 133);
             this.user_name_label.Name = "user_name_label";
-            this.user_name_label.Size = new System.Drawing.Size(83, 20);
+            this.user_name_label.Size = new System.Drawing.Size(102, 25);
             this.user_name_label.TabIndex = 22;
             this.user_name_label.Text = "Username";
             this.user_name_label.Visible = false;
@@ -283,7 +283,7 @@
             this.login_username_textbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.login_username_textbox.Location = new System.Drawing.Point(170, 156);
             this.login_username_textbox.Name = "login_username_textbox";
-            this.login_username_textbox.Size = new System.Drawing.Size(323, 38);
+            this.login_username_textbox.Size = new System.Drawing.Size(323, 45);
             this.login_username_textbox.TabIndex = 21;
             this.login_username_textbox.Visible = false;
             // 
@@ -355,7 +355,7 @@
             this.logout_link.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.logout_link.Location = new System.Drawing.Point(889, 45);
             this.logout_link.Name = "logout_link";
-            this.logout_link.Size = new System.Drawing.Size(52, 17);
+            this.logout_link.Size = new System.Drawing.Size(60, 20);
             this.logout_link.TabIndex = 20;
             this.logout_link.TabStop = true;
             this.logout_link.Text = "Logout";
